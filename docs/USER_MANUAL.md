@@ -45,33 +45,39 @@ Companion document for presentations: [VIVA_GUIDE.md](VIVA_GUIDE.md) (likely exa
 
 ## A1. Images are tensors
 
-A colour image of width $W$ and height $H$ is stored as a grid of pixels, each with three numbers
+A colour image of width W and height H is stored as a grid of pixels, each with three numbers
 (red, green, blue) between 0 and 255. To a neural network it is a **tensor** of shape
-$3 \times H \times W$. Before training we rescale the values to $[-1, 1]$:
+3 × H × W. Before training we rescale the values to [−1, 1]:
 
-$$x = \frac{\text{pixel}}{127.5} - 1$$
+```
+x = pixel / 127.5 − 1
+```
 
 This is what `transforms.Normalize([0.5],[0.5])` does in `src/ravi_varma/data/dataset.py`.
-A batch of $B$ images is a 4-D tensor $B \times 3 \times H \times W$.
+A batch of B images is a 4-D tensor B × 3 × H × W.
 
 ## A2. Neural networks and how they learn
 
-A neural network is a function $f_\theta(x)$ with millions of adjustable numbers $\theta$
+A neural network is a function f(x; θ) with millions of adjustable numbers θ
 (**parameters** or **weights**). The simplest building block is a **linear layer**:
 
-$$y = Wx + b$$
+```
+y = W·x + b
+```
 
-where $W$ is a $d \times k$ matrix. Stacking linear layers with non-linear **activations**
+where W is a d × k matrix. Stacking linear layers with non-linear **activations**
 (ReLU, SiLU, GELU) between them lets the network represent complicated functions.
 
-**Learning** means choosing $\theta$ to minimise a **loss** $\mathcal{L}(\theta)$ — a number that
+**Learning** means choosing θ to minimise a **loss** L(θ) — a number that
 measures how wrong the network is on training examples. We compute the **gradient**
-$\nabla_\theta \mathcal{L}$ (the direction in which the loss increases fastest) with
+∇θ L (the direction in which the loss increases fastest) with
 **back-propagation** and take a small step the other way:
 
-$$\theta \leftarrow \theta - \eta \, \nabla_\theta \mathcal{L}$$
+```
+θ ← θ − η · ∇θ L
+```
 
-$\eta$ is the **learning rate**. One update is an **optimizer step**; one pass over the whole
+η (eta) is the **learning rate**. One update is an **optimizer step**; one pass over the whole
 dataset is an **epoch**. Because the full dataset rarely fits in memory, each step uses a small
 random **batch** (stochastic gradient descent).
 
@@ -83,7 +89,7 @@ Key failure modes:
 
 ## A3. Convolutions and the U-Net
 
-A **convolution** slides a small filter (e.g. $3\times3$) over the image and computes a weighted
+A **convolution** slides a small filter (e.g. 3×3) over the image and computes a weighted
 sum at each position. Early filters detect edges and colours; deeper ones detect textures, shapes,
 faces. Convolutions are efficient because the same small filter is reused everywhere.
 
@@ -96,23 +102,25 @@ A **U-Net** is a convolutional network shaped like a "U":
 
 The U-Net's output has the **same shape as its input**. That is exactly what diffusion needs: the
 input is a noisy image, the output is the noise it predicts (A7). Stable Diffusion's U-Net has
-**~860 million parameters** and also contains attention layers (A4) and receives the timestep $t$
+**~860 million parameters** and also contains attention layers (A4) and receives the timestep t
 as an extra input.
 
 ## A4. Attention and transformers
 
 **Attention** lets every element of a sequence look at every other element and decide what is
-relevant. Each element produces three vectors — **query** $Q$, **key** $K$ and **value** $V$ —
+relevant. Each element produces three vectors — **query** Q, **key** K and **value** V —
 through learned linear layers. The output is
 
-$$\text{Attention}(Q,K,V) = \text{softmax}\!\left(\frac{QK^\top}{\sqrt{d}}\right)V$$
+```
+Attention(Q, K, V) = softmax( Q·Kᵀ / √d ) · V
+```
 
 In words: compare each query with every key (dot product), turn the scores into weights with
-softmax, and take the weighted average of the values. $\sqrt{d}$ keeps the scores in a stable range.
+softmax, and take the weighted average of the values. √d keeps the scores in a stable range.
 
-- **Self-attention**: $Q$, $K$, $V$ all come from the same sequence (image features attending to
+- **Self-attention**: Q, K, V all come from the same sequence (image features attending to
   other image features — useful for global composition).
-- **Cross-attention**: $Q$ comes from the image features, $K$ and $V$ from the **text** embedding.
+- **Cross-attention**: Q comes from the image features, K and V from the **text** embedding.
   This is how the prompt steers the image: each image location "asks" which words matter to it.
 
 In code these four linear layers are called `to_q`, `to_k`, `to_v` and `to_out.0` (the output
@@ -128,7 +136,9 @@ one for text — trained on ~400 million image–caption pairs so that a matchin
 produce **similar vectors** and non-matching ones produce dissimilar vectors. Similarity is the
 **cosine similarity** of the normalised vectors:
 
-$$\cos(u, v) = \frac{u \cdot v}{\lVert u \rVert\, \lVert v \rVert}$$
+```
+cos(u, v) = (u · v) / (‖u‖ · ‖v‖)
+```
 
 We use CLIP in two different ways:
 1. **Inside Stable Diffusion**: the CLIP **text encoder** (ViT-L/14 variant) turns the prompt into
@@ -170,42 +180,46 @@ gives a generator. Start from pure noise, remove a little noise many times, and 
 
 ### Forward process (adding noise — fixed, no learning)
 
-Take a clean image (or latent) $x_0$. Over $T = 1000$ timesteps we add Gaussian noise according to a
-**noise schedule** $\beta_1, \dots, \beta_T$ (for SD1.5 a "scaled linear" schedule from 0.00085 to 0.012).
-Define $\alpha_t = 1-\beta_t$ and $\bar\alpha_t = \prod_{s=1}^{t}\alpha_s$. A useful property lets us
+Take a clean image (or latent) x₀. Over T = 1000 timesteps we add Gaussian noise according to a
+**noise schedule** β₁ … β_T (for SD1.5 a "scaled linear" schedule from 0.00085 to 0.012).
+Define αₜ = 1 − βₜ and ᾱₜ = α₁ · α₂ · … · αₜ (the product of all αs up to t). A useful property lets us
 jump straight to any timestep:
 
-$$x_t = \sqrt{\bar\alpha_t}\,x_0 + \sqrt{1-\bar\alpha_t}\,\varepsilon, \qquad \varepsilon \sim \mathcal{N}(0, I)$$
+```
+xₜ = √ᾱₜ · x₀ + √(1 − ᾱₜ) · ε        where ε ~ N(0, I)  (random Gaussian noise)
+```
 
-At small $t$, $x_t$ is almost the clean image; at $t=1000$ it is almost pure noise.
+At small t, xₜ is almost the clean image; at t = 1000 it is almost pure noise.
 This is `noise_scheduler.add_noise(latents, noise, timesteps)` in our trainer.
 
 ### Reverse process (removing noise — this is what we learn)
 
-A network $\varepsilon_\theta(x_t, t, c)$ — the U-Net — is trained to **predict the noise**
-$\varepsilon$ that was added, given the noisy input $x_t$, the timestep $t$ and the text condition $c$.
+A network εθ(xₜ, t, c) — the U-Net — is trained to **predict the noise**
+ε that was added, given the noisy input xₜ, the timestep t and the text condition c.
 
 ### Training objective
 
-$$\mathcal{L} = \mathbb{E}_{x_0, \varepsilon, t}\Big[\, \lVert \varepsilon - \varepsilon_\theta(x_t, t, c) \rVert^2 \,\Big]$$
+```
+L = E[ ‖ ε − εθ(xₜ, t, c) ‖² ]      (average over images x₀, noise ε and timesteps t)
+```
 
 i.e. the **mean squared error (MSE)** between the true and predicted noise. One training step:
 
 1. take a training image + caption,
-2. encode the image to a latent $x_0$ with the VAE, encode the caption with CLIP to $c$,
-3. pick a random timestep $t \in \{0,\dots,999\}$ and random noise $\varepsilon$,
-4. build $x_t$ with the formula above,
-5. predict $\hat\varepsilon = \varepsilon_\theta(x_t, t, c)$,
-6. loss $= \text{MSE}(\hat\varepsilon, \varepsilon)$, back-propagate, update.
+2. encode the image to a latent x₀ with the VAE, encode the caption with CLIP to c,
+3. pick a random timestep t between 0 and 999 and random noise ε,
+4. build xₜ with the formula above,
+5. predict ε̂ = εθ(xₜ, t, c),
+6. loss = MSE(ε̂, ε), back-propagate, update.
 
-**Why our loss curve is flat (~0.17–0.18):** because $t$ is random every step, some steps are
+**Why our loss curve is flat (~0.17–0.18):** because t is random every step, some steps are
 almost-clean images (very hard to guess the tiny noise) and some are almost-pure noise (easy). The
-loss mostly reflects *which* $t$ was drawn, not how well the style is learned. The **validation
+loss mostly reflects *which* t was drawn, not how well the style is learned. The **validation
 images** are the real progress signal (see Part D).
 
 ## A8. Sampling: schedulers, steps and seeds
 
-To generate, we start from random noise $x_T$ and repeatedly use the predicted noise to move towards
+To generate, we start from random noise x_T and repeatedly use the predicted noise to move towards
 a clean latent. The original DDPM sampler needs ~1000 steps. Modern **schedulers / samplers** treat
 the reverse process as solving a differential equation and take larger, smarter steps:
 
@@ -220,12 +234,14 @@ noise on CUDA, Apple MPS or CPU — this is what makes our "with vs without LoRA
 
 ## A9. Classifier-free guidance and negative prompts
 
-At every sampling step the U-Net is run **twice**: once with the prompt ($c$) and once with an
-"unconditional" input ($\varnothing$, normally the empty prompt). The two predictions are combined:
+At every sampling step the U-Net is run **twice**: once with the prompt (c) and once with an
+"unconditional" input (∅, normally the empty prompt). The two predictions are combined:
 
-$$\hat\varepsilon = \varepsilon_\theta(x_t, \varnothing) + s\,\big(\varepsilon_\theta(x_t, c) - \varepsilon_\theta(x_t, \varnothing)\big)$$
+```
+ε̂ = εθ(xₜ, ∅) + s · ( εθ(xₜ, c) − εθ(xₜ, ∅) )
+```
 
-$s$ is the **guidance scale** (we use 7.5). $s=1$ means no extra guidance; larger $s$ follows the
+s is the **guidance scale** (we use 7.5). s = 1 means no extra guidance; larger s follows the
 prompt more strongly but can over-saturate.
 
 A **negative prompt** simply replaces the empty unconditional input with a description of what we
@@ -263,25 +279,27 @@ We use the official mirror `stable-diffusion-v1-5/stable-diffusion-v1-5` (the or
 
 ### The LoRA maths
 
-Take a frozen weight matrix $W_0 \in \mathbb{R}^{d \times k}$ (e.g. the `to_q` projection). LoRA
-(Hu et al., 2021) learns an **update of low rank $r$**:
+Take a frozen weight matrix W₀ of size d × k (e.g. the `to_q` projection). LoRA
+(Hu et al., 2021) learns an **update of low rank r**:
 
-$$W = W_0 + \Delta W, \qquad \Delta W = \frac{\alpha}{r} B A, \quad B \in \mathbb{R}^{d \times r},\; A \in \mathbb{R}^{r \times k}$$
+```
+W = W₀ + ΔW,     ΔW = (α / r) · B · A,     B is d × r,  A is r × k
+```
 
-so the layer computes $h = W_0 x + \tfrac{\alpha}{r} B(Ax)$.
+so the layer computes `h = W₀·x + (α/r) · B·(A·x)`.
 
-- **Why it is small:** a $320 \times 320$ projection has $102{,}400$ weights; a rank-16 LoRA for it
-  has $16 \times (320 + 320) = 10{,}240$ — **10×** fewer. Over the whole U-Net our adapter has
+- **Why it is small:** a 320 × 320 projection has 102,400 weights; a rank-16 LoRA for it
+  has 16 × (320 + 320) = 10,240 — **10×** fewer. Over the whole U-Net our adapter has
   **3,188,736** trainable parameters = **0.37 %** of the U-Net.
-- **Why it is safe:** $B$ starts at **zero**, so at step 0 the model is exactly the base model; it
-  only drifts as far as the data pushes it. $W_0$ never changes.
-- **Rank $r$** = capacity of the update (we use 16). **Alpha $\alpha$** sets the scale
-  $\alpha/r$; with $\alpha = r = 16$ the scale is 1.
+- **Why it is safe:** B starts at **zero**, so at step 0 the model is exactly the base model; it
+  only drifts as far as the data pushes it. W₀ never changes.
+- **Rank r** = capacity of the update (we use 16). **Alpha α** sets the scale
+  α/r; with α = r = 16 the scale is 1.
 - **Target modules:** `to_q, to_k, to_v, to_out.0` in every self- and cross-attention block. Cross-
   attention is where words meet image features, so this is where "`<rvvarma>` means *this* look" is
   learned; self-attention captures composition and texture relationships.
 - **LoRA dropout 0.05** randomly zeroes 5 % of the adapter's inputs during training (regularisation).
-- **LoRA scale at inference** (`--lora-scale`) multiplies $\Delta W$: 0 = base model, 1 = as trained.
+- **LoRA scale at inference** (`--lora-scale`) multiplies ΔW: 0 = base model, 1 = as trained.
 
 ### The trigger token
 
@@ -296,8 +314,8 @@ frozen; the adapter learns how the U-Net should respond to those tokens.
 ## A12. Training mechanics
 
 - **AdamW optimizer.** Adam keeps running averages of each parameter's gradient (momentum,
-  $\beta_1 = 0.9$) and squared gradient ($\beta_2 = 0.999$) and scales each step individually;
-  "W" adds decoupled **weight decay** (0.01) that gently pulls weights toward zero. $\epsilon = 10^{-8}$
+  β₁ = 0.9) and squared gradient (β₂ = 0.999) and scales each step individually;
+  "W" adds decoupled **weight decay** (0.01) that gently pulls weights toward zero. ε = 10⁻⁸
   avoids division by zero.
 - **Learning rate 1e-4, constant with 100 warm-up steps.** The LR ramps linearly from 0 to 1e-4 over
   the first 100 optimizer steps (avoids large unstable updates while Adam's statistics are still
@@ -603,7 +621,7 @@ on a 1 MB test model** (checks freezing, checkpointing, resume and that the expo
 | Term | Meaning |
 |---|---|
 | Accumulation | adding gradients from several mini-batches before one update |
-| Alpha (LoRA) | scale of the LoRA update ($\alpha/r$) |
+| Alpha (LoRA) | scale of the LoRA update (α/r) |
 | Attention | weighted mixing of information based on query–key similarity |
 | Bucket | one of the fixed training image sizes with ≈ 512² pixels |
 | CFG / guidance scale | how strongly the prompt steers each denoising step |
@@ -616,11 +634,11 @@ on a 1 MB test model** (checks freezing, checkpointing, resume and that the expo
 | fp16 / mixed precision | 16-bit storage/compute for speed and memory, fp32 where precision matters |
 | Hold-out / reference set | the 12 paintings never used for training |
 | Latent | the VAE's compressed 4-channel representation (8× smaller per side) |
-| LoRA | low-rank adapter: $W_0 + \tfrac{\alpha}{r}BA$ |
+| LoRA | low-rank adapter: W₀ + (α/r)·B·A |
 | Manifest | `manifest.jsonl`: list of training images + captions |
 | Negative prompt | text the sampler is pushed away from |
 | Optimizer step | one weight update (= 4 images here) |
-| Rank (LoRA) | inner dimension $r$ of the update; its capacity |
+| Rank (LoRA) | inner dimension r of the update; its capacity |
 | Scheduler / sampler | algorithm that turns noise into an image in N steps |
 | Seed | number fixing the random starting noise |
 | Trigger token | `<rvvarma>`; the words that switch the learned style on |

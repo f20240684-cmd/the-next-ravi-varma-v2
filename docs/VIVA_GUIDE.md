@@ -55,12 +55,12 @@ added noise. To generate, we start from pure noise and repeatedly subtract the p
 ~30 steps until a clean image remains.
 
 **Q: Write the forward process.**
-$x_t = \sqrt{\bar\alpha_t}\,x_0 + \sqrt{1-\bar\alpha_t}\,\varepsilon$, with $\varepsilon \sim \mathcal N(0,I)$
-and $\bar\alpha_t$ the cumulative product of $(1-\beta_t)$ over a fixed noise schedule of 1000 steps.
+`xₜ = √ᾱₜ · x₀ + √(1 − ᾱₜ) · ε`, where ε is Gaussian noise and ᾱₜ is the product of (1 − βₛ) for all steps
+s up to t, from a fixed noise schedule of 1000 steps.
 
 **Q: What is the training loss?**
 Mean squared error between the true noise and the predicted noise:
-$\mathbb E\,\lVert \varepsilon - \varepsilon_\theta(x_t, t, c)\rVert^2$, with a random timestep each step.
+`L = E[ ‖ε − εθ(xₜ, t, c)‖² ]`, with a random timestep each step.
 
 **Q: What are the three components of Stable Diffusion?**
 A CLIP text encoder (prompt → 77×768 embedding), a U-Net that predicts noise in latent space and reads
@@ -76,13 +76,13 @@ what is needed to predict a noise map for a noisy latent. SD's U-Net also has at
 the timestep as input.
 
 **Q: Explain attention / cross-attention.**
-$\text{softmax}(QK^\top/\sqrt d)\,V$. In cross-attention the queries come from image features and the
+`softmax(Q·Kᵀ / √d) · V`. In cross-attention the queries come from image features and the
 keys/values from the text tokens, so each image region picks the words relevant to it — that is how
 the prompt controls the image.
 
 **Q: What is classifier-free guidance?**
 The U-Net is run with and without the prompt and the prediction is extrapolated:
-$\varepsilon_u + s(\varepsilon_c - \varepsilon_u)$. We use $s = 7.5$. A negative prompt replaces the
+`ε_uncond + s · (ε_cond − ε_uncond)`. We use s = 7.5. A negative prompt replaces the
 "without prompt" branch, so the image is pushed away from it.
 
 **Q: What does the scheduler do? Why 30 steps and not 1000?**
@@ -98,9 +98,9 @@ so seeds are reproducible across GPU, Mac and CPU, which makes our base-vs-LoRA 
 ## 3. LoRA and fine-tuning [A11]
 
 **Q: What is LoRA?**
-Low-Rank Adaptation: instead of changing a weight matrix $W_0$, we learn a low-rank update
-$\Delta W = \frac{\alpha}{r} BA$ with $B\in\mathbb R^{d\times r}$, $A\in\mathbb R^{r\times k}$, $r \ll d,k$.
-$W_0$ stays frozen; only $A$ and $B$ are trained.
+Low-Rank Adaptation: instead of changing a weight matrix W₀, we learn a low-rank update
+`ΔW = (α/r) · B · A` with B of size d × r and A of size r × k, where r is much smaller than d and k.
+W₀ stays frozen; only A and B are trained.
 
 **Q: Why LoRA instead of full fine-tuning or DreamBooth?**
 Full fine-tuning updates ~860 M parameters, needs much more GPU memory, gives a 2–4 GB file and easily
@@ -113,7 +113,7 @@ weak for a whole painting style. LoRA changes the attention layers themselves.
 
 **Q: Why rank 16? What does alpha do?**
 Rank is the adapter's capacity: 4–8 can under-fit a full style, 64+ adds parameters and overfitting risk
-on a small dataset; 16 is a common middle ground for style LoRAs. Alpha scales the update by $\alpha/r$;
+on a small dataset; 16 is a common middle ground for style LoRAs. Alpha scales the update by α/r;
 with alpha = rank the scale is 1, so the learning rate behaves predictably.
 
 **Q: Why these target modules?**
@@ -124,7 +124,7 @@ so the trigger word's meaning is learned there; self-attention shapes compositio
 For a 320×320 projection: full = 102,400; rank-16 LoRA = 16 × (320 + 320) = 10,240 — 10× fewer.
 
 **Q: Why does LoRA not destroy the model at the start of training?**
-$B$ is initialised to zero, so $\Delta W = 0$ and the model starts exactly as the base model.
+B is initialised to zero, so ΔW = 0 and the model starts exactly as the base model.
 
 **Q: What is the trigger token and how does it work?**
 `<rvvarma>` starts every training caption. CLIP splits it into the rare tokens `<, rv, var, ma, >`, which
@@ -145,7 +145,7 @@ memory, less overfitting.
 ## 4. Training details [A12, B7]
 
 **Q: Walk me through one training step.**
-Image → VAE latent; caption → CLIP embedding; pick random timestep $t$ and noise; make the noisy latent;
+Image → VAE latent; caption → CLIP embedding; pick random timestep t and noise; make the noisy latent;
 the U-Net (with LoRA) predicts the noise; MSE loss; back-propagate into the LoRA weights only; after 4
 such images, clip gradients and take one AdamW step.
 
