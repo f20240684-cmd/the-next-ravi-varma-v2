@@ -1,0 +1,36 @@
+{
+  "image": "0182.jpg",
+  "subject": "a man in a white outfit holding a flower",
+  "composition": "single-figure composition, vertical format",
+  "pose": "standing, holding flower",
+  "clothing": "unknown",
+  "jewelry": "necklace jewelry",
+  "expression": "serious expression",
+  "objects": "holding rose",
+  "environment": "unknown",
+  "lighting": "mid-tone lighting",
+  "visual_characteristics": "balanced earthy palette",
+  "raw_caption": "a man in a white outfit holding a flower",
+  "title": "Maharana Raj Singh - I",
+  "source": "vlm",
+  "qa": {
+    "people_count": "1",
+    "clothing": "tuxedo",
+    "clothing_color": "white",
+    "has_jewelry": "yes",
+    "jewelry": "necklace",
+    "pose": "standing",
+    "action": "holding flower",
+    "expression": "serious",
+    "has_object": "yes",
+    "objects": "rose",
+    "environment": "in painting",
+    "time": "day"
+  },
+  "measured": {
+    "lighting": "mid-tone lighting",
+    "palette": "balanced earthy palette",
+    "orientation": "vertical format"
+  },
+  "flat_caption": "Maharana Raj Singh - I, a man in a white outfit holding a flower, necklace jewelry, standing, holding flower, serious expression, holding rose, single-figure composition, vertical format, mid-tone lighting, balanced earthy palette"
+}

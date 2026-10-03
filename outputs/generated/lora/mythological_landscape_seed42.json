@@ -1,0 +1,22 @@
+{
+  "prompt_id": "mythological_landscape",
+  "prompt": "<rvvarma>, Indian mythological scene in a lush landscape, multiple characters, traditional clothing, detailed classical oil painting",
+  "negative_prompt": "malformed anatomy, bad anatomy, extra fingers, missing fingers, fused fingers, deformed hands, extra limbs, unnatural limbs, bad proportions, duplicated people, cloned face, distorted face, malformed eyes, asymmetric eyes, blurry face, disfigured, mutated, cropped head, cut-off subjects, text, watermark, signature, logo, frame, border, low quality, worst quality, lowres, blurry, jpeg artifacts, out of focus",
+  "seed": 42,
+  "steps": 30,
+  "guidance_scale": 7.5,
+  "width": 640,
+  "height": 448,
+  "lora_scale": 1.0,
+  "lora_loaded": true,
+  "lora_weights": "checkpoints/lora/ravi_varma/pytorch_lora_weights.safetensors",
+  "base_model": "stable-diffusion-v1-5/stable-diffusion-v1-5",
+  "scheduler": "dpmsolver_multistep",
+  "controlnet_enabled": false,
+  "controlnet_type": null,
+  "controlnet_strength": null,
+  "device": "cuda",
+  "dtype": "float16",
+  "timestamp": 1791017023.6265645,
+  "disclaimer": "Ravi Varma-inspired generative artwork. AI-generated; not an authentic Raja Ravi Varma painting. Evaluation scores (if present) measure statistical similarity, not artistic authenticity."
+}

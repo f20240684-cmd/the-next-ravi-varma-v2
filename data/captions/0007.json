@@ -1,0 +1,36 @@
+{
+  "image": "0007.jpg",
+  "subject": "a group of women walking in the woods",
+  "composition": "group of four figures, vertical format",
+  "pose": "standing",
+  "clothing": "wearing orange dress",
+  "jewelry": "necklace jewelry",
+  "expression": "smiling expression",
+  "objects": "holding bowl",
+  "environment": "in park",
+  "lighting": "mid-tone lighting",
+  "visual_characteristics": "warm red and ochre palette",
+  "raw_caption": "a group of women walking in the woods",
+  "title": "Shakuntala looking back to glimpse Dushyanta",
+  "source": "vlm",
+  "qa": {
+    "people_count": "4",
+    "clothing": "dress",
+    "clothing_color": "orange",
+    "has_jewelry": "yes",
+    "jewelry": "necklace",
+    "pose": "standing",
+    "action": "walking",
+    "expression": "smiling",
+    "has_object": "yes",
+    "objects": "bowl",
+    "environment": "in park",
+    "time": "day"
+  },
+  "measured": {
+    "lighting": "mid-tone lighting",
+    "palette": "warm red and ochre palette",
+    "orientation": "vertical format"
+  },
+  "flat_caption": "Shakuntala looking back to glimpse Dushyanta, a group of women walking in the woods, wearing orange dress, necklace jewelry, standing, smiling expression, holding bowl, in park, group of four figures, vertical format, mid-tone lighting, warm red and ochre palette"
+}

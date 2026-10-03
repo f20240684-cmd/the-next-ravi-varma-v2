@@ -1,0 +1,35 @@
+{
+  "image": "0229.jpg",
+  "subject": "a woman sitting on a rock near a body of water",
+  "composition": "single-figure composition, vertical format",
+  "pose": "sitting",
+  "clothing": "wearing red dress",
+  "jewelry": "necklace jewelry",
+  "expression": "serious expression",
+  "objects": "unknown",
+  "environment": "in a lake",
+  "lighting": "mid-tone lighting, night scene",
+  "visual_characteristics": "warm red and ochre palette",
+  "raw_caption": "a woman sitting on a rock near a body of water",
+  "title": "Lady in the Moon Light",
+  "source": "vlm",
+  "qa": {
+    "people_count": "1",
+    "clothing": "dress",
+    "clothing_color": "red",
+    "has_jewelry": "yes",
+    "jewelry": "necklace",
+    "pose": "sitting",
+    "action": "sitting",
+    "expression": "serious",
+    "has_object": "no",
+    "environment": "lake",
+    "time": "night"
+  },
+  "measured": {
+    "lighting": "mid-tone lighting",
+    "palette": "warm red and ochre palette",
+    "orientation": "vertical format"
+  },
+  "flat_caption": "Lady in the Moon Light, a woman sitting on a rock near a body of water, wearing red dress, necklace jewelry, sitting, serious expression, in a lake, single-figure composition, vertical format, mid-tone lighting, night scene, warm red and ochre palette"
+}

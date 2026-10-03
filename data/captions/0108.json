@@ -1,0 +1,36 @@
+{
+  "image": "0108.jpg",
+  "subject": "a woman sitting on the ground with a plate of fruit",
+  "composition": "single-figure composition, vertical format",
+  "pose": "sitting",
+  "clothing": "wearing red dress",
+  "jewelry": "bracelet jewelry",
+  "expression": "serious expression",
+  "objects": "unknown",
+  "environment": "unknown",
+  "lighting": "dark low-key tones",
+  "visual_characteristics": "warm red and ochre palette",
+  "raw_caption": "a woman sitting on the ground with a plate of fruit",
+  "title": "Radha Waiting for Krishna",
+  "source": "vlm",
+  "qa": {
+    "people_count": "1",
+    "clothing": "dress",
+    "clothing_color": "red",
+    "has_jewelry": "yes",
+    "jewelry": "bracelet",
+    "pose": "sitting",
+    "action": "sitting",
+    "expression": "serious",
+    "has_object": "yes",
+    "objects": "nothing",
+    "environment": "in painting",
+    "time": "day"
+  },
+  "measured": {
+    "lighting": "dark low-key tones",
+    "palette": "warm red and ochre palette",
+    "orientation": "vertical format"
+  },
+  "flat_caption": "Radha Waiting for Krishna, a woman sitting on the ground with a plate of fruit, wearing red dress, bracelet jewelry, sitting, serious expression, single-figure composition, vertical format, dark low-key tones, warm red and ochre palette"
+}

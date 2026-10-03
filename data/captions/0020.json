@@ -1,0 +1,36 @@
+{
+  "image": "0020.jpg",
+  "subject": "a man and a woman dancing in a room",
+  "composition": "group of many figures, vertical format",
+  "pose": "standing",
+  "clothing": "wearing red dress",
+  "jewelry": "necklace jewelry",
+  "expression": "serious expression",
+  "objects": "holding sword",
+  "environment": "in palace",
+  "lighting": "dark low-key tones",
+  "visual_characteristics": "warm red and ochre palette",
+  "raw_caption": "a man and a woman dancing in a room",
+  "title": "Draupadi Vastraharan",
+  "source": "vlm",
+  "qa": {
+    "people_count": "8",
+    "clothing": "red dress",
+    "clothing_color": "red",
+    "has_jewelry": "yes",
+    "jewelry": "necklace",
+    "pose": "standing",
+    "action": "standing",
+    "expression": "serious",
+    "has_object": "yes",
+    "objects": "sword",
+    "environment": "in palace",
+    "time": "day"
+  },
+  "measured": {
+    "lighting": "dark low-key tones",
+    "palette": "warm red and ochre palette",
+    "orientation": "vertical format"
+  },
+  "flat_caption": "Draupadi Vastraharan, a man and a woman dancing in a room, wearing red dress, necklace jewelry, standing, serious expression, holding sword, in palace, group of many figures, vertical format, dark low-key tones, warm red and ochre palette"
+}

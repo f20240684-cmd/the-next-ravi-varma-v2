@@ -1,0 +1,36 @@
+{
+  "image": "0197.jpg",
+  "subject": "an old painting of a woman playing a sitar on a rug",
+  "composition": "single-figure composition, vertical format",
+  "pose": "sitting, playing stringed instrument",
+  "clothing": "wearing blue dress",
+  "jewelry": "necklace jewelry",
+  "expression": "smile expression",
+  "objects": "holding stringed instrument",
+  "environment": "unknown",
+  "lighting": "dark low-key tones",
+  "visual_characteristics": "warm red and ochre palette",
+  "raw_caption": "an old painting of a woman playing a sitar on a rug",
+  "title": "Woman with veena",
+  "source": "vlm",
+  "qa": {
+    "people_count": "one",
+    "clothing": "dress",
+    "clothing_color": "blue",
+    "has_jewelry": "yes",
+    "jewelry": "necklace",
+    "pose": "sitting",
+    "action": "playing guitar",
+    "expression": "smile",
+    "has_object": "yes",
+    "objects": "guitar",
+    "environment": "in painting",
+    "time": "day"
+  },
+  "measured": {
+    "lighting": "dark low-key tones",
+    "palette": "warm red and ochre palette",
+    "orientation": "vertical format"
+  },
+  "flat_caption": "Woman with veena, an old painting of a woman playing a sitar on a rug, wearing blue dress, necklace jewelry, sitting, playing stringed instrument, smile expression, holding stringed instrument, single-figure composition, vertical format, dark low-key tones, warm red and ochre palette"
+}

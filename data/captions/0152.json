@@ -1,0 +1,36 @@
+{
+  "image": "0152.jpg",
+  "subject": "a woman in a red sari and a child in a body of water",
+  "composition": "group of three figures, vertical format",
+  "pose": "standing",
+  "clothing": "wearing red dress",
+  "jewelry": "necklace jewelry",
+  "expression": "calm expression",
+  "objects": "holding child",
+  "environment": "in a river",
+  "lighting": "mid-tone lighting",
+  "visual_characteristics": "warm red and ochre palette",
+  "raw_caption": "a woman in a red sari and a child in a body of water",
+  "title": "Ganga and Shantanu",
+  "source": "vlm",
+  "qa": {
+    "people_count": "3",
+    "clothing": "dress",
+    "clothing_color": "red",
+    "has_jewelry": "yes",
+    "jewelry": "necklace",
+    "pose": "standing",
+    "action": "standing",
+    "expression": "calm",
+    "has_object": "yes",
+    "objects": "child",
+    "environment": "river",
+    "time": "day"
+  },
+  "measured": {
+    "lighting": "mid-tone lighting",
+    "palette": "warm red and ochre palette",
+    "orientation": "vertical format"
+  },
+  "flat_caption": "Ganga and Shantanu, a woman in a red sari and a child in a body of water, wearing red dress, necklace jewelry, standing, calm expression, holding child, in a river, group of three figures, vertical format, mid-tone lighting, warm red and ochre palette"
+}

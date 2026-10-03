@@ -1,0 +1,36 @@
+{
+  "image": "0097.jpg",
+  "subject": "a woman swinging on a swing",
+  "composition": "single-figure composition, vertical format",
+  "pose": "sitting",
+  "clothing": "wearing white dress",
+  "jewelry": "bracelet jewelry",
+  "expression": "smiling expression",
+  "objects": "holding stick",
+  "environment": "in park",
+  "lighting": "mid-tone lighting",
+  "visual_characteristics": "warm red and ochre palette",
+  "raw_caption": "a woman swinging on a swing",
+  "title": "Mohini on a swing",
+  "source": "vlm",
+  "qa": {
+    "people_count": "one",
+    "clothing": "dress",
+    "clothing_color": "white",
+    "has_jewelry": "yes",
+    "jewelry": "bracelet",
+    "pose": "sitting",
+    "action": "sitting",
+    "expression": "smiling",
+    "has_object": "yes",
+    "objects": "stick",
+    "environment": "in park",
+    "time": "day"
+  },
+  "measured": {
+    "lighting": "mid-tone lighting",
+    "palette": "warm red and ochre palette",
+    "orientation": "vertical format"
+  },
+  "flat_caption": "Mohini on a swing, a woman swinging on a swing, wearing white dress, bracelet jewelry, sitting, smiling expression, holding stick, in park, single-figure composition, vertical format, mid-tone lighting, warm red and ochre palette"
+}

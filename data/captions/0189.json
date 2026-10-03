@@ -1,0 +1,36 @@
+{
+  "image": "0189.jpg",
+  "subject": "an old painting of a woman in a white sari playing a musical instrument",
+  "composition": "single-figure composition, vertical format",
+  "pose": "sitting",
+  "clothing": "wearing white dress",
+  "jewelry": "necklace jewelry",
+  "expression": "serious expression",
+  "objects": "holding stringed instrument",
+  "environment": "unknown",
+  "lighting": "mid-tone lighting",
+  "visual_characteristics": "warm red and ochre palette",
+  "raw_caption": "an old painting of a woman in a white sari playing a musical instrument",
+  "title": "Malabar Lady",
+  "source": "vlm",
+  "qa": {
+    "people_count": "1",
+    "clothing": "dress",
+    "clothing_color": "white",
+    "has_jewelry": "yes",
+    "jewelry": "necklace",
+    "pose": "sitting",
+    "action": "sitting",
+    "expression": "serious",
+    "has_object": "yes",
+    "objects": "guitar",
+    "environment": "in painting",
+    "time": "day"
+  },
+  "measured": {
+    "lighting": "mid-tone lighting",
+    "palette": "warm red and ochre palette",
+    "orientation": "vertical format"
+  },
+  "flat_caption": "Malabar Lady, an old painting of a woman in a white sari playing a musical instrument, wearing white dress, necklace jewelry, sitting, serious expression, holding stringed instrument, single-figure composition, vertical format, mid-tone lighting, warm red and ochre palette"
+}

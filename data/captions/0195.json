@@ -1,0 +1,35 @@
+{
+  "image": "0195.jpg",
+  "subject": "a man and woman standing next to each other",
+  "composition": "group of two figures, vertical format",
+  "pose": "standing, holding hands",
+  "clothing": "wearing red dress",
+  "jewelry": "unknown",
+  "expression": "smiling expression",
+  "objects": "holding vase",
+  "environment": "unknown",
+  "lighting": "mid-tone lighting",
+  "visual_characteristics": "warm red and ochre palette",
+  "raw_caption": "a man and woman standing next to each other",
+  "title": "Sudeshna and Draupathi",
+  "source": "vlm",
+  "qa": {
+    "people_count": "2",
+    "clothing": "dress",
+    "clothing_color": "red",
+    "has_jewelry": "no",
+    "pose": "standing",
+    "action": "holding hands",
+    "expression": "smiling",
+    "has_object": "yes",
+    "objects": "vase",
+    "environment": "in painting",
+    "time": "day"
+  },
+  "measured": {
+    "lighting": "mid-tone lighting",
+    "palette": "warm red and ochre palette",
+    "orientation": "vertical format"
+  },
+  "flat_caption": "Sudeshna and Draupathi, a man and woman standing next to each other, wearing red dress, standing, holding hands, smiling expression, holding vase, group of two figures, vertical format, mid-tone lighting, warm red and ochre palette"
+}

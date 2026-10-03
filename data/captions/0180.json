@@ -1,0 +1,36 @@
+{
+  "image": "0180.jpg",
+  "subject": "a man in a blue dress with a white hat and a gold necklace",
+  "composition": "single-figure composition, vertical format",
+  "pose": "standing",
+  "clothing": "wearing blue robe",
+  "jewelry": "necklace jewelry",
+  "expression": "serious expression",
+  "objects": "holding book",
+  "environment": "unknown",
+  "lighting": "dark low-key tones",
+  "visual_characteristics": "warm red and ochre palette",
+  "raw_caption": "a man in a blue dress with a white hat and a gold necklace",
+  "title": "Kerala Varma Valiya Koil Thampuran Changanassery Lakshmipuram Palace",
+  "source": "vlm",
+  "qa": {
+    "people_count": "one",
+    "clothing": "blue robe",
+    "clothing_color": "blue",
+    "has_jewelry": "yes",
+    "jewelry": "necklace",
+    "pose": "standing",
+    "action": "standing",
+    "expression": "serious",
+    "has_object": "yes",
+    "objects": "book",
+    "environment": "in painting",
+    "time": "day"
+  },
+  "measured": {
+    "lighting": "dark low-key tones",
+    "palette": "warm red and ochre palette",
+    "orientation": "vertical format"
+  },
+  "flat_caption": "Kerala Varma Valiya Koil Thampuran Changanassery Lakshmipuram Palace, a man in a blue dress with a white hat and a gold necklace, wearing blue robe, necklace jewelry, standing, serious expression, holding book, single-figure composition, vertical format, dark low-key tones, warm red and ochre palette"
+}

@@ -1,0 +1,36 @@
+{
+  "image": "0004.jpg",
+  "subject": "three women standing next to a deer",
+  "composition": "group of three figures, vertical format",
+  "pose": "standing, feeding elephant",
+  "clothing": "wearing white dress",
+  "jewelry": "necklace jewelry",
+  "expression": "smiling expression",
+  "objects": "holding bowl",
+  "environment": "unknown",
+  "lighting": "mid-tone lighting",
+  "visual_characteristics": "warm red and ochre palette",
+  "raw_caption": "three women standing next to a deer",
+  "title": "Shakuntala and Sakhis",
+  "source": "vlm",
+  "qa": {
+    "people_count": "three",
+    "clothing": "white dress",
+    "clothing_color": "white",
+    "has_jewelry": "yes",
+    "jewelry": "necklace",
+    "pose": "standing",
+    "action": "feeding elephant",
+    "expression": "smiling",
+    "has_object": "yes",
+    "objects": "bowl",
+    "environment": "near painting",
+    "time": "day"
+  },
+  "measured": {
+    "lighting": "mid-tone lighting",
+    "palette": "warm red and ochre palette",
+    "orientation": "vertical format"
+  },
+  "flat_caption": "Shakuntala and Sakhis, three women standing next to a deer, wearing white dress, necklace jewelry, standing, feeding elephant, smiling expression, holding bowl, group of three figures, vertical format, mid-tone lighting, warm red and ochre palette"
+}

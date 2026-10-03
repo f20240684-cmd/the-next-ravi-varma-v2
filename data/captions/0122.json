@@ -1,0 +1,36 @@
+{
+  "image": "0122.jpg",
+  "subject": "a group of people sitting on a throne",
+  "composition": "group of many figures, vertical format",
+  "pose": "sitting",
+  "clothing": "wearing white pink clothing",
+  "jewelry": "necklace jewelry",
+  "expression": "smile expression",
+  "objects": "holding sword",
+  "environment": "unknown",
+  "lighting": "mid-tone lighting",
+  "visual_characteristics": "warm red and ochre palette",
+  "raw_caption": "a group of people sitting on a throne",
+  "title": "Draupadi humiliated",
+  "source": "vlm",
+  "qa": {
+    "people_count": "8",
+    "clothing": "pink",
+    "clothing_color": "white",
+    "has_jewelry": "yes",
+    "jewelry": "necklace",
+    "pose": "sitting",
+    "action": "sitting",
+    "expression": "smile",
+    "has_object": "yes",
+    "objects": "sword",
+    "environment": "at museum",
+    "time": "day"
+  },
+  "measured": {
+    "lighting": "mid-tone lighting",
+    "palette": "warm red and ochre palette",
+    "orientation": "vertical format"
+  },
+  "flat_caption": "Draupadi humiliated, a group of people sitting on a throne, wearing white pink clothing, necklace jewelry, sitting, smile expression, holding sword, group of many figures, vertical format, mid-tone lighting, warm red and ochre palette"
+}

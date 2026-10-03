@@ -1,0 +1,36 @@
+{
+  "image": "0186.jpg",
+  "subject": "a woman in a white dress holding a musical instrument",
+  "composition": "single-figure composition, vertical format",
+  "pose": "sitting",
+  "clothing": "wearing white dress",
+  "jewelry": "necklace jewelry",
+  "expression": "serious expression",
+  "objects": "holding tambourine",
+  "environment": "unknown",
+  "lighting": "mid-tone lighting",
+  "visual_characteristics": "warm red and ochre palette",
+  "raw_caption": "a woman in a white dress holding a musical instrument",
+  "title": "Lady Playing the Swarabat",
+  "source": "vlm",
+  "qa": {
+    "people_count": "1",
+    "clothing": "dress",
+    "clothing_color": "white",
+    "has_jewelry": "yes",
+    "jewelry": "necklace",
+    "pose": "sitting",
+    "action": "sitting",
+    "expression": "serious",
+    "has_object": "yes",
+    "objects": "tambourine",
+    "environment": "in painting",
+    "time": "day"
+  },
+  "measured": {
+    "lighting": "mid-tone lighting",
+    "palette": "warm red and ochre palette",
+    "orientation": "vertical format"
+  },
+  "flat_caption": "Lady Playing the Swarabat, a woman in a white dress holding a musical instrument, wearing white dress, necklace jewelry, sitting, serious expression, holding tambourine, single-figure composition, vertical format, mid-tone lighting, warm red and ochre palette"
+}

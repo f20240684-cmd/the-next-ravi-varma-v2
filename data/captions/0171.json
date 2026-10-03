@@ -1,0 +1,35 @@
+{
+  "image": "0171.jpg",
+  "subject": "a woman laying on a bed with her eyes closed",
+  "composition": "group of two figures, landscape format",
+  "pose": "laying, laying down",
+  "clothing": "wearing gold white dress",
+  "jewelry": "necklace jewelry",
+  "expression": "smile expression",
+  "objects": "unknown",
+  "environment": "unknown",
+  "lighting": "mid-tone lighting",
+  "visual_characteristics": "warm red and ochre palette",
+  "raw_caption": "a woman laying on a bed with her eyes closed",
+  "title": "Usha's Dream",
+  "source": "vlm",
+  "qa": {
+    "people_count": "2",
+    "clothing": "white dress",
+    "clothing_color": "gold",
+    "has_jewelry": "yes",
+    "jewelry": "necklace",
+    "pose": "laying",
+    "action": "laying down",
+    "expression": "smile",
+    "has_object": "no",
+    "environment": "in painting",
+    "time": "day"
+  },
+  "measured": {
+    "lighting": "mid-tone lighting",
+    "palette": "warm red and ochre palette",
+    "orientation": "landscape format"
+  },
+  "flat_caption": "Usha's Dream, a woman laying on a bed with her eyes closed, wearing gold white dress, necklace jewelry, laying, laying down, smile expression, group of two figures, landscape format, mid-tone lighting, warm red and ochre palette"
+}

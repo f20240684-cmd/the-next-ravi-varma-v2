@@ -1,0 +1,36 @@
+{
+  "image": "0014.jpg",
+  "subject": "a group of people standing in a room",
+  "composition": "group of many figures, landscape format",
+  "pose": "standing",
+  "clothing": "wearing white dress",
+  "jewelry": "necklace jewelry",
+  "expression": "smiling expression",
+  "objects": "holding sword",
+  "environment": "unknown",
+  "lighting": "dark low-key tones",
+  "visual_characteristics": "warm red and ochre palette",
+  "raw_caption": "a group of people standing in a room",
+  "title": "Shakuntala In The Court Of Dushyant",
+  "source": "vlm",
+  "qa": {
+    "people_count": "8",
+    "clothing": "dress",
+    "clothing_color": "white",
+    "has_jewelry": "yes",
+    "jewelry": "necklace",
+    "pose": "standing",
+    "action": "standing",
+    "expression": "smiling",
+    "has_object": "yes",
+    "objects": "sword",
+    "environment": "in museum",
+    "time": "day"
+  },
+  "measured": {
+    "lighting": "dark low-key tones",
+    "palette": "warm red and ochre palette",
+    "orientation": "landscape format"
+  },
+  "flat_caption": "Shakuntala In The Court Of Dushyant, a group of people standing in a room, wearing white dress, necklace jewelry, standing, smiling expression, holding sword, group of many figures, landscape format, dark low-key tones, warm red and ochre palette"
+}

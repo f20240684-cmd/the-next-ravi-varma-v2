@@ -1,0 +1,36 @@
+{
+  "image": "0091.jpg",
+  "subject": "a man holding a knife in his hand",
+  "composition": "group of three figures, vertical format",
+  "pose": "sitting",
+  "clothing": "unknown",
+  "jewelry": "necklace jewelry",
+  "expression": "calm expression",
+  "objects": "holding knife",
+  "environment": "unknown",
+  "lighting": "mid-tone lighting",
+  "visual_characteristics": "warm red and ochre palette",
+  "raw_caption": "a man holding a knife in his hand",
+  "title": "Kali",
+  "source": "vlm",
+  "qa": {
+    "people_count": "3",
+    "clothing": "necklace",
+    "clothing_color": "blue",
+    "has_jewelry": "yes",
+    "jewelry": "necklace",
+    "pose": "sitting",
+    "action": "sitting",
+    "expression": "calm",
+    "has_object": "yes",
+    "objects": "knife",
+    "environment": "on painting",
+    "time": "day"
+  },
+  "measured": {
+    "lighting": "mid-tone lighting",
+    "palette": "warm red and ochre palette",
+    "orientation": "vertical format"
+  },
+  "flat_caption": "Kali, a man holding a knife in his hand, necklace jewelry, sitting, calm expression, holding knife, group of three figures, vertical format, mid-tone lighting, warm red and ochre palette"
+}

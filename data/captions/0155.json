@@ -1,0 +1,36 @@
+{
+  "image": "0155.jpg",
+  "subject": "a couple of women standing next to each other",
+  "composition": "group of three figures, vertical format",
+  "pose": "standing, posing",
+  "clothing": "wearing orange sari",
+  "jewelry": "necklace jewelry",
+  "expression": "serious expression",
+  "objects": "holding sword",
+  "environment": "in india",
+  "lighting": "mid-tone lighting",
+  "visual_characteristics": "warm red and ochre palette",
+  "raw_caption": "a couple of women standing next to each other",
+  "title": "Introducing Radha to Krishna",
+  "source": "vlm",
+  "qa": {
+    "people_count": "3",
+    "clothing": "sari",
+    "clothing_color": "orange",
+    "has_jewelry": "yes",
+    "jewelry": "necklace",
+    "pose": "standing",
+    "action": "posing",
+    "expression": "serious",
+    "has_object": "yes",
+    "objects": "sword",
+    "environment": "india",
+    "time": "day"
+  },
+  "measured": {
+    "lighting": "mid-tone lighting",
+    "palette": "warm red and ochre palette",
+    "orientation": "vertical format"
+  },
+  "flat_caption": "Introducing Radha to Krishna, a couple of women standing next to each other, wearing orange sari, necklace jewelry, standing, posing, serious expression, holding sword, in india, group of three figures, vertical format, mid-tone lighting, warm red and ochre palette"
+}

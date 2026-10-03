@@ -1,0 +1,36 @@
+{
+  "image": "0028.jpg",
+  "subject": "a man handing something to a woman",
+  "composition": "group of two figures, vertical format",
+  "pose": "standing, shaking hands",
+  "clothing": "wearing red and white dress",
+  "jewelry": "bracelet jewelry",
+  "expression": "smile expression",
+  "objects": "holding sword",
+  "environment": "unknown",
+  "lighting": "dark low-key tones",
+  "visual_characteristics": "warm red and ochre palette",
+  "raw_caption": "a man handing something to a woman",
+  "title": "Sairandri and Keechaka",
+  "source": "vlm",
+  "qa": {
+    "people_count": "two",
+    "clothing": "red and white dress",
+    "clothing_color": "red",
+    "has_jewelry": "yes",
+    "jewelry": "bracelet",
+    "pose": "standing",
+    "action": "shaking hands",
+    "expression": "smile",
+    "has_object": "yes",
+    "objects": "sword",
+    "environment": "in museum",
+    "time": "day"
+  },
+  "measured": {
+    "lighting": "dark low-key tones",
+    "palette": "warm red and ochre palette",
+    "orientation": "vertical format"
+  },
+  "flat_caption": "Sairandri and Keechaka, a man handing something to a woman, wearing red and white dress, bracelet jewelry, standing, shaking hands, smile expression, holding sword, group of two figures, vertical format, dark low-key tones, warm red and ochre palette"
+}

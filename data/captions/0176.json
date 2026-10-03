@@ -1,0 +1,36 @@
+{
+  "image": "0176.jpg",
+  "subject": "a man and a woman in a forest",
+  "composition": "group of two figures, vertical format",
+  "pose": "standing",
+  "clothing": "wearing purple dress",
+  "jewelry": "necklace jewelry",
+  "expression": "smile expression",
+  "objects": "holding woman",
+  "environment": "in india",
+  "lighting": "mid-tone lighting",
+  "visual_characteristics": "warm red and ochre palette",
+  "raw_caption": "a man and a woman in a forest",
+  "title": "Arjuna and Subhadra",
+  "source": "vlm",
+  "qa": {
+    "people_count": "2",
+    "clothing": "dress",
+    "clothing_color": "purple",
+    "has_jewelry": "yes",
+    "jewelry": "necklace",
+    "pose": "standing",
+    "action": "feeding giraffe",
+    "expression": "smile",
+    "has_object": "yes",
+    "objects": "woman",
+    "environment": "india",
+    "time": "day"
+  },
+  "measured": {
+    "lighting": "mid-tone lighting",
+    "palette": "warm red and ochre palette",
+    "orientation": "vertical format"
+  },
+  "flat_caption": "Arjuna and Subhadra, a man and a woman in a forest, wearing purple dress, necklace jewelry, standing, smile expression, holding woman, in india, group of two figures, vertical format, mid-tone lighting, warm red and ochre palette"
+}

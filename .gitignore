@@ -7,28 +7,45 @@ venv/
 *.egg-info/
 build/
 dist/
+.pytest_cache/
 
-# Data & model artifacts (never commit large binaries)
+# --------------------------------------------------------------------------
+# Data: images are never committed (raw scans are ~400 MB; rebuild them with
+# `python scripts/download_dataset.py --from-metadata`). The small text
+# artefacts that define the dataset ARE committed so it is reproducible and
+# auditable: metadata (provenance + captions), structured caption sidecars,
+# the validation report, the training manifest and the held-out list.
+# --------------------------------------------------------------------------
 data/raw/*
 !data/raw/.gitkeep
 data/processed/*
 !data/processed/.gitkeep
+!data/processed/manifest.jsonl
 data/captions/*
 !data/captions/.gitkeep
+!data/captions/*.json
 data/metadata/*
 !data/metadata/.gitkeep
+!data/metadata/metadata.jsonl
+!data/metadata/validation_report.json
 data/reference/*
 !data/reference/.gitkeep
+!data/reference/reference.jsonl
 
+# Model weights belong in Drive / the HF Hub, not git.
 checkpoints/lora/*
 !checkpoints/lora/.gitkeep
+*.safetensors
+*.ckpt
+*.bin
 
-outputs/generated/*
-!outputs/generated/.gitkeep
-outputs/evaluations/*
-!outputs/evaluations/.gitkeep
+# Outputs: logs and smoke tests are scratch; curated result images and
+# evaluation summaries are kept.
 outputs/logs/*
 !outputs/logs/.gitkeep
+outputs/smoke_test/
+outputs/evaluations/**/qualitative_review.csv.bak
+*.zip
 
 # Notebooks checkpoints
 .ipynb_checkpoints/
@@ -41,14 +58,7 @@ Thumbs.db
 .vscode/
 .idea/
 
-# Keep project results and training metadata in GitHub
-!outputs/generated/
-!outputs/generated/*.png
-!outputs/generated/*.jpg
-!outputs/generated/*.jpeg
-
-!data/metadata/
-!data/metadata/metadata.jsonl
-
-!data/processed/
-!data/processed/manifest.jsonl
+# Downloaded / extracted Colab results (contents are unpacked into the project)
+/ravi_varma_results/
+# Per-checkpoint comparison renders (regenerate with scripts/generate.py --lora-path ...)
+outputs/generated/ckpt_*/

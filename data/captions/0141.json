@@ -1,0 +1,35 @@
+{
+  "image": "0141.jpg",
+  "subject": "a man washing his hands in a room",
+  "composition": "group of many figures, landscape format",
+  "pose": "sitting, praying",
+  "clothing": "wearing red dress",
+  "jewelry": "unknown",
+  "expression": "serious expression",
+  "objects": "holding bowl",
+  "environment": "unknown",
+  "lighting": "dark low-key tones",
+  "visual_characteristics": "warm red and ochre palette",
+  "raw_caption": "a man washing his hands in a room",
+  "title": "Krishna Pleads with Dhritarashtra to Avoid War",
+  "source": "vlm",
+  "qa": {
+    "people_count": "6",
+    "clothing": "dress",
+    "clothing_color": "red",
+    "has_jewelry": "no",
+    "pose": "sitting",
+    "action": "praying",
+    "expression": "serious",
+    "has_object": "yes",
+    "objects": "bowl",
+    "environment": "museum",
+    "time": "day"
+  },
+  "measured": {
+    "lighting": "dark low-key tones",
+    "palette": "warm red and ochre palette",
+    "orientation": "landscape format"
+  },
+  "flat_caption": "Krishna Pleads with Dhritarashtra to Avoid War, a man washing his hands in a room, wearing red dress, sitting, praying, serious expression, holding bowl, group of many figures, landscape format, dark low-key tones, warm red and ochre palette"
+}

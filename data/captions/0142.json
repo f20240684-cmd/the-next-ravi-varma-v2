@@ -1,0 +1,36 @@
+{
+  "image": "0142.jpg",
+  "subject": "a group of men sitting in a room",
+  "composition": "group of many figures, vertical format",
+  "pose": "sitting",
+  "clothing": "wearing blue and gold",
+  "jewelry": "necklace jewelry",
+  "expression": "serious expression",
+  "objects": "holding sword",
+  "environment": "unknown",
+  "lighting": "mid-tone lighting",
+  "visual_characteristics": "warm red and ochre palette",
+  "raw_caption": "a group of men sitting in a room",
+  "title": "Krishna as Envoy",
+  "source": "vlm",
+  "qa": {
+    "people_count": "10",
+    "clothing": "blue and gold",
+    "clothing_color": "blue",
+    "has_jewelry": "yes",
+    "jewelry": "necklace",
+    "pose": "sitting",
+    "action": "sitting",
+    "expression": "serious",
+    "has_object": "yes",
+    "objects": "sword",
+    "environment": "in painting",
+    "time": "day"
+  },
+  "measured": {
+    "lighting": "mid-tone lighting",
+    "palette": "warm red and ochre palette",
+    "orientation": "vertical format"
+  },
+  "flat_caption": "Krishna as Envoy, a group of men sitting in a room, wearing blue and gold, necklace jewelry, sitting, serious expression, holding sword, group of many figures, vertical format, mid-tone lighting, warm red and ochre palette"
+}

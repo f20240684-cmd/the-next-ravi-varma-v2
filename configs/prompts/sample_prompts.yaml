@@ -1,0 +1,27 @@
+# Fixed prompt suite for demonstrating and evaluating the style LoRA.
+# python scripts/generate.py --prompt-file configs/prompts/sample_prompts.yaml --seeds 42 43
+#
+# Each entry: id (used in file names), prompt, optional width/height/
+# negative_prompt overrides. Portrait-format scenes use 448x640, the bucket
+# most of the training paintings were prepared at.
+prompts:
+  - id: royal_woman_palace
+    prompt: "<rvvarma>, royal Indian woman in traditional attire, ornate jewelry, standing in an elegant palace interior, classical oil painting"
+    width: 448
+    height: 640
+  - id: krishna_arjuna
+    prompt: "<rvvarma>, mythological Indian scene with Krishna and Arjuna, dramatic composition, traditional clothing, classical Indian oil painting"
+    width: 640
+    height: 448
+  - id: woman_by_window
+    prompt: "<rvvarma>, Indian woman seated beside a window, traditional sari and jewelry, soft natural lighting, detailed classical oil painting"
+    width: 448
+    height: 640
+  - id: royal_portrait
+    prompt: "<rvvarma>, royal Indian portrait, elaborate textile details, jewelry, realistic human proportions, classical oil painting"
+    width: 448
+    height: 640
+  - id: mythological_landscape
+    prompt: "<rvvarma>, Indian mythological scene in a lush landscape, multiple characters, traditional clothing, detailed classical oil painting"
+    width: 640
+    height: 448

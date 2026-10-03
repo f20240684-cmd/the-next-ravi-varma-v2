@@ -1,0 +1,36 @@
+{
+  "image": "0149.jpg",
+  "subject": "a man and a woman standing next to each other",
+  "composition": "group of two figures, vertical format",
+  "pose": "sitting",
+  "clothing": "wearing red clothing",
+  "jewelry": "necklace jewelry",
+  "expression": "serious expression",
+  "objects": "holding cloth",
+  "environment": "in church",
+  "lighting": "dark low-key tones",
+  "visual_characteristics": "warm red and ochre palette",
+  "raw_caption": "a man and a woman standing next to each other",
+  "title": "Birth of Krishna",
+  "source": "vlm",
+  "qa": {
+    "people_count": "2",
+    "clothing": "red",
+    "clothing_color": "red",
+    "has_jewelry": "yes",
+    "jewelry": "necklace",
+    "pose": "sitting",
+    "action": "sitting",
+    "expression": "serious",
+    "has_object": "yes",
+    "objects": "cloth",
+    "environment": "in church",
+    "time": "day"
+  },
+  "measured": {
+    "lighting": "dark low-key tones",
+    "palette": "warm red and ochre palette",
+    "orientation": "vertical format"
+  },
+  "flat_caption": "Birth of Krishna, a man and a woman standing next to each other, wearing red clothing, necklace jewelry, sitting, serious expression, holding cloth, in church, group of two figures, vertical format, dark low-key tones, warm red and ochre palette"
+}

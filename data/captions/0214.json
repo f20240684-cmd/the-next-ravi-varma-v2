@@ -1,0 +1,36 @@
+{
+  "image": "0214.jpg",
+  "subject": "an old man sitting at a table writing on a piece of paper",
+  "composition": "single-figure composition, vertical format",
+  "pose": "sitting",
+  "clothing": "wearing red turban",
+  "jewelry": "bracelet jewelry",
+  "expression": "serious expression",
+  "objects": "holding book",
+  "environment": "unknown",
+  "lighting": "dark low-key tones",
+  "visual_characteristics": "warm red and ochre palette",
+  "raw_caption": "an old man sitting at a table writing on a piece of paper",
+  "title": "The Miser",
+  "source": "vlm",
+  "qa": {
+    "people_count": "1",
+    "clothing": "red turban",
+    "clothing_color": "red",
+    "has_jewelry": "yes",
+    "jewelry": "bracelet",
+    "pose": "sitting",
+    "action": "playing piano",
+    "expression": "serious",
+    "has_object": "yes",
+    "objects": "book",
+    "environment": "in front of painting",
+    "time": "day"
+  },
+  "measured": {
+    "lighting": "dark low-key tones",
+    "palette": "warm red and ochre palette",
+    "orientation": "vertical format"
+  },
+  "flat_caption": "The Miser, an old man sitting at a table writing on a piece of paper, wearing red turban, bracelet jewelry, sitting, serious expression, holding book, single-figure composition, vertical format, dark low-key tones, warm red and ochre palette"
+}

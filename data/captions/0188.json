@@ -1,0 +1,36 @@
+{
+  "image": "0188.jpg",
+  "subject": "portrait of a man in a military uniform holding a sword",
+  "composition": "single-figure composition, vertical format",
+  "pose": "standing",
+  "clothing": "wearing black uniform",
+  "jewelry": "necklace jewelry",
+  "expression": "mustache expression",
+  "objects": "holding sword",
+  "environment": "unknown",
+  "lighting": "dark low-key tones",
+  "visual_characteristics": "balanced earthy palette",
+  "raw_caption": "portrait of a man in a military uniform holding a sword",
+  "title": "Lord Ampthill",
+  "source": "vlm",
+  "qa": {
+    "people_count": "1",
+    "clothing": "uniform",
+    "clothing_color": "black",
+    "has_jewelry": "yes",
+    "jewelry": "necklace",
+    "pose": "standing",
+    "action": "standing",
+    "expression": "mustache",
+    "has_object": "yes",
+    "objects": "sword",
+    "environment": "in painting",
+    "time": "day"
+  },
+  "measured": {
+    "lighting": "dark low-key tones",
+    "palette": "balanced earthy palette",
+    "orientation": "vertical format"
+  },
+  "flat_caption": "Lord Ampthill, portrait of a man in a military uniform holding a sword, wearing black uniform, necklace jewelry, standing, mustache expression, holding sword, single-figure composition, vertical format, dark low-key tones, balanced earthy palette"
+}

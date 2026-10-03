@@ -1,0 +1,36 @@
+{
+  "image": "0212.jpg",
+  "subject": "a man with a large hat on his head",
+  "composition": "single-figure composition, vertical format",
+  "pose": "standing",
+  "clothing": "wearing white hat",
+  "jewelry": "necklace jewelry",
+  "expression": "serious expression",
+  "objects": "holding book",
+  "environment": "unknown",
+  "lighting": "mid-tone lighting",
+  "visual_characteristics": "warm red and ochre palette",
+  "raw_caption": "a man with a large hat on his head",
+  "title": "Nobleman from Central India",
+  "source": "vlm",
+  "qa": {
+    "people_count": "one",
+    "clothing": "hat",
+    "clothing_color": "white",
+    "has_jewelry": "yes",
+    "jewelry": "necklace",
+    "pose": "standing",
+    "action": "standing",
+    "expression": "serious",
+    "has_object": "yes",
+    "objects": "book",
+    "environment": "in painting",
+    "time": "day"
+  },
+  "measured": {
+    "lighting": "mid-tone lighting",
+    "palette": "warm red and ochre palette",
+    "orientation": "vertical format"
+  },
+  "flat_caption": "Nobleman from Central India, a man with a large hat on his head, wearing white hat, necklace jewelry, standing, serious expression, holding book, single-figure composition, vertical format, mid-tone lighting, warm red and ochre palette"
+}

@@ -1,0 +1,36 @@
+{
+  "image": "0136.jpg",
+  "subject": "an old painting of a man and a woman kneeling down next to each other",
+  "composition": "group of two figures, vertical format",
+  "pose": "standing",
+  "clothing": "wearing yellow dress",
+  "jewelry": "necklace jewelry",
+  "expression": "calm expression",
+  "objects": "holding stick",
+  "environment": "in india",
+  "lighting": "mid-tone lighting",
+  "visual_characteristics": "warm red and ochre palette",
+  "raw_caption": "an old painting of a man and a woman kneeling down next to each other",
+  "title": "Vamana",
+  "source": "vlm",
+  "qa": {
+    "people_count": "2",
+    "clothing": "dress",
+    "clothing_color": "yellow",
+    "has_jewelry": "yes",
+    "jewelry": "necklace",
+    "pose": "standing",
+    "action": "kneeling",
+    "expression": "calm",
+    "has_object": "yes",
+    "objects": "stick",
+    "environment": "india",
+    "time": "day"
+  },
+  "measured": {
+    "lighting": "mid-tone lighting",
+    "palette": "warm red and ochre palette",
+    "orientation": "vertical format"
+  },
+  "flat_caption": "Vamana, an old painting of a man and a woman kneeling down next to each other, wearing yellow dress, necklace jewelry, standing, calm expression, holding stick, in india, group of two figures, vertical format, mid-tone lighting, warm red and ochre palette"
+}

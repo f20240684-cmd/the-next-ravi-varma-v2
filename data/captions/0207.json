@@ -1,0 +1,36 @@
+{
+  "image": "0207.jpg",
+  "subject": "a woman in a white dress with a pink flower in her hair",
+  "composition": "single-figure composition, vertical format",
+  "pose": "standing, posing",
+  "clothing": "unknown",
+  "jewelry": "necklace and earrings jewelry",
+  "expression": "serious expression",
+  "objects": "holding necklace",
+  "environment": "unknown",
+  "lighting": "dark low-key tones",
+  "visual_characteristics": "warm red and ochre palette",
+  "raw_caption": "a woman in a white dress with a pink flower in her hair",
+  "title": "Malabar Beauty",
+  "source": "vlm",
+  "qa": {
+    "people_count": "1",
+    "clothing": "necklace",
+    "clothing_color": "white",
+    "has_jewelry": "yes",
+    "jewelry": "necklace and earrings",
+    "pose": "standing",
+    "action": "posing",
+    "expression": "serious",
+    "has_object": "yes",
+    "objects": "necklace",
+    "environment": "in painting",
+    "time": "day"
+  },
+  "measured": {
+    "lighting": "dark low-key tones",
+    "palette": "warm red and ochre palette",
+    "orientation": "vertical format"
+  },
+  "flat_caption": "Malabar Beauty, a woman in a white dress with a pink flower in her hair, necklace and earrings jewelry, standing, posing, serious expression, holding necklace, single-figure composition, vertical format, dark low-key tones, warm red and ochre palette"
+}

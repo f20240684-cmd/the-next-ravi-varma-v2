@@ -1,0 +1,36 @@
+{
+  "image": "0017.jpg",
+  "subject": "two women sitting next to each other on the grass",
+  "composition": "group of two figures, vertical format",
+  "pose": "sitting, praying",
+  "clothing": "wearing pink dress",
+  "jewelry": "necklace jewelry",
+  "expression": "calm expression",
+  "objects": "holding bowl",
+  "environment": "in park",
+  "lighting": "mid-tone lighting",
+  "visual_characteristics": "warm red and ochre palette",
+  "raw_caption": "two women sitting next to each other on the grass",
+  "title": "Shakuntala",
+  "source": "vlm",
+  "qa": {
+    "people_count": "2",
+    "clothing": "dress",
+    "clothing_color": "pink",
+    "has_jewelry": "yes",
+    "jewelry": "necklace",
+    "pose": "sitting",
+    "action": "praying",
+    "expression": "calm",
+    "has_object": "yes",
+    "objects": "bowl",
+    "environment": "in park",
+    "time": "day"
+  },
+  "measured": {
+    "lighting": "mid-tone lighting",
+    "palette": "warm red and ochre palette",
+    "orientation": "vertical format"
+  },
+  "flat_caption": "Shakuntala, two women sitting next to each other on the grass, wearing pink dress, necklace jewelry, sitting, praying, calm expression, holding bowl, in park, group of two figures, vertical format, mid-tone lighting, warm red and ochre palette"
+}

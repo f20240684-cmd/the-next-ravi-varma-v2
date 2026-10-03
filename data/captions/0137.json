@@ -1,0 +1,36 @@
+{
+  "image": "0137.jpg",
+  "subject": "a green statue in the water",
+  "composition": "single-figure composition, vertical format",
+  "pose": "standing, balancing",
+  "clothing": "unknown",
+  "jewelry": "necklace jewelry",
+  "expression": "calm expression",
+  "objects": "holding bowl",
+  "environment": "in ocean",
+  "lighting": "mid-tone lighting",
+  "visual_characteristics": "green-dominant palette",
+  "raw_caption": "a green statue in the water",
+  "title": "Varaha",
+  "source": "vlm",
+  "qa": {
+    "people_count": "1",
+    "clothing": "necklace",
+    "clothing_color": "green",
+    "has_jewelry": "yes",
+    "jewelry": "necklace",
+    "pose": "standing",
+    "action": "balancing",
+    "expression": "calm",
+    "has_object": "yes",
+    "objects": "bowl",
+    "environment": "ocean",
+    "time": "day"
+  },
+  "measured": {
+    "lighting": "mid-tone lighting",
+    "palette": "green-dominant palette",
+    "orientation": "vertical format"
+  },
+  "flat_caption": "Varaha, a green statue in the water, necklace jewelry, standing, balancing, calm expression, holding bowl, in ocean, single-figure composition, vertical format, mid-tone lighting, green-dominant palette"
+}

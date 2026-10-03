@@ -1,0 +1,36 @@
+{
+  "image": "0100.jpg",
+  "subject": "a man sitting on a rock with a goat",
+  "composition": "single-figure composition, vertical format",
+  "pose": "sitting",
+  "clothing": "wearing yellow sarong",
+  "jewelry": "necklace jewelry",
+  "expression": "smile expression",
+  "objects": "holding stick",
+  "environment": "in india",
+  "lighting": "mid-tone lighting",
+  "visual_characteristics": "balanced earthy palette",
+  "raw_caption": "a man sitting on a rock with a goat",
+  "title": "Parashurama with axe",
+  "source": "vlm",
+  "qa": {
+    "people_count": "1",
+    "clothing": "sarong",
+    "clothing_color": "yellow",
+    "has_jewelry": "yes",
+    "jewelry": "necklace",
+    "pose": "sitting",
+    "action": "sitting",
+    "expression": "smile",
+    "has_object": "yes",
+    "objects": "stick",
+    "environment": "india",
+    "time": "day"
+  },
+  "measured": {
+    "lighting": "mid-tone lighting",
+    "palette": "balanced earthy palette",
+    "orientation": "vertical format"
+  },
+  "flat_caption": "Parashurama with axe, a man sitting on a rock with a goat, wearing yellow sarong, necklace jewelry, sitting, smile expression, holding stick, in india, single-figure composition, vertical format, mid-tone lighting, balanced earthy palette"
+}

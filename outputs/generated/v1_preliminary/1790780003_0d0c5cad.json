@@ -1,0 +1,19 @@
+{
+  "prompt": "<rvvarma>, Arjuna standing before Krishna on the battlefield of Kurukshetra, traditional Indian attire rendered with fine textile detail, ornate jewelry, an epic battlefield setting, soft directional chiaroscuro lighting, warm golden highlights, painterly shadow modeling, classical academic composition, balanced framing, theatrical staging reminiscent of 19th-century Indian oleographs, oil-painting texture, rich color palette, realistic anatomy, fine brushwork",
+  "negative_prompt": "malformed anatomy, extra fingers, missing fingers, fused fingers, duplicated people, distorted faces, disfigured, mutated, text, watermark, signature, logo, low quality, worst quality, blurry image, out of focus, deformed hands, unnatural limbs, cropped subjects, extra limbs, bad proportions, lowres\n",
+  "seed": 2358537846,
+  "steps": 30,
+  "guidance_scale": 7.5,
+  "width": 512,
+  "height": 512,
+  "lora_scale": 1.0,
+  "lora_loaded": true,
+  "base_model": "runwayml/stable-diffusion-v1-5",
+  "scheduler": "dpmsolver_multistep",
+  "controlnet_enabled": false,
+  "controlnet_type": null,
+  "controlnet_strength": null,
+  "device": "cuda",
+  "timestamp": 1790780003.7325027,
+  "disclaimer": "Ravi Varma-inspired generative artwork. AI-generated; not an authentic Raja Ravi Varma painting. Evaluation scores (if present) measure statistical similarity, not artistic authenticity."
+}

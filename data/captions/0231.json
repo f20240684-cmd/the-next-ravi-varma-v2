@@ -1,0 +1,35 @@
+{
+  "image": "0231.jpg",
+  "subject": "a woman in a pink sari sitting on a chair",
+  "composition": "single-figure composition, vertical format",
+  "pose": "sitting",
+  "clothing": "wearing purple sari",
+  "jewelry": "bracelet jewelry",
+  "expression": "serious expression",
+  "objects": "unknown",
+  "environment": "unknown",
+  "lighting": "dark low-key tones",
+  "visual_characteristics": "warm red and ochre palette",
+  "raw_caption": "a woman in a pink sari sitting on a chair",
+  "title": "Maharani Chimanbai",
+  "source": "vlm",
+  "qa": {
+    "people_count": "1",
+    "clothing": "sari",
+    "clothing_color": "purple",
+    "has_jewelry": "yes",
+    "jewelry": "bracelet",
+    "pose": "sitting",
+    "action": "sitting",
+    "expression": "serious",
+    "has_object": "no",
+    "environment": "painting",
+    "time": "day"
+  },
+  "measured": {
+    "lighting": "dark low-key tones",
+    "palette": "warm red and ochre palette",
+    "orientation": "vertical format"
+  },
+  "flat_caption": "Maharani Chimanbai, a woman in a pink sari sitting on a chair, wearing purple sari, bracelet jewelry, sitting, serious expression, single-figure composition, vertical format, dark low-key tones, warm red and ochre palette"
+}

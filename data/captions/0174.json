@@ -1,0 +1,36 @@
+{
+  "image": "0174.jpg",
+  "subject": "a woman holding a child in her arms",
+  "composition": "group of two figures, vertical format",
+  "pose": "sitting",
+  "clothing": "wearing purple dress",
+  "jewelry": "necklace jewelry",
+  "expression": "serious expression",
+  "objects": "unknown",
+  "environment": "in park",
+  "lighting": "dark low-key tones",
+  "visual_characteristics": "warm red and ochre palette",
+  "raw_caption": "a woman holding a child in her arms",
+  "title": "Yasoda with Krishna",
+  "source": "vlm",
+  "qa": {
+    "people_count": "2",
+    "clothing": "dress",
+    "clothing_color": "purple",
+    "has_jewelry": "yes",
+    "jewelry": "necklace",
+    "pose": "sitting",
+    "action": "sitting",
+    "expression": "serious",
+    "has_object": "yes",
+    "objects": "phone",
+    "environment": "in park",
+    "time": "day"
+  },
+  "measured": {
+    "lighting": "dark low-key tones",
+    "palette": "warm red and ochre palette",
+    "orientation": "vertical format"
+  },
+  "flat_caption": "Yasoda with Krishna, a woman holding a child in her arms, wearing purple dress, necklace jewelry, sitting, serious expression, in park, group of two figures, vertical format, dark low-key tones, warm red and ochre palette"
+}

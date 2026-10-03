@@ -1,0 +1,35 @@
+{
+  "image": "0113.jpg",
+  "subject": "a man standing on top of a cow",
+  "composition": "group of four figures, vertical format",
+  "pose": "standing",
+  "clothing": "wearing red dress",
+  "jewelry": "unknown",
+  "expression": "calm expression",
+  "objects": "holding stick",
+  "environment": "unknown",
+  "lighting": "mid-tone lighting",
+  "visual_characteristics": "balanced earthy palette",
+  "raw_caption": "a man standing on top of a cow",
+  "title": "Descent of Ganga",
+  "source": "vlm",
+  "qa": {
+    "people_count": "4",
+    "clothing": "dress",
+    "clothing_color": "red",
+    "has_jewelry": "no",
+    "pose": "standing",
+    "action": "standing",
+    "expression": "calm",
+    "has_object": "yes",
+    "objects": "stick",
+    "environment": "painting",
+    "time": "day"
+  },
+  "measured": {
+    "lighting": "mid-tone lighting",
+    "palette": "balanced earthy palette",
+    "orientation": "vertical format"
+  },
+  "flat_caption": "Descent of Ganga, a man standing on top of a cow, wearing red dress, standing, calm expression, holding stick, group of four figures, vertical format, mid-tone lighting, balanced earthy palette"
+}

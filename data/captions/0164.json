@@ -1,0 +1,34 @@
+{
+  "image": "0164.jpg",
+  "subject": "a painting of a woman holding a baby in front of a group of women",
+  "composition": "group of many figures, vertical format",
+  "pose": "sitting, holding baby",
+  "clothing": "wearing red shawl",
+  "jewelry": "unknown",
+  "expression": "happy expression",
+  "objects": "unknown",
+  "environment": "in church",
+  "lighting": "dark low-key tones, night scene",
+  "visual_characteristics": "warm red and ochre palette",
+  "raw_caption": "a painting of a woman holding a baby in front of a group of women",
+  "title": "Krishna Drishta",
+  "source": "vlm",
+  "qa": {
+    "people_count": "6",
+    "clothing": "red shawl",
+    "clothing_color": "red",
+    "has_jewelry": "no",
+    "pose": "sitting",
+    "action": "holding baby",
+    "expression": "happy",
+    "has_object": "no",
+    "environment": "church",
+    "time": "night"
+  },
+  "measured": {
+    "lighting": "dark low-key tones",
+    "palette": "warm red and ochre palette",
+    "orientation": "vertical format"
+  },
+  "flat_caption": "Krishna Drishta, a painting of a woman holding a baby in front of a group of women, wearing red shawl, sitting, holding baby, happy expression, in church, group of many figures, vertical format, dark low-key tones, night scene, warm red and ochre palette"
+}

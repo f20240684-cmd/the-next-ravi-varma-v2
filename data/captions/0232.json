@@ -1,0 +1,35 @@
+{
+  "image": "0232.jpg",
+  "subject": "a woman in a black dress sitting on a red chair",
+  "composition": "single-figure composition, vertical format",
+  "pose": "sitting",
+  "clothing": "wearing black dress",
+  "jewelry": "bracelet jewelry",
+  "expression": "serious expression",
+  "objects": "unknown",
+  "environment": "unknown",
+  "lighting": "dark low-key tones",
+  "visual_characteristics": "warm red and ochre palette",
+  "raw_caption": "a woman in a black dress sitting on a red chair",
+  "title": "Maharani Chimanbai (younger age)",
+  "source": "vlm",
+  "qa": {
+    "people_count": "1",
+    "clothing": "black dress",
+    "clothing_color": "black",
+    "has_jewelry": "yes",
+    "jewelry": "bracelet",
+    "pose": "sitting",
+    "action": "sitting",
+    "expression": "serious",
+    "has_object": "no",
+    "environment": "in painting",
+    "time": "day"
+  },
+  "measured": {
+    "lighting": "dark low-key tones",
+    "palette": "warm red and ochre palette",
+    "orientation": "vertical format"
+  },
+  "flat_caption": "Maharani Chimanbai (younger age), a woman in a black dress sitting on a red chair, wearing black dress, bracelet jewelry, sitting, serious expression, single-figure composition, vertical format, dark low-key tones, warm red and ochre palette"
+}

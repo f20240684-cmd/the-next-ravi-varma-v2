@@ -1,0 +1,36 @@
+{
+  "image": "0221.jpg",
+  "subject": "a woman in a red dress holding a stick",
+  "composition": "single-figure composition, vertical format",
+  "pose": "standing, holding flag",
+  "clothing": "wearing red dress",
+  "jewelry": "necklace jewelry",
+  "expression": "smiling expression",
+  "objects": "holding flag",
+  "environment": "in a desert",
+  "lighting": "mid-tone lighting",
+  "visual_characteristics": "warm red and ochre palette",
+  "raw_caption": "a woman in a red dress holding a stick",
+  "title": "A Portrait (Village girl)",
+  "source": "vlm",
+  "qa": {
+    "people_count": "1",
+    "clothing": "dress",
+    "clothing_color": "red",
+    "has_jewelry": "yes",
+    "jewelry": "necklace",
+    "pose": "standing",
+    "action": "holding flag",
+    "expression": "smiling",
+    "has_object": "yes",
+    "objects": "flag",
+    "environment": "desert",
+    "time": "day"
+  },
+  "measured": {
+    "lighting": "mid-tone lighting",
+    "palette": "warm red and ochre palette",
+    "orientation": "vertical format"
+  },
+  "flat_caption": "A Portrait (Village girl), a woman in a red dress holding a stick, wearing red dress, necklace jewelry, standing, holding flag, smiling expression, holding flag, in a desert, single-figure composition, vertical format, mid-tone lighting, warm red and ochre palette"
+}

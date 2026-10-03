@@ -1,0 +1,36 @@
+{
+  "image": "0166.jpg",
+  "subject": "a painting of a group of people standing around a man laying on the ground",
+  "composition": "group of many figures, landscape format",
+  "pose": "standing",
+  "clothing": "wearing pink sari",
+  "jewelry": "necklace jewelry",
+  "expression": "calm expression",
+  "objects": "unknown",
+  "environment": "unknown",
+  "lighting": "mid-tone lighting",
+  "visual_characteristics": "warm red and ochre palette",
+  "raw_caption": "a painting of a group of people standing around a man laying on the ground",
+  "title": "Mohini and Rugmangada",
+  "source": "vlm",
+  "qa": {
+    "people_count": "11",
+    "clothing": "sari",
+    "clothing_color": "pink",
+    "has_jewelry": "yes",
+    "jewelry": "necklace",
+    "pose": "standing",
+    "action": "standing",
+    "expression": "calm",
+    "has_object": "yes",
+    "objects": "frisbee",
+    "environment": "in museum",
+    "time": "day"
+  },
+  "measured": {
+    "lighting": "mid-tone lighting",
+    "palette": "warm red and ochre palette",
+    "orientation": "landscape format"
+  },
+  "flat_caption": "Mohini and Rugmangada, a painting of a group of people standing around a man laying on the ground, wearing pink sari, necklace jewelry, standing, calm expression, group of many figures, landscape format, mid-tone lighting, warm red and ochre palette"
+}

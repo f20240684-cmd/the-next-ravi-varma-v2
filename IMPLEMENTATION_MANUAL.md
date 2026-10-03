@@ -1,5 +1,11 @@
 # Implementation Manual: The Next Ravi Varma
 
+> **Note (October 2026):** this manual describes the original project scaffold. For the current,
+> verified workflow — curated 200→134-image dataset, BLIP-VQA captions, aspect buckets, the
+> `stable-diffusion-v1-5/stable-diffusion-v1-5` base model and the Colab notebook — follow the
+> **"Reproducing the experiment"** section of [README.md](README.md). `IMPLEMENTATION_MANUAL.pdf`
+> is a snapshot of this older text.
+
 This is a hands-on walkthrough for getting the project running, start to finish. It assumes no
 prior familiarity with the codebase. Follow it top to bottom the first time.
 

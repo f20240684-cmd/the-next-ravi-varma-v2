@@ -1,0 +1,36 @@
+{
+  "image": "0081.jpg",
+  "subject": "a painting of a man holding a baby in his arms",
+  "composition": "group of two figures, vertical format",
+  "pose": "standing, juggling",
+  "clothing": "wearing red indian attire",
+  "jewelry": "necklace jewelry",
+  "expression": "calm expression",
+  "objects": "holding spear",
+  "environment": "in india",
+  "lighting": "mid-tone lighting",
+  "visual_characteristics": "warm red and ochre palette",
+  "raw_caption": "a painting of a man holding a baby in his arms",
+  "title": "Ahimahi Vadh",
+  "source": "vlm",
+  "qa": {
+    "people_count": "2",
+    "clothing": "indian attire",
+    "clothing_color": "red",
+    "has_jewelry": "yes",
+    "jewelry": "necklace",
+    "pose": "standing",
+    "action": "juggling",
+    "expression": "calm",
+    "has_object": "yes",
+    "objects": "spear",
+    "environment": "india",
+    "time": "day"
+  },
+  "measured": {
+    "lighting": "mid-tone lighting",
+    "palette": "warm red and ochre palette",
+    "orientation": "vertical format"
+  },
+  "flat_caption": "Ahimahi Vadh, a painting of a man holding a baby in his arms, wearing red indian attire, necklace jewelry, standing, juggling, calm expression, holding spear, in india, group of two figures, vertical format, mid-tone lighting, warm red and ochre palette"
+}

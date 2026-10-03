@@ -1,0 +1,36 @@
+{
+  "image": "0024.jpg",
+  "subject": "a man laying on the ground in front of a crowd",
+  "composition": "group of many figures, landscape format",
+  "pose": "standing",
+  "clothing": "wearing pink black suit",
+  "jewelry": "necklace jewelry",
+  "expression": "he is smiling expression",
+  "objects": "holding sword",
+  "environment": "unknown",
+  "lighting": "mid-tone lighting",
+  "visual_characteristics": "warm red and ochre palette",
+  "raw_caption": "a man laying on the ground in front of a crowd",
+  "title": "Droupathi in Virata's Palace",
+  "source": "vlm",
+  "qa": {
+    "people_count": "12",
+    "clothing": "black suit",
+    "clothing_color": "pink",
+    "has_jewelry": "yes",
+    "jewelry": "necklace",
+    "pose": "standing",
+    "action": "kneeling",
+    "expression": "he is smiling",
+    "has_object": "yes",
+    "objects": "sword",
+    "environment": "in museum",
+    "time": "day"
+  },
+  "measured": {
+    "lighting": "mid-tone lighting",
+    "palette": "warm red and ochre palette",
+    "orientation": "landscape format"
+  },
+  "flat_caption": "Droupathi in Virata's Palace, a man laying on the ground in front of a crowd, wearing pink black suit, necklace jewelry, standing, he is smiling expression, holding sword, group of many figures, landscape format, mid-tone lighting, warm red and ochre palette"
+}

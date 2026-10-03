@@ -1,0 +1,36 @@
+{
+  "image": "0173.jpg",
+  "subject": "a woman holding a baby in her lap",
+  "composition": "group of two figures, vertical format",
+  "pose": "standing, holding child",
+  "clothing": "unknown",
+  "jewelry": "necklace jewelry",
+  "expression": "serious expression",
+  "objects": "holding necklace",
+  "environment": "unknown",
+  "lighting": "dark low-key tones",
+  "visual_characteristics": "balanced earthy palette",
+  "raw_caption": "a woman holding a baby in her lap",
+  "title": "Yasoda Adorning Krishna",
+  "source": "vlm",
+  "qa": {
+    "people_count": "2",
+    "clothing": "necklace",
+    "clothing_color": "blue",
+    "has_jewelry": "yes",
+    "jewelry": "necklace",
+    "pose": "standing",
+    "action": "holding child",
+    "expression": "serious",
+    "has_object": "yes",
+    "objects": "necklace",
+    "environment": "museum",
+    "time": "day"
+  },
+  "measured": {
+    "lighting": "dark low-key tones",
+    "palette": "balanced earthy palette",
+    "orientation": "vertical format"
+  },
+  "flat_caption": "Yasoda Adorning Krishna, a woman holding a baby in her lap, necklace jewelry, standing, holding child, serious expression, holding necklace, group of two figures, vertical format, dark low-key tones, balanced earthy palette"
+}

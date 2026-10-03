@@ -1,0 +1,36 @@
+{
+  "image": "0130.jpg",
+  "subject": "a group of people and animals in the water",
+  "composition": "group of many figures, vertical format",
+  "pose": "sitting",
+  "clothing": "wearing red clothing",
+  "jewelry": "necklace jewelry",
+  "expression": "smile expression",
+  "objects": "holding bowl",
+  "environment": "unknown",
+  "lighting": "mid-tone lighting",
+  "visual_characteristics": "warm red and ochre palette",
+  "raw_caption": "a group of people and animals in the water",
+  "title": "Shiva as an ascetic",
+  "source": "vlm",
+  "qa": {
+    "people_count": "6",
+    "clothing": "red",
+    "clothing_color": "red",
+    "has_jewelry": "yes",
+    "jewelry": "necklace",
+    "pose": "sitting",
+    "action": "sitting",
+    "expression": "smile",
+    "has_object": "yes",
+    "objects": "bowl",
+    "environment": "painting",
+    "time": "day"
+  },
+  "measured": {
+    "lighting": "mid-tone lighting",
+    "palette": "warm red and ochre palette",
+    "orientation": "vertical format"
+  },
+  "flat_caption": "Shiva as an ascetic, a group of people and animals in the water, wearing red clothing, necklace jewelry, sitting, smile expression, holding bowl, group of many figures, vertical format, mid-tone lighting, warm red and ochre palette"
+}

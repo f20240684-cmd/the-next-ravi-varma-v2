@@ -1,0 +1,36 @@
+{
+  "image": "0181.jpg",
+  "subject": "a man in a red hat and blue outfit sitting on a couch",
+  "composition": "single-figure composition, vertical format",
+  "pose": "sitting",
+  "clothing": "wearing blue turban",
+  "jewelry": "necklace jewelry",
+  "expression": "serious expression",
+  "objects": "unknown",
+  "environment": "unknown",
+  "lighting": "mid-tone lighting",
+  "visual_characteristics": "warm red and ochre palette",
+  "raw_caption": "a man in a red hat and blue outfit sitting on a couch",
+  "title": "Maharaja SAYAJIRAO",
+  "source": "vlm",
+  "qa": {
+    "people_count": "1",
+    "clothing": "turban",
+    "clothing_color": "blue",
+    "has_jewelry": "yes",
+    "jewelry": "necklace",
+    "pose": "sitting",
+    "action": "sitting",
+    "expression": "serious",
+    "has_object": "yes",
+    "objects": "wii controller",
+    "environment": "in painting",
+    "time": "day"
+  },
+  "measured": {
+    "lighting": "mid-tone lighting",
+    "palette": "warm red and ochre palette",
+    "orientation": "vertical format"
+  },
+  "flat_caption": "Maharaja SAYAJIRAO, a man in a red hat and blue outfit sitting on a couch, wearing blue turban, necklace jewelry, sitting, serious expression, single-figure composition, vertical format, mid-tone lighting, warm red and ochre palette"
+}

@@ -1,0 +1,36 @@
+{
+  "image": "0116.jpg",
+  "subject": "a painting of a man giving money to a woman",
+  "composition": "group of many figures, vertical format",
+  "pose": "standing",
+  "clothing": "wearing yellow dress",
+  "jewelry": "necklace jewelry",
+  "expression": "calm expression",
+  "objects": "holding knife",
+  "environment": "at temple",
+  "lighting": "mid-tone lighting",
+  "visual_characteristics": "warm red and ochre palette",
+  "raw_caption": "a painting of a man giving money to a woman",
+  "title": "Savitri Narad Samvad",
+  "source": "vlm",
+  "qa": {
+    "people_count": "6",
+    "clothing": "yellow dress",
+    "clothing_color": "yellow",
+    "has_jewelry": "yes",
+    "jewelry": "necklace",
+    "pose": "standing",
+    "action": "sitting",
+    "expression": "calm",
+    "has_object": "yes",
+    "objects": "knife",
+    "environment": "at temple",
+    "time": "day"
+  },
+  "measured": {
+    "lighting": "mid-tone lighting",
+    "palette": "warm red and ochre palette",
+    "orientation": "vertical format"
+  },
+  "flat_caption": "Savitri Narad Samvad, a painting of a man giving money to a woman, wearing yellow dress, necklace jewelry, standing, calm expression, holding knife, at temple, group of many figures, vertical format, mid-tone lighting, warm red and ochre palette"
+}

@@ -1,0 +1,36 @@
+{
+  "image": "0237.jpg",
+  "subject": "a woman in a sari holding a fan",
+  "composition": "single-figure composition, vertical format",
+  "pose": "standing",
+  "clothing": "wearing blue dress",
+  "jewelry": "necklace jewelry",
+  "expression": "smile expression",
+  "objects": "unknown",
+  "environment": "in outside",
+  "lighting": "mid-tone lighting",
+  "visual_characteristics": "warm red and ochre palette",
+  "raw_caption": "a woman in a sari holding a fan",
+  "title": "Woman Holding a Fan",
+  "source": "vlm",
+  "qa": {
+    "people_count": "1",
+    "clothing": "dress",
+    "clothing_color": "blue",
+    "has_jewelry": "yes",
+    "jewelry": "necklace",
+    "pose": "standing",
+    "action": "standing",
+    "expression": "smile",
+    "has_object": "yes",
+    "objects": "frisbee",
+    "environment": "outside",
+    "time": "day"
+  },
+  "measured": {
+    "lighting": "mid-tone lighting",
+    "palette": "warm red and ochre palette",
+    "orientation": "vertical format"
+  },
+  "flat_caption": "Woman Holding a Fan, a woman in a sari holding a fan, wearing blue dress, necklace jewelry, standing, smile expression, in outside, single-figure composition, vertical format, mid-tone lighting, warm red and ochre palette"
+}

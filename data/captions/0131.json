@@ -1,0 +1,36 @@
+{
+  "image": "0131.jpg",
+  "subject": "a group of people sitting on the ground",
+  "composition": "group of many figures, landscape format",
+  "pose": "sitting",
+  "clothing": "wearing purple dress",
+  "jewelry": "necklace jewelry",
+  "expression": "surprised expression",
+  "objects": "holding sword",
+  "environment": "unknown",
+  "lighting": "dark low-key tones, night scene",
+  "visual_characteristics": "balanced earthy palette",
+  "raw_caption": "a group of people sitting on the ground",
+  "title": "Sita Bhumipravesh",
+  "source": "vlm",
+  "qa": {
+    "people_count": "seven",
+    "clothing": "purple dress",
+    "clothing_color": "purple",
+    "has_jewelry": "yes",
+    "jewelry": "necklace",
+    "pose": "sitting",
+    "action": "sitting",
+    "expression": "surprised",
+    "has_object": "yes",
+    "objects": "sword",
+    "environment": "in painting",
+    "time": "night"
+  },
+  "measured": {
+    "lighting": "dark low-key tones",
+    "palette": "balanced earthy palette",
+    "orientation": "landscape format"
+  },
+  "flat_caption": "Sita Bhumipravesh, a group of people sitting on the ground, wearing purple dress, necklace jewelry, sitting, surprised expression, holding sword, group of many figures, landscape format, dark low-key tones, night scene, balanced earthy palette"
+}

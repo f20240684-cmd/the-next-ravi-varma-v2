@@ -1,0 +1,36 @@
+{
+  "image": "0224.jpg",
+  "subject": "a woman in a red sari",
+  "composition": "single-figure composition, vertical format",
+  "pose": "sitting",
+  "clothing": "wearing red sari",
+  "jewelry": "necklace jewelry",
+  "expression": "serious expression",
+  "objects": "unknown",
+  "environment": "unknown",
+  "lighting": "dark low-key tones",
+  "visual_characteristics": "warm red and ochre palette",
+  "raw_caption": "a woman in a red sari",
+  "title": "Expectation",
+  "source": "vlm",
+  "qa": {
+    "people_count": "1",
+    "clothing": "sari",
+    "clothing_color": "red",
+    "has_jewelry": "yes",
+    "jewelry": "necklace",
+    "pose": "sitting",
+    "action": "talking on phone",
+    "expression": "serious",
+    "has_object": "yes",
+    "objects": "phone",
+    "environment": "in painting",
+    "time": "day"
+  },
+  "measured": {
+    "lighting": "dark low-key tones",
+    "palette": "warm red and ochre palette",
+    "orientation": "vertical format"
+  },
+  "flat_caption": "Expectation, a woman in a red sari, wearing red sari, necklace jewelry, sitting, serious expression, single-figure composition, vertical format, dark low-key tones, warm red and ochre palette"
+}

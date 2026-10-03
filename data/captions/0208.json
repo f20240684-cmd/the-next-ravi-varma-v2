@@ -1,0 +1,36 @@
+{
+  "image": "0208.jpg",
+  "subject": "a woman in a white sari with a necklace on her neck",
+  "composition": "single-figure composition, vertical format",
+  "pose": "standing",
+  "clothing": "wearing white shawl",
+  "jewelry": "bracelet jewelry",
+  "expression": "serious expression",
+  "objects": "unknown",
+  "environment": "unknown",
+  "lighting": "dark low-key tones",
+  "visual_characteristics": "warm red and ochre palette",
+  "raw_caption": "a woman in a white sari with a necklace on her neck",
+  "title": "Malayali Lady",
+  "source": "vlm",
+  "qa": {
+    "people_count": "one",
+    "clothing": "shawl",
+    "clothing_color": "white",
+    "has_jewelry": "yes",
+    "jewelry": "bracelet",
+    "pose": "standing",
+    "action": "standing",
+    "expression": "serious",
+    "has_object": "yes",
+    "objects": "tie",
+    "environment": "in painting",
+    "time": "day"
+  },
+  "measured": {
+    "lighting": "dark low-key tones",
+    "palette": "warm red and ochre palette",
+    "orientation": "vertical format"
+  },
+  "flat_caption": "Malayali Lady, a woman in a white sari with a necklace on her neck, wearing white shawl, bracelet jewelry, standing, serious expression, single-figure composition, vertical format, dark low-key tones, warm red and ochre palette"
+}

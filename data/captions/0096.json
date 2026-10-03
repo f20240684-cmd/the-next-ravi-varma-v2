@@ -1,0 +1,35 @@
+{
+  "image": "0096.jpg",
+  "subject": "a man and a woman dancing under a tree",
+  "composition": "group of three figures, vertical format",
+  "pose": "standing, dancing",
+  "clothing": "wearing pink dress",
+  "jewelry": "unknown",
+  "expression": "smile expression",
+  "objects": "holding stick",
+  "environment": "in india",
+  "lighting": "mid-tone lighting",
+  "visual_characteristics": "warm red and ochre palette",
+  "raw_caption": "a man and a woman dancing under a tree",
+  "title": "Mohini bhasmasura",
+  "source": "vlm",
+  "qa": {
+    "people_count": "3",
+    "clothing": "dress",
+    "clothing_color": "pink",
+    "has_jewelry": "no",
+    "pose": "standing",
+    "action": "dancing",
+    "expression": "smile",
+    "has_object": "yes",
+    "objects": "stick",
+    "environment": "india",
+    "time": "day"
+  },
+  "measured": {
+    "lighting": "mid-tone lighting",
+    "palette": "warm red and ochre palette",
+    "orientation": "vertical format"
+  },
+  "flat_caption": "Mohini bhasmasura, a man and a woman dancing under a tree, wearing pink dress, standing, dancing, smile expression, holding stick, in india, group of three figures, vertical format, mid-tone lighting, warm red and ochre palette"
+}

@@ -11,7 +11,7 @@ from pathlib import Path
 from typing import Any, Literal, Optional, Union
 
 import yaml
-from pydantic import BaseModel, Field, field_validator
+from pydantic import BaseModel, ConfigDict, Field, field_validator
 
 PathLike = Union[str, Path]
 
@@ -37,13 +37,27 @@ class ValidationConfig(BaseModel):
     allowed_formats: list[str] = Field(default_factory=lambda: [".jpg", ".jpeg", ".png", ".webp"])
     max_file_size_mb: float = 25
     detect_duplicates: bool = True
+    near_duplicate_threshold: int = 40
     require_caption: bool = True
+
+
+class CurationConfig(BaseModel):
+    """Human curation decisions (see configs/dataset.yaml). `exclude` maps a
+    raw image path to the reason it is left out of training;
+    `duplicate_groups` lists files that reproduce the same artwork."""
+
+    exclude: dict[str, str] = Field(default_factory=dict)
+    duplicate_groups: list[list[str]] = Field(default_factory=list)
+    holdout: list[str] = Field(default_factory=list)  # accepted images reserved for evaluation
+    caption_notes: dict[str, str] = Field(default_factory=dict)  # appended to the training caption
 
 
 class PreprocessingConfig(BaseModel):
     target_resolution: int = 512
+    aspect_bucketing: bool = True
     resize_mode: Literal["center_crop", "pad", "stretch"] = "center_crop"
     interpolation: Literal["lanczos", "bicubic", "bilinear", "nearest"] = "lanczos"
+    trim_borders: bool = True
 
 
 class StyleConfig(BaseModel):
@@ -59,7 +73,9 @@ class DatasetConfig(BaseModel):
     metadata_dir: str = "data/metadata"
     metadata_file: str = "data/metadata/metadata.jsonl"
     manifest_file: str = "data/processed/manifest.jsonl"
+    reference_dir: str = "data/reference"
     validation: ValidationConfig = Field(default_factory=ValidationConfig)
+    curation: CurationConfig = Field(default_factory=CurationConfig)
     preprocessing: PreprocessingConfig = Field(default_factory=PreprocessingConfig)
     style: StyleConfig = Field(default_factory=StyleConfig)
 
@@ -74,7 +90,8 @@ class DatasetConfig(BaseModel):
 class TrainingDatasetConfig(BaseModel):
     manifest_file: str = "data/processed/manifest.jsonl"
     resolution: int = 512
-    center_crop: bool = True
+    aspect_bucketing: bool = True  # train each image at its prepared bucket size (e.g. 448x640)
+    center_crop: bool = True       # only used when aspect_bucketing is false
     random_flip: bool = True
 
 
@@ -109,6 +126,7 @@ class TrainingLoopConfig(BaseModel):
     max_grad_norm: float = 1.0
     seed: int = 42
     enable_xformers: bool = True
+    dataloader_num_workers: int = 2
 
 
 class CheckpointingConfig(BaseModel):
@@ -125,13 +143,32 @@ class LoggingConfig(BaseModel):
 
 
 class TrainingValidationConfig(BaseModel):
-    validation_prompt: str = "<rvvarma>, portrait of a royal Indian woman, oil painting"
-    num_validation_images: int = 2
+    # Fixed prompts + fixed seeds, re-rendered at every validation step, so
+    # images from different checkpoints are directly comparable.
+    validation_prompts: list[str] = Field(
+        default_factory=lambda: ["<rvvarma>, portrait of a royal Indian woman in traditional attire"]
+    )
+    validation_prompt: Optional[str] = None  # legacy single-prompt field; prepended to validation_prompts if set
+    negative_prompt: str = ""
+    num_validation_images: int = 1  # images per prompt
     validation_steps: int = 250
+    run_at_start: bool = True  # render the same prompts with the untrained adapter (step 0 baseline)
+    num_inference_steps: int = 25
+    guidance_scale: float = 7.5
+    width: int = 512
+    height: int = 512
+
+    def prompts(self) -> list[str]:
+        prompts = list(self.validation_prompts)
+        if self.validation_prompt and self.validation_prompt not in prompts:
+            prompts.insert(0, self.validation_prompt)
+        return prompts
 
 
 class LoraTrainingConfig(BaseModel):
-    base_model: str = "runwayml/stable-diffusion-v1-5"
+    model_config = ConfigDict(protected_namespaces=())  # allow `model_*` field names
+
+    base_model: str = "stable-diffusion-v1-5/stable-diffusion-v1-5"
     model_family: Literal["sd15", "sdxl"] = "sd15"
     revision: Optional[str] = None
     variant: Optional[str] = None
@@ -154,7 +191,9 @@ class LoraTrainingConfig(BaseModel):
 # Generation / inference config
 # --------------------------------------------------------------------------- #
 class GenerationModelConfig(BaseModel):
-    base_model: str = "runwayml/stable-diffusion-v1-5"
+    model_config = ConfigDict(protected_namespaces=())  # allow `model_*` field names
+
+    base_model: str = "stable-diffusion-v1-5/stable-diffusion-v1-5"
     model_family: Literal["sd15", "sdxl"] = "sd15"
     lora_path: Optional[str] = "checkpoints/lora/ravi_varma"
     scheduler: Literal["dpmsolver_multistep", "euler_a", "ddim", "pndm"] = "dpmsolver_multistep"
@@ -178,6 +217,8 @@ class GenerationParamsConfig(BaseModel):
 
 
 class ControlNetConfig(BaseModel):
+    model_config = ConfigDict(protected_namespaces=())  # allow `model_*` field names
+
     enabled: bool = False
     type: Literal["openpose", "canny"] = "openpose"
     model_id_openpose: str = "lllyasviel/control_v11p_sd15_openpose"
@@ -194,6 +235,7 @@ class GenerationStyleConfig(BaseModel):
 
 class HardwareConfig(BaseModel):
     device: Literal["auto", "cuda", "mps", "cpu"] = "auto"
+    dtype: Literal["auto", "float16", "float32"] = "auto"
     attention_slicing: Union[str, bool] = "auto"
     vae_slicing: bool = True
     vae_tiling: bool = False

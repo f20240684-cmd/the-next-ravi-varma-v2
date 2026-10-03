@@ -1,0 +1,35 @@
+{
+  "image": "0025.jpg",
+  "subject": "a man in a green and gold outfit",
+  "composition": "group of five figures, vertical format",
+  "pose": "standing",
+  "clothing": "wearing green costume",
+  "jewelry": "necklace jewelry",
+  "expression": "serious expression",
+  "objects": "unknown",
+  "environment": "unknown",
+  "lighting": "dark low-key tones",
+  "visual_characteristics": "warm red and ochre palette",
+  "raw_caption": "a man in a green and gold outfit",
+  "title": "Duryodhana",
+  "source": "vlm",
+  "qa": {
+    "people_count": "5",
+    "clothing": "costume",
+    "clothing_color": "green",
+    "has_jewelry": "yes",
+    "jewelry": "necklace",
+    "pose": "standing",
+    "action": "standing",
+    "expression": "serious",
+    "has_object": "no",
+    "environment": "in painting",
+    "time": "day"
+  },
+  "measured": {
+    "lighting": "dark low-key tones",
+    "palette": "warm red and ochre palette",
+    "orientation": "vertical format"
+  },
+  "flat_caption": "Duryodhana, a man in a green and gold outfit, wearing green costume, necklace jewelry, standing, serious expression, group of five figures, vertical format, dark low-key tones, warm red and ochre palette"
+}

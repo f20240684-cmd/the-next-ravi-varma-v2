@@ -1,24 +1,103 @@
 # Dataset curation / preprocessing configuration.
-# Used by scripts/validate_dataset.py and scripts/prepare_dataset.py
+# Used by scripts/validate_dataset.py, scripts/generate_captions.py and
+# scripts/prepare_dataset.py.
 
 raw_dir: "data/raw"
 processed_dir: "data/processed"
 captions_dir: "data/captions"
 metadata_dir: "data/metadata"
 metadata_file: "data/metadata/metadata.jsonl"   # one JSON object per line, see data/README.md
+reference_dir: "data/reference"                 # held-out paintings for evaluation (never trained on)
 manifest_file: "data/processed/manifest.jsonl"
 
 validation:
-  min_resolution: 384          # shortest side, in pixels
+  min_resolution: 384          # shortest side, in pixels (smaller images are rejected)
   allowed_formats: [".jpg", ".jpeg", ".png", ".webp"]
-  max_file_size_mb: 25
-  detect_duplicates: true      # perceptual hash comparison
+  max_file_size_mb: 25         # larger files are accepted but flagged; preparation downscales them
+  detect_duplicates: true      # automatic near-duplicate detection (difference hash)
+  near_duplicate_threshold: 40 # max Hamming distance between 256-bit dHashes
   require_caption: true
 
+# Manual curation, decided by looking at every image (contact sheets) plus a
+# CLIP image-similarity pass used purely as a review aid. Everything below
+# is excluded from training but stays on disk and in metadata.jsonl.
+curation:
+  exclude:
+    "0008.jpg": "photograph of a palace wall mural with surrounding architecture, not a painting reproduction"
+    "0019.jpg": "magazine page reproduction with printed caption text"
+    "0035.jpg": "1971 India postage stamp (stamp design + printed text), not a painting"
+    "0078.jpeg": "1971 India postage stamp (stamp design + printed text), not a painting"
+    "0084.jpg": "multi-panel Dashavatara grid; would teach panel layouts, not compositions"
+    "0090.jpg": "Jagannath folk-icon print from the Ravi Varma Press; flat iconographic style unlike Varma's academic oil technique"
+    "0099.jpg": "photograph of a museum gallery interior"
+    "0124.jpg": "dark photograph of a small framed landscape; the frame and wall dominate the image"
+    "0138.jpg": "multi-panel Vishnu-avatar grid; would teach panel layouts, not compositions"
+    "0183.png": "portrait with a large printed text label under the image"
+
+  # Groups of files that reproduce the SAME artwork (different scan, print run,
+  # crop or framing). Validation keeps the highest-resolution non-excluded
+  # member of each group and excludes the rest, so no painting is
+  # over-represented during training.
+  duplicate_groups:
+    - ["0002.jpg", "0013.jpg", "0015.jpg", "0016.jpg"]          # Shakuntala Patralekhan
+    - ["0005.jpg", "0018.jpg"]                                  # Shakuntala lost in thought
+    - ["0006.jpg", "0236.jpg"]                                  # Shakuntala writing on a lotus leaf
+    - ["0007.jpg", "0010.jpg", "0011.jpg"]                      # Shakuntala looking back
+    - ["0032.jpg", "0202.jpg"]                                  # Draupadi / Sairandhri
+    - ["0036.jpg", "0203.jpg", "0204.jpg"]                      # Draupadi and Simhika
+    - ["0037.jpg", "0159.jpg", "0160.jpg", "0161.jpg", "0162.jpg"]  # Hamsa Damayanti
+    - ["0038.jpg", "0201.jpg"]                                  # Draupadi and Kichaka
+    - ["0079.jpg", "0104.jpg"]                                  # Garuda
+    - ["0080.jpg", "0111.jpg", "0112.jpg"]                      # Dattatreya
+    - ["0094.jpg", "0095.jpg"]                                  # Meerabai
+    - ["0097.jpg", "0106.jpg"]                                  # Mohini on a swing
+    - ["0098.jpg", "0118.jpg", "0132.jpg"]                      # Murugan / Shanmukha
+    - ["0100.jpg", "0107.jpg"]                                  # Parashurama
+    - ["0108.jpg", "0167.jpg"]                                  # Radha waiting for Krishna
+    - ["0120.jpg", "0121.jpg"]                                  # Bhishma's oath (full + crop)
+    - ["0126.jpg", "0152.jpg", "0157.jpg"]                      # Ganga and Shantanu
+    - ["0135.jpg", "0136.jpg"]                                  # Vamana
+    - ["0142.jpg", "0143.jpg", "0170.jpg", "0193.jpg", "0194.jpg"]  # Krishna as Envoy
+    - ["0146.jpg", "0147.jpg", "0172.jpg", "0196.jpg"]          # Vishwamitra and Menaka
+    - ["0174.jpg", "0198.jpg"]                                  # Yashoda and Krishna
+    - ["0200.jpg", "0232.jpg"]                                  # Maharani Chimnabai
+
+  # Extra caption text for visual facts the VLM does not describe. Naming a
+  # frame in the caption ties it to the word "frame" (which the generation
+  # negative prompt excludes) instead of letting the trigger token learn it --
+  # the v1 LoRA reproduced a gilt frame for exactly this reason.
+  caption_notes:
+    "0195.jpg": "inside a red decorative frame"
+
+  # Held-out evaluation set: accepted, captioned paintings that are written
+  # to reference_dir instead of the training manifest. scripts/evaluate.py
+  # measures style similarity against these, so the metric can't simply
+  # reward memorising training images. Chosen to span the corpus: single
+  # portraits, mythological groups, a deity, genre scenes, night scenes.
+  holdout:
+    - "0026.jpg"   # Ladies in the Moonlight (night, two figures)
+    - "0083.jpg"   # Chitralekha (single figure, mythological)
+    - "0089.jpg"   # Goddess Durga (deity, studio print)
+    - "0123.jpg"   # Duryodhana (court scene, many figures)
+    - "0140.jpg"   # Kiratarjuniya (mythological, outdoor)
+    - "0150.jpg"   # Damayanthi (single figure, landscape)
+    - "0173.jpg"   # Yasoda adorning Krishna (mother and child)
+    - "0185.jpg"   # Gypsies (genre scene)
+    - "0189.jpg"   # Malabar Lady (portrait)
+    - "0212.jpg"   # Nobleman from Central India (male portrait)
+    - "0225.jpg"   # Lady going for Pooja (standing woman)
+    - "0236.jpg"   # Shakuntala writing a love letter (reclining figure)
+
 preprocessing:
-  target_resolution: 512       # square resolution used for SD1.5 training
-  resize_mode: "center_crop"   # one of: center_crop, pad, stretch
+  target_resolution: 512       # SD1.5 native resolution; also the area target for buckets
+  # Aspect-ratio bucketing: each painting is resized to the closest
+  # ~512x512-pixel bucket (e.g. 448x640 for a typical portrait canvas)
+  # instead of being square-cropped, which cut heads/feet off most of this
+  # portrait-heavy corpus. Set to false to reproduce the old square crops.
+  aspect_bucketing: true
+  resize_mode: "center_crop"   # used only when aspect_bucketing is false: center_crop | pad | stretch
   interpolation: "lanczos"
+  trim_borders: true           # strip flat scanner/mount margins before resizing
 
 style:
   artist_name: "Raja Ravi Varma"

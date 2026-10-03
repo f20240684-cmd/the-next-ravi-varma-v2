@@ -1,0 +1,36 @@
+{
+  "image": "0087.jpg",
+  "subject": "a group of people sitting on a bench with an umbrella",
+  "composition": "group of many figures, vertical format",
+  "pose": "sitting",
+  "clothing": "wearing red dress",
+  "jewelry": "necklace jewelry",
+  "expression": "smiling expression",
+  "objects": "holding umbrella",
+  "environment": "unknown",
+  "lighting": "mid-tone lighting",
+  "visual_characteristics": "warm red and ochre palette",
+  "raw_caption": "a group of people sitting on a bench with an umbrella",
+  "title": "Ganapati",
+  "source": "vlm",
+  "qa": {
+    "people_count": "6",
+    "clothing": "red dress",
+    "clothing_color": "red",
+    "has_jewelry": "yes",
+    "jewelry": "necklace",
+    "pose": "sitting",
+    "action": "sitting",
+    "expression": "smiling",
+    "has_object": "yes",
+    "objects": "umbrella",
+    "environment": "on painting",
+    "time": "day"
+  },
+  "measured": {
+    "lighting": "mid-tone lighting",
+    "palette": "warm red and ochre palette",
+    "orientation": "vertical format"
+  },
+  "flat_caption": "Ganapati, a group of people sitting on a bench with an umbrella, wearing red dress, necklace jewelry, sitting, smiling expression, holding umbrella, group of many figures, vertical format, mid-tone lighting, warm red and ochre palette"
+}

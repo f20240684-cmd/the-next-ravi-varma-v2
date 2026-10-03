@@ -1,9 +1,12 @@
 # Default inference-time configuration.
-# python scripts/generate.py --config configs/generation.yaml --prompt "..."
+# python scripts/generate.py --prompt "<rvvarma>, ..." --seed 42
+# python scripts/generate.py --prompt-file configs/prompts/sample_prompts.yaml
 
 model:
-  base_model: "runwayml/stable-diffusion-v1-5"
+  # Official mirror of the removed runwayml/stable-diffusion-v1-5 repo.
+  base_model: "stable-diffusion-v1-5/stable-diffusion-v1-5"
   model_family: "sd15"
+  # A final LoRA directory, a checkpoint-<step> directory, or a .safetensors file.
   lora_path: "checkpoints/lora/ravi_varma"
   scheduler: "dpmsolver_multistep"   # dpmsolver_multistep | euler_a | ddim | pndm
 
@@ -12,18 +15,19 @@ generation:
   guidance_scale: 7.5
   width: 512
   height: 512
-  lora_scale: 1.0
-  seed: null            # null -> random seed each call, recorded in metadata
+  lora_scale: 1.0         # tune per checkpoint with scripts/generate.py --lora-scale (see README)
+  seed: null              # null -> random seed each call, recorded in metadata
   num_images: 1
 
-negative_prompt: >
-  malformed anatomy, extra fingers, missing fingers, fused fingers,
-  duplicated people, distorted faces, disfigured, mutated,
-  text, watermark, signature, logo, low quality, worst quality,
-  blurry image, out of focus, deformed hands, unnatural limbs,
-  cropped subjects, extra limbs, bad proportions, lowres
+negative_prompt: >-
+  malformed anatomy, bad anatomy, extra fingers, missing fingers, fused fingers,
+  deformed hands, extra limbs, unnatural limbs, bad proportions,
+  duplicated people, cloned face, distorted face, malformed eyes, asymmetric eyes,
+  blurry face, disfigured, mutated, cropped head, cut-off subjects,
+  text, watermark, signature, logo, frame, border,
+  low quality, worst quality, lowres, blurry, jpeg artifacts, out of focus
 
-controlnet:
+controlnet:               # Milestone 4 (not yet implemented end-to-end)
   enabled: false
   type: "openpose"       # openpose | canny
   model_id_openpose: "lllyasviel/control_v11p_sd15_openpose"
@@ -38,7 +42,8 @@ style:
 
 hardware:
   device: "auto"          # auto | cuda | mps | cpu
-  attention_slicing: "auto"
+  dtype: "auto"           # auto: fp16 on CUDA/MPS, fp32 on CPU | float16 | float32
+  attention_slicing: "auto"   # auto: only on <8 GB CUDA. Never force it on with fp16 on MPS (NaN -> black images)
   vae_slicing: true
   vae_tiling: false
   enable_model_cpu_offload: "auto"

@@ -1,5 +1,6 @@
 import json
 
+import numpy as np
 import pytest
 from PIL import Image
 
@@ -9,7 +10,13 @@ from ravi_varma.data.validation import DatasetValidator
 
 
 def _make_image(path, size=(600, 600), color=(120, 60, 30)):
-    Image.new("RGB", size, color).save(path)
+    """Textured test image. Seeded by colour so different colours give
+    visually distinct images (flat fills would all share one perceptual
+    hash and be treated as duplicates by the validator)."""
+    rng = np.random.default_rng(sum(color))
+    noise = rng.integers(0, 60, size=(size[1] // 20 + 1, size[0] // 20 + 1, 3))
+    tile = np.clip(np.array(color) + noise, 0, 255).astype("uint8")
+    Image.fromarray(tile).resize(size, Image.NEAREST).save(path)
 
 
 @pytest.fixture

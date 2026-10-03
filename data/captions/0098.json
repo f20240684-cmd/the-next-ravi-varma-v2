@@ -1,0 +1,35 @@
+{
+  "image": "0098.jpg",
+  "subject": "a group of people riding on a peacock",
+  "composition": "group of five figures, vertical format",
+  "pose": "standing",
+  "clothing": "wearing red dress",
+  "jewelry": "necklace jewelry",
+  "expression": "calm expression",
+  "objects": "unknown",
+  "environment": "unknown",
+  "lighting": "dark low-key tones",
+  "visual_characteristics": "green-dominant palette",
+  "raw_caption": "a group of people riding on a peacock",
+  "title": "Murugan",
+  "source": "vlm",
+  "qa": {
+    "people_count": "5",
+    "clothing": "dress",
+    "clothing_color": "red",
+    "has_jewelry": "yes",
+    "jewelry": "necklace",
+    "pose": "standing",
+    "action": "standing",
+    "expression": "calm",
+    "has_object": "no",
+    "environment": "in painting",
+    "time": "day"
+  },
+  "measured": {
+    "lighting": "dark low-key tones",
+    "palette": "green-dominant palette",
+    "orientation": "vertical format"
+  },
+  "flat_caption": "Murugan, a group of people riding on a peacock, wearing red dress, necklace jewelry, standing, calm expression, group of five figures, vertical format, dark low-key tones, green-dominant palette"
+}

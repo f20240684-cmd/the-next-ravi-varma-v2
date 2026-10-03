@@ -1,0 +1,36 @@
+{
+  "image": "0150.jpg",
+  "subject": "a painting of two women sitting on the ground",
+  "composition": "group of two figures, vertical format",
+  "pose": "sitting",
+  "clothing": "wearing gold dress",
+  "jewelry": "necklace jewelry",
+  "expression": "serious expression",
+  "objects": "unknown",
+  "environment": "unknown",
+  "lighting": "mid-tone lighting, night scene",
+  "visual_characteristics": "balanced earthy palette",
+  "raw_caption": "a painting of two women sitting on the ground",
+  "title": "Damayanthi",
+  "source": "vlm",
+  "qa": {
+    "people_count": "2",
+    "clothing": "dress",
+    "clothing_color": "gold",
+    "has_jewelry": "yes",
+    "jewelry": "necklace",
+    "pose": "sitting",
+    "action": "sitting",
+    "expression": "serious",
+    "has_object": "yes",
+    "objects": "phone",
+    "environment": "in painting",
+    "time": "night"
+  },
+  "measured": {
+    "lighting": "mid-tone lighting",
+    "palette": "balanced earthy palette",
+    "orientation": "vertical format"
+  },
+  "flat_caption": "Damayanthi, a painting of two women sitting on the ground, wearing gold dress, necklace jewelry, sitting, serious expression, group of two figures, vertical format, mid-tone lighting, night scene, balanced earthy palette"
+}

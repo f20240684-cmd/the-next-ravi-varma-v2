@@ -1,0 +1,36 @@
+{
+  "image": "0009.jpg",
+  "subject": "two women sitting next to each other",
+  "composition": "group of four figures, vertical format",
+  "pose": "sitting",
+  "clothing": "unknown",
+  "jewelry": "necklace jewelry",
+  "expression": "serious expression",
+  "objects": "holding bowl",
+  "environment": "in park",
+  "lighting": "dark low-key tones",
+  "visual_characteristics": "warm red and ochre palette",
+  "raw_caption": "two women sitting next to each other",
+  "title": "Shakuntala",
+  "source": "vlm",
+  "qa": {
+    "people_count": "4",
+    "clothing": "necklace",
+    "clothing_color": "tan",
+    "has_jewelry": "yes",
+    "jewelry": "necklace",
+    "pose": "sitting",
+    "action": "sitting",
+    "expression": "serious",
+    "has_object": "yes",
+    "objects": "bowl",
+    "environment": "in park",
+    "time": "day"
+  },
+  "measured": {
+    "lighting": "dark low-key tones",
+    "palette": "warm red and ochre palette",
+    "orientation": "vertical format"
+  },
+  "flat_caption": "Shakuntala, two women sitting next to each other, necklace jewelry, sitting, serious expression, holding bowl, in park, group of four figures, vertical format, dark low-key tones, warm red and ochre palette"
+}

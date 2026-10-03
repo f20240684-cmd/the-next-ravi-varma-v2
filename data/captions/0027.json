@@ -1,0 +1,36 @@
+{
+  "image": "0027.jpg",
+  "subject": "a woman sitting on a rock in the woods",
+  "composition": "single-figure composition, vertical format",
+  "pose": "sitting",
+  "clothing": "wearing yellow sari",
+  "jewelry": "bracelet jewelry",
+  "expression": "serious expression",
+  "objects": "unknown",
+  "environment": "in park",
+  "lighting": "dark low-key tones",
+  "visual_characteristics": "warm red and ochre palette",
+  "raw_caption": "a woman sitting on a rock in the woods",
+  "title": "Damayanthi Vanavasa",
+  "source": "vlm",
+  "qa": {
+    "people_count": "1",
+    "clothing": "sari",
+    "clothing_color": "yellow",
+    "has_jewelry": "yes",
+    "jewelry": "bracelet",
+    "pose": "sitting",
+    "action": "sitting",
+    "expression": "serious",
+    "has_object": "yes",
+    "objects": "phone",
+    "environment": "in park",
+    "time": "day"
+  },
+  "measured": {
+    "lighting": "dark low-key tones",
+    "palette": "warm red and ochre palette",
+    "orientation": "vertical format"
+  },
+  "flat_caption": "Damayanthi Vanavasa, a woman sitting on a rock in the woods, wearing yellow sari, bracelet jewelry, sitting, serious expression, in park, single-figure composition, vertical format, dark low-key tones, warm red and ochre palette"
+}

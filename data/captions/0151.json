@@ -1,0 +1,36 @@
+{
+  "image": "0151.jpg",
+  "subject": "a woman sitting on a rock in the woods",
+  "composition": "single-figure composition, vertical format",
+  "pose": "sitting",
+  "clothing": "wearing pink dress",
+  "jewelry": "necklace jewelry",
+  "expression": "serious expression",
+  "objects": "unknown",
+  "environment": "in park",
+  "lighting": "mid-tone lighting",
+  "visual_characteristics": "warm red and ochre palette",
+  "raw_caption": "a woman sitting on a rock in the woods",
+  "title": "Damayanti Vanavasa",
+  "source": "vlm",
+  "qa": {
+    "people_count": "1",
+    "clothing": "dress",
+    "clothing_color": "pink",
+    "has_jewelry": "yes",
+    "jewelry": "necklace",
+    "pose": "sitting",
+    "action": "sitting",
+    "expression": "serious",
+    "has_object": "yes",
+    "objects": "phone",
+    "environment": "in park",
+    "time": "day"
+  },
+  "measured": {
+    "lighting": "mid-tone lighting",
+    "palette": "warm red and ochre palette",
+    "orientation": "vertical format"
+  },
+  "flat_caption": "Damayanti Vanavasa, a woman sitting on a rock in the woods, wearing pink dress, necklace jewelry, sitting, serious expression, in park, single-figure composition, vertical format, mid-tone lighting, warm red and ochre palette"
+}

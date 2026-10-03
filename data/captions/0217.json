@@ -1,0 +1,35 @@
+{
+  "image": "0217.jpg",
+  "subject": "illustration of a man riding on the back of a black horse",
+  "composition": "group of five figures, vertical format",
+  "pose": "standing, riding horse",
+  "clothing": "wearing white uniform",
+  "jewelry": "unknown",
+  "expression": "serious expression",
+  "objects": "holding sword",
+  "environment": "in india",
+  "lighting": "mid-tone lighting",
+  "visual_characteristics": "balanced earthy palette",
+  "raw_caption": "illustration of a man riding on the back of a black horse",
+  "title": "Sri Shivaji Maharraj",
+  "source": "vlm",
+  "qa": {
+    "people_count": "5",
+    "clothing": "uniform",
+    "clothing_color": "white",
+    "has_jewelry": "no",
+    "pose": "standing",
+    "action": "riding horse",
+    "expression": "serious",
+    "has_object": "yes",
+    "objects": "sword",
+    "environment": "india",
+    "time": "day"
+  },
+  "measured": {
+    "lighting": "mid-tone lighting",
+    "palette": "balanced earthy palette",
+    "orientation": "vertical format"
+  },
+  "flat_caption": "Sri Shivaji Maharraj, illustration of a man riding on the back of a black horse, wearing white uniform, standing, riding horse, serious expression, holding sword, in india, group of five figures, vertical format, mid-tone lighting, balanced earthy palette"
+}

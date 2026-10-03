@@ -61,53 +61,132 @@ class CheckpointManager:
 
 
 class ValidationImageCallback:
-    """Generates a handful of sample images at `validation_steps` intervals
-    so training progress can be inspected visually / in TensorBoard."""
+    """Renders a fixed set of prompts with fixed seeds at every validation
+    step and saves them (plus a contact sheet) under
+    `output_dir/step_<N>/`, so checkpoints can be compared side by side."""
 
-    def __init__(self, prompt: str, num_images: int, output_dir: "str | Path"):
-        self.prompt = prompt
+    def __init__(
+        self,
+        prompts: list[str],
+        num_images: int,
+        output_dir: "str | Path",
+        negative_prompt: str = "",
+        num_inference_steps: int = 25,
+        guidance_scale: float = 7.5,
+        width: int = 512,
+        height: int = 512,
+    ):
+        self.prompts = prompts
         self.num_images = num_images
         self.output_dir = Path(output_dir)
-        self.output_dir.mkdir(parents=True, exist_ok=True)
+        self.negative_prompt = negative_prompt
+        self.num_inference_steps = num_inference_steps
+        self.guidance_scale = guidance_scale
+        self.width = width
+        self.height = height
 
     def run(self, pipeline, step: int, tb_writer=None, seed: int = 0) -> list[Path]:
         import torch
+        from PIL import Image
 
-        generator = torch.Generator(device=pipeline.device).manual_seed(seed)
-        saved = []
-        for i in range(self.num_images):
-            image = pipeline(self.prompt, generator=generator, num_inference_steps=25).images[0]
-            path = self.output_dir / f"val_step{step}_{i}.png"
-            image.save(path)
-            saved.append(path)
-            if tb_writer is not None:
-                import numpy as np
+        step_dir = self.output_dir / f"step_{step:05d}"
+        step_dir.mkdir(parents=True, exist_ok=True)
+        saved, images = [], []
+        for p_idx, prompt in enumerate(self.prompts):
+            for i in range(self.num_images):
+                # CPU generator: identical noise on any device, every step.
+                generator = torch.Generator(device="cpu").manual_seed(seed + i)
+                image = pipeline(
+                    prompt,
+                    negative_prompt=self.negative_prompt or None,
+                    generator=generator,
+                    num_inference_steps=self.num_inference_steps,
+                    guidance_scale=self.guidance_scale,
+                    width=self.width,
+                    height=self.height,
+                ).images[0]
+                path = step_dir / f"prompt{p_idx}_seed{seed + i}.png"
+                image.save(path)
+                saved.append(path)
+                images.append(image)
+                if tb_writer is not None:
+                    import numpy as np
 
-                tb_writer.add_image(f"validation/{i}", np.asarray(image).transpose(2, 0, 1), global_step=step)
-        logger.info("Saved %d validation images at step %d -> %s", len(saved), step, self.output_dir)
+                    tb_writer.add_image(f"validation/prompt{p_idx}_{i}", np.asarray(image).transpose(2, 0, 1), global_step=step)
+
+        if images:
+            cols = self.num_images
+            rows = len(self.prompts)
+            sheet = Image.new("RGB", (cols * self.width, rows * self.height), "white")
+            for k, img in enumerate(images):
+                sheet.paste(img, ((k % cols) * self.width, (k // cols) * self.height))
+            sheet.save(step_dir / "grid.jpg", quality=90)
+        (step_dir / "prompts.txt").write_text("\n".join(self.prompts) + "\n", encoding="utf-8")
+        logger.info("Saved %d validation images at step %d -> %s", len(saved), step, step_dir)
         return saved
 
 
 class LossLogger:
-    """Thin wrapper around TensorBoard's SummaryWriter that degrades to
-    plain logging if tensorboard is not installed."""
+    """Per-optimizer-step loss/LR history, written to a CSV (always) and to
+    TensorBoard when available."""
 
     def __init__(self, logging_dir: "str | Path", report_to: str = "tensorboard"):
+        self.logging_dir = Path(logging_dir)
+        self.logging_dir.mkdir(parents=True, exist_ok=True)
+        self.csv_path = self.logging_dir / "train_loss.csv"
+        self.history: list[dict] = []
+        self._unflushed: list[dict] = []
         self.writer = None
+        if self.csv_path.exists():
+            # Resumed run: keep earlier rows.
+            import csv
+
+            with self.csv_path.open(encoding="utf-8") as f:
+                self.history = [
+                    {"step": int(r["step"]), "loss": float(r["loss"]), "lr": float(r["lr"])} for r in csv.DictReader(f)
+                ]
         if report_to == "tensorboard":
             try:
                 from torch.utils.tensorboard import SummaryWriter
 
-                Path(logging_dir).mkdir(parents=True, exist_ok=True)
-                self.writer = SummaryWriter(log_dir=str(logging_dir))
+                self.writer = SummaryWriter(log_dir=str(self.logging_dir))
             except Exception:
-                logger.warning("tensorboard not installed or not usable; falling back to console-only loss logging.")
+                logger.warning("tensorboard not installed or not usable; logging loss to CSV only.")
+
+    def record(self, step: int, loss: float, lr: float) -> None:
+        # Drop rows from a previous run beyond this step (resume rewinds).
+        while self.history and self.history[-1]["step"] >= step:
+            self.history.pop()
+        row = {"step": step, "loss": loss, "lr": lr}
+        self.history.append(row)
+        self._unflushed.append(row)
+        if self.writer is not None:
+            self.writer.add_scalar("train/loss", loss, step)
+            self.writer.add_scalar("train/lr", lr, step)
+        if len(self._unflushed) >= 50:
+            self.flush()
 
     def log_scalar(self, tag: str, value: float, step: int) -> None:
         if self.writer is not None:
             self.writer.add_scalar(tag, value, step)
         logger.info("step=%d %s=%.5f", step, tag, value)
 
+    def recent_mean(self, n: int) -> Optional[float]:
+        rows = self.history[-n:]
+        return sum(r["loss"] for r in rows) / len(rows) if rows else None
+
+    def flush(self) -> None:
+        import csv
+
+        with self.csv_path.open("w", newline="", encoding="utf-8") as f:
+            writer = csv.DictWriter(f, fieldnames=["step", "loss", "lr"])
+            writer.writeheader()
+            writer.writerows(self.history)
+        self._unflushed.clear()
+        if self.writer is not None:
+            self.writer.flush()
+
     def close(self) -> None:
+        self.flush()
         if self.writer is not None:
             self.writer.close()

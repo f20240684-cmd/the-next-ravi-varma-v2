@@ -1,0 +1,36 @@
+{
+  "image": "0031.jpg",
+  "subject": "a woman in a sari carrying a tray",
+  "composition": "single-figure composition, vertical format",
+  "pose": "standing, drinking",
+  "clothing": "wearing blue dress",
+  "jewelry": "ring jewelry",
+  "expression": "calm expression",
+  "objects": "holding tray",
+  "environment": "unknown",
+  "lighting": "mid-tone lighting",
+  "visual_characteristics": "warm red and ochre palette",
+  "raw_caption": "a woman in a sari carrying a tray",
+  "title": "Sairandhri",
+  "source": "vlm",
+  "qa": {
+    "people_count": "one",
+    "clothing": "dress",
+    "clothing_color": "blue",
+    "has_jewelry": "yes",
+    "jewelry": "ring",
+    "pose": "standing",
+    "action": "drinking",
+    "expression": "calm",
+    "has_object": "yes",
+    "objects": "tray",
+    "environment": "at museum",
+    "time": "day"
+  },
+  "measured": {
+    "lighting": "mid-tone lighting",
+    "palette": "warm red and ochre palette",
+    "orientation": "vertical format"
+  },
+  "flat_caption": "Sairandhri, a woman in a sari carrying a tray, wearing blue dress, ring jewelry, standing, drinking, calm expression, holding tray, single-figure composition, vertical format, mid-tone lighting, warm red and ochre palette"
+}

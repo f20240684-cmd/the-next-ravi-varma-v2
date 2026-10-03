@@ -1,0 +1,36 @@
+{
+  "image": "0026.jpg",
+  "subject": "two women on a balcony talking to each other",
+  "composition": "group of two figures, vertical format",
+  "pose": "sitting",
+  "clothing": "wearing white sari",
+  "jewelry": "necklace jewelry",
+  "expression": "serious expression",
+  "objects": "holding fan",
+  "environment": "on balcony",
+  "lighting": "mid-tone lighting",
+  "visual_characteristics": "balanced earthy palette",
+  "raw_caption": "two women on a balcony talking to each other",
+  "title": "Ladies in the Moonlight",
+  "source": "vlm",
+  "qa": {
+    "people_count": "two",
+    "clothing": "sari",
+    "clothing_color": "white",
+    "has_jewelry": "yes",
+    "jewelry": "necklace",
+    "pose": "sitting",
+    "action": "sitting",
+    "expression": "serious",
+    "has_object": "yes",
+    "objects": "fan",
+    "environment": "on balcony",
+    "time": "day"
+  },
+  "measured": {
+    "lighting": "mid-tone lighting",
+    "palette": "balanced earthy palette",
+    "orientation": "vertical format"
+  },
+  "flat_caption": "Ladies in the Moonlight, two women on a balcony talking to each other, wearing white sari, necklace jewelry, sitting, serious expression, holding fan, on balcony, group of two figures, vertical format, mid-tone lighting, balanced earthy palette"
+}

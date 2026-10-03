@@ -1,0 +1,36 @@
+{
+  "image": "0086.jpg",
+  "subject": "a painting of a woman holding a sword and two lions",
+  "composition": "single-figure composition, vertical format",
+  "pose": "standing",
+  "clothing": "wearing red dress",
+  "jewelry": "necklace jewelry",
+  "expression": "calm expression",
+  "objects": "holding sword",
+  "environment": "in india",
+  "lighting": "mid-tone lighting",
+  "visual_characteristics": "warm red and ochre palette",
+  "raw_caption": "a painting of a woman holding a sword and two lions",
+  "title": "Durga",
+  "source": "vlm",
+  "qa": {
+    "people_count": "1",
+    "clothing": "dress",
+    "clothing_color": "red",
+    "has_jewelry": "yes",
+    "jewelry": "necklace",
+    "pose": "standing",
+    "action": "standing",
+    "expression": "calm",
+    "has_object": "yes",
+    "objects": "sword",
+    "environment": "india",
+    "time": "day"
+  },
+  "measured": {
+    "lighting": "mid-tone lighting",
+    "palette": "warm red and ochre palette",
+    "orientation": "vertical format"
+  },
+  "flat_caption": "Durga, a painting of a woman holding a sword and two lions, wearing red dress, necklace jewelry, standing, calm expression, holding sword, in india, single-figure composition, vertical format, mid-tone lighting, warm red and ochre palette"
+}

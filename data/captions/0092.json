@@ -1,0 +1,36 @@
+{
+  "image": "0092.jpg",
+  "subject": "a woman sitting on a rock in the water",
+  "composition": "single-figure composition, vertical format",
+  "pose": "sitting",
+  "clothing": "unknown",
+  "jewelry": "necklace jewelry",
+  "expression": "calm expression",
+  "objects": "holding umbrella",
+  "environment": "on water",
+  "lighting": "mid-tone lighting",
+  "visual_characteristics": "green-dominant palette",
+  "raw_caption": "a woman sitting on a rock in the water",
+  "title": "Kurma Avatar",
+  "source": "vlm",
+  "qa": {
+    "people_count": "1",
+    "clothing": "necklace",
+    "clothing_color": "red",
+    "has_jewelry": "yes",
+    "jewelry": "necklace",
+    "pose": "sitting",
+    "action": "sitting",
+    "expression": "calm",
+    "has_object": "yes",
+    "objects": "umbrella",
+    "environment": "on water",
+    "time": "day"
+  },
+  "measured": {
+    "lighting": "mid-tone lighting",
+    "palette": "green-dominant palette",
+    "orientation": "vertical format"
+  },
+  "flat_caption": "Kurma Avatar, a woman sitting on a rock in the water, necklace jewelry, sitting, calm expression, holding umbrella, on water, single-figure composition, vertical format, mid-tone lighting, green-dominant palette"
+}

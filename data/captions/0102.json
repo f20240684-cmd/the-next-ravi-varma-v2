@@ -1,0 +1,36 @@
+{
+  "image": "0102.jpg",
+  "subject": "a woman sitting on a throne surrounded by other women",
+  "composition": "group of many figures, vertical format",
+  "pose": "sitting",
+  "clothing": "wearing red dress",
+  "jewelry": "necklace jewelry",
+  "expression": "calm expression",
+  "objects": "holding instrument",
+  "environment": "in india",
+  "lighting": "mid-tone lighting",
+  "visual_characteristics": "warm red and ochre palette",
+  "raw_caption": "a woman sitting on a throne surrounded by other women",
+  "title": "Ambika",
+  "source": "vlm",
+  "qa": {
+    "people_count": "8",
+    "clothing": "dress",
+    "clothing_color": "red",
+    "has_jewelry": "yes",
+    "jewelry": "necklace",
+    "pose": "sitting",
+    "action": "sitting",
+    "expression": "calm",
+    "has_object": "yes",
+    "objects": "instrument",
+    "environment": "india",
+    "time": "day"
+  },
+  "measured": {
+    "lighting": "mid-tone lighting",
+    "palette": "warm red and ochre palette",
+    "orientation": "vertical format"
+  },
+  "flat_caption": "Ambika, a woman sitting on a throne surrounded by other women, wearing red dress, necklace jewelry, sitting, calm expression, holding instrument, in india, group of many figures, vertical format, mid-tone lighting, warm red and ochre palette"
+}

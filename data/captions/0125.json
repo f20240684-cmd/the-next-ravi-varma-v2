@@ -1,0 +1,36 @@
+{
+  "image": "0125.jpg",
+  "subject": "a woman in a red sari flying over a body of water",
+  "composition": "single-figure composition, vertical format",
+  "pose": "standing, flying",
+  "clothing": "wearing orange dress",
+  "jewelry": "necklace jewelry",
+  "expression": "calm expression",
+  "objects": "holding baby",
+  "environment": "in a lake",
+  "lighting": "mid-tone lighting",
+  "visual_characteristics": "warm red and ochre palette",
+  "raw_caption": "a woman in a red sari flying over a body of water",
+  "title": "Ganga and Bhishma",
+  "source": "vlm",
+  "qa": {
+    "people_count": "1",
+    "clothing": "dress",
+    "clothing_color": "orange",
+    "has_jewelry": "yes",
+    "jewelry": "necklace",
+    "pose": "standing",
+    "action": "flying",
+    "expression": "calm",
+    "has_object": "yes",
+    "objects": "baby",
+    "environment": "lake",
+    "time": "day"
+  },
+  "measured": {
+    "lighting": "mid-tone lighting",
+    "palette": "warm red and ochre palette",
+    "orientation": "vertical format"
+  },
+  "flat_caption": "Ganga and Bhishma, a woman in a red sari flying over a body of water, wearing orange dress, necklace jewelry, standing, flying, calm expression, holding baby, in a lake, single-figure composition, vertical format, mid-tone lighting, warm red and ochre palette"
+}

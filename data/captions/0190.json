@@ -1,0 +1,36 @@
+{
+  "image": "0190.jpg",
+  "subject": "a woman with a stringed instrument resting on a pillow",
+  "composition": "single-figure composition, vertical format",
+  "pose": "sitting",
+  "clothing": "wearing white dress",
+  "jewelry": "necklace jewelry",
+  "expression": "sad expression",
+  "objects": "holding stringed instrument",
+  "environment": "unknown",
+  "lighting": "dark low-key tones",
+  "visual_characteristics": "warm red and ochre palette",
+  "raw_caption": "a woman with a stringed instrument resting on a pillow",
+  "title": "Sleeping Beauty",
+  "source": "vlm",
+  "qa": {
+    "people_count": "1",
+    "clothing": "dress",
+    "clothing_color": "white",
+    "has_jewelry": "yes",
+    "jewelry": "necklace",
+    "pose": "sitting",
+    "action": "sitting",
+    "expression": "sad",
+    "has_object": "yes",
+    "objects": "guitar",
+    "environment": "in painting",
+    "time": "day"
+  },
+  "measured": {
+    "lighting": "dark low-key tones",
+    "palette": "warm red and ochre palette",
+    "orientation": "vertical format"
+  },
+  "flat_caption": "Sleeping Beauty, a woman with a stringed instrument resting on a pillow, wearing white dress, necklace jewelry, sitting, sad expression, holding stringed instrument, single-figure composition, vertical format, dark low-key tones, warm red and ochre palette"
+}

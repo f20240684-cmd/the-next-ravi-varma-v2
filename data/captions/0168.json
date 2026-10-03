@@ -1,0 +1,35 @@
+{
+  "image": "0168.jpg",
+  "subject": "a woman sitting next to a man in a sari",
+  "composition": "group of two figures, vertical format",
+  "pose": "sitting",
+  "clothing": "wearing red sari",
+  "jewelry": "necklace jewelry",
+  "expression": "serious expression",
+  "objects": "unknown",
+  "environment": "in india",
+  "lighting": "mid-tone lighting",
+  "visual_characteristics": "warm red and ochre palette",
+  "raw_caption": "a woman sitting next to a man in a sari",
+  "title": "Radha and Sakhi",
+  "source": "vlm",
+  "qa": {
+    "people_count": "2",
+    "clothing": "sari",
+    "clothing_color": "red",
+    "has_jewelry": "yes",
+    "jewelry": "necklace",
+    "pose": "sitting",
+    "action": "sitting",
+    "expression": "serious",
+    "has_object": "no",
+    "environment": "india",
+    "time": "day"
+  },
+  "measured": {
+    "lighting": "mid-tone lighting",
+    "palette": "warm red and ochre palette",
+    "orientation": "vertical format"
+  },
+  "flat_caption": "Radha and Sakhi, a woman sitting next to a man in a sari, wearing red sari, necklace jewelry, sitting, serious expression, in india, group of two figures, vertical format, mid-tone lighting, warm red and ochre palette"
+}

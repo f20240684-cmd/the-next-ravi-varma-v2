@@ -1,0 +1,35 @@
+{
+  "image": "0139.jpg",
+  "subject": "a man and woman dancing in the desert",
+  "composition": "group of two figures, vertical format",
+  "pose": "standing, dancing",
+  "clothing": "wearing yellow dress",
+  "jewelry": "unknown",
+  "expression": "smile expression",
+  "objects": "holding girl",
+  "environment": "in india",
+  "lighting": "mid-tone lighting",
+  "visual_characteristics": "green-dominant palette",
+  "raw_caption": "a man and woman dancing in the desert",
+  "title": "Jaydrath abduct Draupadi",
+  "source": "vlm",
+  "qa": {
+    "people_count": "2",
+    "clothing": "dress",
+    "clothing_color": "yellow",
+    "has_jewelry": "no",
+    "pose": "standing",
+    "action": "dancing",
+    "expression": "smile",
+    "has_object": "yes",
+    "objects": "girl",
+    "environment": "india",
+    "time": "day"
+  },
+  "measured": {
+    "lighting": "mid-tone lighting",
+    "palette": "green-dominant palette",
+    "orientation": "vertical format"
+  },
+  "flat_caption": "Jaydrath abduct Draupadi, a man and woman dancing in the desert, wearing yellow dress, standing, dancing, smile expression, holding girl, in india, group of two figures, vertical format, mid-tone lighting, green-dominant palette"
+}

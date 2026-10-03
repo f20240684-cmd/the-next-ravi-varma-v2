@@ -1,0 +1,36 @@
+{
+  "image": "0083.jpg",
+  "subject": "a woman sitting on a bed next to a woman",
+  "composition": "group of three figures, vertical format",
+  "pose": "sitting",
+  "clothing": "wearing yellow sari",
+  "jewelry": "bracelet jewelry",
+  "expression": "happy expression",
+  "objects": "holding knife",
+  "environment": "unknown",
+  "lighting": "mid-tone lighting",
+  "visual_characteristics": "warm red and ochre palette",
+  "raw_caption": "a woman sitting on a bed next to a woman",
+  "title": "Chitralekha",
+  "source": "vlm",
+  "qa": {
+    "people_count": "3",
+    "clothing": "sari",
+    "clothing_color": "yellow",
+    "has_jewelry": "yes",
+    "jewelry": "bracelet",
+    "pose": "sitting",
+    "action": "sitting",
+    "expression": "happy",
+    "has_object": "yes",
+    "objects": "knife",
+    "environment": "in painting",
+    "time": "day"
+  },
+  "measured": {
+    "lighting": "mid-tone lighting",
+    "palette": "warm red and ochre palette",
+    "orientation": "vertical format"
+  },
+  "flat_caption": "Chitralekha, a woman sitting on a bed next to a woman, wearing yellow sari, bracelet jewelry, sitting, happy expression, holding knife, group of three figures, vertical format, mid-tone lighting, warm red and ochre palette"
+}

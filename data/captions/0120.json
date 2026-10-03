@@ -1,0 +1,35 @@
+{
+  "image": "0120.jpg",
+  "subject": "a painting of a man handing something to a woman",
+  "composition": "group of many figures, vertical format",
+  "pose": "standing, waving",
+  "clothing": "wearing white dress",
+  "jewelry": "unknown",
+  "expression": "happy expression",
+  "objects": "holding bowl",
+  "environment": "in india",
+  "lighting": "mid-tone lighting",
+  "visual_characteristics": "warm red and ochre palette",
+  "raw_caption": "a painting of a man handing something to a woman",
+  "title": "Bheeshma oath",
+  "source": "vlm",
+  "qa": {
+    "people_count": "6",
+    "clothing": "dress",
+    "clothing_color": "white",
+    "has_jewelry": "no",
+    "pose": "standing",
+    "action": "waving",
+    "expression": "happy",
+    "has_object": "yes",
+    "objects": "bowl",
+    "environment": "india",
+    "time": "day"
+  },
+  "measured": {
+    "lighting": "mid-tone lighting",
+    "palette": "warm red and ochre palette",
+    "orientation": "vertical format"
+  },
+  "flat_caption": "Bheeshma oath, a painting of a man handing something to a woman, wearing white dress, standing, waving, happy expression, holding bowl, in india, group of many figures, vertical format, mid-tone lighting, warm red and ochre palette"
+}

@@ -1,0 +1,36 @@
+{
+  "image": "0177.jpg",
+  "subject": "a man and a woman sitting on a boat",
+  "composition": "group of two figures, vertical format",
+  "pose": "sitting",
+  "clothing": "wearing purple dress",
+  "jewelry": "necklace jewelry",
+  "expression": "surprise expression",
+  "objects": "holding sword",
+  "environment": "in a river",
+  "lighting": "mid-tone lighting",
+  "visual_characteristics": "warm red and ochre palette",
+  "raw_caption": "a man and a woman sitting on a boat",
+  "title": "Shantanu and Satyavati",
+  "source": "vlm",
+  "qa": {
+    "people_count": "2",
+    "clothing": "dress",
+    "clothing_color": "purple",
+    "has_jewelry": "yes",
+    "jewelry": "necklace",
+    "pose": "sitting",
+    "action": "sitting",
+    "expression": "surprise",
+    "has_object": "yes",
+    "objects": "sword",
+    "environment": "river",
+    "time": "day"
+  },
+  "measured": {
+    "lighting": "mid-tone lighting",
+    "palette": "warm red and ochre palette",
+    "orientation": "vertical format"
+  },
+  "flat_caption": "Shantanu and Satyavati, a man and a woman sitting on a boat, wearing purple dress, necklace jewelry, sitting, surprise expression, holding sword, in a river, group of two figures, vertical format, mid-tone lighting, warm red and ochre palette"
+}

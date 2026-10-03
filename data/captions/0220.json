@@ -1,0 +1,36 @@
+{
+  "image": "0220.jpg",
+  "subject": "a group of women in colorful saris standing in front of a stage",
+  "composition": "group of five figures, vertical format",
+  "pose": "standing, holding two cups",
+  "clothing": "wearing yellow sari",
+  "jewelry": "necklace jewelry",
+  "expression": "serious expression",
+  "objects": "unknown",
+  "environment": "unknown",
+  "lighting": "mid-tone lighting",
+  "visual_characteristics": "warm red and ochre palette",
+  "raw_caption": "a group of women in colorful saris standing in front of a stage",
+  "title": "Panchakanya",
+  "source": "vlm",
+  "qa": {
+    "people_count": "5",
+    "clothing": "sari",
+    "clothing_color": "yellow",
+    "has_jewelry": "yes",
+    "jewelry": "necklace",
+    "pose": "standing",
+    "action": "holding two cups",
+    "expression": "serious",
+    "has_object": "yes",
+    "objects": "camera",
+    "environment": "on painting",
+    "time": "day"
+  },
+  "measured": {
+    "lighting": "mid-tone lighting",
+    "palette": "warm red and ochre palette",
+    "orientation": "vertical format"
+  },
+  "flat_caption": "Panchakanya, a group of women in colorful saris standing in front of a stage, wearing yellow sari, necklace jewelry, standing, holding two cups, serious expression, group of five figures, vertical format, mid-tone lighting, warm red and ochre palette"
+}

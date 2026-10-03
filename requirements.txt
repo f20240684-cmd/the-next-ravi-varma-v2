@@ -11,10 +11,10 @@ accelerate==0.34.2
 datasets==2.21.0
 safetensors==0.4.5
 
-# Optional but recommended for training speed/memory on CUDA GPUs.
-# Comment out on CPU-only / Apple Silicon machines.
-# bitsandbytes==0.43.3
-# xformers==0.0.27.post2
+# Optional, CUDA only. On Colab use requirements-colab.txt instead (it explains
+# why xformers is not pinned there: 0.0.27.post2 requires exactly torch 2.4.0).
+# bitsandbytes==0.43.3   # not with CUDA 12.8 / Triton 3 (see requirements-colab.txt)
+# xformers==0.0.27.post2   # only with torch==2.4.0
 
 # Image / vision
 pillow==10.4.0

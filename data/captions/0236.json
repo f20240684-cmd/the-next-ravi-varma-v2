@@ -1,0 +1,36 @@
+{
+  "image": "0236.jpg",
+  "subject": "a man and two women sitting in the grass with a cat nearby",
+  "composition": "group of four figures, vertical format",
+  "pose": "sitting",
+  "clothing": "unknown",
+  "jewelry": "necklace jewelry",
+  "expression": "serious expression",
+  "objects": "holding knife",
+  "environment": "in park",
+  "lighting": "dark low-key tones",
+  "visual_characteristics": "warm red and ochre palette",
+  "raw_caption": "a man and two women sitting in the grass with a cat nearby",
+  "title": "Shakuntala writing a love letter on a lotus leaf",
+  "source": "vlm",
+  "qa": {
+    "people_count": "4",
+    "clothing": "necklace",
+    "clothing_color": "orange",
+    "has_jewelry": "yes",
+    "jewelry": "necklace",
+    "pose": "sitting",
+    "action": "sitting",
+    "expression": "serious",
+    "has_object": "yes",
+    "objects": "knife",
+    "environment": "in park",
+    "time": "day"
+  },
+  "measured": {
+    "lighting": "dark low-key tones",
+    "palette": "warm red and ochre palette",
+    "orientation": "vertical format"
+  },
+  "flat_caption": "Shakuntala writing a love letter on a lotus leaf, a man and two women sitting in the grass with a cat nearby, necklace jewelry, sitting, serious expression, holding knife, in park, group of four figures, vertical format, dark low-key tones, warm red and ochre palette"
+}

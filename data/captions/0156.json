@@ -1,0 +1,36 @@
+{
+  "image": "0156.jpg",
+  "subject": "a painting of a group of men standing in front of a full moon",
+  "composition": "group of many figures, vertical format",
+  "pose": "standing, praying",
+  "clothing": "wearing red dress",
+  "jewelry": "necklace jewelry",
+  "expression": "calm expression",
+  "objects": "holding sword",
+  "environment": "in outside",
+  "lighting": "mid-tone lighting, night scene",
+  "visual_characteristics": "warm red and ochre palette",
+  "raw_caption": "a painting of a group of men standing in front of a full moon",
+  "title": "Kamsa maya",
+  "source": "vlm",
+  "qa": {
+    "people_count": "6",
+    "clothing": "dress",
+    "clothing_color": "red",
+    "has_jewelry": "yes",
+    "jewelry": "necklace",
+    "pose": "standing",
+    "action": "praying",
+    "expression": "calm",
+    "has_object": "yes",
+    "objects": "sword",
+    "environment": "outside",
+    "time": "night"
+  },
+  "measured": {
+    "lighting": "mid-tone lighting",
+    "palette": "warm red and ochre palette",
+    "orientation": "vertical format"
+  },
+  "flat_caption": "Kamsa maya, a painting of a group of men standing in front of a full moon, wearing red dress, necklace jewelry, standing, praying, calm expression, holding sword, in outside, group of many figures, vertical format, mid-tone lighting, night scene, warm red and ochre palette"
+}

@@ -1,0 +1,36 @@
+{
+  "image": "0147.jpg",
+  "subject": "a man and woman sitting on a tiger rug in front of a waterfall",
+  "composition": "group of two figures, vertical format",
+  "pose": "sitting",
+  "clothing": "wearing red robe",
+  "jewelry": "necklace jewelry",
+  "expression": "serious expression",
+  "objects": "holding cup",
+  "environment": "unknown",
+  "lighting": "mid-tone lighting",
+  "visual_characteristics": "warm red and ochre palette",
+  "raw_caption": "a man and woman sitting on a tiger rug in front of a waterfall",
+  "title": "Menaka the nymph tempting the yogi",
+  "source": "vlm",
+  "qa": {
+    "people_count": "2",
+    "clothing": "red robe",
+    "clothing_color": "red",
+    "has_jewelry": "yes",
+    "jewelry": "necklace",
+    "pose": "sitting",
+    "action": "sitting",
+    "expression": "serious",
+    "has_object": "yes",
+    "objects": "cup",
+    "environment": "in painting",
+    "time": "day"
+  },
+  "measured": {
+    "lighting": "mid-tone lighting",
+    "palette": "warm red and ochre palette",
+    "orientation": "vertical format"
+  },
+  "flat_caption": "Menaka the nymph tempting the yogi, a man and woman sitting on a tiger rug in front of a waterfall, wearing red robe, necklace jewelry, sitting, serious expression, holding cup, group of two figures, vertical format, mid-tone lighting, warm red and ochre palette"
+}

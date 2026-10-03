@@ -1,0 +1,794 @@
+{
+  "total_images_found": 200,
+  "valid_samples": 134,
+  "excluded_count": 66,
+  "exclusions_by_category": {
+    "curated_duplicate": 33,
+    "curated_exclusion": 7,
+    "upscaled_low_resolution": 26
+  },
+  "error_count": 0,
+  "warning_count": 70,
+  "is_valid": true,
+  "accepted": [
+    "0000.jpg",
+    "0001.jpg",
+    "0002.jpg",
+    "0003.jpg",
+    "0004.jpg",
+    "0005.jpg",
+    "0007.jpg",
+    "0009.jpg",
+    "0012.jpg",
+    "0014.jpg",
+    "0017.jpg",
+    "0020.jpg",
+    "0021.jpg",
+    "0022.jpg",
+    "0023.jpg",
+    "0024.jpg",
+    "0025.jpg",
+    "0026.jpg",
+    "0027.jpg",
+    "0028.jpg",
+    "0030.jpg",
+    "0031.jpg",
+    "0034.jpg",
+    "0036.jpg",
+    "0037.jpg",
+    "0038.jpg",
+    "0079.jpg",
+    "0081.jpg",
+    "0083.jpg",
+    "0085.jpg",
+    "0086.jpg",
+    "0087.jpg",
+    "0088.jpg",
+    "0089.jpg",
+    "0091.jpg",
+    "0092.jpg",
+    "0095.jpg",
+    "0096.jpg",
+    "0097.jpg",
+    "0098.jpg",
+    "0100.jpg",
+    "0101.jpg",
+    "0102.jpg",
+    "0103.jpg",
+    "0105.jpg",
+    "0108.jpg",
+    "0109.jpg",
+    "0110.jpg",
+    "0111.jpg",
+    "0113.jpg",
+    "0116.jpg",
+    "0117.jpg",
+    "0120.jpg",
+    "0122.jpg",
+    "0123.jpg",
+    "0125.jpg",
+    "0127.jpg",
+    "0128.jpg",
+    "0129.jpg",
+    "0130.jpg",
+    "0131.jpg",
+    "0133.jpg",
+    "0136.jpg",
+    "0137.jpg",
+    "0139.jpg",
+    "0140.jpg",
+    "0141.jpg",
+    "0142.jpg",
+    "0144.jpg",
+    "0145.jpg",
+    "0147.jpg",
+    "0148.jpg",
+    "0149.jpg",
+    "0150.jpg",
+    "0151.jpg",
+    "0152.jpg",
+    "0153.jpg",
+    "0154.jpg",
+    "0155.jpg",
+    "0156.jpg",
+    "0158.jpg",
+    "0163.jpg",
+    "0164.jpg",
+    "0166.jpg",
+    "0168.jpg",
+    "0169.jpg",
+    "0171.jpg",
+    "0173.jpg",
+    "0174.jpg",
+    "0175.jpg",
+    "0176.jpg",
+    "0177.jpg",
+    "0180.jpg",
+    "0181.jpg",
+    "0182.jpg",
+    "0184.jpg",
+    "0185.jpg",
+    "0186.jpg",
+    "0187.jpg",
+    "0188.jpg",
+    "0189.jpg",
+    "0190.jpg",
+    "0191.jpg",
+    "0195.jpg",
+    "0197.jpg",
+    "0199.jpg",
+    "0202.jpg",
+    "0206.jpg",
+    "0207.jpg",
+    "0208.jpg",
+    "0209.jpg",
+    "0211.jpg",
+    "0212.jpg",
+    "0213.jpg",
+    "0214.jpg",
+    "0217.jpg",
+    "0219.jpg",
+    "0220.jpg",
+    "0221.jpg",
+    "0222.jpg",
+    "0223.jpg",
+    "0224.jpg",
+    "0225.jpg",
+    "0226.jpg",
+    "0227.jpg",
+    "0228.jpg",
+    "0229.jpg",
+    "0231.jpg",
+    "0232.jpg",
+    "0234.jpg",
+    "0235.jpg",
+    "0236.jpg",
+    "0237.jpg",
+    "0238.jpg"
+  ],
+  "excluded": {
+    "0006.jpg": "upscaled_low_resolution: Local file is 384x550 but the original is only 290x415; the upscale adds no detail and the original is below 384px.",
+    "0029.jpg": "upscaled_low_resolution: Local file is 384x550 but the original is only 290x415; the upscale adds no detail and the original is below 384px.",
+    "0033.jpg": "upscaled_low_resolution: Local file is 384x1070 but the original is only 318x886; the upscale adds no detail and the original is below 384px.",
+    "0078.jpeg": "upscaled_low_resolution: Local file is 384x518 but the original is only 349x471; the upscale adds no detail and the original is below 384px.",
+    "0082.jpg": "upscaled_low_resolution: Local file is 384x566 but the original is only 200x295; the upscale adds no detail and the original is below 384px.",
+    "0093.jpg": "upscaled_low_resolution: Local file is 384x547 but the original is only 337x480; the upscale adds no detail and the original is below 384px.",
+    "0114.jpg": "upscaled_low_resolution: Local file is 384x547 but the original is only 316x450; the upscale adds no detail and the original is below 384px.",
+    "0115.jpg": "upscaled_low_resolution: Local file is 384x540 but the original is only 312x439; the upscale adds no detail and the original is below 384px.",
+    "0119.jpg": "upscaled_low_resolution: Local file is 384x579 but the original is only 242x365; the upscale adds no detail and the original is below 384px.",
+    "0124.jpg": "upscaled_low_resolution: Local file is 585x384 but the original is only 300x197; the upscale adds no detail and the original is below 384px.",
+    "0134.jpg": "upscaled_low_resolution: Local file is 509x384 but the original is only 322x243; the upscale adds no detail and the original is below 384px.",
+    "0160.jpg": "upscaled_low_resolution: Local file is 384x532 but the original is only 300x416; the upscale adds no detail and the original is below 384px.",
+    "0165.jpg": "upscaled_low_resolution: Local file is 384x527 but the original is only 368x505; the upscale adds no detail and the original is below 384px.",
+    "0167.jpg": "upscaled_low_resolution: Local file is 384x550 but the original is only 290x415; the upscale adds no detail and the original is below 384px.",
+    "0178.jpg": "upscaled_low_resolution: Local file is 384x491 but the original is only 370x473; the upscale adds no detail and the original is below 384px.",
+    "0179.jpg": "upscaled_low_resolution: Local file is 384x445 but the original is only 325x377; the upscale adds no detail and the original is below 384px.",
+    "0183.png": "upscaled_low_resolution: Local file is 384x534 but the original is only 300x417; the upscale adds no detail and the original is below 384px.",
+    "0192.jpg": "upscaled_low_resolution: Local file is 384x443 but the original is only 210x242; the upscale adds no detail and the original is below 384px.",
+    "0196.jpg": "upscaled_low_resolution: Local file is 384x550 but the original is only 290x415; the upscale adds no detail and the original is below 384px.",
+    "0205.jpg": "upscaled_low_resolution: Local file is 384x590 but the original is only 300x461; the upscale adds no detail and the original is below 384px.",
+    "0210.jpg": "upscaled_low_resolution: Local file is 384x532 but the original is only 300x416; the upscale adds no detail and the original is below 384px.",
+    "0215.jpg": "upscaled_low_resolution: Local file is 384x711 but the original is only 216x400; the upscale adds no detail and the original is below 384px.",
+    "0216.jpg": "upscaled_low_resolution: Local file is 384x543 but the original is only 290x410; the upscale adds no detail and the original is below 384px.",
+    "0218.jpg": "upscaled_low_resolution: Local file is 384x620 but the original is only 367x593; the upscale adds no detail and the original is below 384px.",
+    "0230.jpg": "upscaled_low_resolution: Local file is 384x512 but the original is only 322x429; the upscale adds no detail and the original is below 384px.",
+    "0233.jpg": "upscaled_low_resolution: Local file is 384x550 but the original is only 290x415; the upscale adds no detail and the original is below 384px.",
+    "0008.jpg": "curated_exclusion: photograph of a palace wall mural with surrounding architecture, not a painting reproduction",
+    "0019.jpg": "curated_exclusion: magazine page reproduction with printed caption text",
+    "0035.jpg": "curated_exclusion: 1971 India postage stamp (stamp design + printed text), not a painting",
+    "0084.jpg": "curated_exclusion: multi-panel Dashavatara grid; would teach panel layouts, not compositions",
+    "0090.jpg": "curated_exclusion: Jagannath folk-icon print from the Ravi Varma Press; flat iconographic style unlike Varma's academic oil technique",
+    "0099.jpg": "curated_exclusion: photograph of a museum gallery interior",
+    "0138.jpg": "curated_exclusion: multi-panel Vishnu-avatar grid; would teach panel layouts, not compositions",
+    "0018.jpg": "curated_duplicate: Same artwork as 0005.jpg (kept the higher-resolution copy).",
+    "0010.jpg": "curated_duplicate: Same artwork as 0007.jpg (kept the higher-resolution copy).",
+    "0011.jpg": "curated_duplicate: Same artwork as 0007.jpg (kept the higher-resolution copy).",
+    "0032.jpg": "curated_duplicate: Same artwork as 0202.jpg (kept the higher-resolution copy).",
+    "0203.jpg": "curated_duplicate: Same artwork as 0036.jpg (kept the higher-resolution copy).",
+    "0204.jpg": "curated_duplicate: Same artwork as 0036.jpg (kept the higher-resolution copy).",
+    "0159.jpg": "curated_duplicate: Same artwork as 0037.jpg (kept the higher-resolution copy).",
+    "0161.jpg": "curated_duplicate: Same artwork as 0037.jpg (kept the higher-resolution copy).",
+    "0162.jpg": "curated_duplicate: Same artwork as 0037.jpg (kept the higher-resolution copy).",
+    "0080.jpg": "curated_duplicate: Same artwork as 0111.jpg (kept the higher-resolution copy).",
+    "0112.jpg": "curated_duplicate: Same artwork as 0111.jpg (kept the higher-resolution copy).",
+    "0106.jpg": "curated_duplicate: Same artwork as 0097.jpg (kept the higher-resolution copy).",
+    "0107.jpg": "curated_duplicate: Same artwork as 0100.jpg (kept the higher-resolution copy).",
+    "0121.jpg": "curated_duplicate: Same artwork as 0120.jpg (kept the higher-resolution copy).",
+    "0135.jpg": "curated_duplicate: Same artwork as 0136.jpg (kept the higher-resolution copy).",
+    "0143.jpg": "curated_duplicate: Same artwork as 0142.jpg (kept the higher-resolution copy).",
+    "0170.jpg": "curated_duplicate: Same artwork as 0142.jpg (kept the higher-resolution copy).",
+    "0193.jpg": "curated_duplicate: Same artwork as 0142.jpg (kept the higher-resolution copy).",
+    "0194.jpg": "curated_duplicate: Same artwork as 0142.jpg (kept the higher-resolution copy).",
+    "0146.jpg": "curated_duplicate: Same artwork as 0147.jpg (kept the higher-resolution copy).",
+    "0172.jpg": "curated_duplicate: Same artwork as 0147.jpg (kept the higher-resolution copy).",
+    "0200.jpg": "curated_duplicate: Same artwork as 0232.jpg (kept the higher-resolution copy).",
+    "0013.jpg": "curated_duplicate: Same artwork as 0002.jpg (kept the higher-resolution copy).",
+    "0015.jpg": "curated_duplicate: Same artwork as 0002.jpg (kept the higher-resolution copy).",
+    "0016.jpg": "curated_duplicate: Same artwork as 0002.jpg (kept the higher-resolution copy).",
+    "0201.jpg": "curated_duplicate: Same artwork as 0038.jpg (kept the higher-resolution copy).",
+    "0104.jpg": "curated_duplicate: Same artwork as 0079.jpg (kept the higher-resolution copy).",
+    "0094.jpg": "curated_duplicate: Same artwork as 0095.jpg (kept the higher-resolution copy).",
+    "0118.jpg": "curated_duplicate: Same artwork as 0098.jpg (kept the higher-resolution copy).",
+    "0132.jpg": "curated_duplicate: Same artwork as 0098.jpg (kept the higher-resolution copy).",
+    "0126.jpg": "curated_duplicate: Same artwork as 0152.jpg (kept the higher-resolution copy).",
+    "0157.jpg": "curated_duplicate: Same artwork as 0152.jpg (kept the higher-resolution copy).",
+    "0198.jpg": "curated_duplicate: Same artwork as 0174.jpg (kept the higher-resolution copy)."
+  },
+  "duplicate_sets": [
+    {
+      "kind": "curated_duplicate",
+      "kept": "0005.jpg",
+      "excluded": [
+        "0018.jpg"
+      ]
+    },
+    {
+      "kind": "curated_duplicate",
+      "kept": "0007.jpg",
+      "excluded": [
+        "0010.jpg",
+        "0011.jpg"
+      ]
+    },
+    {
+      "kind": "curated_duplicate",
+      "kept": "0202.jpg",
+      "excluded": [
+        "0032.jpg"
+      ]
+    },
+    {
+      "kind": "curated_duplicate",
+      "kept": "0036.jpg",
+      "excluded": [
+        "0203.jpg",
+        "0204.jpg"
+      ]
+    },
+    {
+      "kind": "curated_duplicate",
+      "kept": "0037.jpg",
+      "excluded": [
+        "0159.jpg",
+        "0161.jpg",
+        "0162.jpg"
+      ]
+    },
+    {
+      "kind": "curated_duplicate",
+      "kept": "0111.jpg",
+      "excluded": [
+        "0080.jpg",
+        "0112.jpg"
+      ]
+    },
+    {
+      "kind": "curated_duplicate",
+      "kept": "0097.jpg",
+      "excluded": [
+        "0106.jpg"
+      ]
+    },
+    {
+      "kind": "curated_duplicate",
+      "kept": "0100.jpg",
+      "excluded": [
+        "0107.jpg"
+      ]
+    },
+    {
+      "kind": "curated_duplicate",
+      "kept": "0120.jpg",
+      "excluded": [
+        "0121.jpg"
+      ]
+    },
+    {
+      "kind": "curated_duplicate",
+      "kept": "0136.jpg",
+      "excluded": [
+        "0135.jpg"
+      ]
+    },
+    {
+      "kind": "curated_duplicate",
+      "kept": "0142.jpg",
+      "excluded": [
+        "0143.jpg",
+        "0170.jpg",
+        "0193.jpg",
+        "0194.jpg"
+      ]
+    },
+    {
+      "kind": "curated_duplicate",
+      "kept": "0147.jpg",
+      "excluded": [
+        "0146.jpg",
+        "0172.jpg"
+      ]
+    },
+    {
+      "kind": "curated_duplicate",
+      "kept": "0232.jpg",
+      "excluded": [
+        "0200.jpg"
+      ]
+    },
+    {
+      "kind": "curated_duplicate",
+      "kept": "0002.jpg",
+      "excluded": [
+        "0013.jpg",
+        "0015.jpg",
+        "0016.jpg"
+      ]
+    },
+    {
+      "kind": "curated_duplicate",
+      "kept": "0038.jpg",
+      "excluded": [
+        "0201.jpg"
+      ]
+    },
+    {
+      "kind": "curated_duplicate",
+      "kept": "0079.jpg",
+      "excluded": [
+        "0104.jpg"
+      ]
+    },
+    {
+      "kind": "curated_duplicate",
+      "kept": "0095.jpg",
+      "excluded": [
+        "0094.jpg"
+      ]
+    },
+    {
+      "kind": "curated_duplicate",
+      "kept": "0098.jpg",
+      "excluded": [
+        "0118.jpg",
+        "0132.jpg"
+      ]
+    },
+    {
+      "kind": "curated_duplicate",
+      "kept": "0152.jpg",
+      "excluded": [
+        "0126.jpg",
+        "0157.jpg"
+      ]
+    },
+    {
+      "kind": "curated_duplicate",
+      "kept": "0174.jpg",
+      "excluded": [
+        "0198.jpg"
+      ]
+    }
+  ],
+  "issues": [
+    {
+      "severity": "warning",
+      "category": "large_file",
+      "path": "0002.jpg",
+      "message": "File is 51.0MB (> 25.0MB); accepted, will be downscaled during preparation."
+    },
+    {
+      "severity": "warning",
+      "category": "upscaled_low_resolution",
+      "path": "0006.jpg",
+      "message": "Local file is 384x550 but the original is only 290x415; the upscale adds no detail and the original is below 384px."
+    },
+    {
+      "severity": "warning",
+      "category": "upscaled_low_resolution",
+      "path": "0029.jpg",
+      "message": "Local file is 384x550 but the original is only 290x415; the upscale adds no detail and the original is below 384px."
+    },
+    {
+      "severity": "warning",
+      "category": "upscaled_low_resolution",
+      "path": "0033.jpg",
+      "message": "Local file is 384x1070 but the original is only 318x886; the upscale adds no detail and the original is below 384px."
+    },
+    {
+      "severity": "warning",
+      "category": "upscaled_low_resolution",
+      "path": "0078.jpeg",
+      "message": "Local file is 384x518 but the original is only 349x471; the upscale adds no detail and the original is below 384px."
+    },
+    {
+      "severity": "warning",
+      "category": "upscaled_low_resolution",
+      "path": "0082.jpg",
+      "message": "Local file is 384x566 but the original is only 200x295; the upscale adds no detail and the original is below 384px."
+    },
+    {
+      "severity": "warning",
+      "category": "upscaled_low_resolution",
+      "path": "0093.jpg",
+      "message": "Local file is 384x547 but the original is only 337x480; the upscale adds no detail and the original is below 384px."
+    },
+    {
+      "severity": "warning",
+      "category": "large_file",
+      "path": "0110.jpg",
+      "message": "File is 53.7MB (> 25.0MB); accepted, will be downscaled during preparation."
+    },
+    {
+      "severity": "warning",
+      "category": "upscaled_low_resolution",
+      "path": "0114.jpg",
+      "message": "Local file is 384x547 but the original is only 316x450; the upscale adds no detail and the original is below 384px."
+    },
+    {
+      "severity": "warning",
+      "category": "upscaled_low_resolution",
+      "path": "0115.jpg",
+      "message": "Local file is 384x540 but the original is only 312x439; the upscale adds no detail and the original is below 384px."
+    },
+    {
+      "severity": "warning",
+      "category": "upscaled_low_resolution",
+      "path": "0119.jpg",
+      "message": "Local file is 384x579 but the original is only 242x365; the upscale adds no detail and the original is below 384px."
+    },
+    {
+      "severity": "warning",
+      "category": "upscaled_low_resolution",
+      "path": "0124.jpg",
+      "message": "Local file is 585x384 but the original is only 300x197; the upscale adds no detail and the original is below 384px."
+    },
+    {
+      "severity": "warning",
+      "category": "upscaled_low_resolution",
+      "path": "0134.jpg",
+      "message": "Local file is 509x384 but the original is only 322x243; the upscale adds no detail and the original is below 384px."
+    },
+    {
+      "severity": "warning",
+      "category": "large_file",
+      "path": "0154.jpg",
+      "message": "File is 37.3MB (> 25.0MB); accepted, will be downscaled during preparation."
+    },
+    {
+      "severity": "warning",
+      "category": "upscaled_low_resolution",
+      "path": "0160.jpg",
+      "message": "Local file is 384x532 but the original is only 300x416; the upscale adds no detail and the original is below 384px."
+    },
+    {
+      "severity": "warning",
+      "category": "large_file",
+      "path": "0163.jpg",
+      "message": "File is 52.3MB (> 25.0MB); accepted, will be downscaled during preparation."
+    },
+    {
+      "severity": "warning",
+      "category": "upscaled_low_resolution",
+      "path": "0165.jpg",
+      "message": "Local file is 384x527 but the original is only 368x505; the upscale adds no detail and the original is below 384px."
+    },
+    {
+      "severity": "warning",
+      "category": "upscaled_low_resolution",
+      "path": "0167.jpg",
+      "message": "Local file is 384x550 but the original is only 290x415; the upscale adds no detail and the original is below 384px."
+    },
+    {
+      "severity": "warning",
+      "category": "upscaled_low_resolution",
+      "path": "0178.jpg",
+      "message": "Local file is 384x491 but the original is only 370x473; the upscale adds no detail and the original is below 384px."
+    },
+    {
+      "severity": "warning",
+      "category": "upscaled_low_resolution",
+      "path": "0179.jpg",
+      "message": "Local file is 384x445 but the original is only 325x377; the upscale adds no detail and the original is below 384px."
+    },
+    {
+      "severity": "warning",
+      "category": "upscaled_low_resolution",
+      "path": "0183.png",
+      "message": "Local file is 384x534 but the original is only 300x417; the upscale adds no detail and the original is below 384px."
+    },
+    {
+      "severity": "warning",
+      "category": "upscaled_low_resolution",
+      "path": "0192.jpg",
+      "message": "Local file is 384x443 but the original is only 210x242; the upscale adds no detail and the original is below 384px."
+    },
+    {
+      "severity": "warning",
+      "category": "upscaled_low_resolution",
+      "path": "0196.jpg",
+      "message": "Local file is 384x550 but the original is only 290x415; the upscale adds no detail and the original is below 384px."
+    },
+    {
+      "severity": "warning",
+      "category": "upscaled_low_resolution",
+      "path": "0205.jpg",
+      "message": "Local file is 384x590 but the original is only 300x461; the upscale adds no detail and the original is below 384px."
+    },
+    {
+      "severity": "warning",
+      "category": "upscaled_low_resolution",
+      "path": "0210.jpg",
+      "message": "Local file is 384x532 but the original is only 300x416; the upscale adds no detail and the original is below 384px."
+    },
+    {
+      "severity": "warning",
+      "category": "upscaled_low_resolution",
+      "path": "0215.jpg",
+      "message": "Local file is 384x711 but the original is only 216x400; the upscale adds no detail and the original is below 384px."
+    },
+    {
+      "severity": "warning",
+      "category": "upscaled_low_resolution",
+      "path": "0216.jpg",
+      "message": "Local file is 384x543 but the original is only 290x410; the upscale adds no detail and the original is below 384px."
+    },
+    {
+      "severity": "warning",
+      "category": "upscaled_low_resolution",
+      "path": "0218.jpg",
+      "message": "Local file is 384x620 but the original is only 367x593; the upscale adds no detail and the original is below 384px."
+    },
+    {
+      "severity": "warning",
+      "category": "upscaled_low_resolution",
+      "path": "0230.jpg",
+      "message": "Local file is 384x512 but the original is only 322x429; the upscale adds no detail and the original is below 384px."
+    },
+    {
+      "severity": "warning",
+      "category": "upscaled_low_resolution",
+      "path": "0233.jpg",
+      "message": "Local file is 384x550 but the original is only 290x415; the upscale adds no detail and the original is below 384px."
+    },
+    {
+      "severity": "warning",
+      "category": "curated_exclusion",
+      "path": "0008.jpg",
+      "message": "photograph of a palace wall mural with surrounding architecture, not a painting reproduction"
+    },
+    {
+      "severity": "warning",
+      "category": "curated_exclusion",
+      "path": "0019.jpg",
+      "message": "magazine page reproduction with printed caption text"
+    },
+    {
+      "severity": "warning",
+      "category": "curated_exclusion",
+      "path": "0035.jpg",
+      "message": "1971 India postage stamp (stamp design + printed text), not a painting"
+    },
+    {
+      "severity": "warning",
+      "category": "curated_exclusion",
+      "path": "0084.jpg",
+      "message": "multi-panel Dashavatara grid; would teach panel layouts, not compositions"
+    },
+    {
+      "severity": "warning",
+      "category": "curated_exclusion",
+      "path": "0090.jpg",
+      "message": "Jagannath folk-icon print from the Ravi Varma Press; flat iconographic style unlike Varma's academic oil technique"
+    },
+    {
+      "severity": "warning",
+      "category": "curated_exclusion",
+      "path": "0099.jpg",
+      "message": "photograph of a museum gallery interior"
+    },
+    {
+      "severity": "warning",
+      "category": "curated_exclusion",
+      "path": "0138.jpg",
+      "message": "multi-panel Vishnu-avatar grid; would teach panel layouts, not compositions"
+    },
+    {
+      "severity": "warning",
+      "category": "curated_duplicate",
+      "path": "0018.jpg",
+      "message": "Same artwork as 0005.jpg (kept the higher-resolution copy)."
+    },
+    {
+      "severity": "warning",
+      "category": "curated_duplicate",
+      "path": "0010.jpg",
+      "message": "Same artwork as 0007.jpg (kept the higher-resolution copy)."
+    },
+    {
+      "severity": "warning",
+      "category": "curated_duplicate",
+      "path": "0011.jpg",
+      "message": "Same artwork as 0007.jpg (kept the higher-resolution copy)."
+    },
+    {
+      "severity": "warning",
+      "category": "curated_duplicate",
+      "path": "0032.jpg",
+      "message": "Same artwork as 0202.jpg (kept the higher-resolution copy)."
+    },
+    {
+      "severity": "warning",
+      "category": "curated_duplicate",
+      "path": "0203.jpg",
+      "message": "Same artwork as 0036.jpg (kept the higher-resolution copy)."
+    },
+    {
+      "severity": "warning",
+      "category": "curated_duplicate",
+      "path": "0204.jpg",
+      "message": "Same artwork as 0036.jpg (kept the higher-resolution copy)."
+    },
+    {
+      "severity": "warning",
+      "category": "curated_duplicate",
+      "path": "0159.jpg",
+      "message": "Same artwork as 0037.jpg (kept the higher-resolution copy)."
+    },
+    {
+      "severity": "warning",
+      "category": "curated_duplicate",
+      "path": "0161.jpg",
+      "message": "Same artwork as 0037.jpg (kept the higher-resolution copy)."
+    },
+    {
+      "severity": "warning",
+      "category": "curated_duplicate",
+      "path": "0162.jpg",
+      "message": "Same artwork as 0037.jpg (kept the higher-resolution copy)."
+    },
+    {
+      "severity": "warning",
+      "category": "curated_duplicate",
+      "path": "0080.jpg",
+      "message": "Same artwork as 0111.jpg (kept the higher-resolution copy)."
+    },
+    {
+      "severity": "warning",
+      "category": "curated_duplicate",
+      "path": "0112.jpg",
+      "message": "Same artwork as 0111.jpg (kept the higher-resolution copy)."
+    },
+    {
+      "severity": "warning",
+      "category": "curated_duplicate",
+      "path": "0106.jpg",
+      "message": "Same artwork as 0097.jpg (kept the higher-resolution copy)."
+    },
+    {
+      "severity": "warning",
+      "category": "curated_duplicate",
+      "path": "0107.jpg",
+      "message": "Same artwork as 0100.jpg (kept the higher-resolution copy)."
+    },
+    {
+      "severity": "warning",
+      "category": "curated_duplicate",
+      "path": "0121.jpg",
+      "message": "Same artwork as 0120.jpg (kept the higher-resolution copy)."
+    },
+    {
+      "severity": "warning",
+      "category": "curated_duplicate",
+      "path": "0135.jpg",
+      "message": "Same artwork as 0136.jpg (kept the higher-resolution copy)."
+    },
+    {
+      "severity": "warning",
+      "category": "curated_duplicate",
+      "path": "0143.jpg",
+      "message": "Same artwork as 0142.jpg (kept the higher-resolution copy)."
+    },
+    {
+      "severity": "warning",
+      "category": "curated_duplicate",
+      "path": "0170.jpg",
+      "message": "Same artwork as 0142.jpg (kept the higher-resolution copy)."
+    },
+    {
+      "severity": "warning",
+      "category": "curated_duplicate",
+      "path": "0193.jpg",
+      "message": "Same artwork as 0142.jpg (kept the higher-resolution copy)."
+    },
+    {
+      "severity": "warning",
+      "category": "curated_duplicate",
+      "path": "0194.jpg",
+      "message": "Same artwork as 0142.jpg (kept the higher-resolution copy)."
+    },
+    {
+      "severity": "warning",
+      "category": "curated_duplicate",
+      "path": "0146.jpg",
+      "message": "Same artwork as 0147.jpg (kept the higher-resolution copy)."
+    },
+    {
+      "severity": "warning",
+      "category": "curated_duplicate",
+      "path": "0172.jpg",
+      "message": "Same artwork as 0147.jpg (kept the higher-resolution copy)."
+    },
+    {
+      "severity": "warning",
+      "category": "curated_duplicate",
+      "path": "0200.jpg",
+      "message": "Same artwork as 0232.jpg (kept the higher-resolution copy)."
+    },
+    {
+      "severity": "warning",
+      "category": "curated_duplicate",
+      "path": "0013.jpg",
+      "message": "Same artwork as 0002.jpg (kept the higher-resolution copy)."
+    },
+    {
+      "severity": "warning",
+      "category": "curated_duplicate",
+      "path": "0015.jpg",
+      "message": "Same artwork as 0002.jpg (kept the higher-resolution copy)."
+    },
+    {
+      "severity": "warning",
+      "category": "curated_duplicate",
+      "path": "0016.jpg",
+      "message": "Same artwork as 0002.jpg (kept the higher-resolution copy)."
+    },
+    {
+      "severity": "warning",
+      "category": "curated_duplicate",
+      "path": "0201.jpg",
+      "message": "Same artwork as 0038.jpg (kept the higher-resolution copy)."
+    },
+    {
+      "severity": "warning",
+      "category": "curated_duplicate",
+      "path": "0104.jpg",
+      "message": "Same artwork as 0079.jpg (kept the higher-resolution copy)."
+    },
+    {
+      "severity": "warning",
+      "category": "curated_duplicate",
+      "path": "0094.jpg",
+      "message": "Same artwork as 0095.jpg (kept the higher-resolution copy)."
+    },
+    {
+      "severity": "warning",
+      "category": "curated_duplicate",
+      "path": "0118.jpg",
+      "message": "Same artwork as 0098.jpg (kept the higher-resolution copy)."
+    },
+    {
+      "severity": "warning",
+      "category": "curated_duplicate",
+      "path": "0132.jpg",
+      "message": "Same artwork as 0098.jpg (kept the higher-resolution copy)."
+    },
+    {
+      "severity": "warning",
+      "category": "curated_duplicate",
+      "path": "0126.jpg",
+      "message": "Same artwork as 0152.jpg (kept the higher-resolution copy)."
+    },
+    {
+      "severity": "warning",
+      "category": "curated_duplicate",
+      "path": "0157.jpg",
+      "message": "Same artwork as 0152.jpg (kept the higher-resolution copy)."
+    },
+    {
+      "severity": "warning",
+      "category": "curated_duplicate",
+      "path": "0198.jpg",
+      "message": "Same artwork as 0174.jpg (kept the higher-resolution copy)."
+    }
+  ]
+}

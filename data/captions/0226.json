@@ -1,0 +1,36 @@
+{
+  "image": "0226.jpg",
+  "subject": "a woman in a blue sari sitting on a wooden floor",
+  "composition": "single-figure composition, vertical format",
+  "pose": "sitting",
+  "clothing": "wearing blue dress",
+  "jewelry": "necklace jewelry",
+  "expression": "serious expression",
+  "objects": "holding knife",
+  "environment": "unknown",
+  "lighting": "dark low-key tones, night scene",
+  "visual_characteristics": "warm red and ochre palette",
+  "raw_caption": "a woman in a blue sari sitting on a wooden floor",
+  "title": "Lady Juggler",
+  "source": "vlm",
+  "qa": {
+    "people_count": "1",
+    "clothing": "blue dress",
+    "clothing_color": "blue",
+    "has_jewelry": "yes",
+    "jewelry": "necklace",
+    "pose": "sitting",
+    "action": "sitting",
+    "expression": "serious",
+    "has_object": "yes",
+    "objects": "knife",
+    "environment": "in museum",
+    "time": "night"
+  },
+  "measured": {
+    "lighting": "dark low-key tones",
+    "palette": "warm red and ochre palette",
+    "orientation": "vertical format"
+  },
+  "flat_caption": "Lady Juggler, a woman in a blue sari sitting on a wooden floor, wearing blue dress, necklace jewelry, sitting, serious expression, holding knife, single-figure composition, vertical format, dark low-key tones, night scene, warm red and ochre palette"
+}

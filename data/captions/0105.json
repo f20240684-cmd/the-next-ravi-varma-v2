@@ -1,0 +1,36 @@
+{
+  "image": "0105.jpg",
+  "subject": "a man riding a horse with a child on it",
+  "composition": "group of three figures, vertical format",
+  "pose": "standing, holding spear",
+  "clothing": "wearing orange turban",
+  "jewelry": "necklace jewelry",
+  "expression": "calm expression",
+  "objects": "holding sword",
+  "environment": "in india",
+  "lighting": "mid-tone lighting",
+  "visual_characteristics": "warm red and ochre palette",
+  "raw_caption": "a man riding a horse with a child on it",
+  "title": "Markandeya",
+  "source": "vlm",
+  "qa": {
+    "people_count": "3",
+    "clothing": "turban",
+    "clothing_color": "orange",
+    "has_jewelry": "yes",
+    "jewelry": "necklace",
+    "pose": "standing",
+    "action": "holding spear",
+    "expression": "calm",
+    "has_object": "yes",
+    "objects": "sword",
+    "environment": "india",
+    "time": "day"
+  },
+  "measured": {
+    "lighting": "mid-tone lighting",
+    "palette": "warm red and ochre palette",
+    "orientation": "vertical format"
+  },
+  "flat_caption": "Markandeya, a man riding a horse with a child on it, wearing orange turban, necklace jewelry, standing, holding spear, calm expression, holding sword, in india, group of three figures, vertical format, mid-tone lighting, warm red and ochre palette"
+}

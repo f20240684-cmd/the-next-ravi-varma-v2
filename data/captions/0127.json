@@ -1,0 +1,35 @@
+{
+  "image": "0127.jpg",
+  "subject": "a group of people standing in a courtyard",
+  "composition": "group of many figures, landscape format",
+  "pose": "standing, holding child",
+  "clothing": "wearing red dress",
+  "jewelry": "unknown",
+  "expression": "happy expression",
+  "objects": "holding stick",
+  "environment": "in india",
+  "lighting": "mid-tone lighting",
+  "visual_characteristics": "warm red and ochre palette",
+  "raw_caption": "a group of people standing in a courtyard",
+  "title": "Harishchandra",
+  "source": "vlm",
+  "qa": {
+    "people_count": "20",
+    "clothing": "dress",
+    "clothing_color": "red",
+    "has_jewelry": "no",
+    "pose": "standing",
+    "action": "holding child",
+    "expression": "happy",
+    "has_object": "yes",
+    "objects": "stick",
+    "environment": "india",
+    "time": "day"
+  },
+  "measured": {
+    "lighting": "mid-tone lighting",
+    "palette": "warm red and ochre palette",
+    "orientation": "landscape format"
+  },
+  "flat_caption": "Harishchandra, a group of people standing in a courtyard, wearing red dress, standing, holding child, happy expression, holding stick, in india, group of many figures, landscape format, mid-tone lighting, warm red and ochre palette"
+}

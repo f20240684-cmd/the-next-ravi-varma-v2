@@ -1,0 +1,36 @@
+{
+  "image": "0001.jpg",
+  "subject": "a woman holding a child in her arms",
+  "composition": "group of three figures, vertical format",
+  "pose": "standing, holding child",
+  "clothing": "wearing yellow dress",
+  "jewelry": "earrings jewelry",
+  "expression": "smile expression",
+  "objects": "holding baby",
+  "environment": "unknown",
+  "lighting": "mid-tone lighting",
+  "visual_characteristics": "warm red and ochre palette",
+  "raw_caption": "a woman holding a child in her arms",
+  "title": "Menaka and Shakuntala",
+  "source": "vlm",
+  "qa": {
+    "people_count": "3",
+    "clothing": "dress",
+    "clothing_color": "yellow",
+    "has_jewelry": "yes",
+    "jewelry": "earrings",
+    "pose": "standing",
+    "action": "holding child",
+    "expression": "smile",
+    "has_object": "yes",
+    "objects": "baby",
+    "environment": "painting",
+    "time": "day"
+  },
+  "measured": {
+    "lighting": "mid-tone lighting",
+    "palette": "warm red and ochre palette",
+    "orientation": "vertical format"
+  },
+  "flat_caption": "Menaka and Shakuntala, a woman holding a child in her arms, wearing yellow dress, earrings jewelry, standing, holding child, smile expression, holding baby, group of three figures, vertical format, mid-tone lighting, warm red and ochre palette"
+}

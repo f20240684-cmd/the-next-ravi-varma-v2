@@ -1,0 +1,35 @@
+{
+  "image": "0153.jpg",
+  "subject": "a man and a woman in a cave",
+  "composition": "group of three figures, vertical format",
+  "pose": "standing, praying",
+  "clothing": "wearing black skirt",
+  "jewelry": "unknown",
+  "expression": "smile expression",
+  "objects": "holding stick",
+  "environment": "unknown",
+  "lighting": "dark low-key tones",
+  "visual_characteristics": "warm red and ochre palette",
+  "raw_caption": "a man and a woman in a cave",
+  "title": "Harischandra and Tharamathi",
+  "source": "vlm",
+  "qa": {
+    "people_count": "3",
+    "clothing": "skirt",
+    "clothing_color": "black",
+    "has_jewelry": "no",
+    "pose": "standing",
+    "action": "praying",
+    "expression": "smile",
+    "has_object": "yes",
+    "objects": "stick",
+    "environment": "painting",
+    "time": "day"
+  },
+  "measured": {
+    "lighting": "dark low-key tones",
+    "palette": "warm red and ochre palette",
+    "orientation": "vertical format"
+  },
+  "flat_caption": "Harischandra and Tharamathi, a man and a woman in a cave, wearing black skirt, standing, praying, smile expression, holding stick, group of three figures, vertical format, dark low-key tones, warm red and ochre palette"
+}

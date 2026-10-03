@@ -1,0 +1,35 @@
+{
+  "image": "0101.jpg",
+  "subject": "a woman sitting on a rock by the water",
+  "composition": "single-figure composition, vertical format",
+  "pose": "sitting",
+  "clothing": "wearing red dress",
+  "jewelry": "bracelet jewelry",
+  "expression": "serious expression",
+  "objects": "unknown",
+  "environment": "near water",
+  "lighting": "dark low-key tones",
+  "visual_characteristics": "warm red and ochre palette",
+  "raw_caption": "a woman sitting on a rock by the water",
+  "title": "Radha in the Moonlight",
+  "source": "vlm",
+  "qa": {
+    "people_count": "one",
+    "clothing": "dress",
+    "clothing_color": "red",
+    "has_jewelry": "yes",
+    "jewelry": "bracelet",
+    "pose": "sitting",
+    "action": "sitting",
+    "expression": "serious",
+    "has_object": "no",
+    "environment": "near water",
+    "time": "day"
+  },
+  "measured": {
+    "lighting": "dark low-key tones",
+    "palette": "warm red and ochre palette",
+    "orientation": "vertical format"
+  },
+  "flat_caption": "Radha in the Moonlight, a woman sitting on a rock by the water, wearing red dress, bracelet jewelry, sitting, serious expression, near water, single-figure composition, vertical format, dark low-key tones, warm red and ochre palette"
+}

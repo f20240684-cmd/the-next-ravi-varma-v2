@@ -1,0 +1,36 @@
+{
+  "image": "0191.jpg",
+  "subject": "a woman with a stringed instrument in front of a black background",
+  "composition": "single-figure composition, vertical format",
+  "pose": "sitting, playing stringed instrument",
+  "clothing": "unknown",
+  "jewelry": "necklace jewelry",
+  "expression": "serious expression",
+  "objects": "holding stringed instrument",
+  "environment": "in studio",
+  "lighting": "dark low-key tones, night scene",
+  "visual_characteristics": "warm red and ochre palette",
+  "raw_caption": "a woman with a stringed instrument in front of a black background",
+  "title": "Lady playing the swarbat",
+  "source": "vlm",
+  "qa": {
+    "people_count": "1",
+    "clothing": "necklace",
+    "clothing_color": "blue and yellow",
+    "has_jewelry": "yes",
+    "jewelry": "necklace",
+    "pose": "sitting",
+    "action": "playing guitar",
+    "expression": "serious",
+    "has_object": "yes",
+    "objects": "guitar",
+    "environment": "in studio",
+    "time": "night"
+  },
+  "measured": {
+    "lighting": "dark low-key tones",
+    "palette": "warm red and ochre palette",
+    "orientation": "vertical format"
+  },
+  "flat_caption": "Lady playing the swarbat, a woman with a stringed instrument in front of a black background, necklace jewelry, sitting, playing stringed instrument, serious expression, holding stringed instrument, in studio, single-figure composition, vertical format, dark low-key tones, night scene, warm red and ochre palette"
+}

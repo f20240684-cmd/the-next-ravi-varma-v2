@@ -1,0 +1,36 @@
+{
+  "image": "0103.jpg",
+  "subject": "a man sitting on a rock next to a woman",
+  "composition": "single-figure composition, vertical format",
+  "pose": "sitting",
+  "clothing": "wearing yellow dress",
+  "jewelry": "necklace jewelry",
+  "expression": "calm expression",
+  "objects": "holding bowl",
+  "environment": "unknown",
+  "lighting": "mid-tone lighting",
+  "visual_characteristics": "green-dominant palette",
+  "raw_caption": "a man sitting on a rock next to a woman",
+  "title": "Dhruv Narayan",
+  "source": "vlm",
+  "qa": {
+    "people_count": "1",
+    "clothing": "dress",
+    "clothing_color": "yellow",
+    "has_jewelry": "yes",
+    "jewelry": "necklace",
+    "pose": "sitting",
+    "action": "sitting",
+    "expression": "calm",
+    "has_object": "yes",
+    "objects": "bowl",
+    "environment": "in painting",
+    "time": "day"
+  },
+  "measured": {
+    "lighting": "mid-tone lighting",
+    "palette": "green-dominant palette",
+    "orientation": "vertical format"
+  },
+  "flat_caption": "Dhruv Narayan, a man sitting on a rock next to a woman, wearing yellow dress, necklace jewelry, sitting, calm expression, holding bowl, single-figure composition, vertical format, mid-tone lighting, green-dominant palette"
+}

@@ -1,0 +1,36 @@
+{
+  "image": "0187.jpg",
+  "subject": "a woman sitting in a chair with a violin in her lap",
+  "composition": "single-figure composition, square format",
+  "pose": "sitting, reading",
+  "clothing": "unknown",
+  "jewelry": "necklace jewelry",
+  "expression": "serious expression",
+  "objects": "holding stringed instrument",
+  "environment": "unknown",
+  "lighting": "dark low-key tones",
+  "visual_characteristics": "warm red and ochre palette",
+  "raw_caption": "a woman sitting in a chair with a violin in her lap",
+  "title": "Lady Resting on the Pillow",
+  "source": "vlm",
+  "qa": {
+    "people_count": "1",
+    "clothing": "necklace",
+    "clothing_color": "white",
+    "has_jewelry": "yes",
+    "jewelry": "necklace",
+    "pose": "sitting",
+    "action": "reading",
+    "expression": "serious",
+    "has_object": "yes",
+    "objects": "guitar",
+    "environment": "in painting",
+    "time": "day"
+  },
+  "measured": {
+    "lighting": "dark low-key tones",
+    "palette": "warm red and ochre palette",
+    "orientation": "square format"
+  },
+  "flat_caption": "Lady Resting on the Pillow, a woman sitting in a chair with a violin in her lap, necklace jewelry, sitting, reading, serious expression, holding stringed instrument, single-figure composition, square format, dark low-key tones, warm red and ochre palette"
+}

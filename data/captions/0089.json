@@ -1,0 +1,36 @@
+{
+  "image": "0089.jpg",
+  "subject": "a woman dancing with her hands in the air",
+  "composition": "single-figure composition, vertical format",
+  "pose": "standing, juggling",
+  "clothing": "wearing orange dress",
+  "jewelry": "necklace jewelry",
+  "expression": "smile expression",
+  "objects": "holding bowl",
+  "environment": "on ground",
+  "lighting": "dark low-key tones, night scene",
+  "visual_characteristics": "cool blue palette",
+  "raw_caption": "a woman dancing with her hands in the air",
+  "title": "Goddess Durga",
+  "source": "vlm",
+  "qa": {
+    "people_count": "1",
+    "clothing": "dress",
+    "clothing_color": "orange",
+    "has_jewelry": "yes",
+    "jewelry": "necklace",
+    "pose": "standing",
+    "action": "juggling",
+    "expression": "smile",
+    "has_object": "yes",
+    "objects": "bowl",
+    "environment": "on ground",
+    "time": "night"
+  },
+  "measured": {
+    "lighting": "dark low-key tones",
+    "palette": "cool blue palette",
+    "orientation": "vertical format"
+  },
+  "flat_caption": "Goddess Durga, a woman dancing with her hands in the air, wearing orange dress, necklace jewelry, standing, juggling, smile expression, holding bowl, on ground, single-figure composition, vertical format, dark low-key tones, night scene, cool blue palette"
+}

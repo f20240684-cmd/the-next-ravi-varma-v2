@@ -1,0 +1,36 @@
+{
+  "image": "0128.jpg",
+  "subject": "a group of people standing in front of a boat",
+  "composition": "group of many figures, landscape format",
+  "pose": "standing",
+  "clothing": "wearing white dress",
+  "jewelry": "necklace jewelry",
+  "expression": "smiling expression",
+  "objects": "holding flag",
+  "environment": "unknown",
+  "lighting": "mid-tone lighting",
+  "visual_characteristics": "balanced earthy palette",
+  "raw_caption": "a group of people standing in front of a boat",
+  "title": "historic meeting",
+  "source": "vlm",
+  "qa": {
+    "people_count": "12",
+    "clothing": "white dress",
+    "clothing_color": "white",
+    "has_jewelry": "yes",
+    "jewelry": "necklace",
+    "pose": "standing",
+    "action": "standing",
+    "expression": "smiling",
+    "has_object": "yes",
+    "objects": "flag",
+    "environment": "at boat show",
+    "time": "day"
+  },
+  "measured": {
+    "lighting": "mid-tone lighting",
+    "palette": "balanced earthy palette",
+    "orientation": "landscape format"
+  },
+  "flat_caption": "historic meeting, a group of people standing in front of a boat, wearing white dress, necklace jewelry, standing, smiling expression, holding flag, group of many figures, landscape format, mid-tone lighting, balanced earthy palette"
+}

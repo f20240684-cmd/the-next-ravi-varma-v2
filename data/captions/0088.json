@@ -1,0 +1,36 @@
+{
+  "image": "0088.jpg",
+  "subject": "a woman sitting on top of a flower",
+  "composition": "group of four figures, vertical format",
+  "pose": "sitting",
+  "clothing": "wearing red dress",
+  "jewelry": "necklace jewelry",
+  "expression": "calm expression",
+  "objects": "holding stick",
+  "environment": "unknown",
+  "lighting": "mid-tone lighting",
+  "visual_characteristics": "balanced earthy palette",
+  "raw_caption": "a woman sitting on top of a flower",
+  "title": "Gayatri",
+  "source": "vlm",
+  "qa": {
+    "people_count": "4",
+    "clothing": "dress",
+    "clothing_color": "red",
+    "has_jewelry": "yes",
+    "jewelry": "necklace",
+    "pose": "sitting",
+    "action": "sitting",
+    "expression": "calm",
+    "has_object": "yes",
+    "objects": "stick",
+    "environment": "on painting",
+    "time": "day"
+  },
+  "measured": {
+    "lighting": "mid-tone lighting",
+    "palette": "balanced earthy palette",
+    "orientation": "vertical format"
+  },
+  "flat_caption": "Gayatri, a woman sitting on top of a flower, wearing red dress, necklace jewelry, sitting, calm expression, holding stick, group of four figures, vertical format, mid-tone lighting, balanced earthy palette"
+}

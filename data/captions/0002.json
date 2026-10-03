@@ -1,0 +1,36 @@
+{
+  "image": "0002.jpg",
+  "subject": "three women sitting in the grass with a deer in the background",
+  "composition": "group of three figures, landscape format",
+  "pose": "sitting",
+  "clothing": "wearing yellow dress",
+  "jewelry": "necklace jewelry",
+  "expression": "sad expression",
+  "objects": "unknown",
+  "environment": "in park",
+  "lighting": "dark low-key tones",
+  "visual_characteristics": "warm red and ochre palette",
+  "raw_caption": "three women sitting in the grass with a deer in the background",
+  "title": "Sakunthala Pathralekhan",
+  "source": "vlm",
+  "qa": {
+    "people_count": "3",
+    "clothing": "yellow dress",
+    "clothing_color": "yellow",
+    "has_jewelry": "yes",
+    "jewelry": "necklace",
+    "pose": "sitting",
+    "action": "sitting",
+    "expression": "sad",
+    "has_object": "yes",
+    "objects": "phone",
+    "environment": "in park",
+    "time": "day"
+  },
+  "measured": {
+    "lighting": "dark low-key tones",
+    "palette": "warm red and ochre palette",
+    "orientation": "landscape format"
+  },
+  "flat_caption": "Sakunthala Pathralekhan, three women sitting in the grass with a deer in the background, wearing yellow dress, necklace jewelry, sitting, sad expression, in park, group of three figures, landscape format, dark low-key tones, warm red and ochre palette"
+}

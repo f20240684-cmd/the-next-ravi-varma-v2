@@ -1,0 +1,36 @@
+{
+  "image": "0085.jpg",
+  "subject": "a painting of a woman on a horse with a sword",
+  "composition": "single-figure composition, vertical format",
+  "pose": "sitting",
+  "clothing": "wearing orange dress",
+  "jewelry": "necklace jewelry",
+  "expression": "smile expression",
+  "objects": "holding sword",
+  "environment": "unknown",
+  "lighting": "mid-tone lighting",
+  "visual_characteristics": "warm red and ochre palette",
+  "raw_caption": "a painting of a woman on a horse with a sword",
+  "title": "Durga Mahishasura-mardini, the slayer of the buffalo demon, Germany",
+  "source": "vlm",
+  "qa": {
+    "people_count": "1",
+    "clothing": "dress",
+    "clothing_color": "orange",
+    "has_jewelry": "yes",
+    "jewelry": "necklace",
+    "pose": "sitting",
+    "action": "sitting",
+    "expression": "smile",
+    "has_object": "yes",
+    "objects": "sword",
+    "environment": "painting",
+    "time": "day"
+  },
+  "measured": {
+    "lighting": "mid-tone lighting",
+    "palette": "warm red and ochre palette",
+    "orientation": "vertical format"
+  },
+  "flat_caption": "Durga Mahishasura-mardini, the slayer of the buffalo demon, Germany, a painting of a woman on a horse with a sword, wearing orange dress, necklace jewelry, sitting, smile expression, holding sword, single-figure composition, vertical format, mid-tone lighting, warm red and ochre palette"
+}

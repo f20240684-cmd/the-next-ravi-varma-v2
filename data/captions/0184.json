@@ -1,0 +1,36 @@
+{
+  "image": "0184.jpg",
+  "subject": "this is a painting of a group of women sitting on a rug",
+  "composition": "group of many figures, landscape format",
+  "pose": "sitting",
+  "clothing": "wearing white sari",
+  "jewelry": "necklace jewelry",
+  "expression": "serious expression",
+  "objects": "holding stringed instrument",
+  "environment": "on stage",
+  "lighting": "dark low-key tones, night scene",
+  "visual_characteristics": "warm red and ochre palette",
+  "raw_caption": "this is a painting of a group of women sitting on a rug",
+  "title": "Galaxy of Musicians",
+  "source": "vlm",
+  "qa": {
+    "people_count": "11",
+    "clothing": "sari",
+    "clothing_color": "white",
+    "has_jewelry": "yes",
+    "jewelry": "necklace",
+    "pose": "sitting",
+    "action": "sitting",
+    "expression": "serious",
+    "has_object": "yes",
+    "objects": "guitar",
+    "environment": "on stage",
+    "time": "night"
+  },
+  "measured": {
+    "lighting": "dark low-key tones",
+    "palette": "warm red and ochre palette",
+    "orientation": "landscape format"
+  },
+  "flat_caption": "Galaxy of Musicians, this is a painting of a group of women sitting on a rug, wearing white sari, necklace jewelry, sitting, serious expression, holding stringed instrument, on stage, group of many figures, landscape format, dark low-key tones, night scene, warm red and ochre palette"
+}

@@ -1,0 +1,36 @@
+{
+  "image": "0117.jpg",
+  "subject": "a painting of a man riding on a horse drawn carriage",
+  "composition": "single-figure composition, vertical format",
+  "pose": "sitting",
+  "clothing": "wearing yellow turban",
+  "jewelry": "necklace jewelry",
+  "expression": "calm expression",
+  "objects": "holding stick",
+  "environment": "in india",
+  "lighting": "mid-tone lighting",
+  "visual_characteristics": "warm red and ochre palette",
+  "raw_caption": "a painting of a man riding on a horse drawn carriage",
+  "title": "Shani Deva",
+  "source": "vlm",
+  "qa": {
+    "people_count": "1",
+    "clothing": "turban",
+    "clothing_color": "yellow",
+    "has_jewelry": "yes",
+    "jewelry": "necklace",
+    "pose": "sitting",
+    "action": "sitting",
+    "expression": "calm",
+    "has_object": "yes",
+    "objects": "stick",
+    "environment": "india",
+    "time": "day"
+  },
+  "measured": {
+    "lighting": "mid-tone lighting",
+    "palette": "warm red and ochre palette",
+    "orientation": "vertical format"
+  },
+  "flat_caption": "Shani Deva, a painting of a man riding on a horse drawn carriage, wearing yellow turban, necklace jewelry, sitting, calm expression, holding stick, in india, single-figure composition, vertical format, mid-tone lighting, warm red and ochre palette"
+}

@@ -1,0 +1,35 @@
+{
+  "image": "0144.jpg",
+  "subject": "a man standing next to a woman in a red dress",
+  "composition": "group of five figures, vertical format",
+  "pose": "standing, holding baby",
+  "clothing": "wearing red dress",
+  "jewelry": "unknown",
+  "expression": "smile expression",
+  "objects": "holding baby",
+  "environment": "in india",
+  "lighting": "mid-tone lighting",
+  "visual_characteristics": "warm red and ochre palette",
+  "raw_caption": "a man standing next to a woman in a red dress",
+  "title": "Krishna meets parents",
+  "source": "vlm",
+  "qa": {
+    "people_count": "5",
+    "clothing": "dress",
+    "clothing_color": "red",
+    "has_jewelry": "no",
+    "pose": "standing",
+    "action": "holding baby",
+    "expression": "smile",
+    "has_object": "yes",
+    "objects": "baby",
+    "environment": "india",
+    "time": "day"
+  },
+  "measured": {
+    "lighting": "mid-tone lighting",
+    "palette": "warm red and ochre palette",
+    "orientation": "vertical format"
+  },
+  "flat_caption": "Krishna meets parents, a man standing next to a woman in a red dress, wearing red dress, standing, holding baby, smile expression, holding baby, in india, group of five figures, vertical format, mid-tone lighting, warm red and ochre palette"
+}

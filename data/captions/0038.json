@@ -1,0 +1,36 @@
+{
+  "image": "0038.jpg",
+  "subject": "a painting of a woman in a pink sari",
+  "composition": "single-figure composition, vertical format",
+  "pose": "standing, praying",
+  "clothing": "wearing pink dress",
+  "jewelry": "necklace jewelry",
+  "expression": "calm expression",
+  "objects": "holding bowl",
+  "environment": "in church",
+  "lighting": "mid-tone lighting",
+  "visual_characteristics": "warm red and ochre palette",
+  "raw_caption": "a painting of a woman in a pink sari",
+  "title": "Pleasing",
+  "source": "vlm",
+  "qa": {
+    "people_count": "1",
+    "clothing": "dress",
+    "clothing_color": "pink",
+    "has_jewelry": "yes",
+    "jewelry": "necklace",
+    "pose": "standing",
+    "action": "praying",
+    "expression": "calm",
+    "has_object": "yes",
+    "objects": "bowl",
+    "environment": "church",
+    "time": "day"
+  },
+  "measured": {
+    "lighting": "mid-tone lighting",
+    "palette": "warm red and ochre palette",
+    "orientation": "vertical format"
+  },
+  "flat_caption": "Pleasing, a painting of a woman in a pink sari, wearing pink dress, necklace jewelry, standing, praying, calm expression, holding bowl, in church, single-figure composition, vertical format, mid-tone lighting, warm red and ochre palette"
+}

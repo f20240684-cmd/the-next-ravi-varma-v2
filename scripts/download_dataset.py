@@ -8,6 +8,12 @@ the requested number of images.
 
 Usage:
     python scripts/download_dataset.py --limit 40
+    python scripts/download_dataset.py --from-metadata   # re-fetch exactly the files listed in metadata.jsonl
+
+`--from-metadata` is the reproducible path: data/metadata/metadata.jsonl is
+committed to git and records the exact Commons file (`commons_file`) behind
+every raw image, so a fresh checkout (or a Colab runtime) can rebuild the
+identical data/raw/ directory.
 """
 
 from __future__ import annotations
@@ -26,6 +32,7 @@ sys.path.insert(
     str(Path(__file__).resolve().parent.parent / "src"),
 )
 
+from ravi_varma.data.metadata import clean_title, extract_year, load_metadata
 from ravi_varma.utils.logging import setup_logging
 
 
@@ -302,7 +309,7 @@ def get_image_info(
         "action": "query",
         "titles": "|".join(titles),
         "prop": "imageinfo",
-        "iiprop": "url|extmetadata",
+        "iiprop": "url|extmetadata|size",
         "format": "json",
     }
 
@@ -363,6 +370,8 @@ def get_image_info(
                 "url": url,
                 "license": license_short,
                 "object_name": obj_name,
+                "width": imageinfo.get("width"),
+                "height": imageinfo.get("height"),
             }
         )
 
@@ -454,6 +463,33 @@ def download_image(
     return False
 
 
+def download_from_metadata(session: requests.Session, metadata_path: Path, raw_dir: Path, logger) -> int:
+    """Re-download every image listed in metadata.jsonl that is missing from
+    raw_dir, using the recorded Commons file title and saving it under the
+    recorded `image` name. Returns the number of files still missing."""
+    records = [r for r in load_metadata(metadata_path) if r.get("commons_file")]
+    missing = [r for r in records if not (raw_dir / r["image"]).exists()]
+    logger.info("%d records in %s, %d images missing locally.", len(records), metadata_path, len(missing))
+
+    failed = 0
+    for start in range(0, len(missing), 20):
+        batch = missing[start:start + 20]
+        infos = {i["title"]: i for i in get_image_info(session, [r["commons_file"] for r in batch], logger)}
+        for record in batch:
+            info = infos.get(record["commons_file"])
+            if info is None:
+                logger.warning("Commons file not found (renamed/deleted?): %s", record["commons_file"])
+                failed += 1
+                continue
+            destination = raw_dir / record["image"]
+            logger.info("Downloading %s -> %s", record["commons_file"], destination)
+            if not download_image(session=session, url=info["url"], destination=destination, logger=logger):
+                failed += 1
+            time.sleep(2)  # stay well under Wikimedia's rate limits
+        time.sleep(1)
+    return failed
+
+
 def main() -> int:
 
     parser = argparse.ArgumentParser(
@@ -485,6 +521,11 @@ def main() -> int:
         help="Root Wikimedia category.",
     )
 
+    parser.add_argument(
+        "--from-metadata",
+        action="store_true",
+        help="Re-download exactly the files recorded in --metadata-file (reproducible rebuild).",
+    )
     args = parser.parse_args()
 
     logger = setup_logging(
@@ -514,6 +555,15 @@ def main() -> int:
     session.headers.update(
         HEADERS
     )
+
+    if args.from_metadata:
+        failed = download_from_metadata(session, metadata_path, raw_dir, logger)
+        if failed:
+            logger.error("%d images could not be downloaded.", failed)
+            return 1
+        logger.info("All images listed in %s are present in %s.", metadata_path, raw_dir)
+        logger.info("Next: python scripts/validate_dataset.py")
+        return 0
 
     # ---------------------------------------------------------
     # STEP 1
@@ -662,13 +712,17 @@ def main() -> int:
                 "image": filename,
                 "caption": None,
                 "artist": "Raja Ravi Varma",
+                "title": clean_title(info["object_name"]) or clean_title(info["title"]),
+                "commons_file": info["title"],
+                "license": info["license"],
                 "source": (
                     "Wikimedia Commons "
                     f"({info['title']}), "
                     f"license: {info['license']}"
                 ),
-                "year": None,
-                "title": info["object_name"],
+                "year": extract_year(info["title"]),
+                "source_width": info.get("width"),
+                "source_height": info.get("height"),
             }
 
             meta_f.write(

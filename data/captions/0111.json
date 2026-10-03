@@ -1,0 +1,36 @@
+{
+  "image": "0111.jpg",
+  "subject": "a boy standing in a field with animals",
+  "composition": "single-figure composition, vertical format",
+  "pose": "standing",
+  "clothing": "wearing orange toga",
+  "jewelry": "necklace jewelry",
+  "expression": "calm expression",
+  "objects": "holding stick",
+  "environment": "in india",
+  "lighting": "mid-tone lighting",
+  "visual_characteristics": "green-dominant palette",
+  "raw_caption": "a boy standing in a field with animals",
+  "title": "Dattatreya",
+  "source": "vlm",
+  "qa": {
+    "people_count": "1",
+    "clothing": "toga",
+    "clothing_color": "orange",
+    "has_jewelry": "yes",
+    "jewelry": "necklace",
+    "pose": "standing",
+    "action": "standing",
+    "expression": "calm",
+    "has_object": "yes",
+    "objects": "stick",
+    "environment": "india",
+    "time": "day"
+  },
+  "measured": {
+    "lighting": "mid-tone lighting",
+    "palette": "green-dominant palette",
+    "orientation": "vertical format"
+  },
+  "flat_caption": "Dattatreya, a boy standing in a field with animals, wearing orange toga, necklace jewelry, standing, calm expression, holding stick, in india, single-figure composition, vertical format, mid-tone lighting, green-dominant palette"
+}

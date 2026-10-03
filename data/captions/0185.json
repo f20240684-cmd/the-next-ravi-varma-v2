@@ -1,0 +1,36 @@
+{
+  "image": "0185.jpg",
+  "subject": "a woman sitting on a bench with a baby and two other people",
+  "composition": "group of five figures, vertical format",
+  "pose": "sitting",
+  "clothing": "wearing red dress",
+  "jewelry": "bracelet jewelry",
+  "expression": "serious expression",
+  "objects": "holding baby",
+  "environment": "unknown",
+  "lighting": "dark low-key tones",
+  "visual_characteristics": "warm red and ochre palette",
+  "raw_caption": "a woman sitting on a bench with a baby and two other people",
+  "title": "Gypsies",
+  "source": "vlm",
+  "qa": {
+    "people_count": "5",
+    "clothing": "dress",
+    "clothing_color": "red",
+    "has_jewelry": "yes",
+    "jewelry": "bracelet",
+    "pose": "sitting",
+    "action": "sitting",
+    "expression": "serious",
+    "has_object": "yes",
+    "objects": "baby",
+    "environment": "in front of painting",
+    "time": "day"
+  },
+  "measured": {
+    "lighting": "dark low-key tones",
+    "palette": "warm red and ochre palette",
+    "orientation": "vertical format"
+  },
+  "flat_caption": "Gypsies, a woman sitting on a bench with a baby and two other people, wearing red dress, bracelet jewelry, sitting, serious expression, holding baby, group of five figures, vertical format, dark low-key tones, warm red and ochre palette"
+}

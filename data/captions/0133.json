@@ -1,0 +1,36 @@
+{
+  "image": "0133.jpg",
+  "subject": "a painting of a woman riding on top of a group of horses",
+  "composition": "group of many figures, vertical format",
+  "pose": "sitting, riding",
+  "clothing": "wearing green dress",
+  "jewelry": "necklace jewelry",
+  "expression": "calm expression",
+  "objects": "holding cross",
+  "environment": "on cross",
+  "lighting": "mid-tone lighting",
+  "visual_characteristics": "green-dominant palette",
+  "raw_caption": "a painting of a woman riding on top of a group of horses",
+  "title": "Surya poster",
+  "source": "vlm",
+  "qa": {
+    "people_count": "6",
+    "clothing": "dress",
+    "clothing_color": "green",
+    "has_jewelry": "yes",
+    "jewelry": "necklace",
+    "pose": "sitting",
+    "action": "riding",
+    "expression": "calm",
+    "has_object": "yes",
+    "objects": "cross",
+    "environment": "on cross",
+    "time": "day"
+  },
+  "measured": {
+    "lighting": "mid-tone lighting",
+    "palette": "green-dominant palette",
+    "orientation": "vertical format"
+  },
+  "flat_caption": "Surya poster, a painting of a woman riding on top of a group of horses, wearing green dress, necklace jewelry, sitting, riding, calm expression, holding cross, on cross, group of many figures, vertical format, mid-tone lighting, green-dominant palette"
+}

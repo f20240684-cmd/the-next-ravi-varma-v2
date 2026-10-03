@@ -1,0 +1,36 @@
+{
+  "image": "0219.jpg",
+  "subject": "a woman sitting on a couch in a room",
+  "composition": "single-figure composition, vertical format",
+  "pose": "sitting",
+  "clothing": "wearing white dress",
+  "jewelry": "necklace jewelry",
+  "expression": "calm expression",
+  "objects": "holding plate",
+  "environment": "unknown",
+  "lighting": "dark low-key tones",
+  "visual_characteristics": "warm red and ochre palette",
+  "raw_caption": "a woman sitting on a couch in a room",
+  "title": "Nair Lady Adorning Her Hair",
+  "source": "vlm",
+  "qa": {
+    "people_count": "1",
+    "clothing": "dress",
+    "clothing_color": "white",
+    "has_jewelry": "yes",
+    "jewelry": "necklace",
+    "pose": "sitting",
+    "action": "sitting",
+    "expression": "calm",
+    "has_object": "yes",
+    "objects": "plate",
+    "environment": "in painting",
+    "time": "day"
+  },
+  "measured": {
+    "lighting": "dark low-key tones",
+    "palette": "warm red and ochre palette",
+    "orientation": "vertical format"
+  },
+  "flat_caption": "Nair Lady Adorning Her Hair, a woman sitting on a couch in a room, wearing white dress, necklace jewelry, sitting, calm expression, holding plate, single-figure composition, vertical format, dark low-key tones, warm red and ochre palette"
+}

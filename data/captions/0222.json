@@ -1,0 +1,36 @@
+{
+  "image": "0222.jpg",
+  "subject": "a group of people standing around a table",
+  "composition": "group of five figures, vertical format",
+  "pose": "standing, talking",
+  "clothing": "wearing white dress",
+  "jewelry": "necklace jewelry",
+  "expression": "serious expression",
+  "objects": "holding sword",
+  "environment": "in church",
+  "lighting": "mid-tone lighting",
+  "visual_characteristics": "warm red and ochre palette",
+  "raw_caption": "a group of people standing around a table",
+  "title": "Decking the bride",
+  "source": "vlm",
+  "qa": {
+    "people_count": "5",
+    "clothing": "dress",
+    "clothing_color": "white",
+    "has_jewelry": "yes",
+    "jewelry": "necklace",
+    "pose": "standing",
+    "action": "talking",
+    "expression": "serious",
+    "has_object": "yes",
+    "objects": "sword",
+    "environment": "church",
+    "time": "day"
+  },
+  "measured": {
+    "lighting": "mid-tone lighting",
+    "palette": "warm red and ochre palette",
+    "orientation": "vertical format"
+  },
+  "flat_caption": "Decking the bride, a group of people standing around a table, wearing white dress, necklace jewelry, standing, talking, serious expression, holding sword, in church, group of five figures, vertical format, mid-tone lighting, warm red and ochre palette"
+}

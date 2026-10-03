@@ -1,0 +1,36 @@
+{
+  "image": "0129.jpg",
+  "subject": "hindu deities sitting on a bench with a cow",
+  "composition": "group of five figures, vertical format",
+  "pose": "sitting",
+  "clothing": "wearing red indian attire",
+  "jewelry": "necklace jewelry",
+  "expression": "surprise expression",
+  "objects": "holding knife",
+  "environment": "in india",
+  "lighting": "mid-tone lighting",
+  "visual_characteristics": "warm red and ochre palette",
+  "raw_caption": "hindu deities sitting on a bench with a cow",
+  "title": "Shiva Parvati Ganesha",
+  "source": "vlm",
+  "qa": {
+    "people_count": "5",
+    "clothing": "indian attire",
+    "clothing_color": "red",
+    "has_jewelry": "yes",
+    "jewelry": "necklace",
+    "pose": "sitting",
+    "action": "sitting",
+    "expression": "surprise",
+    "has_object": "yes",
+    "objects": "knife",
+    "environment": "india",
+    "time": "day"
+  },
+  "measured": {
+    "lighting": "mid-tone lighting",
+    "palette": "warm red and ochre palette",
+    "orientation": "vertical format"
+  },
+  "flat_caption": "Shiva Parvati Ganesha, hindu deities sitting on a bench with a cow, wearing red indian attire, necklace jewelry, sitting, surprise expression, holding knife, in india, group of five figures, vertical format, mid-tone lighting, warm red and ochre palette"
+}

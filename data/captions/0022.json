@@ -1,0 +1,35 @@
+{
+  "image": "0022.jpg",
+  "subject": "a group of people sitting on a throne",
+  "composition": "group of five figures, vertical format",
+  "pose": "sitting",
+  "clothing": "wearing red crown",
+  "jewelry": "necklace jewelry",
+  "expression": "serious expression",
+  "objects": "unknown",
+  "environment": "unknown",
+  "lighting": "mid-tone lighting",
+  "visual_characteristics": "warm red and ochre palette",
+  "raw_caption": "a group of people sitting on a throne",
+  "title": "Draupadi and Pandavas",
+  "source": "vlm",
+  "qa": {
+    "people_count": "5",
+    "clothing": "crown",
+    "clothing_color": "red",
+    "has_jewelry": "yes",
+    "jewelry": "necklace",
+    "pose": "sitting",
+    "action": "sitting",
+    "expression": "serious",
+    "has_object": "no",
+    "environment": "on painting",
+    "time": "day"
+  },
+  "measured": {
+    "lighting": "mid-tone lighting",
+    "palette": "warm red and ochre palette",
+    "orientation": "vertical format"
+  },
+  "flat_caption": "Draupadi and Pandavas, a group of people sitting on a throne, wearing red crown, necklace jewelry, sitting, serious expression, group of five figures, vertical format, mid-tone lighting, warm red and ochre palette"
+}

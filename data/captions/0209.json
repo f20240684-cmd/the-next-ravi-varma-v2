@@ -1,0 +1,36 @@
+{
+  "image": "0209.jpg",
+  "subject": "a woman in a red sari holding a tray of food",
+  "composition": "single-figure composition, square format",
+  "pose": "standing, serving",
+  "clothing": "wearing red dress",
+  "jewelry": "necklace jewelry",
+  "expression": "serious expression",
+  "objects": "holding tray",
+  "environment": "in india",
+  "lighting": "mid-tone lighting",
+  "visual_characteristics": "warm red and ochre palette",
+  "raw_caption": "a woman in a red sari holding a tray of food",
+  "title": "Mandodari",
+  "source": "vlm",
+  "qa": {
+    "people_count": "one",
+    "clothing": "red dress",
+    "clothing_color": "red",
+    "has_jewelry": "yes",
+    "jewelry": "necklace",
+    "pose": "standing",
+    "action": "serving",
+    "expression": "serious",
+    "has_object": "yes",
+    "objects": "tray",
+    "environment": "india",
+    "time": "day"
+  },
+  "measured": {
+    "lighting": "mid-tone lighting",
+    "palette": "warm red and ochre palette",
+    "orientation": "square format"
+  },
+  "flat_caption": "Mandodari, a woman in a red sari holding a tray of food, wearing red dress, necklace jewelry, standing, serving, serious expression, holding tray, in india, single-figure composition, square format, mid-tone lighting, warm red and ochre palette"
+}

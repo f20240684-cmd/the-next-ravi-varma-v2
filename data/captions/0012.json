@@ -1,0 +1,36 @@
+{
+  "image": "0012.jpg",
+  "subject": "a woman carrying a basket of flowers",
+  "composition": "group of three figures, vertical format",
+  "pose": "standing, holding woman's hand",
+  "clothing": "wearing orange toga",
+  "jewelry": "unknown",
+  "expression": "smile expression",
+  "objects": "holding basket",
+  "environment": "in outside",
+  "lighting": "mid-tone lighting",
+  "visual_characteristics": "warm red and ochre palette",
+  "raw_caption": "a woman carrying a basket of flowers",
+  "title": "Shakuntala",
+  "source": "vlm",
+  "qa": {
+    "people_count": "3",
+    "clothing": "toga",
+    "clothing_color": "orange",
+    "has_jewelry": "yes",
+    "jewelry": "watch",
+    "pose": "standing",
+    "action": "holding woman's hand",
+    "expression": "smile",
+    "has_object": "yes",
+    "objects": "basket",
+    "environment": "outside",
+    "time": "day"
+  },
+  "measured": {
+    "lighting": "mid-tone lighting",
+    "palette": "warm red and ochre palette",
+    "orientation": "vertical format"
+  },
+  "flat_caption": "Shakuntala, a woman carrying a basket of flowers, wearing orange toga, standing, holding woman's hand, smile expression, holding basket, in outside, group of three figures, vertical format, mid-tone lighting, warm red and ochre palette"
+}

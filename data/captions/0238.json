@@ -1,0 +1,36 @@
+{
+  "image": "0238.jpg",
+  "subject": "a woman holding an apple in her hand",
+  "composition": "single-figure composition, vertical format",
+  "pose": "standing, eating",
+  "clothing": "unknown",
+  "jewelry": "necklace jewelry",
+  "expression": "smile expression",
+  "objects": "holding apple",
+  "environment": "unknown",
+  "lighting": "mid-tone lighting",
+  "visual_characteristics": "warm red and ochre palette",
+  "raw_caption": "a woman holding an apple in her hand",
+  "title": "Woman Holding a Fruit",
+  "source": "vlm",
+  "qa": {
+    "people_count": "1",
+    "clothing": "necklace",
+    "clothing_color": "red",
+    "has_jewelry": "yes",
+    "jewelry": "necklace",
+    "pose": "standing",
+    "action": "eating",
+    "expression": "smile",
+    "has_object": "yes",
+    "objects": "apple",
+    "environment": "in painting",
+    "time": "day"
+  },
+  "measured": {
+    "lighting": "mid-tone lighting",
+    "palette": "warm red and ochre palette",
+    "orientation": "vertical format"
+  },
+  "flat_caption": "Woman Holding a Fruit, a woman holding an apple in her hand, necklace jewelry, standing, eating, smile expression, holding apple, single-figure composition, vertical format, mid-tone lighting, warm red and ochre palette"
+}

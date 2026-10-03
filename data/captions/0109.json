@@ -1,0 +1,36 @@
+{
+  "image": "0109.jpg",
+  "subject": "deities sitting on a shell in the ocean",
+  "composition": "group of four figures, vertical format",
+  "pose": "sitting",
+  "clothing": "wearing red dress",
+  "jewelry": "necklace jewelry",
+  "expression": "calm expression",
+  "objects": "holding umbrella",
+  "environment": "in india",
+  "lighting": "mid-tone lighting",
+  "visual_characteristics": "warm red and ochre palette",
+  "raw_caption": "deities sitting on a shell in the ocean",
+  "title": "Seshanarayana",
+  "source": "vlm",
+  "qa": {
+    "people_count": "4",
+    "clothing": "dress",
+    "clothing_color": "red",
+    "has_jewelry": "yes",
+    "jewelry": "necklace",
+    "pose": "sitting",
+    "action": "sitting",
+    "expression": "calm",
+    "has_object": "yes",
+    "objects": "umbrella",
+    "environment": "india",
+    "time": "day"
+  },
+  "measured": {
+    "lighting": "mid-tone lighting",
+    "palette": "warm red and ochre palette",
+    "orientation": "vertical format"
+  },
+  "flat_caption": "Seshanarayana, deities sitting on a shell in the ocean, wearing red dress, necklace jewelry, sitting, calm expression, holding umbrella, in india, group of four figures, vertical format, mid-tone lighting, warm red and ochre palette"
+}

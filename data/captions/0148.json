@@ -1,0 +1,36 @@
+{
+  "image": "0148.jpg",
+  "subject": "a woman sitting on a rock next to a man",
+  "composition": "group of two figures, vertical format",
+  "pose": "sitting, touching hands",
+  "clothing": "wearing blue dress",
+  "jewelry": "necklace jewelry",
+  "expression": "smiling expression",
+  "objects": "holding sword",
+  "environment": "near river",
+  "lighting": "mid-tone lighting",
+  "visual_characteristics": "warm red and ochre palette",
+  "raw_caption": "a woman sitting on a rock next to a man",
+  "title": "Radha Madhavam",
+  "source": "vlm",
+  "qa": {
+    "people_count": "2",
+    "clothing": "dress",
+    "clothing_color": "blue",
+    "has_jewelry": "yes",
+    "jewelry": "necklace",
+    "pose": "sitting",
+    "action": "touching hands",
+    "expression": "smiling",
+    "has_object": "yes",
+    "objects": "sword",
+    "environment": "near river",
+    "time": "day"
+  },
+  "measured": {
+    "lighting": "mid-tone lighting",
+    "palette": "warm red and ochre palette",
+    "orientation": "vertical format"
+  },
+  "flat_caption": "Radha Madhavam, a woman sitting on a rock next to a man, wearing blue dress, necklace jewelry, sitting, touching hands, smiling expression, holding sword, near river, group of two figures, vertical format, mid-tone lighting, warm red and ochre palette"
+}

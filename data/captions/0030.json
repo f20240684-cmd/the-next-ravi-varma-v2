@@ -1,0 +1,36 @@
+{
+  "image": "0030.jpg",
+  "subject": "a man and a woman on the steps of a building",
+  "composition": "group of two figures, vertical format",
+  "pose": "standing, drinking",
+  "clothing": "wearing black and orange dress",
+  "jewelry": "necklace jewelry",
+  "expression": "serious expression",
+  "objects": "holding tray",
+  "environment": "unknown",
+  "lighting": "mid-tone lighting",
+  "visual_characteristics": "warm red and ochre palette",
+  "raw_caption": "a man and a woman on the steps of a building",
+  "title": "Sairandhri",
+  "source": "vlm",
+  "qa": {
+    "people_count": "two",
+    "clothing": "black and orange dress",
+    "clothing_color": "black",
+    "has_jewelry": "yes",
+    "jewelry": "necklace",
+    "pose": "standing",
+    "action": "drinking",
+    "expression": "serious",
+    "has_object": "yes",
+    "objects": "tray",
+    "environment": "at museum",
+    "time": "day"
+  },
+  "measured": {
+    "lighting": "mid-tone lighting",
+    "palette": "warm red and ochre palette",
+    "orientation": "vertical format"
+  },
+  "flat_caption": "Sairandhri, a man and a woman on the steps of a building, wearing black and orange dress, necklace jewelry, standing, drinking, serious expression, holding tray, group of two figures, vertical format, mid-tone lighting, warm red and ochre palette"
+}

@@ -1,0 +1,36 @@
+{
+  "image": "0000.jpg",
+  "subject": "a man and a woman hugging with a deer",
+  "composition": "group of two figures, vertical format",
+  "pose": "standing, hugging",
+  "clothing": "wearing red and gold outfit",
+  "jewelry": "necklace jewelry",
+  "expression": "calm expression",
+  "objects": "holding red cloth",
+  "environment": "in park",
+  "lighting": "dark low-key tones",
+  "visual_characteristics": "warm red and ochre palette",
+  "raw_caption": "a man and a woman hugging with a deer",
+  "title": "King Dushyanta proposing marriage with a ring to Shakuntala",
+  "source": "vlm",
+  "qa": {
+    "people_count": "two",
+    "clothing": "red and gold outfit",
+    "clothing_color": "red",
+    "has_jewelry": "yes",
+    "jewelry": "necklace",
+    "pose": "standing",
+    "action": "hugging",
+    "expression": "calm",
+    "has_object": "yes",
+    "objects": "red cloth",
+    "environment": "in park",
+    "time": "day"
+  },
+  "measured": {
+    "lighting": "dark low-key tones",
+    "palette": "warm red and ochre palette",
+    "orientation": "vertical format"
+  },
+  "flat_caption": "King Dushyanta proposing marriage with a ring to Shakuntala, a man and a woman hugging with a deer, wearing red and gold outfit, necklace jewelry, standing, hugging, calm expression, holding red cloth, in park, group of two figures, vertical format, dark low-key tones, warm red and ochre palette"
+}

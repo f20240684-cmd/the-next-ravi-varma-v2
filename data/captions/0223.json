@@ -1,0 +1,36 @@
+{
+  "image": "0223.jpg",
+  "subject": "a woman sitting on a bed reading a book",
+  "composition": "single-figure composition, landscape format",
+  "pose": "sitting, reading",
+  "clothing": "wearing red dress",
+  "jewelry": "necklace jewelry",
+  "expression": "serious expression",
+  "objects": "holding box",
+  "environment": "unknown",
+  "lighting": "dark low-key tones",
+  "visual_characteristics": "warm red and ochre palette",
+  "raw_caption": "a woman sitting on a bed reading a book",
+  "title": "Disappointing News",
+  "source": "vlm",
+  "qa": {
+    "people_count": "one",
+    "clothing": "dress",
+    "clothing_color": "red",
+    "has_jewelry": "yes",
+    "jewelry": "necklace",
+    "pose": "sitting",
+    "action": "reading",
+    "expression": "serious",
+    "has_object": "yes",
+    "objects": "box",
+    "environment": "in painting",
+    "time": "day"
+  },
+  "measured": {
+    "lighting": "dark low-key tones",
+    "palette": "warm red and ochre palette",
+    "orientation": "landscape format"
+  },
+  "flat_caption": "Disappointing News, a woman sitting on a bed reading a book, wearing red dress, necklace jewelry, sitting, reading, serious expression, holding box, single-figure composition, landscape format, dark low-key tones, warm red and ochre palette"
+}

@@ -1,0 +1,65 @@
+{
+  "input_dir": "outputs/generated/baseline",
+  "num_images": 15,
+  "num_references": 12,
+  "num_training_images": 122,
+  "per_prompt": {
+    "krishna_arjuna": {
+      "num_images": 3,
+      "prompt_adherence": 0.2984,
+      "style_ref_mean": 0.6898,
+      "style_ref_top3": 0.754,
+      "nearest_train_sim_max": 0.8647,
+      "diversity": 0.0842
+    },
+    "mythological_landscape": {
+      "num_images": 3,
+      "prompt_adherence": 0.3642,
+      "style_ref_mean": 0.692,
+      "style_ref_top3": 0.7492,
+      "nearest_train_sim_max": 0.8675,
+      "diversity": 0.1454
+    },
+    "royal_portrait": {
+      "num_images": 3,
+      "prompt_adherence": 0.3199,
+      "style_ref_mean": 0.6874,
+      "style_ref_top3": 0.7518,
+      "nearest_train_sim_max": 0.8486,
+      "diversity": 0.0558
+    },
+    "royal_woman_palace": {
+      "num_images": 3,
+      "prompt_adherence": 0.3319,
+      "style_ref_mean": 0.6274,
+      "style_ref_top3": 0.6929,
+      "nearest_train_sim_max": 0.8084,
+      "diversity": 0.1345
+    },
+    "woman_by_window": {
+      "num_images": 3,
+      "prompt_adherence": 0.3237,
+      "style_ref_mean": 0.6477,
+      "style_ref_top3": 0.7235,
+      "nearest_train_sim_max": 0.8429,
+      "diversity": 0.109
+    }
+  },
+  "summary": {
+    "prompt_adherence": 0.3276,
+    "style_ref_mean": 0.6689,
+    "style_ref_top3": 0.7343,
+    "nearest_train_sim_max": 0.8675,
+    "possible_memorisation": [],
+    "diversity": 0.1058
+  },
+  "baseline_comparison": null,
+  "notes": {
+    "prompt_adherence": "CLIP ViT-B/32 image-text cosine similarity with the trigger token removed. Measures coarse semantic agreement (subjects, setting); blind to counts, hands, exact poses. Typical range 0.20-0.35.",
+    "style_ref_mean": "Mean CLIP image-image similarity to held-out Ravi Varma paintings. Mixes content and style (a palace scene scores higher against palace references), so compare LoRA vs base on the same prompts/seeds rather than reading absolute values.",
+    "style_ref_top3": "Mean similarity to the 3 closest held-out references; less diluted by unrelated subjects.",
+    "nearest_train_sim": "Similarity to the closest training image. Values above ~0.95 suggest the model is reproducing a training painting rather than composing a new one.",
+    "diversity": "Mean pairwise (1 - cosine) CLIP distance between images of the same prompt across seeds. Very low values mean the seed barely changes the output.",
+    "human_rubric": "visual_quality, anatomy, style_consistency and prompt_adherence are rated 1-5 by a person in qualitative_review.csv; anatomy covers faces, eyes, hands/fingers and limb count."
+  }
+}

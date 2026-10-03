@@ -1,0 +1,36 @@
+{
+  "image": "0023.jpg",
+  "subject": "a painting of a man and a woman holding a plate of food",
+  "composition": "group of two figures, vertical format",
+  "pose": "standing, holding hands",
+  "clothing": "wearing green dress",
+  "jewelry": "bracelet jewelry",
+  "expression": "smile expression",
+  "objects": "holding bowl",
+  "environment": "unknown",
+  "lighting": "mid-tone lighting",
+  "visual_characteristics": "warm red and ochre palette",
+  "raw_caption": "a painting of a man and a woman holding a plate of food",
+  "title": "Draupadi and Sudheshna",
+  "source": "vlm",
+  "qa": {
+    "people_count": "2",
+    "clothing": "dress",
+    "clothing_color": "green",
+    "has_jewelry": "yes",
+    "jewelry": "bracelet",
+    "pose": "standing",
+    "action": "holding hands",
+    "expression": "smile",
+    "has_object": "yes",
+    "objects": "bowl",
+    "environment": "painting",
+    "time": "day"
+  },
+  "measured": {
+    "lighting": "mid-tone lighting",
+    "palette": "warm red and ochre palette",
+    "orientation": "vertical format"
+  },
+  "flat_caption": "Draupadi and Sudheshna, a painting of a man and a woman holding a plate of food, wearing green dress, bracelet jewelry, standing, holding hands, smile expression, holding bowl, group of two figures, vertical format, mid-tone lighting, warm red and ochre palette"
+}

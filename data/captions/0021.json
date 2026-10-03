@@ -1,0 +1,36 @@
+{
+  "image": "0021.jpg",
+  "subject": "a woman in a red sari with other women",
+  "composition": "group of three figures, vertical format",
+  "pose": "standing, holding her hair",
+  "clothing": "unknown",
+  "jewelry": "necklace jewelry",
+  "expression": "serious expression",
+  "objects": "holding umbrella",
+  "environment": "unknown",
+  "lighting": "dark low-key tones",
+  "visual_characteristics": "warm red and ochre palette",
+  "raw_caption": "a woman in a red sari with other women",
+  "title": "Draupadi Vastraharan",
+  "source": "vlm",
+  "qa": {
+    "people_count": "3",
+    "clothing": "red necklace",
+    "clothing_color": "red",
+    "has_jewelry": "yes",
+    "jewelry": "necklace",
+    "pose": "standing",
+    "action": "holding her hair",
+    "expression": "serious",
+    "has_object": "yes",
+    "objects": "umbrella",
+    "environment": "in painting",
+    "time": "day"
+  },
+  "measured": {
+    "lighting": "dark low-key tones",
+    "palette": "warm red and ochre palette",
+    "orientation": "vertical format"
+  },
+  "flat_caption": "Draupadi Vastraharan, a woman in a red sari with other women, necklace jewelry, standing, holding her hair, serious expression, holding umbrella, group of three figures, vertical format, dark low-key tones, warm red and ochre palette"
+}

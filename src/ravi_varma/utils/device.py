@@ -145,7 +145,10 @@ def resolve_optimizations(
     )
 
     if requested_attention_slicing == "auto":
-        attention_slicing = device_info.device in ("cuda", "mps") and (is_low_vram or device_info.device == "mps")
+        # Only low-VRAM CUDA cards need slicing. On Apple MPS, sliced
+        # attention in fp16 overflows to NaN (all-black images) with torch
+        # 2.4, and unsliced fp16 SD1.5 fits in 8 GB of unified memory.
+        attention_slicing = device_info.device == "cuda" and is_low_vram
     else:
         attention_slicing = bool(requested_attention_slicing)
 

@@ -1,0 +1,35 @@
+{
+  "image": "0158.jpg",
+  "subject": "a naked woman standing in front of a lion",
+  "composition": "single-figure composition, vertical format",
+  "pose": "standing",
+  "clothing": "unknown",
+  "jewelry": "unknown",
+  "expression": "serious expression",
+  "objects": "holding stick",
+  "environment": "unknown",
+  "lighting": "dark low-key tones",
+  "visual_characteristics": "cool blue palette",
+  "raw_caption": "a naked woman standing in front of a lion",
+  "title": "Mahabharata - Bharata",
+  "source": "vlm",
+  "qa": {
+    "people_count": "1",
+    "clothing": "nothing",
+    "clothing_color": "white",
+    "has_jewelry": "no",
+    "pose": "standing",
+    "action": "standing",
+    "expression": "serious",
+    "has_object": "yes",
+    "objects": "stick",
+    "environment": "in painting",
+    "time": "day"
+  },
+  "measured": {
+    "lighting": "dark low-key tones",
+    "palette": "cool blue palette",
+    "orientation": "vertical format"
+  },
+  "flat_caption": "Mahabharata - Bharata, a naked woman standing in front of a lion, standing, serious expression, holding stick, single-figure composition, vertical format, dark low-key tones, cool blue palette"
+}

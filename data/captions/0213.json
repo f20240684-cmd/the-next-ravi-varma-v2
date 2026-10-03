@@ -1,0 +1,36 @@
+{
+  "image": "0213.jpg",
+  "subject": "a large group of people sitting in front of a stage",
+  "composition": "group of many figures, landscape format",
+  "pose": "standing",
+  "clothing": "wearing black uniform",
+  "jewelry": "necklace jewelry",
+  "expression": "serious expression",
+  "objects": "holding sword",
+  "environment": "unknown",
+  "lighting": "mid-tone lighting",
+  "visual_characteristics": "warm red and ochre palette",
+  "raw_caption": "a large group of people sitting in front of a stage",
+  "title": "Puddukotta Durbar",
+  "source": "vlm",
+  "qa": {
+    "people_count": "20",
+    "clothing": "uniform",
+    "clothing_color": "black",
+    "has_jewelry": "yes",
+    "jewelry": "necklace",
+    "pose": "standing",
+    "action": "sitting",
+    "expression": "serious",
+    "has_object": "yes",
+    "objects": "sword",
+    "environment": "in painting",
+    "time": "day"
+  },
+  "measured": {
+    "lighting": "mid-tone lighting",
+    "palette": "warm red and ochre palette",
+    "orientation": "landscape format"
+  },
+  "flat_caption": "Puddukotta Durbar, a large group of people sitting in front of a stage, wearing black uniform, necklace jewelry, standing, serious expression, holding sword, group of many figures, landscape format, mid-tone lighting, warm red and ochre palette"
+}

@@ -1,0 +1,36 @@
+{
+  "image": "0199.jpg",
+  "subject": "a woman standing next to a tree",
+  "composition": "single-figure composition, vertical format",
+  "pose": "standing, posing",
+  "clothing": "wearing white dress",
+  "jewelry": "necklace jewelry",
+  "expression": "serious expression",
+  "objects": "holding basket",
+  "environment": "unknown",
+  "lighting": "mid-tone lighting",
+  "visual_characteristics": "warm red and ochre palette",
+  "raw_caption": "a woman standing next to a tree",
+  "title": "Ahalya",
+  "source": "vlm",
+  "qa": {
+    "people_count": "1",
+    "clothing": "dress",
+    "clothing_color": "white",
+    "has_jewelry": "yes",
+    "jewelry": "necklace",
+    "pose": "standing",
+    "action": "posing",
+    "expression": "serious",
+    "has_object": "yes",
+    "objects": "basket",
+    "environment": "in painting",
+    "time": "day"
+  },
+  "measured": {
+    "lighting": "mid-tone lighting",
+    "palette": "warm red and ochre palette",
+    "orientation": "vertical format"
+  },
+  "flat_caption": "Ahalya, a woman standing next to a tree, wearing white dress, necklace jewelry, standing, posing, serious expression, holding basket, single-figure composition, vertical format, mid-tone lighting, warm red and ochre palette"
+}

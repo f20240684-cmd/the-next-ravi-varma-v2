@@ -224,3 +224,73 @@ class TestMlStackUnavailable:
         gen = RaviVarmaGenerator(generation_config)
         with pytest.raises(RuntimeError, match="not usable"):
             gen.load()
+
+
+class TestLoraWeightResolution:
+    def test_final_dir_checkpoint_dir_and_file(self, tmp_path):
+        from ravi_varma.generation.pipeline import LORA_WEIGHTS_NAME, resolve_lora_weights
+
+        run = tmp_path / "ravi_varma"
+        (run / "checkpoint-250").mkdir(parents=True)
+        (run / "checkpoint-500").mkdir()
+        (run / "checkpoint-250" / LORA_WEIGHTS_NAME).write_bytes(b"x")
+        (run / "checkpoint-500" / LORA_WEIGHTS_NAME).write_bytes(b"x")
+
+        # Training interrupted (no final weights yet) -> latest checkpoint.
+        assert resolve_lora_weights(run) == run / "checkpoint-500" / LORA_WEIGHTS_NAME
+        # Explicit checkpoint selection.
+        assert resolve_lora_weights(run / "checkpoint-250") == run / "checkpoint-250" / LORA_WEIGHTS_NAME
+        # Final weights take priority over checkpoints.
+        (run / LORA_WEIGHTS_NAME).write_bytes(b"x")
+        assert resolve_lora_weights(run) == run / LORA_WEIGHTS_NAME
+        assert resolve_lora_weights(run / LORA_WEIGHTS_NAME) == run / LORA_WEIGHTS_NAME
+
+    def test_missing_or_empty_returns_none(self, tmp_path):
+        from ravi_varma.generation.pipeline import resolve_lora_weights
+
+        (tmp_path / "empty").mkdir()
+        assert resolve_lora_weights(tmp_path / "empty") is None
+        assert resolve_lora_weights(tmp_path / "nope") is None
+        assert resolve_lora_weights(None) is None
+
+
+class TestGenerateCli:
+    def _cli(self):
+        import importlib.util
+
+        spec = importlib.util.spec_from_file_location("generate_cli", Path(__file__).resolve().parents[1] / "scripts" / "generate.py")
+        module = importlib.util.module_from_spec(spec)
+        spec.loader.exec_module(module)
+        return module
+
+    def test_trigger_token_added_once(self):
+        cli = self._cli()
+        assert cli.with_trigger("royal portrait", "<rvvarma>") == "<rvvarma>, royal portrait"
+        assert cli.with_trigger("<rvvarma>, royal portrait", "<rvvarma>") == "<rvvarma>, royal portrait"
+
+    def test_sample_prompt_suite_is_valid(self):
+        cli = self._cli()
+        entries = cli.load_prompt_file(str(Path(__file__).resolve().parents[1] / "configs" / "prompts" / "sample_prompts.yaml"))
+        assert len(entries) == 5
+        assert len({e["id"] for e in entries}) == 5
+        for e in entries:
+            assert e["prompt"].startswith("<rvvarma>")
+            assert e.get("width", 512) % 64 == 0 and e.get("height", 512) % 64 == 0
+
+
+class TestMemoryPlan:
+    def test_no_auto_attention_slicing_on_mps(self):
+        """fp16 + sliced attention on Apple MPS produces NaN latents (black
+        images) with torch 2.4 -- 'auto' must leave slicing off there."""
+        from ravi_varma.utils.device import DeviceInfo, resolve_optimizations
+
+        plan = resolve_optimizations(DeviceInfo("mps", True, False, True), requested_attention_slicing="auto")
+        assert plan.attention_slicing is False
+
+    def test_auto_attention_slicing_on_low_vram_cuda_only(self):
+        from ravi_varma.utils.device import DeviceInfo, resolve_optimizations
+
+        low = DeviceInfo("cuda", True, True, False, total_vram_gb=6.0)
+        big = DeviceInfo("cuda", True, True, False, total_vram_gb=16.0)
+        assert resolve_optimizations(low, requested_attention_slicing="auto").attention_slicing is True
+        assert resolve_optimizations(big, requested_attention_slicing="auto").attention_slicing is False

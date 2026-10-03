@@ -1,0 +1,36 @@
+{
+  "image": "0202.jpg",
+  "subject": "a painting of two women dressed in traditional clothing",
+  "composition": "group of two figures, vertical format",
+  "pose": "standing, pointing",
+  "clothing": "wearing yellow dress",
+  "jewelry": "necklace jewelry",
+  "expression": "smile expression",
+  "objects": "holding child",
+  "environment": "unknown",
+  "lighting": "mid-tone lighting",
+  "visual_characteristics": "warm red and ochre palette",
+  "raw_caption": "a painting of two women dressed in traditional clothing",
+  "title": "Draupadisairendri",
+  "source": "vlm",
+  "qa": {
+    "people_count": "2",
+    "clothing": "dress",
+    "clothing_color": "yellow",
+    "has_jewelry": "yes",
+    "jewelry": "necklace",
+    "pose": "standing",
+    "action": "pointing",
+    "expression": "smile",
+    "has_object": "yes",
+    "objects": "child",
+    "environment": "in painting",
+    "time": "day"
+  },
+  "measured": {
+    "lighting": "mid-tone lighting",
+    "palette": "warm red and ochre palette",
+    "orientation": "vertical format"
+  },
+  "flat_caption": "Draupadisairendri, a painting of two women dressed in traditional clothing, wearing yellow dress, necklace jewelry, standing, pointing, smile expression, holding child, group of two figures, vertical format, mid-tone lighting, warm red and ochre palette"
+}

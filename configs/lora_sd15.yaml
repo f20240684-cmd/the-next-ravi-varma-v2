@@ -1,7 +1,13 @@
 # LoRA fine-tuning configuration -- Stable Diffusion 1.5 baseline.
 # python scripts/train_lora.py --config configs/lora_sd15.yaml
+#
+# Intended hardware: one CUDA GPU with >= 12 GB (Colab T4 16 GB works).
+# Hyperparameters below are the project's chosen values; see README
+# "Training configuration" before changing them.
 
-base_model: "runwayml/stable-diffusion-v1-5"
+# The original "runwayml/stable-diffusion-v1-5" repo was removed from the
+# Hugging Face Hub in 2024; this is the official mirror with identical weights.
+base_model: "stable-diffusion-v1-5/stable-diffusion-v1-5"
 model_family: "sd15"          # sd15 | sdxl -- controls which pipeline class is used
 revision: null
 variant: null
@@ -9,7 +15,8 @@ variant: null
 dataset:
   manifest_file: "data/processed/manifest.jsonl"
   resolution: 512
-  center_crop: true
+  aspect_bucketing: true        # train at each image's prepared bucket size (448x640, 512x512, ...)
+  center_crop: true             # only used if aspect_bucketing is false
   random_flip: true
 
 lora:
@@ -22,39 +29,51 @@ lora:
 optimizer:
   learning_rate: 1.0e-4
   lr_scheduler: "constant_with_warmup"
-  lr_warmup_steps: 100
+  lr_warmup_steps: 100          # optimizer steps (not micro-batches)
   adam_beta1: 0.9
   adam_beta2: 0.999
   adam_weight_decay: 1.0e-2
   adam_epsilon: 1.0e-8
-  use_8bit_adam: true          # requires bitsandbytes; auto-disabled if unavailable
+  use_8bit_adam: false          # 8-bit Adam saves only ~19 MB for 3.2M LoRA params; bitsandbytes 0.43 breaks on CUDA 12.8
 
 training:
   train_batch_size: 1
   gradient_accumulation_steps: 4
-  max_train_steps: 1500
+  max_train_steps: 1500         # optimizer steps; 1500 x 4 = 6000 samples (~49 epochs of 122 images)
   num_train_epochs: null        # if set, overrides max_train_steps
-  mixed_precision: "fp16"       # fp16 | bf16 | no
+  mixed_precision: "fp16"       # fp16 | bf16 | no  (fp16 needs CUDA; auto-falls back to fp32 elsewhere)
   gradient_checkpointing: true
   max_grad_norm: 1.0
   seed: 42
   enable_xformers: true         # auto-disabled if xformers is not installed
+  dataloader_num_workers: 2
 
 checkpointing:
   output_dir: "checkpoints/lora/ravi_varma"
-  checkpointing_steps: 250
-  checkpoints_total_limit: 5
+  checkpointing_steps: 250      # each checkpoint also gets a loadable pytorch_lora_weights.safetensors
+  checkpoints_total_limit: 6    # keep every checkpoint of a 1500-step run for checkpoint selection
   resume_from_checkpoint: "latest"   # "latest" | path | null
 
 logging:
   logging_dir: "outputs/logs"
-  report_to: "tensorboard"      # tensorboard | none
+  report_to: "tensorboard"      # tensorboard | none  (outputs/logs/train_loss.csv is always written)
   log_every_n_steps: 10
 
 validation:
-  validation_prompt: "<rvvarma>, portrait of a royal Indian woman in traditional attire, oil painting"
-  num_validation_images: 2
+  # Same prompts + seeds at every validation step -> images in
+  # outputs/logs/validation_images/step_XXXXX/ are directly comparable.
+  validation_prompts:
+    - "<rvvarma>, portrait of a royal Indian woman in a silk sari with gold jewelry, seated in a palace interior"
+    - "<rvvarma>, Krishna and Arjuna standing together on a battlefield, traditional clothing"
+    - "<rvvarma>, a woman sitting by a lake at dusk, traditional sari"
+  negative_prompt: "deformed hands, extra fingers, malformed face, blurry, lowres, watermark, text"
+  num_validation_images: 1
   validation_steps: 250
+  run_at_start: true            # step-0 images = base model + untrained adapter (baseline)
+  num_inference_steps: 25
+  guidance_scale: 7.5
+  width: 512
+  height: 512
 
 style:
   trigger_token: "<rvvarma>"

@@ -1,0 +1,36 @@
+{
+  "image": "0228.jpg",
+  "subject": "a woman in a white sari holding a sword",
+  "composition": "single-figure composition, vertical format",
+  "pose": "standing, holding up hand",
+  "clothing": "wearing white dress",
+  "jewelry": "necklace jewelry",
+  "expression": "smile expression",
+  "objects": "holding sword",
+  "environment": "in prison",
+  "lighting": "mid-tone lighting",
+  "visual_characteristics": "warm red and ochre palette",
+  "raw_caption": "a woman in a white sari holding a sword",
+  "title": "Lady in Prison",
+  "source": "vlm",
+  "qa": {
+    "people_count": "1",
+    "clothing": "dress",
+    "clothing_color": "white",
+    "has_jewelry": "yes",
+    "jewelry": "necklace",
+    "pose": "standing",
+    "action": "holding up hand",
+    "expression": "smile",
+    "has_object": "yes",
+    "objects": "sword",
+    "environment": "prison",
+    "time": "day"
+  },
+  "measured": {
+    "lighting": "mid-tone lighting",
+    "palette": "warm red and ochre palette",
+    "orientation": "vertical format"
+  },
+  "flat_caption": "Lady in Prison, a woman in a white sari holding a sword, wearing white dress, necklace jewelry, standing, holding up hand, smile expression, holding sword, in prison, single-figure composition, vertical format, mid-tone lighting, warm red and ochre palette"
+}

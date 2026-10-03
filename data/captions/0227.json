@@ -1,0 +1,36 @@
+{
+  "image": "0227.jpg",
+  "subject": "a woman in a red sari",
+  "composition": "single-figure composition, vertical format",
+  "pose": "sitting",
+  "clothing": "wearing red sari",
+  "jewelry": "necklace jewelry",
+  "expression": "calm expression",
+  "objects": "unknown",
+  "environment": "unknown",
+  "lighting": "mid-tone lighting",
+  "visual_characteristics": "warm red and ochre palette",
+  "raw_caption": "a woman in a red sari",
+  "title": "Lady at Ball Game",
+  "source": "vlm",
+  "qa": {
+    "people_count": "1",
+    "clothing": "sari",
+    "clothing_color": "red",
+    "has_jewelry": "yes",
+    "jewelry": "necklace",
+    "pose": "sitting",
+    "action": "sitting",
+    "expression": "calm",
+    "has_object": "yes",
+    "objects": "nothing",
+    "environment": "in painting",
+    "time": "day"
+  },
+  "measured": {
+    "lighting": "mid-tone lighting",
+    "palette": "warm red and ochre palette",
+    "orientation": "vertical format"
+  },
+  "flat_caption": "Lady at Ball Game, a woman in a red sari, wearing red sari, necklace jewelry, sitting, calm expression, single-figure composition, vertical format, mid-tone lighting, warm red and ochre palette"
+}

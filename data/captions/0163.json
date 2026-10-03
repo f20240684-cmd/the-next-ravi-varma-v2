@@ -1,0 +1,36 @@
+{
+  "image": "0163.jpg",
+  "subject": "a man and a woman in traditional clothing",
+  "composition": "group of two figures, vertical format",
+  "pose": "standing, talking",
+  "clothing": "wearing green dress",
+  "jewelry": "necklace jewelry",
+  "expression": "surprised expression",
+  "objects": "holding sword",
+  "environment": "unknown",
+  "lighting": "mid-tone lighting",
+  "visual_characteristics": "cool blue palette",
+  "raw_caption": "a man and a woman in traditional clothing",
+  "title": "Keechaka and Sairandhri, Oleograph",
+  "source": "vlm",
+  "qa": {
+    "people_count": "two",
+    "clothing": "dress",
+    "clothing_color": "green",
+    "has_jewelry": "yes",
+    "jewelry": "necklace",
+    "pose": "standing",
+    "action": "talking",
+    "expression": "surprised",
+    "has_object": "yes",
+    "objects": "sword",
+    "environment": "in painting",
+    "time": "day"
+  },
+  "measured": {
+    "lighting": "mid-tone lighting",
+    "palette": "cool blue palette",
+    "orientation": "vertical format"
+  },
+  "flat_caption": "Keechaka and Sairandhri, Oleograph, a man and a woman in traditional clothing, wearing green dress, necklace jewelry, standing, talking, surprised expression, holding sword, group of two figures, vertical format, mid-tone lighting, cool blue palette"
+}

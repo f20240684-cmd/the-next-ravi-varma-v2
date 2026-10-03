@@ -1,0 +1,36 @@
+{
+  "image": "0036.jpg",
+  "subject": "two women walking in the woods",
+  "composition": "group of two figures, vertical format",
+  "pose": "standing, holding woman's hand",
+  "clothing": "wearing red dress",
+  "jewelry": "necklace and bracelet jewelry",
+  "expression": "smile expression",
+  "objects": "holding umbrella",
+  "environment": "in park",
+  "lighting": "dark low-key tones",
+  "visual_characteristics": "warm red and ochre palette",
+  "raw_caption": "two women walking in the woods",
+  "title": "Draupadi and Simhika",
+  "source": "vlm",
+  "qa": {
+    "people_count": "two",
+    "clothing": "red dress",
+    "clothing_color": "red and blue",
+    "has_jewelry": "yes",
+    "jewelry": "necklace and bracelet",
+    "pose": "standing",
+    "action": "holding woman's hand",
+    "expression": "smile",
+    "has_object": "yes",
+    "objects": "umbrella",
+    "environment": "in park",
+    "time": "day"
+  },
+  "measured": {
+    "lighting": "dark low-key tones",
+    "palette": "warm red and ochre palette",
+    "orientation": "vertical format"
+  },
+  "flat_caption": "Draupadi and Simhika, two women walking in the woods, wearing red dress, necklace and bracelet jewelry, standing, holding woman's hand, smile expression, holding umbrella, in park, group of two figures, vertical format, dark low-key tones, warm red and ochre palette"
+}

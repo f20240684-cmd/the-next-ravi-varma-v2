@@ -1,0 +1,36 @@
+{
+  "image": "0154.jpg",
+  "subject": "a woman standing in front of a bird",
+  "composition": "single-figure composition, vertical format",
+  "pose": "sitting, praying",
+  "clothing": "wearing dress",
+  "jewelry": "necklace jewelry",
+  "expression": "calm expression",
+  "objects": "holding hands",
+  "environment": "in park",
+  "lighting": "mid-tone lighting",
+  "visual_characteristics": "green-dominant palette",
+  "raw_caption": "a woman standing in front of a bird",
+  "title": "Haunsa Damayanti Sanwada",
+  "source": "vlm",
+  "qa": {
+    "people_count": "1",
+    "clothing": "dress",
+    "clothing_color": "red and yellow",
+    "has_jewelry": "yes",
+    "jewelry": "necklace",
+    "pose": "sitting",
+    "action": "praying",
+    "expression": "calm",
+    "has_object": "yes",
+    "objects": "hands",
+    "environment": "in park",
+    "time": "day"
+  },
+  "measured": {
+    "lighting": "mid-tone lighting",
+    "palette": "green-dominant palette",
+    "orientation": "vertical format"
+  },
+  "flat_caption": "Haunsa Damayanti Sanwada, a woman standing in front of a bird, wearing dress, necklace jewelry, sitting, praying, calm expression, holding hands, in park, single-figure composition, vertical format, mid-tone lighting, green-dominant palette"
+}

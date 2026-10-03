@@ -36,16 +36,27 @@ class StyleSimilarityResult:
     )
 
 
+_REFERENCE_CACHE: dict[tuple[str, str, tuple], dict[str, np.ndarray]] = {}
+
+
 def _load_reference_embeddings(reference_dir: "str | Path", device: str = "cpu") -> dict[str, np.ndarray]:
+    """Embeddings of every reference image, cached per (dir, device, file
+    list + mtimes) so batch evaluation embeds the corpus only once."""
     reference_dir = Path(reference_dir)
-    embeddings = {}
     if not reference_dir.exists():
-        return embeddings
+        return {}
+    files = tuple((str(p), p.stat().st_mtime) for p in sorted(reference_dir.rglob("*")) if p.suffix.lower() in DEFAULT_IMAGE_EXTENSIONS)
+    key = (str(reference_dir), device, files)
+    if key in _REFERENCE_CACHE:
+        return _REFERENCE_CACHE[key]
+    embeddings = {}
     for path in sorted(reference_dir.rglob("*")):
         if path.suffix.lower() in DEFAULT_IMAGE_EXTENSIONS:
             emb = image_embedding(path, device=device)
-            if emb is not None:
-                embeddings[str(path)] = emb
+            if emb is None:
+                return {}  # CLIP unavailable; don't cache a partial result
+            embeddings[str(path)] = emb
+    _REFERENCE_CACHE[key] = embeddings
     return embeddings
 
 

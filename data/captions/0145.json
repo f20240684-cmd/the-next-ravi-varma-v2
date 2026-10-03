@@ -1,0 +1,36 @@
+{
+  "image": "0145.jpg",
+  "subject": "a man and woman sitting on a tiger rug in front of a waterfall",
+  "composition": "group of two figures, vertical format",
+  "pose": "sitting",
+  "clothing": "wearing red dress",
+  "jewelry": "necklace jewelry",
+  "expression": "smile expression",
+  "objects": "unknown",
+  "environment": "unknown",
+  "lighting": "mid-tone lighting",
+  "visual_characteristics": "warm red and ochre palette",
+  "raw_caption": "a man and woman sitting on a tiger rug in front of a waterfall",
+  "title": "Menaka Vishwamitra",
+  "source": "vlm",
+  "qa": {
+    "people_count": "2",
+    "clothing": "dress",
+    "clothing_color": "red",
+    "has_jewelry": "yes",
+    "jewelry": "necklace",
+    "pose": "sitting",
+    "action": "sitting",
+    "expression": "smile",
+    "has_object": "yes",
+    "objects": "bottle",
+    "environment": "in painting",
+    "time": "day"
+  },
+  "measured": {
+    "lighting": "mid-tone lighting",
+    "palette": "warm red and ochre palette",
+    "orientation": "vertical format"
+  },
+  "flat_caption": "Menaka Vishwamitra, a man and woman sitting on a tiger rug in front of a waterfall, wearing red dress, necklace jewelry, sitting, smile expression, group of two figures, vertical format, mid-tone lighting, warm red and ochre palette"
+}

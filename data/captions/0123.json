@@ -1,0 +1,36 @@
+{
+  "image": "0123.jpg",
+  "subject": "a man standing in front of a group of men",
+  "composition": "group of many figures, vertical format",
+  "pose": "standing",
+  "clothing": "wearing blue clothing",
+  "jewelry": "necklace jewelry",
+  "expression": "serious expression",
+  "objects": "holding sword",
+  "environment": "unknown",
+  "lighting": "dark low-key tones",
+  "visual_characteristics": "balanced earthy palette",
+  "raw_caption": "a man standing in front of a group of men",
+  "title": "Duryodhana",
+  "source": "vlm",
+  "qa": {
+    "people_count": "12",
+    "clothing": "blue",
+    "clothing_color": "blue",
+    "has_jewelry": "yes",
+    "jewelry": "necklace",
+    "pose": "standing",
+    "action": "standing",
+    "expression": "serious",
+    "has_object": "yes",
+    "objects": "sword",
+    "environment": "in painting",
+    "time": "day"
+  },
+  "measured": {
+    "lighting": "dark low-key tones",
+    "palette": "balanced earthy palette",
+    "orientation": "vertical format"
+  },
+  "flat_caption": "Duryodhana, a man standing in front of a group of men, wearing blue clothing, necklace jewelry, standing, serious expression, holding sword, group of many figures, vertical format, dark low-key tones, balanced earthy palette"
+}

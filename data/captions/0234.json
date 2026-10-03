@@ -1,0 +1,36 @@
+{
+  "image": "0234.jpg",
+  "subject": "a woman holding a tray with a cake on it",
+  "composition": "single-figure composition, vertical format",
+  "pose": "sitting",
+  "clothing": "wearing red dress",
+  "jewelry": "necklace jewelry",
+  "expression": "serious expression",
+  "objects": "holding tray",
+  "environment": "unknown",
+  "lighting": "mid-tone lighting",
+  "visual_characteristics": "warm red and ochre palette",
+  "raw_caption": "a woman holding a tray with a cake on it",
+  "title": "The Maharani of Travancore",
+  "source": "vlm",
+  "qa": {
+    "people_count": "1",
+    "clothing": "dress",
+    "clothing_color": "red",
+    "has_jewelry": "yes",
+    "jewelry": "necklace",
+    "pose": "sitting",
+    "action": "sitting",
+    "expression": "serious",
+    "has_object": "yes",
+    "objects": "tray",
+    "environment": "in painting",
+    "time": "day"
+  },
+  "measured": {
+    "lighting": "mid-tone lighting",
+    "palette": "warm red and ochre palette",
+    "orientation": "vertical format"
+  },
+  "flat_caption": "The Maharani of Travancore, a woman holding a tray with a cake on it, wearing red dress, necklace jewelry, sitting, serious expression, holding tray, single-figure composition, vertical format, mid-tone lighting, warm red and ochre palette"
+}
