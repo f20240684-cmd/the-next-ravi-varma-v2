@@ -4,6 +4,8 @@ A text-to-image diffusion project that adapts **Stable Diffusion 1.5** with a **
 generates new artwork inspired by the visual characteristics of **Raja Ravi Varma** (1848–1906) —
 in the spirit of *The Next Rembrandt*, but with a modern diffusion + parameter-efficient fine-tuning stack.
 
+**Team docs:** [User Manual](docs/USER_MANUAL.md) (how everything works, from the basics) · [Viva Guide](docs/VIVA_GUIDE.md) (likely questions + answers)
+
 **Milestone 2 review presentation:** [slides (.pptx)](docs/The_Next_Ravi_Varma_Milestone2_Review.pptx) · [PDF](docs/The_Next_Ravi_Varma_Milestone2_Review.pdf) (13 slides, ~10 min, speaker notes included)
 
 > All generated images are AI-generated, Ravi Varma–*inspired* artwork. They are **not** authentic
