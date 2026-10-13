@@ -29,6 +29,7 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent / "src"))
 
 import yaml
+from dotenv import load_dotenv
 
 from ravi_varma.config import GenerationConfig
 from ravi_varma.generation.pipeline import RaviVarmaGenerator
@@ -83,6 +84,7 @@ def main() -> int:
     args = parser.parse_args()
 
     logger = setup_logging("generate")
+    load_dotenv()  # API keys for --expand LLM mode live in .env (git-ignored)
     config = GenerationConfig.load(args.config)
     if args.lora_path:
         config.model.lora_path = args.lora_path
