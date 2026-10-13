@@ -86,3 +86,31 @@ class TestLocalFallback:
         engine = PromptExpansionEngine(trigger_token="<rvvarma>")
         result = engine.expand(SCENE, force_local=True)
         assert result.mode_used == "local"
+
+
+class TestSemanticExpansion:
+    """Milestone 3: lexicon-grounded detail within CLIP's token window."""
+
+    @staticmethod
+    def words(text):  # deterministic stand-in for the CLIP tokenizer
+        return len(text.replace(",", " ").split())
+
+    def test_character_iconography_added_in_scene_order(self):
+        result = LocalPromptEngine().expand("Krishna guiding Arjuna in his chariot", trigger_token="<rvvarma>")
+        assert result.characters == "Krishna, Arjuna"
+        assert "peacock-feather" in result.details[0] and "bow" in result.details[1]
+
+    def test_alias_and_specific_place_win(self):
+        result = LocalPromptEngine().expand("Droupathi pleading in the court of Hastinapura")
+        assert result.characters == "Draupadi"
+        assert "Hastinapura" in result.environment  # specific place beats generic "court"
+
+    def test_prompt_trimmed_to_budget_but_scene_kept(self):
+        result = LocalPromptEngine().expand(SCENE, trigger_token="<rvvarma>")
+        prompt = result.final_prompt(token_counter=self.words, max_tokens=30)
+        assert self.words(prompt) <= 30
+        assert prompt.startswith("<rvvarma>, " + SCENE)
+
+    def test_unknown_names_add_no_invented_detail(self):
+        result = LocalPromptEngine().expand("A quiet conversation between two sisters")
+        assert result.characters == "" and result.details == []

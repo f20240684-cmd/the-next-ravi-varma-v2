@@ -1,0 +1,19 @@
+# Milestone 3 demo: plain story descriptions, rendered raw vs. expanded.
+# python scripts/generate.py --prompt-file configs/prompts/epic_scenes.yaml --seeds 42 --expand
+prompts:
+  - id: yudhishthira_karna
+    prompt: "Yudhishthira weeping over the fallen body of Karna on the battlefield of Kurukshetra"
+    width: 640
+    height: 448
+  - id: krishna_arjuna_chariot
+    prompt: "Krishna guiding Arjuna in his chariot"
+    width: 640
+    height: 448
+  - id: draupadi_court
+    prompt: "Draupadi pleading in the court of Hastinapura"
+    width: 640
+    height: 448
+  - id: saraswati_lake
+    prompt: "Saraswati playing music by a lotus lake"
+    width: 448
+    height: 640

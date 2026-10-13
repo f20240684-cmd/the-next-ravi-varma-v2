@@ -1,0 +1,57 @@
+# Visual lexicon for prompt expansion (Milestone 3).
+# Maps names / places that appear in scene descriptions to the standard,
+# widely depicted iconography of the Mahabharata, Ramayana and Puranas (as in
+# Ravi Varma's own paintings). Used by src/ravi_varma/generation/prompt_engine.py
+# to add concrete visual detail the diffusion model can draw.
+# Keep each "look" short: the whole prompt must fit CLIP's 77 tokens.
+# Edit freely - no code changes needed. Aliases are matched case-insensitively.
+
+characters:
+  Krishna:      {aliases: [krishna, keshava, govinda, vasudeva], look: "blue-skinned Krishna with peacock-feather crown and yellow silk dhoti"}
+  Arjuna:       {aliases: [arjuna, partha], look: "Arjuna, archer prince with bow and quiver, gold armour"}
+  Karna:        {aliases: [karna, radheya], look: "Karna in golden armour and earrings"}
+  Yudhishthira: {aliases: [yudhishthira, yudhisthira, dharmaraja], look: "Yudhishthira, bearded king in white and gold robes"}
+  Bhima:        {aliases: [bhima, bhimasena], look: "muscular Bhima holding a mace"}
+  Draupadi:     {aliases: [draupadi, droupathi, panchali, sairandhri], look: "Draupadi, queen in red sari with gold jewellery"}
+  Duryodhana:   {aliases: [duryodhana, suyodhana], look: "Duryodhana, crowned prince with a golden mace"}
+  Bhishma:      {aliases: [bhishma, devavrata], look: "Bhishma, white-bearded elder warrior"}
+  Kunti:        {aliases: [kunti, pritha], look: "Kunti, elderly queen in a white sari"}
+  Gandhari:     {aliases: [gandhari], look: "Gandhari, blindfolded queen"}
+  Rama:         {aliases: [rama, raghava, ramachandra], look: "blue-skinned prince Rama with bow and crown"}
+  Sita:         {aliases: [sita, janaki, vaidehi], look: "Sita, graceful princess in a sari with flowers in her hair"}
+  Lakshmana:    {aliases: [lakshmana, laxman], look: "young prince Lakshmana with a bow"}
+  Hanuman:      {aliases: [hanuman, maruti, anjaneya], look: "monkey-faced Hanuman with a golden mace"}
+  Ravana:       {aliases: [ravana, dashanana], look: "Ravana, demon king with many crowned heads"}
+  Shiva:        {aliases: [shiva, mahadeva, shankara], look: "ash-smeared Shiva with matted hair, crescent moon, trident and serpent"}
+  Parvati:      {aliases: [parvati, uma], look: "Parvati, goddess in a red sari"}
+  Ganesha:      {aliases: [ganesha, ganapati, vinayaka], look: "elephant-headed Ganesha"}
+  Lakshmi:      {aliases: [lakshmi, laxmi], look: "Lakshmi seated on a pink lotus, red sari, gold coins"}
+  Saraswati:    {aliases: [saraswati, sarasvati], look: "Saraswati in a white sari playing the veena, a swan beside her"}
+  Durga:        {aliases: [durga], look: "many-armed goddess Durga riding a lion, holding weapons"}
+  Shakuntala:   {aliases: [shakuntala, sakuntala, sakunthala], look: "Shakuntala, young woman in simple forest attire"}
+  Dushyanta:    {aliases: [dushyanta, dushyant], look: "King Dushyanta with crown and bow"}
+  Damayanti:    {aliases: [damayanti, damayanthi], look: "Damayanti, princess in a sari with a white swan"}
+  Nala:         {aliases: [nala], look: "King Nala"}
+  Menaka:       {aliases: [menaka], look: "Menaka, celestial apsara with flowing veils"}
+  Vishwamitra:  {aliases: [vishwamitra, vishvamitra], look: "Vishwamitra, bearded sage with matted hair"}
+
+# Settings: first matching keyword wins (put specific places before generic ones).
+places:
+  kurukshetra:  "the battlefield of Kurukshetra with chariots, horses and banners"
+  lanka:        "the golden city of Lanka"
+  ayodhya:      "the royal palace of Ayodhya"
+  hastinapura:  "the royal court of Hastinapura"
+  hermitage:    "a forest hermitage with a thatched hut"
+  ashram:       "a forest hermitage with a thatched hut"
+  battlefield:  "an epic battlefield with chariots and banners"
+  court:        "a royal court with pillars and courtiers"
+  throne:       "a throne room with carved pillars"
+  palace:       "a palace interior with carved pillars and curtains"
+  temple:       "a stone temple"
+  forest:       "a dense forest"
+  garden:       "a palace garden with flowers"
+  river:        "a riverbank"
+  ganga:        "the banks of the river Ganga"
+  lake:         "a lotus lake"
+  sea:          "the seashore"
+  mountain:     "a mountain landscape"

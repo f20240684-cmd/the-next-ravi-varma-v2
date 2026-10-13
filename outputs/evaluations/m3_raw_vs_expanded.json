@@ -1,0 +1,26 @@
+{
+  "seed": 42,
+  "metric": "CLIP ViT-B/32 cosine vs original scene text",
+  "results": [
+    {
+      "id": "yudhishthira_karna",
+      "raw": 0.294,
+      "expanded": 0.279
+    },
+    {
+      "id": "krishna_arjuna_chariot",
+      "raw": 0.293,
+      "expanded": 0.299
+    },
+    {
+      "id": "draupadi_court",
+      "raw": 0.361,
+      "expanded": 0.356
+    },
+    {
+      "id": "saraswati_lake",
+      "raw": 0.357,
+      "expanded": 0.334
+    }
+  ]
+}

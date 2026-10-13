@@ -13,6 +13,12 @@ Two modes:
 In both modes the user's subject/story text is preserved verbatim in the
 final prompt -- the engine only *adds* descriptive/style tokens, never
 rewrites or replaces what the user asked for.
+
+Local mode is a small semantic parser: it finds characters (by name or alias)
+and places in the scene using `configs/epic_lexicon.yaml` and adds their
+standard iconography ("blue-skinned Krishna with peacock-feather crown...").
+The final prompt is assembled by priority and trimmed to CLIP's 77-token
+window -- anything past it would be silently ignored by Stable Diffusion.
 """
 from __future__ import annotations
 
@@ -20,7 +26,11 @@ import json
 import os
 import re
 from dataclasses import asdict, dataclass, field
-from typing import Optional
+from functools import lru_cache
+from pathlib import Path
+from typing import Callable, Optional
+
+import yaml
 
 from ravi_varma.utils.logging import get_logger
 
@@ -38,16 +48,40 @@ DEFAULT_NEGATIVE_PROMPT = (
 # documented stylistic tendencies (academic realism, oil-painting technique,
 # theatrical/mythological staging, soft directional lighting). These are
 # generic style descriptors, not claims about any specific painting.
-_STYLE_LIGHTING = "soft directional chiaroscuro lighting, warm golden highlights, painterly shadow modeling"
-_STYLE_COMPOSITION = "classical academic composition, balanced framing, theatrical staging reminiscent of 19th-century Indian oleographs"
-_STYLE_CLOTHING = "traditional Indian attire rendered with fine textile detail, ornate jewelry"
-_STYLE_VISUAL = "oil-painting texture, rich color palette, realistic anatomy, fine brushwork"
+# Kept short on purpose: the <rvvarma> trigger carries the learned style, and
+# every token here competes with scene detail for CLIP's 77-token window.
+_STYLE_LIGHTING = "soft dramatic lighting"
+_STYLE_COMPOSITION = "theatrical staging"
+_STYLE_CLOTHING = "traditional Indian attire, ornate jewelry"
+_STYLE_VISUAL = "classical Indian oil painting"
+
+LEXICON_PATH = Path(__file__).resolve().parents[3] / "configs" / "epic_lexicon.yaml"
+CLIP_PROMPT_TOKENS = 75  # 77 minus the start/end tokens
+
+
+@lru_cache(maxsize=4)
+def load_lexicon(path: "str | Path" = LEXICON_PATH) -> dict:
+    """Characters and places from configs/epic_lexicon.yaml ({} if missing)."""
+    path = Path(path)
+    if not path.exists():
+        logger.warning("Epic lexicon %s not found; expansion adds generic detail only.", path)
+        return {"characters": {}, "places": {}}
+    data = yaml.safe_load(path.read_text(encoding="utf-8")) or {}
+    return {"characters": data.get("characters") or {}, "places": data.get("places") or {}}
+
+
+@lru_cache(maxsize=1)
+def _default_token_counter() -> Callable[[str], int]:
+    from ravi_varma.data.captions import clip_token_counter
+
+    return clip_token_counter()
 
 
 @dataclass
 class ExpandedPrompt:
     subject: str
     characters: str = ""
+    details: list[str] = field(default_factory=list)  # iconography of detected characters, in scene order
     pose: str = "unspecified, left to the model's default interpretation"
     environment: str = "unspecified, left to the model's default interpretation"
     lighting: str = _STYLE_LIGHTING
@@ -61,54 +95,44 @@ class ExpandedPrompt:
     def to_dict(self) -> dict:
         return asdict(self)
 
-    def final_prompt(self) -> str:
-        """Assemble the final diffusion prompt. The user's `subject` text is
-        placed first and verbatim so their intent always dominates."""
-        parts = []
-        if self.trigger_token:
-            parts.append(self.trigger_token)
-        parts.append(self.subject.strip())
-        for extra in (self.clothing, self.pose, self.environment, self.lighting, self.composition, self.style):
+    def final_prompt(self, token_counter: Optional[Callable[[str], int]] = None, max_tokens: int = CLIP_PROMPT_TOKENS) -> str:
+        """Assemble the diffusion prompt in priority order -- trigger, the
+        user's scene (verbatim, always kept), character iconography, setting,
+        clothing, pose, lighting, composition, style -- dropping the lowest-
+        priority parts until it fits CLIP's window."""
+        count = token_counter or _default_token_counter()
+        required = [p for p in (self.trigger_token, self.subject.strip()) if p]
+        optional = [*self.details]
+        for extra in (self.environment, self.clothing, self.pose, self.lighting, self.composition, self.style):
             if extra and "unspecified" not in extra:
-                parts.append(extra)
-        return ", ".join(p for p in parts if p)
+                optional.append(extra)
+        optional = list(dict.fromkeys(optional))
+        while optional and count(", ".join(required + optional)) > max_tokens:
+            optional.pop()
+        prompt = ", ".join(required + optional)
+        if count(prompt) > max_tokens:
+            logger.warning("Scene text alone exceeds CLIP's %d-token window; the end of it will be ignored.", max_tokens)
+        return prompt
 
 
-# Lightweight keyword-based extraction so "local" mode can still populate
-# characters/environment more specifically without an LLM, while never
-# inventing facts the user didn't state.
-_ENV_KEYWORDS = {
-    "battlefield": "an epic battlefield setting",
-    "palace": "a palatial interior",
-    "forest": "a dense forest setting",
-    "river": "a riverside setting",
-    "temple": "a temple setting",
-    "court": "a royal court setting",
-    "garden": "a palace garden",
-    "sea": "a coastal/seaside setting",
-    "mountain": "a mountainous landscape",
-    "throne": "a throne room",
-}
+def _find_characters(text: str, lexicon: dict) -> list[tuple[str, str]]:
+    """(name, look) for each lexicon character mentioned, in order of first
+    appearance. Matching is by whole word on any alias, case-insensitive."""
+    found = []
+    for name, entry in lexicon["characters"].items():
+        aliases = entry.get("aliases") or [name]
+        positions = [m.start() for a in aliases for m in re.finditer(rf"\b{re.escape(a)}\b", text, flags=re.IGNORECASE)]
+        if positions:
+            found.append((min(positions), name, entry.get("look", name)))
+    return [(name, look) for _, name, look in sorted(found)]
 
 
-def _extract_environment(text: str) -> str:
+def _extract_environment(text: str, lexicon: dict) -> str:
     lowered = text.lower()
-    for kw, phrase in _ENV_KEYWORDS.items():
-        if kw in lowered:
-            return phrase
+    for keyword, description in lexicon["places"].items():
+        if re.search(rf"\b{re.escape(keyword)}\b", lowered):
+            return description
     return "unspecified, left to the model's default interpretation"
-
-
-def _extract_characters(text: str) -> str:
-    # Very conservative: pull out capitalized words that look like proper
-    # names (e.g. "Arjuna", "Krishna") without asserting anything about them
-    # beyond "characters mentioned in the scene".
-    names = re.findall(r"\b[A-Z][a-z]+\b", text)
-    # Filter out the first word of the sentence if it's just capitalized
-    # because it starts the sentence and isn't repeated elsewhere -- keep it
-    # simple and inclusive rather than risk dropping a real name.
-    unique_names = list(dict.fromkeys(names))
-    return ", ".join(unique_names) if unique_names else ""
 
 
 class LocalPromptEngine:
@@ -119,10 +143,13 @@ class LocalPromptEngine:
         if not scene_description:
             raise ValueError("scene_description must not be empty.")
 
+        lexicon = load_lexicon()
+        characters = _find_characters(scene_description, lexicon)
         return ExpandedPrompt(
             subject=scene_description,
-            characters=_extract_characters(scene_description),
-            environment=_extract_environment(scene_description),
+            characters=", ".join(name for name, _ in characters),
+            details=[look for _, look in characters],
+            environment=_extract_environment(scene_description, lexicon),
             negative_prompt=negative_prompt or DEFAULT_NEGATIVE_PROMPT,
             trigger_token=trigger_token,
             mode_used="local",

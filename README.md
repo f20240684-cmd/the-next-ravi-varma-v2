@@ -19,7 +19,7 @@ in the spirit of *The Next Rembrandt*, but with a modern diffusion + parameter-e
 |---|---|---|
 | **1 — Corpus curation & multimodal captioning** | Wikimedia download with provenance, validation, curation, de-duplication, VLM template captions, preprocessing, manifest | ✅ **Complete** |
 | **2 — Style-injected diffusion fine-tuning** | SD1.5 + LoRA trainer, checkpointing/resume, validation images, generation CLI, basic evaluation, Colab workflow | ✅ **Complete** — v2 LoRA trained (1500 steps, Colab T4), generated and evaluated; see *Current results* |
-| **3 — Text parsing & semantic scene generation** | LLM prompt expansion / scene parser | ⏳ **Not yet implemented** |
+| **3 — Text parsing & semantic scene generation** | scene parser + prompt expansion | 🟡 **Implemented (local lexicon mode)**; LLM mode untested — see *Milestone 3* below |
 | **4 — ControlNet guardrailing, evaluation & web panel** | OpenPose/Canny ControlNet, full evaluation framework, Gradio dashboard, checkpoint hub | ⏳ **Not yet implemented** |
 
 The repository is at roughly the **50 % mark** of the proposal. Early prototype code for Milestones 3–4
@@ -144,6 +144,29 @@ Automatic metrics for this baseline (`outputs/evaluations/baseline_sd15/summary.
 These are the base-model columns of the paired table above.
 
 ---
+
+## Milestone 3 — prompt expansion
+
+`python scripts/generate.py --prompt "Krishna guiding Arjuna in his chariot" --expand` turns a plain story
+description into a Stable Diffusion prompt:
+
+1. **Parse** the scene for characters (by name or alias, e.g. "Droupathi" → Draupadi) and places, using the
+   editable lexicon `configs/epic_lexicon.yaml` (27 characters, 18 places, standard iconography).
+2. **Expand**: add each character's look ("blue-skinned Krishna with peacock-feather crown and yellow silk dhoti"),
+   the setting, and short style cues; the trigger `<rvvarma>` and the user's scene stay first and verbatim.
+3. **Fit CLIP's 77-token window**: lowest-priority parts are dropped first (an older version produced ~120-token
+   prompts, so most of the expansion was silently ignored).
+
+`--dry-run` prints the expanded prompt without loading the model. An optional LLM mode
+(`PROMPT_EXPANSION_PROVIDER` in `.env`) exists from the original scaffold but has **not** been run (no API key).
+
+**Result** (`outputs/evaluations/m3_raw_vs_expanded.jpg`, 4 scenes, seed 42): expansion clearly improves single
+iconic figures (Saraswati gets her white sari, veena, swan and lotuses), is mixed for two-figure scenes, and does
+not fix complex actions ("Yudhishthira weeping over Karna" fails both ways). CLIP similarity to the story text:
+0.326 raw vs 0.317 expanded — no measurable gain on 4 images. Composing multi-person actions is a model limit that
+ControlNet pose control (Milestone 4) is meant to address.
+
+<p align="center"><img src="outputs/evaluations/m3_raw_vs_expanded.jpg" width="70%"></p>
 
 ## What changed for v2 (and why)
 
@@ -332,8 +355,8 @@ Results of this evaluation for the v2 LoRA are in *Current results* above.
 
 ## Future work (remaining ~50 %)
 
-- **Milestone 3** — LLM prompt expansion and a semantic scene parser that turns epic narratives
-  (e.g. "Yudhishthira weeping over Karna at Kurukshetra") into attribute-rich prompts with the trigger token.
+- **Milestone 3 (remaining)** — run and evaluate the LLM expansion mode; evaluate on more scenes/seeds; add action
+  vocabulary (e.g. "weeping over", "in a chariot") to the lexicon.
 - **Milestone 4** — OpenPose/Canny ControlNet conditioning for dignified, balanced poses; the full
   multimodal evaluation framework; a Gradio dashboard (text + pose reference → image); a LoRA checkpoint
   hub with per-checkpoint loss curves.

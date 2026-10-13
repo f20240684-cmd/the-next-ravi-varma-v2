@@ -74,8 +74,9 @@ def main() -> int:
     parser.add_argument(
         "--expand",
         action="store_true",
-        help="[Milestone 3 preview] run the template prompt-expansion engine on the prompt first.",
+        help="Milestone 3: expand a plain scene description (characters, setting, style) to fit CLIP's 77 tokens.",
     )
+    parser.add_argument("--dry-run", action="store_true", help="Print the final prompt(s) and exit without loading the model.")
     parser.add_argument("--pose-image", default=None, help="[Milestone 4 preview, untested] reference image for ControlNet.")
     parser.add_argument("--controlnet-type", choices=["openpose", "canny"], default=None, help=argparse.SUPPRESS)
     parser.add_argument("--controlnet-strength", type=float, default=None, help=argparse.SUPPRESS)
@@ -111,10 +112,14 @@ def main() -> int:
         if args.expand:
             from ravi_varma.generation.prompt_engine import PromptExpansionEngine
 
-            prompt = PromptExpansionEngine(trigger_token=trigger, negative_prompt=config.negative_prompt).expand(prompt).final_prompt()
+            engine = PromptExpansionEngine(trigger_token=trigger, negative_prompt=config.negative_prompt)
+            prompt = engine.expand(prompt, enable_style=not args.no_lora).final_prompt()
             logger.info("Expanded prompt: %s", prompt)
         elif not args.no_lora:
             prompt = with_trigger(prompt, trigger)
+        if args.dry_run:
+            print(f"{entry['id'] or 'prompt'}: {prompt}")
+            continue
 
         for seed in seeds:
             out_dir = Path(args.output_dir or config.output.generated_dir)
@@ -136,7 +141,7 @@ def main() -> int:
                     controlnet_strength=args.controlnet_strength,
                     output_dir=args.output_dir,
                     name_prefix=entry["id"],
-                    extra_metadata={"prompt_id": entry["id"]} if entry["id"] else None,
+                    extra_metadata={"prompt_id": entry["id"], "scene": entry["prompt"] if args.expand else None},
                 )
             except RuntimeError as e:
                 logger.error("%s", e)
@@ -144,6 +149,8 @@ def main() -> int:
             results.append(result)
             print(f"Saved {result.image_path}  (seed {result.metadata['seed']}, lora_loaded={result.metadata['lora_loaded']})")
 
+    if args.dry_run:
+        return 0
     if not results:
         print("Nothing to do: every prompt/seed pair already exists.")
         return 0
