@@ -294,3 +294,17 @@ class TestMemoryPlan:
         big = DeviceInfo("cuda", True, True, False, total_vram_gb=16.0)
         assert resolve_optimizations(low, requested_attention_slicing="auto").attention_slicing is True
         assert resolve_optimizations(big, requested_attention_slicing="auto").attention_slicing is False
+
+
+def test_default_negative_prompt_fits_clip_window():
+    """CLIP silently drops tokens after 77; an earlier 100-token negative prompt
+    meant 'frame, blurry, lowres...' were never applied."""
+    tokenizer_mod = pytest.importorskip("transformers")
+    try:
+        tok = tokenizer_mod.CLIPTokenizer.from_pretrained(
+            "stable-diffusion-v1-5/stable-diffusion-v1-5", subfolder="tokenizer", local_files_only=True
+        )
+    except Exception:
+        pytest.skip("SD1.5 tokenizer not in local HF cache")
+    neg = GenerationConfig.load(Path(__file__).resolve().parents[1] / "configs" / "generation.yaml").negative_prompt
+    assert len(tok(neg).input_ids) <= 77

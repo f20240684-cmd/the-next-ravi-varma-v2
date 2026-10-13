@@ -20,12 +20,11 @@ generation:
   num_images: 1
 
 negative_prompt: >-
-  malformed anatomy, bad anatomy, extra fingers, missing fingers, fused fingers,
-  deformed hands, extra limbs, unnatural limbs, bad proportions,
-  duplicated people, cloned face, distorted face, malformed eyes, asymmetric eyes,
-  blurry face, disfigured, mutated, cropped head, cut-off subjects,
-  text, watermark, signature, logo, frame, border,
-  low quality, worst quality, lowres, blurry, jpeg artifacts, out of focus
+  moustache, mustache, beard, facial hair, distorted face, malformed eyes, bad anatomy,
+  extra fingers, missing fingers, fused fingers, deformed hands, extra limbs, duplicated people,
+  cropped head, signature, text, watermark, frame, border, blurry, lowres, worst quality, jpeg artifacts
+# CLIP reads only 77 tokens: keep this list short and most-important-first
+# (tests/test_generation.py fails if it grows past the limit).
 
 controlnet:               # Milestone 4 (not yet implemented end-to-end)
   enabled: false

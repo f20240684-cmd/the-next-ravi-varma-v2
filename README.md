@@ -65,6 +65,10 @@ The weights are in `checkpoints/lora/ravi_varma/` (git-ignored; keep a copy in D
 
 - **Facial artifact:** several *women's* faces get a dark, moustache-like shadow on the upper lip
   (royal_woman_palace seeds 42–44, woman_by_window 42/43). The base model does not do this.
+  **Update:** the configured negative prompt was 100 tokens but CLIP reads only 77, so its second half
+  (incl. `frame, blurry, lowres`) was never applied. A shorter 66-token negative prompt with `moustache, facial hair`
+  first removes the shadow in 3 of the 5 affected images and makes it much fainter in the other 2
+  (`outputs/generated/lipfix/`, same seeds). A test now fails if the negative prompt exceeds 77 tokens.
 - **Signature-like scribbles** in bottom corners (woman_by_window 43/44, local check image): many training
   oleographs carry printed signatures/captions, and the captions do not mention them.
 - Multi-figure mythological scenes stay saturated "poster" compositions; hands and faces in crowds remain weak.
