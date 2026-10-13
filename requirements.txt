@@ -41,7 +41,7 @@ tqdm==4.66.5
 tensorboard==2.17.1
 
 # Optional LLM-based prompt expansion (only needed if you set an API key)
-openai==1.47.0
+openai==1.55.3   # 1.55.3+ needed with httpx 0.28 (older versions pass the removed `proxies` arg)
 anthropic==0.34.2
 
 # Testing
