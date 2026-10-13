@@ -19,7 +19,7 @@ in the spirit of *The Next Rembrandt*, but with a modern diffusion + parameter-e
 |---|---|---|
 | **1 — Corpus curation & multimodal captioning** | Wikimedia download with provenance, validation, curation, de-duplication, VLM template captions, preprocessing, manifest | ✅ **Complete** |
 | **2 — Style-injected diffusion fine-tuning** | SD1.5 + LoRA trainer, checkpointing/resume, validation images, generation CLI, basic evaluation, Colab workflow | ✅ **Complete** — v2 LoRA trained (1500 steps, Colab T4), generated and evaluated; see *Current results* |
-| **3 — Text parsing & semantic scene generation** | scene parser + prompt expansion | 🟡 **Implemented (local lexicon mode)**; LLM mode untested — see *Milestone 3* below |
+| **3 — Text parsing & semantic scene generation** | scene parser + prompt expansion | 🟡 **Implemented** — local lexicon mode + lexicon-grounded LLM mode, evaluated on 4 scenes; see *Milestone 3* below |
 | **4 — ControlNet guardrailing, evaluation & web panel** | OpenPose/Canny ControlNet, full evaluation framework, Gradio dashboard, checkpoint hub | ⏳ **Not yet implemented** |
 
 The repository is at roughly the **50 % mark** of the proposal. Early prototype code for Milestones 3–4
@@ -157,8 +157,13 @@ description into a Stable Diffusion prompt:
 3. **Fit CLIP's 77-token window**: lowest-priority parts are dropped first (an older version produced ~120-token
    prompts, so most of the expansion was silently ignored).
 
-`--dry-run` prints the expanded prompt without loading the model. An optional LLM mode
-(`PROMPT_EXPANSION_PROVIDER` in `.env`) exists from the original scaffold but has **not** been run (no API key).
+`--dry-run` prints the expanded prompt without loading the model.
+
+**Optional LLM mode** (`PROMPT_EXPANSION_PROVIDER` in `.env`; any OpenAI-compatible API via `OPENAI_BASE_URL`,
+e.g. Google Gemini's free tier). The LLM is grounded in the lexicon: detected characters' iconography is always
+inserted deterministically and shown to the LLM as context, and the LLM only adds short visual phrases (setting,
+pose, clothing, lighting). The user's scene is kept verbatim and the configured negative prompt is never replaced.
+Any failure (no key, quota, outage) falls back to local mode.
 
 **Result** (`outputs/evaluations/m3_raw_vs_expanded.jpg`, 4 scenes, seed 42): expansion clearly improves single
 iconic figures (Saraswati gets her white sari, veena, swan and lotuses), is mixed for two-figure scenes, and does
@@ -166,7 +171,14 @@ not fix complex actions ("Yudhishthira weeping over Karna" fails both ways). CLI
 0.326 raw vs 0.317 expanded — no measurable gain on 4 images. Composing multi-person actions is a model limit that
 ControlNet pose control (Milestone 4) is meant to address.
 
-<p align="center"><img src="outputs/evaluations/m3_raw_vs_expanded.jpg" width="70%"></p>
+**LLM mode** (`outputs/evaluations/m3_raw_local_llm.jpg/.json`, `gemini-3.5-flash-lite`, same 4 scenes and seed):
+it gives richer settings — an open battlefield sky for Kurukshetra, a full lotus lake for Saraswati — but no
+better actions (still no chariot, no weeping, no kneeling Draupadi), and it can drift from Varma's look (its
+Saraswati wears pink and stands, local mode's is seated in white). CLIP similarity: raw 0.326, local 0.317,
+LLM 0.320 — within noise on 4 images. Verdict: neither mode beats the raw scene on this metric; local mode is
+deterministic, free and offline, so it stays the default. LLM output also varies run to run (temperature 0.4).
+
+<p align="center"><img src="outputs/evaluations/m3_raw_local_llm.jpg" width="70%"></p>
 
 ## What changed for v2 (and why)
 
@@ -355,7 +367,7 @@ Results of this evaluation for the v2 LoRA are in *Current results* above.
 
 ## Future work (remaining ~50 %)
 
-- **Milestone 3 (remaining)** — run and evaluate the LLM expansion mode; evaluate on more scenes/seeds; add action
+- **Milestone 3 (remaining)** — evaluate on more scenes/seeds (4 images cannot separate the modes); add action
   vocabulary (e.g. "weeping over", "in a chariot") to the lexicon.
 - **Milestone 4** — OpenPose/Canny ControlNet conditioning for dignified, balanced poses; the full
   multimodal evaluation framework; a Gradio dashboard (text + pose reference → image); a LoRA checkpoint

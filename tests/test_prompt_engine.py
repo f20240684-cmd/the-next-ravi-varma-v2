@@ -87,6 +87,26 @@ class TestLocalFallback:
         result = engine.expand(SCENE, force_local=True)
         assert result.mode_used == "local"
 
+    def test_llm_output_is_grounded_in_lexicon(self, monkeypatch):
+        from ravi_varma.generation.prompt_engine import LLMPromptEngine
+
+        monkeypatch.setenv("PROMPT_EXPANSION_PROVIDER", "openai")
+        monkeypatch.setenv("OPENAI_API_KEY", "sk-fake")
+        sent = []
+
+        def fake_call(self, message):
+            sent.append(message)
+            return {"subject": f"{SCENE} rewritten at length", "environment": ["dusty plain", "banners"], "negative_prompt": "llm neg"}
+
+        monkeypatch.setattr(LLMPromptEngine, "_call_openai", fake_call)
+        result = PromptExpansionEngine(trigger_token="<rvvarma>", negative_prompt="cfg neg").expand(SCENE)
+        assert result.mode_used == "llm"
+        assert "golden armour" in sent[0]  # Karna's lexicon look is given to the LLM as context
+        assert result.subject == SCENE  # scene kept verbatim, LLM rewording dropped
+        assert any("Karna" in d for d in result.details)
+        assert result.environment == "dusty plain, banners"
+        assert result.negative_prompt == "cfg neg"
+
 
 class TestSemanticExpansion:
     """Milestone 3: lexicon-grounded detail within CLIP's token window."""

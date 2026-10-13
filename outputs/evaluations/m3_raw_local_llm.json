@@ -1,0 +1,52 @@
+{
+  "seed": 42,
+  "llm_model": "gemini-3.5-flash-lite",
+  "metric": "CLIP ViT-B/32 cosine vs original scene text",
+  "mean": {
+    "raw": 0.326,
+    "local": 0.317,
+    "llm": 0.32
+  },
+  "results": [
+    {
+      "id": "yudhishthira_karna",
+      "scene": "Yudhishthira weeping over the fallen body of Karna on the battlefield of Kurukshetra",
+      "raw": 0.294,
+      "raw_prompt": "<rvvarma>, Yudhishthira weeping over the fallen body of Karna on the battlefield of Kurukshetra",
+      "local": 0.279,
+      "local_prompt": "<rvvarma>, Yudhishthira weeping over the fallen body of Karna on the battlefield of Kurukshetra, Yudhishthira, bearded king in white and gold robes, Karna in golden armour and earrings, the battlefield of Kurukshetra with chariots, horses and banners, traditional Indian attire, ornate jewelry",
+      "llm": 0.287,
+      "llm_prompt": "<rvvarma>, Yudhishthira weeping over the fallen body of Karna on the battlefield of Kurukshetra, Yudhishthira, bearded king in white and gold robes, Karna in golden armour and earrings, Desolate Kurukshetra battlefield, scattered chariots, billowing smoke"
+    },
+    {
+      "id": "krishna_arjuna_chariot",
+      "scene": "Krishna guiding Arjuna in his chariot",
+      "raw": 0.293,
+      "raw_prompt": "<rvvarma>, Krishna guiding Arjuna in his chariot",
+      "local": 0.299,
+      "local_prompt": "<rvvarma>, Krishna guiding Arjuna in his chariot, blue-skinned Krishna with peacock-feather crown and yellow silk dhoti, Arjuna, archer prince with bow and quiver, gold armour, traditional Indian attire, ornate jewelry, soft dramatic lighting, theatrical staging, classical Indian oil painting",
+      "llm": 0.289,
+      "llm_prompt": "<rvvarma>, Krishna guiding Arjuna in his chariot, blue-skinned Krishna with peacock-feather crown and yellow silk dhoti, Arjuna, archer prince with bow and quiver, gold armour, epic battlefield of Kurukshetra, dust clouds, ancient armies, ornate warrior attire, royal turbans"
+    },
+    {
+      "id": "draupadi_court",
+      "scene": "Draupadi pleading in the court of Hastinapura",
+      "raw": 0.361,
+      "raw_prompt": "<rvvarma>, Draupadi pleading in the court of Hastinapura",
+      "local": 0.356,
+      "local_prompt": "<rvvarma>, Draupadi pleading in the court of Hastinapura, Draupadi, queen in red sari with gold jewellery, the royal court of Hastinapura, traditional Indian attire, ornate jewelry, soft dramatic lighting, theatrical staging, classical Indian oil painting",
+      "llm": 0.336,
+      "llm_prompt": "<rvvarma>, Draupadi pleading in the court of Hastinapura, Draupadi, queen in red sari with gold jewellery, ancient Indian royal court, grand marble pillars, ornate thrones, draped red sari, intricate gold jewellery, disheveled hair, one hand raised in protest, desperate expression, pleading stance"
+    },
+    {
+      "id": "saraswati_lake",
+      "scene": "Saraswati playing music by a lotus lake",
+      "raw": 0.357,
+      "raw_prompt": "<rvvarma>, Saraswati playing music by a lotus lake",
+      "local": 0.334,
+      "local_prompt": "<rvvarma>, Saraswati playing music by a lotus lake, Saraswati in a white sari playing the veena, a swan beside her, a lotus lake, traditional Indian attire, ornate jewelry, soft dramatic lighting, theatrical staging, classical Indian oil painting",
+      "llm": 0.368,
+      "llm_prompt": "<rvvarma>, Saraswati playing music by a lotus lake, Saraswati in a white sari playing the veena, a swan beside her, tranquil lotus lake, blooming pink water lilies, lush riverbank, pure white silk sari with delicate gold embroidery, gracefully strumming a traditional veena instrument, soft divine golden hour glow, gentle sunbeams"
+    }
+  ]
+}

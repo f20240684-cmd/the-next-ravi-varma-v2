@@ -169,12 +169,21 @@ class LLMPromptEngine:
         "composition, clothing) that are consistent with what the user wrote. "
         "Respond with ONLY a JSON object with these exact keys: "
         "subject, characters, pose, environment, lighting, composition, clothing, style, negative_prompt. "
-        "The 'subject' value must contain the user's original scene text, verbatim, at minimum."
+        "The 'subject' value must contain the user's original scene text, verbatim, at minimum. "
+        "The image model reads only ~75 tokens, so every other value must be a short comma-separated "
+        "phrase of at most 10 words, concrete and visual (no full sentences). If reference "
+        "iconography is given, keep it consistent; do not repeat it."
     )
 
     def __init__(self, provider: str, model: Optional[str] = None):
         self.provider = provider
         self.model = model
+
+    @staticmethod
+    def _user_message(scene_description: str, looks: list[str]) -> str:
+        if not looks:
+            return scene_description
+        return f"{scene_description}\n\nReference iconography (already in the prompt): " + "; ".join(looks)
 
     def _call_openai(self, scene_description: str) -> dict:
         from openai import OpenAI
@@ -207,28 +216,38 @@ class LLMPromptEngine:
         return json.loads(text)
 
     def expand(self, scene_description: str, trigger_token: Optional[str] = None, negative_prompt: Optional[str] = None) -> ExpandedPrompt:
+        scene_description = scene_description.strip()
+        # Ground the LLM in the lexicon: its iconography goes in deterministically
+        # (highest priority after the scene) and is shown to the LLM as context.
+        characters = _find_characters(scene_description, load_lexicon())
+        looks = [look for _, look in characters]
+        message = self._user_message(scene_description, looks)
         if self.provider == "openai" and os.environ.get("OPENAI_API_KEY"):
-            data = self._call_openai(scene_description)
+            data = self._call_openai(message)
         elif self.provider == "anthropic" and os.environ.get("ANTHROPIC_API_KEY"):
-            data = self._call_anthropic(scene_description)
+            data = self._call_anthropic(message)
         else:
             raise RuntimeError(f"No valid API key configured for provider '{self.provider}'.")
 
-        if scene_description.strip() not in data.get("subject", ""):
+        if scene_description not in data.get("subject", ""):
             # The model failed to preserve the user's story -- refuse the
             # LLM output rather than silently rewriting their scene.
             raise ValueError("LLM output did not preserve the original scene text; discarding.")
 
+        # LLM JSON is untrusted: lists are joined, anything else stringified.
+        data = {k: ", ".join(map(str, v)) if isinstance(v, list) else str(v) for k, v in data.items() if v}
         return ExpandedPrompt(
-            subject=data.get("subject", scene_description),
-            characters=data.get("characters", ""),
+            subject=scene_description,  # verbatim; the LLM's rewording only costs CLIP tokens
+            characters=", ".join(name for name, _ in characters) or data.get("characters", ""),
+            details=looks,
             pose=data.get("pose", ExpandedPrompt.__dataclass_fields__["pose"].default),
             environment=data.get("environment", ExpandedPrompt.__dataclass_fields__["environment"].default),
             lighting=data.get("lighting", _STYLE_LIGHTING),
             composition=data.get("composition", _STYLE_COMPOSITION),
             clothing=data.get("clothing", _STYLE_CLOTHING),
             style=data.get("style", _STYLE_VISUAL),
-            negative_prompt=data.get("negative_prompt") or negative_prompt or DEFAULT_NEGATIVE_PROMPT,
+            # Configured negative wins: it is tuned to fit 77 tokens (moustache fix); the LLM's is a fallback.
+            negative_prompt=negative_prompt or data.get("negative_prompt") or DEFAULT_NEGATIVE_PROMPT,
             trigger_token=trigger_token,
             mode_used="llm",
         )
