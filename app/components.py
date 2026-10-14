@@ -2,6 +2,7 @@
 in app.py stays short and readable."""
 from __future__ import annotations
 
+import csv
 import json
 from pathlib import Path
 from typing import Optional
@@ -43,6 +44,47 @@ See the README's "Ethical & Copyright Considerations" section for dataset proven
 """
 
 
+def list_checkpoints(lora_root: "str | Path") -> list[tuple[str, str]]:
+    """(label, path) for the final LoRA and every checkpoint-<step>, labelled with the
+    mean training loss of the 50 steps before it (from loss_history.csv)."""
+    root = Path(lora_root)
+    losses = {}
+    history = root / "loss_history.csv"
+    if history.exists():
+        with history.open() as f:
+            losses = {int(r["step"]): float(r["loss"]) for r in csv.DictReader(f)}
+
+    def label(step: int) -> str:
+        window = [losses[s] for s in range(step - 49, step + 1) if s in losses]
+        return f"step {step}" + (f" · loss {sum(window) / len(window):.3f}" if window else "")
+
+    found = []
+    for ckpt in root.glob("checkpoint-*"):
+        if ckpt.name.split("-")[-1].isdigit() and (ckpt / "pytorch_lora_weights.safetensors").exists():
+            found.append((int(ckpt.name.split("-")[-1]), str(ckpt)))
+    found.sort()
+    options = [(label(step), path) for step, path in found]
+    if (root / "pytorch_lora_weights.safetensors").exists():
+        final_step = max(losses) if losses else (found[-1][0] if found else 0)
+        options.append((f"final ({label(final_step)})", str(root)))
+    return options
+
+
+def checkpoint_hub_markdown(lora_root: "str | Path") -> str:
+    rows = list_checkpoints(lora_root)
+    if not rows:
+        return f"No LoRA checkpoints found in `{lora_root}`. Train first (see README)."
+    lines = ["| Checkpoint | Mean loss (last 50 steps) | Size | Path |", "|---|---|---|---|"]
+    for name, path in rows:
+        weights = Path(path) / "pytorch_lora_weights.safetensors"
+        loss = name.split("loss ")[-1].rstrip(")") if "loss" in name else "–"
+        lines.append(f"| {name.split(' (')[0].split(' ·')[0]} | {loss} | {weights.stat().st_size / 1e6:.1f} MB | `{path}` |")
+    lines.append("")
+    lines.append("Diffusion loss is noisy (it depends on the random timestep drawn), so a lower number "
+                 "does not mean a better-looking checkpoint -- compare them visually with the selector in *Generate*.")
+    return "\n".join(lines)
+
+
 def format_metadata(metadata: dict) -> str:
     return "```json\n" + json.dumps(metadata, indent=2) + "\n```"
 
@@ -76,11 +118,16 @@ def run_generation(
     controlnet_type: Optional[str],
     controlnet_strength: float,
     controlnet_enabled: bool,
+    lora_checkpoint: Optional[str] = None,
 ):
-    """Shared logic for Tab 1 (Generate) and Tab 2 (Advanced) -- returns
-    (image, expanded_prompt_text, metadata_markdown, warning_markdown)."""
+    """Generate-tab logic -- returns (image, expanded_prompt_text, metadata_markdown,
+    warning_markdown, control_map_or_None)."""
     if not scene_description or not scene_description.strip():
-        return None, "", "", "⚠️ Please enter a scene description."
+        return None, "", "", "⚠️ Please enter a scene description.", None
+
+    seed = int(seed) if seed else None  # Gradio sends 0/None for "random"
+    if lora_checkpoint and lora_checkpoint != generator.config.model.lora_path:
+        generator.set_lora(lora_checkpoint)
 
     expanded = prompt_engine.expand(scene_description, enable_style=style_strength > 0)
     final_prompt = expanded.final_prompt()
@@ -102,13 +149,13 @@ def run_generation(
             controlnet_strength=controlnet_strength,
         )
     except RuntimeError as e:
-        return None, final_prompt, "", f"⚠️ {e}"
+        return None, final_prompt, "", f"⚠️ {e}", None
 
     warning = "" if result.metadata["lora_loaded"] else (
         "⚠️ Generated with the BASE model -- no LoRA checkpoint was found, so this image does "
         "not reflect Ravi Varma's style."
     )
-    return result.image, final_prompt, format_metadata(result.metadata), warning
+    return result.image, final_prompt, format_metadata(result.metadata), warning, result.control_image
 
 
 def run_evaluation(image: Optional[Image.Image], prompt: str, reference_dir: str):

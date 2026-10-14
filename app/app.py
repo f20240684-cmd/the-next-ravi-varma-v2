@@ -10,6 +10,7 @@ clearly tells you so in the Generate tab rather than pretending it exists.
 from __future__ import annotations
 
 import argparse
+import os
 import sys
 from pathlib import Path
 
@@ -21,7 +22,16 @@ from ravi_varma.generation.pipeline import RaviVarmaGenerator
 from ravi_varma.generation.prompt_engine import PromptExpansionEngine
 from ravi_varma.utils.logging import setup_logging
 
-from components import ABOUT_MARKDOWN, lora_status_message, run_evaluation, run_generation
+from components import (
+    ABOUT_MARKDOWN,
+    checkpoint_hub_markdown,
+    list_checkpoints,
+    lora_status_message,
+    run_evaluation,
+    run_generation,
+)
+
+ROOT = Path(__file__).resolve().parent.parent
 
 logger = setup_logging("app")
 
@@ -68,12 +78,19 @@ def build_app(config_path: str):
                             lines=3,
                         )
                         style_strength = gr.Slider(0.0, 1.5, value=config.generation.lora_scale, step=0.05, label="Style Strength (LoRA scale)")
-                        seed = gr.Number(label="Seed (blank = random)", value=None, precision=0)
+                        seed = gr.Number(label="Seed (0 = random)", value=42, precision=0)
                         steps = gr.Slider(10, 60, value=config.generation.steps, step=1, label="Steps")
                         guidance = gr.Slider(1.0, 15.0, value=config.generation.guidance_scale, step=0.5, label="Guidance Scale")
-                        width = gr.Dropdown([384, 448, 512, 576, 640, 768], value=config.generation.width, label="Width")
-                        height = gr.Dropdown([384, 448, 512, 576, 640, 768], value=config.generation.height, label="Height")
+                        # 448x640 is the bucket most training paintings used; faces render best there.
+                        width = gr.Dropdown([384, 448, 512, 576, 640], value=448, label="Width")
+                        height = gr.Dropdown([384, 448, 512, 576, 640], value=640, label="Height")
                         negative_prompt = gr.Textbox(label="Negative Prompt", value=config.negative_prompt, lines=2)
+                        checkpoints = list_checkpoints(config.model.lora_path or "")
+                        lora_checkpoint = gr.Dropdown(
+                            checkpoints,
+                            value=config.model.lora_path if checkpoints else None,
+                            label="LoRA checkpoint (see Checkpoint Hub tab)",
+                        )
 
                         with gr.Accordion("Optional: pose/composition reference (ControlNet)", open=False):
                             controlnet_enabled = gr.Checkbox(label="Enable ControlNet", value=False)
@@ -85,6 +102,7 @@ def build_app(config_path: str):
 
                     with gr.Column(scale=1):
                         output_image = gr.Image(label="Generated Image")
+                        control_map = gr.Image(label="Pose / edge map ControlNet followed", height=220)
                         expanded_prompt_box = gr.Textbox(label="Expanded Prompt", interactive=False, lines=3)
                         warning_box = gr.Markdown()
                         metadata_box = gr.Markdown(label="Metadata")
@@ -94,8 +112,9 @@ def build_app(config_path: str):
                     inputs=[
                         scene, style_strength, seed, steps, guidance, width, height,
                         negative_prompt, pose_image, controlnet_type, controlnet_strength, controlnet_enabled,
+                        lora_checkpoint,
                     ],
-                    outputs=[output_image, expanded_prompt_box, metadata_box, warning_box],
+                    outputs=[output_image, expanded_prompt_box, metadata_box, warning_box, control_map],
                 )
 
             # ---------------------------------------------------------- #
@@ -109,6 +128,18 @@ def build_app(config_path: str):
                     "edit `configs/generation.yaml` and restart the app -- this keeps unsupported/"
                     "dangerous combinations (e.g. an SDXL LoRA against an SD1.5 base) out of the UI."
                 )
+
+            # ---------------------------------------------------------- #
+            with gr.Tab("Checkpoint Hub"):
+                gr.Markdown("### LoRA checkpoints saved during training (every 250 steps)")
+                gr.Markdown(checkpoint_hub_markdown(config.model.lora_path or ""))
+                with gr.Row():
+                    for title, path in [
+                        ("Training loss", "outputs/evaluations/lora_vs_base/loss_curve.png"),
+                        ("Same prompts at each checkpoint", "outputs/evaluations/lora_vs_base/validation_progression.jpg"),
+                    ]:
+                        if Path(path).exists():
+                            gr.Image(path, label=title, interactive=False)
 
             # ---------------------------------------------------------- #
             with gr.Tab("Evaluation"):
@@ -140,6 +171,8 @@ def main() -> int:
     parser.add_argument("--share", action="store_true")
     parser.add_argument("--server-port", type=int, default=7860)
     args = parser.parse_args()
+    args.config = str(Path(args.config).resolve())
+    os.chdir(ROOT)  # config paths (LoRA, outputs, references) are relative to the repo root
 
     demo = build_app(args.config)
     demo.launch(share=args.share, server_port=args.server_port)

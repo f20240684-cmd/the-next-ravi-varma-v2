@@ -19,13 +19,12 @@ in the spirit of *The Next Rembrandt*, but with a modern diffusion + parameter-e
 |---|---|---|
 | **1 — Corpus curation & multimodal captioning** | Wikimedia download with provenance, validation, curation, de-duplication, VLM template captions, preprocessing, manifest | ✅ **Complete** |
 | **2 — Style-injected diffusion fine-tuning** | SD1.5 + LoRA trainer, checkpointing/resume, validation images, generation CLI, basic evaluation, Colab workflow | ✅ **Complete** — v2 LoRA trained (1500 steps, Colab T4), generated and evaluated; see *Current results* |
-| **3 — Text parsing & semantic scene generation** | scene parser + prompt expansion | 🟡 **Implemented** — local lexicon mode + lexicon-grounded LLM mode, evaluated on 4 scenes; see *Milestone 3* below |
-| **4 — ControlNet guardrailing, evaluation & web panel** | OpenPose/Canny ControlNet, full evaluation framework, Gradio dashboard, checkpoint hub | ⏳ **Not yet implemented** |
+| **3 — Text parsing & semantic scene generation** | scene parser + prompt expansion | ✅ **Complete** — local lexicon mode + lexicon-grounded LLM mode, evaluated on 4 scenes; see *Milestone 3* below |
+| **4 — ControlNet guardrailing, evaluation & web panel** | OpenPose/Canny ControlNet, full evaluation framework, Gradio dashboard, checkpoint hub | ✅ **Complete** — pose adherence 0.17 → 0.86 with OpenPose on 6 held-out paintings; web panel tested; see *Milestone 4* below |
 
-The repository is at roughly the **50 % mark** of the proposal. Early prototype code for Milestones 3–4
-exists from the initial project scaffold (`generation/prompt_engine.py`, `generation/controlnet.py`,
-`app/`) — it is **unvalidated** and not part of the completed scope; it is exposed only behind
-explicitly labelled preview flags (`generate.py --expand`, `--pose-image`).
+All four milestones are implemented and evaluated. Known weak points are listed under *Limitations*: the
+LoRA artefacts (signature marks, upper-lip shadow), and complex *actions* that neither prompt expansion nor
+pose control fully solve.
 
 ---
 
@@ -180,6 +179,69 @@ deterministic, free and offline, so it stays the default. LLM output also varies
 
 <p align="center"><img src="outputs/evaluations/m3_raw_local_llm.jpg" width="70%"></p>
 
+## Milestone 4 — ControlNet guardrailing, evaluation & web panel
+
+**Pose control.** `--pose-image` (CLI) or the *pose reference* box (web panel) adds a pre-trained SD1.5
+ControlNet next to our LoRA: the LoRA decides *how it looks*, ControlNet decides *where people are*.
+- **OpenPose** (`lllyasviel/control_v11p_sd15_openpose`): extracts an 18-joint skeleton from the reference
+  and keeps only the pose. This is the intended mode, because it transfers a pose without copying the picture.
+- **Canny** (`control_v11p_sd15_canny`): keeps every outline of the reference, so it nearly traces it.
+- The reference is cropped to the output's aspect ratio first, so poses are not stretched.
+- The pose/edge map is saved next to the image (`*_control.png`) and shown in the panel.
+- ControlNet reuses the already-loaded UNet, VAE and text encoder instead of loading a second copy of SD1.5.
+  This halves memory, so it runs on an 8 GB Mac at about 1.5–2 minutes per image.
+
+```bash
+python scripts/generate.py --prompt "<rvvarma>, a royal Indian woman in a silk sari holding a plate of flowers, classical oil painting" \
+    --seed 42 --width 448 --height 640 --pose-image data/reference/0225.jpg --controlnet-type openpose
+```
+
+**Evaluation** (`scripts/eval_controlnet.py` → `outputs/evaluations/m4_controlnet/`).
+- **Setup:** 6 held-out paintings (never seen in training) are used as pose references. Each is rendered from its
+  own caption with seed 42 three ways: LoRA only, LoRA + OpenPose, LoRA + Canny.
+- **Pose adherence (PCK)** is a new metric (`evaluation/pose_score.py`). OpenPose runs on the reference and on the
+  output, and PCK is the share of the reference's body joints that reappear within 0.1 of the image size.
+- **Style** is the mean CLIP similarity to the *other* 11 held-out paintings; the pose source is excluded,
+  otherwise Canny, which traces it, would score itself.
+
+| Variant | Pose adherence (PCK) ↑ | Style similarity ↑ | Prompt adherence ↑ |
+|---|---|---|---|
+| LoRA only | 0.17 | 0.704 | 0.324 |
+| **LoRA + OpenPose** | **0.86** | 0.692 | 0.339 |
+| LoRA + Canny | 0.86 | 0.714 | 0.352 |
+
+**What the numbers show:**
+- **Without guidance the composition is lost:** three women reading become one woman, and a mother adorning her
+  child becomes a deity close-up.
+- **OpenPose restores the pose and the number of people in every case**, including the multi-figure scenes that
+  were the main weakness at Milestone 2.
+- **The style cost is small** (0.704 → 0.692).
+- **Canny matches it on pose** and scores higher on style and prompt, but only because it copies the reference
+  painting's layout; it is a tracing tool, not pose transfer.
+- **Caveat:** this is 6 images and one seed. PCK depends on OpenPose detecting people in a painting, which works
+  for these clear figures but would not for crowded scenes.
+
+<p align="center"><img src="outputs/evaluations/m4_controlnet/grid.jpg" width="85%"></p>
+
+**Web panel** (`python app/app.py` → http://127.0.0.1:7860). The **Generate** tab takes:
+- a scene description (expanded by Milestone 3)
+- style strength, seed, steps, guidance and size (defaults 448 × 640, seed 42)
+- an optional pose reference and ControlNet type/strength
+- the **LoRA checkpoint** to use
+
+It returns the image, the expanded prompt, the pose map and the full metadata.
+
+The other tabs:
+- **Checkpoint Hub:** every saved checkpoint (steps 250–1500) with its mean training loss and size, plus the
+  loss curve and the same-prompt-per-checkpoint progression image.
+- **Evaluation:** CLIP prompt and style scores for any image.
+
+The panel was tested in a browser: text → image, and pose + checkpoint switching through the same code path.
+
+**Inference improvement:** `model.vae` in `configs/generation.yaml` now loads `stabilityai/sd-vae-ft-mse`. It is
+the same latent space as SD1.5's decoder, fine-tuned for cleaner faces and detail, so no retraining is needed.
+The change is subtle (checked visually, not measured). Set `vae: null` to reproduce images made before it.
+
 ## What changed for v2 (and why)
 
 | Problem found | Fix |
@@ -222,12 +284,13 @@ configs/            dataset.yaml (curation, buckets) · lora_sd15.yaml · genera
 src/ravi_varma/
   data/             validation.py · captions.py · metadata.py · dataset.py (prep, dataset, bucket sampler)
   training/         lora_trainer.py · callbacks.py (checkpoints, validation images, loss log)
-  generation/       pipeline.py · prompt_engine.py (M3 prototype) · controlnet.py (M4 prototype)
-  evaluation/       run_eval.py · clip_score.py · style_similarity.py · report.py
+  generation/       pipeline.py · prompt_engine.py (M3) · controlnet.py (M4: OpenPose / Canny maps)
+  evaluation/       run_eval.py · clip_score.py · style_similarity.py · pose_score.py (M4 PCK) · report.py
+app/                app.py + components.py: Gradio panel (generate, pose, checkpoint hub, evaluation)
   utils/            image.py (hashing, buckets, border trim) · device.py · logging.py
-scripts/            download · validate · generate_captions · prepare · package_dataset · train_lora · generate · evaluate
+scripts/            download · validate · generate_captions · prepare · package_dataset · train_lora · generate · evaluate · eval_controlnet
 notebooks/          03_lora_training.ipynb (Colab end-to-end)
-tests/              101 tests (99 run here; 2 cover the no-CLIP path) incl. a tiny-model trainer test
+tests/              110 tests (108 run here; 2 cover the no-CLIP path) incl. a tiny-model trainer test
 docs/EVALUATION.md  evaluation protocol, rubric, metric limitations
 ```
 
@@ -356,7 +419,8 @@ Results of this evaluation for the v2 LoRA are in *Current results* above.
   — now filtered — and occasionally wrong colours or postures). Every answer is stored for auditing and can
   be corrected and re-assembled with `generate_captions.py --reflatten`.
 - **SD1.5 anatomy.** Hands, faces in crowds and limb counts remain the base model's weak points; the LoRA
-  and negative prompts reduce but do not fix this (Milestone 4 adds pose conditioning).
+  and negative prompts reduce but do not fix this. OpenPose ControlNet fixes *pose and figure count*,
+  not hands or small faces.
 - **Evaluation is coarse.** CLIP-based scores mix content with style and are blind to anatomy; only paired
   comparisons against the base model are meaningful, and anatomy/quality need human ratings.
 - **LoRA artifacts.** The v2 LoRA adds a moustache-like upper-lip shadow to some women's faces and
@@ -365,13 +429,14 @@ Results of this evaluation for the v2 LoRA are in *Current results* above.
 - **The fp16 CUDA training path is exercised on Colab, not in the local test suite** (the tiny-model
   integration test runs in fp32 on CPU).
 
-## Future work (remaining ~50 %)
+## Future work
 
-- **Milestone 3 (remaining)** — evaluate on more scenes/seeds (4 images cannot separate the modes); add action
-  vocabulary (e.g. "weeping over", "in a chariot") to the lexicon.
-- **Milestone 4** — OpenPose/Canny ControlNet conditioning for dignified, balanced poses; the full
-  multimodal evaluation framework; a Gradio dashboard (text + pose reference → image); a LoRA checkpoint
-  hub with per-checkpoint loss curves.
+- **Larger evaluations:** more scenes and seeds for Milestones 3 and 4 (4–6 images per experiment cannot separate
+  close variants), plus the filled-in human rubric.
+- **Higher resolution:** a "hires fix" (upscale 1.5×, then img2img at ~0.4 strength) gives sharper faces in
+  full-body scenes but needs more than 8 GB, so run it on Colab. SDXL is the bigger step.
+- **Ablations:** LoRA rank 8/16/32 (with alpha = rank) and checkpoint choice, compared on the same seeds.
+- **Prompt expansion:** add action vocabulary (e.g. "weeping over", "in a chariot") to the lexicon.
 - Fix the two v2 LoRA artifacts: name printed signatures/caption strips in the training captions (as was done
   for frames) or crop them, and inspect which training portraits drive the upper-lip shadow; then compare
   checkpoints with the filled-in human rubric.

@@ -45,6 +45,7 @@ class GenerationResult:
     metadata: dict
     image_path: Optional[Path] = None
     metadata_path: Optional[Path] = None
+    control_image: Optional[Image.Image] = None  # the pose/edge map ControlNet followed, if any
 
 
 LORA_WEIGHTS_NAME = "pytorch_lora_weights.safetensors"
@@ -116,7 +117,7 @@ class RaviVarmaGenerator:
             requested_model_cpu_offload=config.hardware.enable_model_cpu_offload,
         )
         self._pipeline = None
-        self._controlnet_pipeline = None
+        self._controlnet_pipelines: dict = {}
         self.lora_loaded = False
         self.lora_weights: Optional[Path] = None
         self._loaded = False
@@ -168,6 +169,12 @@ class RaviVarmaGenerator:
         pipe = StableDiffusionPipeline.from_pretrained(
             cfg.model.base_model, torch_dtype=dtype, safety_checker=None, requires_safety_checker=False
         )
+        if cfg.model.vae:
+            from diffusers import AutoencoderKL
+
+            # Same latent space as SD1.5's VAE, fine-tuned decoder: cleaner faces/eyes, no retraining needed.
+            pipe.vae = AutoencoderKL.from_pretrained(cfg.model.vae, torch_dtype=dtype)
+            logger.info("Using VAE %s", cfg.model.vae)
         pipe.scheduler = _resolve_scheduler(pipe, cfg.model.scheduler)
         if self.plan.model_cpu_offload:
             pipe.enable_model_cpu_offload()  # manages device placement itself; must not be combined with .to()
@@ -224,18 +231,28 @@ class RaviVarmaGenerator:
         model_id = CONTROLNET_MODEL_IDS[control_type]
         dtype = self._dtype()
         controlnet = ControlNetModel.from_pretrained(model_id, torch_dtype=dtype)
-        cn_pipe = StableDiffusionControlNetPipeline.from_pretrained(
-            self.config.model.base_model,
-            controlnet=controlnet,
-            torch_dtype=dtype,
-            safety_checker=None,
-        ).to(self.device_info.device)
-        cn_pipe.scheduler = self._pipeline.scheduler
-        if self.lora_loaded and self.lora_weights is not None:
-            cn_pipe.load_lora_weights(str(self.lora_weights.parent), weight_name=self.lora_weights.name)
-        if self.plan.attention_slicing:
-            cn_pipe.enable_attention_slicing()
+        if not self.plan.model_cpu_offload:
+            controlnet = controlnet.to(self.device_info.device)
+        # Reuse the loaded UNet/VAE/text encoder (LoRA already injected) instead of loading a
+        # second copy of SD1.5: halves memory, which is what lets this run on an 8 GB Mac.
+        components = {k: v for k, v in self._pipeline.components.items() if k != "controlnet"}
+        cn_pipe = StableDiffusionControlNetPipeline(**components, controlnet=controlnet)
+        if self.plan.model_cpu_offload:
+            cn_pipe.enable_model_cpu_offload()
         return cn_pipe
+
+    def set_lora(self, lora_path: "str | None") -> None:
+        """Switch to another LoRA checkpoint (e.g. checkpoint-500) without reloading SD1.5."""
+        self.load()
+        if self.lora_loaded:
+            self._pipeline.unload_lora_weights()
+            self.lora_loaded, self.lora_weights = False, None
+        self.config.model.lora_path = lora_path
+        weights = resolve_lora_weights(lora_path) if lora_path else None
+        if weights is not None:
+            self._pipeline.load_lora_weights(str(weights.parent), weight_name=weights.name)
+            self.lora_loaded, self.lora_weights = True, weights
+            logger.info("Switched LoRA to %s", weights)
 
     # ------------------------------------------------------------------ #
     def generate(
@@ -276,18 +293,23 @@ class RaviVarmaGenerator:
         cross_attention_kwargs = {"scale": lora_scale} if self.lora_loaded else None
 
         use_controlnet = control_image is not None and (control_type or cfg.controlnet.type)
+        conditioning = None
         if use_controlnet:
+            from PIL import ImageOps
+
             resolved_type = control_type or cfg.controlnet.type
+            # Crop the reference to the output aspect first, so the pose is not stretched.
+            reference = ImageOps.fit(control_image.convert("RGB"), (width, height), method=Image.LANCZOS)
             conditioning = make_conditioning_image(
-                control_image,
+                reference,
                 control_type=resolved_type,
                 canny_low_threshold=cfg.controlnet.canny_low_threshold,
                 canny_high_threshold=cfg.controlnet.canny_high_threshold,
-            )
-            if self._controlnet_pipeline is None:
-                self._controlnet_pipeline = self._load_controlnet_pipeline(resolved_type)
+            ).resize((width, height), Image.LANCZOS)
+            if resolved_type not in self._controlnet_pipelines:
+                self._controlnet_pipelines[resolved_type] = self._load_controlnet_pipeline(resolved_type)
             strength = controlnet_strength if controlnet_strength is not None else cfg.controlnet.strength
-            result = self._controlnet_pipeline(
+            result = self._controlnet_pipelines[resolved_type](
                 prompt=prompt,
                 negative_prompt=negative_prompt,
                 image=conditioning,
@@ -336,6 +358,7 @@ class RaviVarmaGenerator:
             "lora_weights": str(self.lora_weights) if self.lora_loaded else None,
             "base_model": cfg.model.base_model,
             "scheduler": cfg.model.scheduler,
+            "vae": cfg.model.vae,
             "controlnet_enabled": bool(use_controlnet),
             "controlnet_type": (control_type or cfg.controlnet.type) if use_controlnet else None,
             "controlnet_strength": controlnet_strength if use_controlnet else None,
@@ -350,8 +373,12 @@ class RaviVarmaGenerator:
         image_path = metadata_path = None
         if save:
             image_path, metadata_path = self._save(image, metadata, output_dir=output_dir, name_prefix=name_prefix)
+            if conditioning is not None:
+                conditioning.save(image_path.with_name(f"{image_path.stem}_control.png"))
 
-        return GenerationResult(image=image, metadata=metadata, image_path=image_path, metadata_path=metadata_path)
+        return GenerationResult(
+            image=image, metadata=metadata, image_path=image_path, metadata_path=metadata_path, control_image=conditioning
+        )
 
     def _save(
         self, image: Image.Image, metadata: dict, output_dir: "str | Path | None" = None, name_prefix: Optional[str] = None

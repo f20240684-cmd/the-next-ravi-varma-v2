@@ -308,3 +308,21 @@ def test_default_negative_prompt_fits_clip_window():
         pytest.skip("SD1.5 tokenizer not in local HF cache")
     neg = GenerationConfig.load(Path(__file__).resolve().parents[1] / "configs" / "generation.yaml").negative_prompt
     assert len(tok(neg).input_ids) <= 77
+
+
+def test_checkpoint_hub_lists_steps_with_mean_loss(tmp_path):
+    import sys
+
+    sys.path.insert(0, str(Path(__file__).resolve().parent.parent / "app"))
+    from components import list_checkpoints
+
+    (tmp_path / "loss_history.csv").write_text("step,loss,lr\n" + "".join(f"{s},{0.2 if s <= 250 else 0.1},1e-4\n" for s in range(1, 501)))
+    for step in (500, 250):
+        (tmp_path / f"checkpoint-{step}").mkdir()
+        (tmp_path / f"checkpoint-{step}" / "pytorch_lora_weights.safetensors").write_bytes(b"x")
+    (tmp_path / "checkpoint-junk").mkdir()
+    (tmp_path / "pytorch_lora_weights.safetensors").write_bytes(b"x")
+
+    options = list_checkpoints(tmp_path)
+    assert [label for label, _ in options] == ["step 250 · loss 0.200", "step 500 · loss 0.100", "final (step 500 · loss 0.100)"]
+    assert options[-1][1] == str(tmp_path)

@@ -1,9 +1,8 @@
-# Evaluating the style LoRA (Milestone 2 scope)
+# Evaluation protocol (Milestones 2–4)
 
 This is a deliberately **simple** evaluation: enough to tell whether a trained
 LoRA checkpoint is better than the base model and which checkpoint/strength to
-use. The fuller multimodal evaluation framework (ControlNet-aware metrics,
-larger human study) is Milestone 4 work.
+use. The ControlNet (pose) evaluation added at Milestone 4 is described at the end.
 
 ## Protocol
 
@@ -68,3 +67,28 @@ larger human study) is Milestone 4 work.
   copied fragments.
 - No metric here measures "authenticity". The outputs are Ravi Varma–*inspired*
   generations and must be presented as such.
+
+## Milestone 4: pose adherence with ControlNet
+
+`python scripts/eval_controlnet.py render --variant {lora,openpose,canny}` then `... report`.
+
+- **Pose references.** 6 of the 12 held-out paintings (0225, 0189, 0212, 0236, 0026, 0173): standing, seated,
+  reclining, a male portrait, two figures, and a mother with child. They were never seen in training.
+- **Rendering.** Each painting's own caption and seed 42, three ways: LoRA only, LoRA + OpenPose, LoRA + Canny.
+  The reference is cropped to the output size exactly as the generator crops it.
+- **Pose adherence (PCK, `evaluation/pose_score.py`).** OpenPose finds up to 18 body joints per person in the
+  reference and in the output. Each reference person is matched to the output person who best fits, and PCK is the
+  share of that reference person's visible joints within 0.1 (coordinates normalised to width and height). We
+  report the mean over reference people. A missing person scores 0.
+- **Style.** CLIP similarity to the held-out paintings **excluding the pose source**. Otherwise Canny, which traces
+  its source, would be rewarded for copying.
+- **Prompt adherence.** CLIP similarity to the caption, with the trigger removed.
+
+Results (`outputs/evaluations/m4_controlnet/summary.json`): PCK 0.17 (LoRA only) → **0.86** (OpenPose) / 0.86
+(Canny); style 0.704 / 0.692 / 0.714; prompt adherence 0.324 / 0.339 / 0.352.
+
+Limitations:
+- PCK uses OpenPose to judge OpenPose-guided images, so it can share the detector's blind spots.
+- It ignores hands and faces.
+- It needs people that OpenPose can detect in a *painting*.
+- With 6 images × 1 seed, treat differences under ~0.05 as noise.

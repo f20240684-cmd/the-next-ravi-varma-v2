@@ -9,6 +9,9 @@ model:
   # A final LoRA directory, a checkpoint-<step> directory, or a .safetensors file.
   lora_path: "checkpoints/lora/ravi_varma"
   scheduler: "dpmsolver_multistep"   # dpmsolver_multistep | euler_a | ddim | pndm
+  # Fine-tuned SD1.5 decoder (same latent space, no retraining): slightly cleaner faces and fine detail.
+  # Set to null to reproduce images made before 2026-10-14 (they used SD1.5's own VAE).
+  vae: "stabilityai/sd-vae-ft-mse"
 
 generation:
   steps: 30

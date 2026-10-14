@@ -155,3 +155,21 @@ class TestRunEvaluation:
 
         assert strip_trigger_tokens("<rvvarma>, royal portrait") == "royal portrait"
         assert strip_trigger_tokens("royal portrait") == "royal portrait"
+
+
+class TestPosePCK:
+    def test_identical_pose_scores_one_and_missing_person_zero(self):
+        from ravi_varma.evaluation.pose_score import pose_pck
+
+        person = [(0.5, 0.1), (0.5, 0.3), None] + [None] * 15
+        assert pose_pck([person], [person]) == 1.0
+        assert pose_pck([person], []) == 0.0
+        assert pose_pck([], [person]) is None
+
+    def test_partial_match_and_best_person_chosen(self):
+        from ravi_varma.evaluation.pose_score import pose_pck
+
+        ref = [(0.5, 0.1), (0.5, 0.3)] + [None] * 16
+        half = [(0.5, 0.12), (0.9, 0.9)] + [None] * 16  # one joint in place, one far off
+        far = [(0.0, 0.0), (0.0, 0.0)] + [None] * 16
+        assert pose_pck([ref], [far, half]) == 0.5

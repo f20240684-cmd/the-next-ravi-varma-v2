@@ -22,6 +22,8 @@ Tip: answer in one sentence first, then add the detail only if they ask.
 | Latent size | image ÷ 8 per side, 4 channels (448×640 → 56×80×4) |
 | CLIP token limit | **77** (captions capped at 70 + trigger) |
 | Evaluation | 5 prompts × 3 seeds = **15 pairs**; style sim. 0.669 → **0.681**; prompt adherence 0.328 → 0.317; frames 5/15 → **0/15** |
+| Milestone 3 | lexicon of **27** characters / **18** places; expansion fits **75** tokens; CLIP raw 0.326 / local 0.317 / LLM 0.320 (no measurable gain) |
+| Milestone 4 | OpenPose ControlNet: pose adherence (PCK) **0.17 → 0.86** on 6 held-out paintings; style 0.704 → 0.692 |
 
 ---
 
@@ -297,16 +299,47 @@ We record provenance, label outputs and do not claim authenticity.
 
 ---
 
-## 9. Future work
+## 9. Milestones 3 and 4
 
-**Q: What is Milestone 3?**
-An LLM turns a story description ("Yudhishthira weeping over Karna at Kurukshetra") into a detailed, attribute-rich
-prompt with the trigger word (characters, clothing, setting, lighting) that fits in 77 tokens.
+**Q: What does Milestone 3 do?**
+It turns a plain story sentence into a good diffusion prompt. A lexicon recognises characters and places (aliases
+too, e.g. "Partha" → Arjuna) and inserts their standard iconography, such as blue-skinned Krishna with a peacock
+feather. An optional LLM (any OpenAI-compatible API, e.g. Gemini) adds short setting and pose phrases. Parts are
+dropped in priority order so the prompt fits CLIP's 77 tokens, and the user's sentence is always kept verbatim.
 
-**Q: What is ControlNet and why add it?**
-ControlNet is an extra network that conditions Stable Diffusion on a structural input such as an OpenPose skeleton or
-Canny edges. It lets the user fix the pose and layout — addressing weak anatomy and giving Varma's balanced,
-theatrical staging.
+**Q: Did prompt expansion help?**
+Honestly, not measurably. CLIP similarity was 0.326 raw, 0.317 local and 0.320 LLM on 4 scenes, which is within
+noise. It clearly helps single iconic figures (Saraswati gets her veena, swan and white sari), but complex *actions*
+like "weeping over Karna" fail with or without it. That is a limit of SD1.5, and it is why Milestone 4 adds pose
+control.
+
+**Q: What is ControlNet?**
+A trainable copy of the UNet's encoder that reads a conditioning image (a pose skeleton or an edge map). Its
+outputs are added to the frozen UNet through zero-initialised convolutions. We used pre-trained SD1.5 ControlNets;
+our LoRA and ControlNet act on the same UNet, so the LoRA sets the style and ControlNet sets the layout.
+
+**Q: OpenPose vs Canny?**
+OpenPose keeps only the body pose (18 joints per person); clothing, background and faces stay free. Canny keeps every
+outline, so the result nearly traces the reference. For "pose transfer", OpenPose is the right one.
+
+**Q: How did you evaluate ControlNet?**
+We used 6 held-out paintings as pose references and rendered each 3 ways with the same caption and seed. We ran
+OpenPose on the reference and on the output, and measured PCK: the share of reference joints within 0.1 of the image
+size in the output. PCK went from 0.17 (LoRA only) to 0.86 with OpenPose. Style similarity, measured excluding the
+source painting, barely moved (0.704 → 0.692). The LoRA alone turned three women into one; OpenPose kept all three.
+
+**Q: How does it run on an 8 GB Mac?**
+ControlNet reuses the already-loaded UNet, VAE and text encoder instead of loading Stable Diffusion twice, and runs
+in fp16 without attention slicing. One image takes about 1.5–2 minutes.
+
+**Q: What is in the web panel?**
+A Gradio app with these tabs:
+- **Generate:** scene text, style strength, seed, an optional pose image, and the LoRA checkpoint.
+- **Checkpoint Hub:** every checkpoint from step 250 to 1500 with its loss, plus the loss curve.
+- **Evaluation:** CLIP scores for an image.
+- **About.**
+
+## 10. Future work
 
 **Q: What would you do with more time or compute?**
 Larger and cleaner dataset (high-resolution museum scans), SDXL at 1024 px, human evaluation with several raters,

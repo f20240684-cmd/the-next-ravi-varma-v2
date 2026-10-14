@@ -196,6 +196,7 @@ class GenerationModelConfig(BaseModel):
     base_model: str = "stable-diffusion-v1-5/stable-diffusion-v1-5"
     model_family: Literal["sd15", "sdxl"] = "sd15"
     lora_path: Optional[str] = "checkpoints/lora/ravi_varma"
+    vae: Optional[str] = None  # optional replacement decoder, e.g. "stabilityai/sd-vae-ft-mse"
     scheduler: Literal["dpmsolver_multistep", "euler_a", "ddim", "pndm"] = "dpmsolver_multistep"
 
 

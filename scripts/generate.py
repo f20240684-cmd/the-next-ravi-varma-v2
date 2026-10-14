@@ -11,6 +11,9 @@ Base-model baseline for comparison (same prompts/seeds, LoRA disabled):
     python scripts/generate.py --prompt-file configs/prompts/sample_prompts.yaml --seeds 42 --no-lora \\
         --output-dir outputs/generated/baseline
 
+Follow the pose of a reference image (Milestone 4, ControlNet):
+    python scripts/generate.py --prompt "..." --pose-image data/reference/0225.jpg --controlnet-type openpose
+
 Use a specific training checkpoint (checkpoint selection):
     python scripts/generate.py --prompt "..." --lora-path checkpoints/lora/ravi_varma/checkpoint-1000
 
@@ -78,9 +81,9 @@ def main() -> int:
         help="Milestone 3: expand a plain scene description (characters, setting, style) to fit CLIP's 77 tokens.",
     )
     parser.add_argument("--dry-run", action="store_true", help="Print the final prompt(s) and exit without loading the model.")
-    parser.add_argument("--pose-image", default=None, help="[Milestone 4 preview, untested] reference image for ControlNet.")
-    parser.add_argument("--controlnet-type", choices=["openpose", "canny"], default=None, help=argparse.SUPPRESS)
-    parser.add_argument("--controlnet-strength", type=float, default=None, help=argparse.SUPPRESS)
+    parser.add_argument("--pose-image", default=None, help="Milestone 4: reference image whose pose (or edges) ControlNet follows.")
+    parser.add_argument("--controlnet-type", choices=["openpose", "canny"], default=None, help="openpose = copy the pose only (default from config); canny = copy the outlines.")
+    parser.add_argument("--controlnet-strength", type=float, default=None, help="How strictly to follow the reference (config default 0.8).")
     args = parser.parse_args()
 
     logger = setup_logging("generate")

@@ -11,6 +11,7 @@ The actual ControlNet-conditioned diffusion pass lives in
 """
 from __future__ import annotations
 
+from functools import lru_cache
 from typing import Literal
 
 import cv2
@@ -60,6 +61,11 @@ class OpenPoseDetector:
         return self._detector(image)
 
 
+@lru_cache(maxsize=1)
+def _openpose_detector() -> OpenPoseDetector:
+    return OpenPoseDetector()  # loads ~200 MB of weights; once per process
+
+
 def make_conditioning_image(
     image: Image.Image,
     control_type: ControlType = "canny",
@@ -73,7 +79,7 @@ def make_conditioning_image(
         return make_canny_conditioning(image, canny_low_threshold, canny_high_threshold)
 
     if control_type == "openpose":
-        detector = OpenPoseDetector()
+        detector = _openpose_detector()
         if detector.available:
             return detector.detect(image)
         logger.warning("Falling back to Canny conditioning because OpenPose is unavailable.")

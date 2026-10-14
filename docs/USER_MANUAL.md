@@ -24,6 +24,7 @@ Companion document for presentations: [VIVA_GUIDE.md](VIVA_GUIDE.md) (likely exa
   11. [Fine-tuning and LoRA](#a11-fine-tuning-and-lora)
   12. [Training mechanics: AdamW, warm-up, mixed precision, accumulation, checkpointing](#a12-training-mechanics)
   13. [Vision-language models: BLIP and VQA](#a13-vision-language-models-blip-and-vqa)
+  14. [ControlNet: steering the layout with an image](#a14-controlnet-steering-the-layout-with-an-image)
 - **Part B — Our project, stage by stage**
   1. [The big picture](#b1-the-big-picture)
   2. [Repository map](#b2-repository-map)
@@ -34,6 +35,8 @@ Companion document for presentations: [VIVA_GUIDE.md](VIVA_GUIDE.md) (likely exa
   7. [Stage 5 — LoRA training](#b7-stage-5--lora-training)
   8. [Stage 6 — Generation](#b8-stage-6--generation)
   9. [Stage 7 — Evaluation](#b9-stage-7--evaluation)
+  10. [Milestone 3 — Prompt expansion](#b10-milestone-3--prompt-expansion)
+  11. [Milestone 4 — ControlNet, evaluation and the web panel](#b11-milestone-4--controlnet-evaluation-and-the-web-panel)
 - **Part C — Running it** ([local](#c1-local-mac--cpu) · [Colab](#c2-gpu-training-on-google-colab) · [tests](#c3-tests))
 - **Part D — Results and how to read them**
 - **Part E — Troubleshooting**
@@ -345,6 +348,31 @@ frozen; the adapter learns how the U-Net should respond to those tokens.
 VLMs make mistakes ("tie", "phone" in a 19th-century painting), so we gate, filter and store all
 answers (B5).
 
+## A14. ControlNet: steering the layout with an image
+
+A text prompt says *what* to draw but is a weak way to say *where*: "a woman holding a plate, right arm
+raised" is often ignored. **ControlNet** (Zhang et al., 2023) adds a second input — a **conditioning
+image** such as a stick-figure pose or an edge map — that fixes the composition.
+
+How it works:
+- ControlNet is a **trainable copy of the UNet's encoder half**. It reads the noisy latent *and* the
+  conditioning image, and its outputs are **added** to the frozen UNet's skip connections.
+- Those additions pass through **zero-initialised 1×1 convolutions**, so at the start of ControlNet's own
+  training it changes nothing (the same trick as LoRA's B = 0).
+- At generation time `controlnet_conditioning_scale` (our "strength", 0.8) multiplies the additions:
+  0 = ignore the pose, 1 = follow it as trained, > 1 = follow it rigidly.
+
+We use two pre-trained ControlNets for SD1.5 (we did **not** train them):
+
+| Type | Conditioning image | Keeps | Leaves free |
+|---|---|---|---|
+| **OpenPose** (`control_v11p_sd15_openpose`) | 18-joint skeleton found by the OpenPose network | body pose, number and place of people | clothing, faces, background, colours |
+| **Canny** (`control_v11p_sd15_canny`) | edge map from the Canny edge detector (OpenCV) | all outlines (pose *and* layout, folds, furniture) | colours and textures only |
+
+Because ControlNet plugs into the same UNet our LoRA modifies, the two combine: the LoRA decides
+*how it looks* (Varma's style), ControlNet decides *where things are*. **OpenPose** is the right tool for
+Milestone 4 — it transfers a pose without copying the reference picture; Canny nearly traces the reference.
+
 ---
 
 # Part B — Our project, stage by stage
@@ -549,6 +577,58 @@ It also writes contact sheets and `qualitative_review.csv` — a sheet for **hum
 visual quality, anatomy, style and prompt adherence, because CLIP cannot judge hands, faces or
 painting technique. Limitations are explained in [EVALUATION.md](EVALUATION.md).
 
+## B10. Milestone 3 — Prompt expansion
+
+`python scripts/generate.py --prompt "Krishna guiding Arjuna in his chariot" --expand` (add `--dry-run` to only
+print the prompt). The engine (`generation/prompt_engine.py`) works in four steps:
+
+1. **Parse.** It finds characters (by name or alias, whole-word, case-insensitive) and the first matching place in
+   `configs/epic_lexicon.yaml`: 27 characters and 18 places, editable without code changes.
+2. **Expand.** It adds each character's standard look, the setting, and short clothing, lighting, composition and
+   style cues.
+3. **LLM mode (optional).** Set `PROMPT_EXPANSION_PROVIDER=openai` in `.env`, with any OpenAI-compatible API via
+   `OPENAI_BASE_URL`, e.g. Google Gemini's free tier. The lexicon looks are still inserted deterministically and
+   given to the LLM as context, and the LLM only adds short phrases. If the LLM changes the user's story, fails or
+   runs out of quota, the engine falls back to local mode.
+4. **Fit 77 tokens.** Parts are kept in priority order: trigger, the user's sentence (verbatim), character looks,
+   setting, clothing, pose, lighting, composition, style. Parts are dropped from the end until the prompt fits.
+
+Results: [README → Milestone 3](../README.md#milestone-3--prompt-expansion). Expansion helps iconic single
+figures, but no prompt makes SD1.5 draw complex actions reliably.
+
+## B11. Milestone 4 — ControlNet, evaluation and the web panel
+
+**Pose control** ([A14](#a14-controlnet-steering-the-layout-with-an-image)):
+
+```bash
+python scripts/generate.py --prompt "<rvvarma>, ..." --width 448 --height 640 \
+    --pose-image path/to/reference.jpg --controlnet-type openpose --controlnet-strength 0.8
+```
+
+What happens inside `pipeline.py`:
+1. The reference is cropped to the output's aspect ratio.
+2. `controlnet.py` turns it into a pose map (OpenPose network) or an edge map (OpenCV Canny).
+3. A `StableDiffusionControlNetPipeline` is built from the **already loaded** UNet (LoRA included), VAE and text
+   encoder, plus the ControlNet. This avoids loading SD1.5 twice, which an 8 GB Mac cannot afford.
+4. The image and its `*_control.png` map are saved; the metadata records the type and strength.
+
+**Evaluation** (`scripts/eval_controlnet.py`, details in [EVALUATION.md](EVALUATION.md)):
+- 6 held-out paintings as pose references, each rendered three ways: LoRA only, + OpenPose, + Canny.
+- **Pose adherence (PCK):** OpenPose on the reference and on the output; the share of reference joints found
+  within 0.1 of the image size in the output.
+- **Result:** 0.17 → 0.86 with OpenPose, with almost no style cost (0.704 → 0.692).
+
+**Web panel:** `python app/app.py`, then open http://127.0.0.1:7860.
+- **Generate:** scene text (expanded automatically), style strength, seed, size, an optional pose image with its
+  type and strength, and the **LoRA checkpoint** selector.
+- **Checkpoint Hub:** all checkpoints with their mean training loss, plus the loss curve and the validation
+  progression image.
+- **Evaluation:** CLIP prompt and style scores for any image.
+- **About.**
+
+**Better VAE:** `model.vae: stabilityai/sd-vae-ft-mse` in `configs/generation.yaml` swaps in a fine-tuned decoder
+(same latent space, so the LoRA is unaffected) for slightly cleaner faces.
+
 ---
 
 # Part C — Running it
@@ -579,7 +659,7 @@ With trained weights in `checkpoints/lora/ravi_varma/`, generation also works lo
 
 ## C3. Tests
 
-`pytest -v` — 101 tests (99 run; 2 only run on machines without CLIP). They cover validation and
+`pytest -v` — 110 tests (108 run; 2 only run on machines without CLIP). They cover validation and
 curation, captions, buckets, title cleaning, generation settings, evaluation and a **real training run
 on a 1 MB test model** (checks freezing, checkpointing, resume and that the exported LoRA loads).
 
@@ -612,6 +692,8 @@ on a 1 MB test model** (checks freezing, checkpointing, resume and that the expo
 | torchao import error | Colab torchao/torch mismatch | the notebook's step 3 pins or removes torchao |
 | `lora_loaded: false` in outputs | weights not in `checkpoints/lora/ravi_varma/` | unzip the Colab results or pass `--lora-path` |
 | `git push` 403 | saved token only covers the old repo | `gh auth login` then `gh auth setup-git` |
+| Web panel: `TypeError: unhashable type: 'dict'` | starlette 1.x is too new for Gradio 4.44 | `pip install fastapi==0.115.0` (pinned in requirements) |
+| First ControlNet run is slow | one-time download (~1.4 GB per ControlNet + 200 MB pose detector) | wait once; later runs take ~1.5–2 min |
 | Captions contain "unknown (no VLM…)" | BLIP failed to load | the captioner now stops instead; check internet / disk space |
 
 ---

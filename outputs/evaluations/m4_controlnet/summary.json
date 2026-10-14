@@ -1,0 +1,144 @@
+{
+  "seed": 42,
+  "pose_pck_threshold": 0.1,
+  "notes": "pose_pck: share of reference body joints within 0.1 (normalised) of the generated pose; style_ref_mean excludes the painting used as the pose reference.",
+  "mean": {
+    "lora": {
+      "pose_pck": 0.173,
+      "style_ref_mean": 0.704,
+      "prompt_adherence": 0.324
+    },
+    "openpose": {
+      "pose_pck": 0.864,
+      "style_ref_mean": 0.692,
+      "prompt_adherence": 0.339
+    },
+    "canny": {
+      "pose_pck": 0.864,
+      "style_ref_mean": 0.714,
+      "prompt_adherence": 0.352
+    }
+  },
+  "per_reference": [
+    {
+      "reference": "data/reference/0225.jpg",
+      "title": "Lady Going for Pooja",
+      "people_in_reference": 1,
+      "lora": {
+        "pose_pck": 0.167,
+        "style_ref_mean": 0.7098,
+        "prompt_adherence": 0.366
+      },
+      "openpose": {
+        "pose_pck": 0.944,
+        "style_ref_mean": 0.7102,
+        "prompt_adherence": 0.3725
+      },
+      "canny": {
+        "pose_pck": 0.833,
+        "style_ref_mean": 0.7232,
+        "prompt_adherence": 0.3938
+      }
+    },
+    {
+      "reference": "data/reference/0189.jpg",
+      "title": "Malabar Lady",
+      "people_in_reference": 1,
+      "lora": {
+        "pose_pck": 0.056,
+        "style_ref_mean": 0.7111,
+        "prompt_adherence": 0.3559
+      },
+      "openpose": {
+        "pose_pck": 0.778,
+        "style_ref_mean": 0.7291,
+        "prompt_adherence": 0.3242
+      },
+      "canny": {
+        "pose_pck": 0.889,
+        "style_ref_mean": 0.7069,
+        "prompt_adherence": 0.3671
+      }
+    },
+    {
+      "reference": "data/reference/0212.jpg",
+      "title": "Nobleman from Central India",
+      "people_in_reference": 1,
+      "lora": {
+        "pose_pck": 0.462,
+        "style_ref_mean": 0.7021,
+        "prompt_adherence": 0.3053
+      },
+      "openpose": {
+        "pose_pck": 0.923,
+        "style_ref_mean": 0.6383,
+        "prompt_adherence": 0.3654
+      },
+      "canny": {
+        "pose_pck": 0.923,
+        "style_ref_mean": 0.7026,
+        "prompt_adherence": 0.3878
+      }
+    },
+    {
+      "reference": "data/reference/0236.jpg",
+      "title": "Shakuntala writing a love letter on a lotus leaf",
+      "people_in_reference": 3,
+      "lora": {
+        "pose_pck": 0.04,
+        "style_ref_mean": 0.7169,
+        "prompt_adherence": 0.3025
+      },
+      "openpose": {
+        "pose_pck": 0.898,
+        "style_ref_mean": 0.68,
+        "prompt_adherence": 0.3277
+      },
+      "canny": {
+        "pose_pck": 0.95,
+        "style_ref_mean": 0.7132,
+        "prompt_adherence": 0.328
+      }
+    },
+    {
+      "reference": "data/reference/0026.jpg",
+      "title": "Ladies in the Moonlight",
+      "people_in_reference": 3,
+      "lora": {
+        "pose_pck": 0.31,
+        "style_ref_mean": 0.7214,
+        "prompt_adherence": 0.3186
+      },
+      "openpose": {
+        "pose_pck": 0.73,
+        "style_ref_mean": 0.7146,
+        "prompt_adherence": 0.3343
+      },
+      "canny": {
+        "pose_pck": 0.626,
+        "style_ref_mean": 0.7313,
+        "prompt_adherence": 0.3301
+      }
+    },
+    {
+      "reference": "data/reference/0173.jpg",
+      "title": "Yasoda Adorning Krishna",
+      "people_in_reference": 2,
+      "lora": {
+        "pose_pck": 0.0,
+        "style_ref_mean": 0.6625,
+        "prompt_adherence": 0.2928
+      },
+      "openpose": {
+        "pose_pck": 0.909,
+        "style_ref_mean": 0.6809,
+        "prompt_adherence": 0.3123
+      },
+      "canny": {
+        "pose_pck": 0.964,
+        "style_ref_mean": 0.7074,
+        "prompt_adherence": 0.3072
+      }
+    }
+  ]
+}

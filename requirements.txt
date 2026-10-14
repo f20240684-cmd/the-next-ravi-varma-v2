@@ -31,6 +31,7 @@ controlnet-aux==0.0.9
 
 # Web dashboard
 gradio==4.44.0
+fastapi==0.115.0   # gradio 4.44 breaks with starlette 1.x (TemplateResponse signature); 0.115 pulls starlette 0.38
 
 # Config / utils
 requests==2.32.3
