@@ -310,6 +310,9 @@ def get_image_info(
         "titles": "|".join(titles),
         "prop": "imageinfo",
         "iiprop": "url|extmetadata|size",
+        # A 2048-px rendition is plenty for 448-640 px training and avoids 100 MB+
+        # TIFF originals; width/height below still report the ORIGINAL size.
+        "iiurlwidth": 2048,
         "format": "json",
     }
 
@@ -342,7 +345,7 @@ def get_image_info(
 
         imageinfo = imageinfo_list[0]
 
-        url = imageinfo.get("url")
+        url = imageinfo.get("thumburl") or imageinfo.get("url")
 
         if not url:
             continue
@@ -467,11 +470,20 @@ def download_from_metadata(session: requests.Session, metadata_path: Path, raw_d
     """Re-download every image listed in metadata.jsonl that is missing from
     raw_dir, using the recorded Commons file title and saving it under the
     recorded `image` name. Returns the number of files still missing."""
-    records = [r for r in load_metadata(metadata_path) if r.get("commons_file")]
-    missing = [r for r in records if not (raw_dir / r["image"]).exists()]
-    logger.info("%d records in %s, %d images missing locally.", len(records), metadata_path, len(missing))
-
+    all_records = load_metadata(metadata_path)
     failed = 0
+    # Non-Commons records (e.g. Wellcome Collection) carry a direct `download_url`.
+    for record in all_records:
+        if record.get("download_url") and not (raw_dir / record["image"]).exists():
+            logger.info("Downloading %s -> %s", record["download_url"], raw_dir / record["image"])
+            if not download_image(session=session, url=record["download_url"], destination=raw_dir / record["image"], logger=logger):
+                failed += 1
+            time.sleep(1)
+
+    records = [r for r in all_records if r.get("commons_file")]
+    missing = [r for r in records if not (raw_dir / r["image"]).exists()]
+    logger.info("%d Commons records in %s, %d images missing locally.", len(records), metadata_path, len(missing))
+
     for start in range(0, len(missing), 20):
         batch = missing[start:start + 20]
         infos = {i["title"]: i for i in get_image_info(session, [r["commons_file"] for r in batch], logger)}
@@ -488,6 +500,72 @@ def download_from_metadata(session: requests.Session, metadata_path: Path, raw_d
             time.sleep(2)  # stay well under Wikimedia's rate limits
         time.sleep(1)
     return failed
+
+
+WELLCOME_API = "https://api.wellcomecollection.org/catalogue/v2/images"
+WELLCOME_LICENSES = {"pdm": "Public Domain Mark", "cc-0": "CC0", "cc-by": "CC BY 4.0"}
+
+
+def next_free_index(raw_dir: Path) -> int:
+    # Names are not contiguous (0000-0239 for 200 files): continue after the highest number.
+    numbers = [int(p.stem) for p in raw_dir.iterdir() if p.is_file() and p.stem.isdigit()]
+    return max(numbers) + 1 if numbers else 0
+
+
+def download_wellcome(session: requests.Session, metadata_path: Path, raw_dir: Path, limit: int, min_side: int, logger) -> int:
+    """Ravi Varma chromolithographs from the Wellcome Collection (open IIIF API).
+    Keeps only open licences and works attributed to Varma; skips scans that are
+    already in the dataset via Wikimedia Commons ("... Wellcome V0045115.jpg").
+    Every record is tagged medium=chromolithograph so prints can be excluded later."""
+    known_text = " ".join(str(r.get("commons_file", "")) + " " + str(r.get("source", "")) for r in load_metadata(metadata_path)) if metadata_path.exists() else ""
+    results, page = [], 1
+    while True:
+        r = session.get(WELLCOME_API, params={"query": "Ravi Varma", "pageSize": 100, "page": page}, timeout=60)
+        r.raise_for_status()
+        data = r.json()
+        results += data.get("results", [])
+        if page >= data.get("totalPages", 1):
+            break
+        page += 1
+    index, downloaded = next_free_index(raw_dir), 0
+    with metadata_path.open("a", encoding="utf-8") as meta_f:
+        for item in results:
+            if downloaded >= limit:
+                break
+            loc = (item.get("locations") or [{}])[0]
+            lic = loc.get("license", {}).get("id")
+            title = item.get("source", {}).get("title", "")
+            image_id = loc.get("url", "").rstrip("/").split("/")[-2] if loc.get("url") else None
+            if lic not in WELLCOME_LICENSES or "varma" not in title.lower() or not image_id:
+                continue
+            if image_id in known_text:
+                logger.info("Skipping %s: already in the dataset (%s)", image_id, title[:60])
+                continue
+            info = session.get(loc["url"], timeout=60).json()
+            width, height = info.get("width"), info.get("height")
+            if min_side and min(width or 0, height or 0) < min_side:
+                logger.info("Skipping %s: %sx%s is below --min-side %d", image_id, width, height, min_side)
+                continue
+            url = loc["url"].replace("info.json", "full/!2048,2048/0/default.jpg")
+            filename = f"{index:04d}.jpg"
+            if not download_image(session=session, url=url, destination=raw_dir / filename, logger=logger):
+                continue
+            work = item.get("source", {}).get("id")
+            record = {
+                "image": filename, "caption": None, "artist": "Raja Ravi Varma",
+                "title": clean_title(title.split(". Chromolithograph")[0]), "license": WELLCOME_LICENSES[lic],
+                "source": f"Wellcome Collection (https://wellcomecollection.org/works/{work}, image {image_id}), license: {WELLCOME_LICENSES[lic]}",
+                "download_url": url, "medium": "chromolithograph", "year": extract_year(title),
+                "source_width": width, "source_height": height,
+            }
+            meta_f.write(json.dumps(record, ensure_ascii=False) + "\n")
+            meta_f.flush()
+            logger.info("Downloaded %s -> %s (%s)", title[:70], filename, WELLCOME_LICENSES[lic])
+            index += 1
+            downloaded += 1
+            time.sleep(1)
+    logger.info("Downloaded %d Wellcome images -> %s", downloaded, raw_dir)
+    return downloaded
 
 
 def main() -> int:
@@ -519,6 +597,20 @@ def main() -> int:
         "--category",
         default=ROOT_CATEGORY,
         help="Root Wikimedia category.",
+    )
+
+    parser.add_argument(
+        "--source",
+        choices=["commons", "wellcome"],
+        default="commons",
+        help="commons = Wikimedia Commons category tree; wellcome = Wellcome Collection chromolithographs.",
+    )
+
+    parser.add_argument(
+        "--min-side",
+        type=int,
+        default=0,
+        help="Skip files whose ORIGINAL shorter side is below this many pixels (e.g. 800).",
     )
 
     parser.add_argument(
@@ -565,6 +657,11 @@ def main() -> int:
         logger.info("Next: python scripts/validate_dataset.py")
         return 0
 
+    if args.source == "wellcome":
+        download_wellcome(session, metadata_path, raw_dir, args.limit, args.min_side, logger)
+        logger.info("Next: python scripts/validate_dataset.py")
+        return 0
+
     # ---------------------------------------------------------
     # STEP 1
     # Find paintings recursively
@@ -574,12 +671,17 @@ def main() -> int:
         "Searching Wikimedia Commons recursively..."
     )
 
+    # Files already in the metadata are skipped, so a second run adds NEW paintings
+    # instead of re-downloading the first ones the category walk returns.
+    known = {r.get("commons_file") for r in load_metadata(metadata_path)} if metadata_path.exists() else set()
     file_titles = collect_paintings(
         session=session,
         root_category=args.category,
-        limit=args.limit,
+        limit=100_000,  # whole category tree; filtered below
         logger=logger,
     )
+    file_titles = [t for t in file_titles if t not in known]
+    logger.info("%d candidates are not in %s yet.", len(file_titles), metadata_path)
 
     if not file_titles:
 
@@ -641,16 +743,7 @@ def main() -> int:
 
     downloaded = 0
 
-    # Start numbering based on existing images.
-    existing_images = [
-        p
-        for p in raw_dir.iterdir()
-        if p.is_file()
-        and p.suffix.lower()
-        in ALLOWED_EXTENSIONS
-    ]
-
-    next_index = len(existing_images)
+    next_index = next_free_index(raw_dir)
 
     # Open metadata in append mode.
     with metadata_path.open(
@@ -662,6 +755,10 @@ def main() -> int:
 
             if downloaded >= args.limit:
                 break
+
+            if args.min_side and min(info.get("width") or 0, info.get("height") or 0) < args.min_side:
+                logger.info("Skipping %s: %sx%s is below --min-side %d", info["title"], info.get("width"), info.get("height"), args.min_side)
+                continue
 
             url = info["url"]
 

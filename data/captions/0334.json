@@ -1,0 +1,36 @@
+{
+  "image": "0334.jpg",
+  "subject": "a man holding a baby in his lap",
+  "composition": "group of four figures, vertical format",
+  "pose": "sitting, holding baby",
+  "clothing": "wearing red robe",
+  "jewelry": "necklace jewelry",
+  "expression": "smiling expression",
+  "objects": "holding baby",
+  "environment": "unknown",
+  "lighting": "dark low-key tones",
+  "visual_characteristics": "warm red and ochre palette",
+  "raw_caption": "a man holding a baby in his lap",
+  "title": "Krishna as an infant sitting on Yasoda's lap with a female attendant",
+  "source": "vlm",
+  "qa": {
+    "people_count": "4",
+    "clothing": "red robe",
+    "clothing_color": "red",
+    "has_jewelry": "yes",
+    "jewelry": "necklace",
+    "pose": "sitting",
+    "action": "holding baby",
+    "expression": "smiling",
+    "has_object": "yes",
+    "objects": "baby",
+    "environment": "in painting",
+    "time": "day"
+  },
+  "measured": {
+    "lighting": "dark low-key tones",
+    "palette": "warm red and ochre palette",
+    "orientation": "vertical format"
+  },
+  "flat_caption": "Krishna as an infant sitting on Yasoda's lap with a female attendant, a man holding a baby in his lap, chromolithograph print with printed title text in the bottom margin, wearing red robe, necklace jewelry, sitting, holding baby, smiling expression, holding baby, group of four figures, vertical format, dark low-key tones"
+}

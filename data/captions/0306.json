@@ -1,0 +1,35 @@
+{
+  "image": "0306.jpg",
+  "subject": "a woman in a pink dress by a pond",
+  "composition": "single-figure composition, vertical format",
+  "pose": "standing",
+  "clothing": "wearing pink dress",
+  "jewelry": "necklace jewelry",
+  "expression": "calm expression",
+  "objects": "unknown",
+  "environment": "in park",
+  "lighting": "dark low-key tones",
+  "visual_characteristics": "warm red and ochre palette",
+  "raw_caption": "a woman in a pink dress by a pond",
+  "title": "Semi-clothed woman by a river bank called Varini",
+  "source": "vlm",
+  "qa": {
+    "people_count": "one",
+    "clothing": "dress",
+    "clothing_color": "pink",
+    "has_jewelry": "yes",
+    "jewelry": "necklace",
+    "pose": "standing",
+    "action": "standing",
+    "expression": "calm",
+    "has_object": "no",
+    "environment": "in park",
+    "time": "day"
+  },
+  "measured": {
+    "lighting": "dark low-key tones",
+    "palette": "warm red and ochre palette",
+    "orientation": "vertical format"
+  },
+  "flat_caption": "Semi-clothed woman by a river bank called Varini, a woman in a pink dress by a pond, chromolithograph print with printed title text in the bottom margin, wearing pink dress, necklace jewelry, standing, calm expression, in park, single-figure composition, vertical format, dark low-key tones"
+}

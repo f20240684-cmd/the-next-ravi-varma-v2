@@ -20,6 +20,8 @@ Record schema (all fields except `image` optional):
     source_width,  pixel size of the original file on Commons. Validation
     source_height  checks min_resolution against this, so a local copy that
                    was upscaled cannot hide a low-resolution original.
+    download_url   direct image URL for non-Commons sources (Wellcome Collection IIIF)
+    medium         set for prints ("chromolithograph") so they can be excluded from training
 """
 from __future__ import annotations
 
@@ -33,6 +35,7 @@ from typing import Iterable, Optional
 
 FIELD_ORDER = [
     "image", "caption", "artist", "title", "commons_file", "license", "source", "year", "source_width", "source_height",
+    "download_url", "medium",
 ]
 
 # Fragments that describe the *file* rather than the artwork.

@@ -1,0 +1,36 @@
+{
+  "image": "0313.jpg",
+  "subject": "a man and two women standing next to a body of water",
+  "composition": "group of three figures, vertical format",
+  "pose": "standing",
+  "clothing": "wearing red sari",
+  "jewelry": "necklace jewelry",
+  "expression": "smiling expression",
+  "objects": "holding sword",
+  "environment": "in india",
+  "lighting": "mid-tone lighting",
+  "visual_characteristics": "warm red and ochre palette",
+  "raw_caption": "a man and two women standing next to a body of water",
+  "title": "Krishna declaring his love for Radha via a confidante",
+  "source": "vlm",
+  "qa": {
+    "people_count": "3",
+    "clothing": "red sari",
+    "clothing_color": "red",
+    "has_jewelry": "yes",
+    "jewelry": "necklace",
+    "pose": "standing",
+    "action": "sitting",
+    "expression": "smiling",
+    "has_object": "yes",
+    "objects": "sword",
+    "environment": "india",
+    "time": "day"
+  },
+  "measured": {
+    "lighting": "mid-tone lighting",
+    "palette": "warm red and ochre palette",
+    "orientation": "vertical format"
+  },
+  "flat_caption": "Krishna declaring his love for Radha via a confidante, a man and two women standing next to a body of water, chromolithograph print with printed title text in the bottom margin, wearing red sari, necklace jewelry, standing, smiling expression, holding sword, in india, group of three figures, vertical format, mid-tone lighting"
+}

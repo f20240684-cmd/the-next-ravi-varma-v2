@@ -1,0 +1,36 @@
+{
+  "image": "0277.jpg",
+  "subject": "a woman in a red sari holding a flower",
+  "composition": "single-figure composition, vertical format",
+  "pose": "standing, holding flowers",
+  "clothing": "wearing red dress",
+  "jewelry": "bracelets jewelry",
+  "expression": "calm expression",
+  "objects": "holding flowers",
+  "environment": "in water",
+  "lighting": "mid-tone lighting",
+  "visual_characteristics": "warm red and ochre palette",
+  "raw_caption": "a woman in a red sari holding a flower",
+  "title": "Goddess Lakshmi",
+  "source": "vlm",
+  "qa": {
+    "people_count": "one",
+    "clothing": "red dress",
+    "clothing_color": "red",
+    "has_jewelry": "yes",
+    "jewelry": "bracelets",
+    "pose": "standing",
+    "action": "holding flowers",
+    "expression": "calm",
+    "has_object": "yes",
+    "objects": "flowers",
+    "environment": "in water",
+    "time": "day"
+  },
+  "measured": {
+    "lighting": "mid-tone lighting",
+    "palette": "warm red and ochre palette",
+    "orientation": "vertical format"
+  },
+  "flat_caption": "Goddess Lakshmi, a woman in a red sari holding a flower, wearing red dress, bracelets jewelry, standing, holding flowers, calm expression, holding flowers, in water, single-figure composition, vertical format, mid-tone lighting, warm red and ochre palette"
+}

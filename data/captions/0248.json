@@ -1,0 +1,35 @@
+{
+  "image": "0248.jpg",
+  "subject": "a woman laying on the floor next to a man",
+  "composition": "group of two figures, vertical format",
+  "pose": "laying, falling",
+  "clothing": "wearing red dress",
+  "jewelry": "necklace jewelry",
+  "expression": "calm expression",
+  "objects": "unknown",
+  "environment": "unknown",
+  "lighting": "mid-tone lighting",
+  "visual_characteristics": "warm red and ochre palette",
+  "raw_caption": "a woman laying on the floor next to a man",
+  "title": "Kaikeyi vilap",
+  "source": "vlm",
+  "qa": {
+    "people_count": "two",
+    "clothing": "dress",
+    "clothing_color": "red",
+    "has_jewelry": "yes",
+    "jewelry": "necklace",
+    "pose": "laying",
+    "action": "falling",
+    "expression": "calm",
+    "has_object": "no",
+    "environment": "in museum",
+    "time": "day"
+  },
+  "measured": {
+    "lighting": "mid-tone lighting",
+    "palette": "warm red and ochre palette",
+    "orientation": "vertical format"
+  },
+  "flat_caption": "Kaikeyi vilap, a woman laying on the floor next to a man, wearing red dress, necklace jewelry, laying, falling, calm expression, group of two figures, vertical format, mid-tone lighting, warm red and ochre palette"
+}

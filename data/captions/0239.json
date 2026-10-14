@@ -1,0 +1,36 @@
+{
+  "image": "0239.jpg",
+  "subject": "a woman holding a plate of fruit",
+  "composition": "single-figure composition, vertical format",
+  "pose": "standing, holding tray",
+  "clothing": "wearing red dress",
+  "jewelry": "earrings jewelry",
+  "expression": "surprised expression",
+  "objects": "holding tray",
+  "environment": "unknown",
+  "lighting": "dark low-key tones",
+  "visual_characteristics": "warm red and ochre palette",
+  "raw_caption": "a woman holding a plate of fruit",
+  "title": "The Maharashtrian Lady",
+  "source": "vlm",
+  "qa": {
+    "people_count": "one",
+    "clothing": "dress",
+    "clothing_color": "red",
+    "has_jewelry": "yes",
+    "jewelry": "earrings",
+    "pose": "standing",
+    "action": "holding tray",
+    "expression": "surprised",
+    "has_object": "yes",
+    "objects": "tray",
+    "environment": "in painting",
+    "time": "day"
+  },
+  "measured": {
+    "lighting": "dark low-key tones",
+    "palette": "warm red and ochre palette",
+    "orientation": "vertical format"
+  },
+  "flat_caption": "The Maharashtrian Lady, a woman holding a plate of fruit, wearing red dress, earrings jewelry, standing, holding tray, surprised expression, holding tray, single-figure composition, vertical format, dark low-key tones, warm red and ochre palette"
+}

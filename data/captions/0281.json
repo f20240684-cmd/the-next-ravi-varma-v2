@@ -1,0 +1,36 @@
+{
+  "image": "0281.jpg",
+  "subject": "a man sitting on the ground with a rosary",
+  "composition": "single-figure composition, vertical format",
+  "pose": "sitting",
+  "clothing": "wearing pink shirt",
+  "jewelry": "necklace jewelry",
+  "expression": "serious expression",
+  "objects": "holding cross",
+  "environment": "in church",
+  "lighting": "dark low-key tones",
+  "visual_characteristics": "warm red and ochre palette",
+  "raw_caption": "a man sitting on the ground with a rosary",
+  "title": "Vishvamitra",
+  "source": "vlm",
+  "qa": {
+    "people_count": "1",
+    "clothing": "pink shirt",
+    "clothing_color": "pink",
+    "has_jewelry": "yes",
+    "jewelry": "necklace",
+    "pose": "sitting",
+    "action": "sitting",
+    "expression": "serious",
+    "has_object": "yes",
+    "objects": "cross",
+    "environment": "in church",
+    "time": "day"
+  },
+  "measured": {
+    "lighting": "dark low-key tones",
+    "palette": "warm red and ochre palette",
+    "orientation": "vertical format"
+  },
+  "flat_caption": "Vishvamitra, a man sitting on the ground with a rosary, wearing pink shirt, necklace jewelry, sitting, serious expression, holding cross, in church, single-figure composition, vertical format, dark low-key tones, warm red and ochre palette"
+}

@@ -1,14 +1,15 @@
 {
-  "total_images_found": 200,
-  "valid_samples": 134,
-  "excluded_count": 66,
+  "total_images_found": 300,
+  "valid_samples": 194,
+  "excluded_count": 106,
   "exclusions_by_category": {
-    "curated_duplicate": 33,
-    "curated_exclusion": 7,
+    "curated_duplicate": 69,
+    "curated_exclusion": 8,
+    "near_duplicate": 3,
     "upscaled_low_resolution": 26
   },
   "error_count": 0,
-  "warning_count": 70,
+  "warning_count": 178,
   "is_valid": true,
   "accepted": [
     "0000.jpg",
@@ -37,7 +38,6 @@
     "0036.jpg",
     "0037.jpg",
     "0038.jpg",
-    "0079.jpg",
     "0081.jpg",
     "0083.jpg",
     "0085.jpg",
@@ -51,16 +51,13 @@
     "0096.jpg",
     "0097.jpg",
     "0098.jpg",
-    "0100.jpg",
     "0101.jpg",
     "0102.jpg",
     "0103.jpg",
     "0105.jpg",
     "0108.jpg",
-    "0109.jpg",
     "0110.jpg",
     "0111.jpg",
-    "0113.jpg",
     "0116.jpg",
     "0117.jpg",
     "0120.jpg",
@@ -69,7 +66,6 @@
     "0125.jpg",
     "0127.jpg",
     "0128.jpg",
-    "0129.jpg",
     "0130.jpg",
     "0131.jpg",
     "0133.jpg",
@@ -81,7 +77,6 @@
     "0142.jpg",
     "0144.jpg",
     "0145.jpg",
-    "0147.jpg",
     "0148.jpg",
     "0149.jpg",
     "0150.jpg",
@@ -144,7 +139,73 @@
     "0235.jpg",
     "0236.jpg",
     "0237.jpg",
-    "0238.jpg"
+    "0238.jpg",
+    "0239.jpg",
+    "0240.jpg",
+    "0241.jpg",
+    "0242.jpg",
+    "0243.jpg",
+    "0244.jpg",
+    "0246.jpg",
+    "0248.jpg",
+    "0249.jpg",
+    "0253.jpg",
+    "0254.jpg",
+    "0255.jpg",
+    "0256.jpg",
+    "0259.jpg",
+    "0261.jpg",
+    "0265.jpg",
+    "0266.jpg",
+    "0267.jpg",
+    "0269.jpg",
+    "0270.jpg",
+    "0271.jpeg",
+    "0275.jpg",
+    "0277.jpg",
+    "0278.jpg",
+    "0279.jpg",
+    "0281.jpg",
+    "0283.jpg",
+    "0287.jpg",
+    "0291.jpg",
+    "0292.jpg",
+    "0293.jpg",
+    "0294.jpg",
+    "0295.jpg",
+    "0296.jpg",
+    "0297.jpg",
+    "0298.jpg",
+    "0299.jpg",
+    "0300.jpg",
+    "0301.jpg",
+    "0302.jpg",
+    "0303.jpg",
+    "0304.jpg",
+    "0305.jpg",
+    "0306.jpg",
+    "0307.jpg",
+    "0308.jpg",
+    "0310.jpg",
+    "0311.jpg",
+    "0313.jpg",
+    "0314.jpg",
+    "0315.jpg",
+    "0316.jpg",
+    "0317.jpg",
+    "0318.jpg",
+    "0319.jpg",
+    "0321.jpg",
+    "0325.jpg",
+    "0326.jpg",
+    "0328.jpg",
+    "0329.jpg",
+    "0332.jpg",
+    "0333.jpg",
+    "0334.jpg",
+    "0336.jpg",
+    "0337.jpg",
+    "0338.jpg"
   ],
   "excluded": {
     "0006.jpg": "upscaled_low_resolution: Local file is 384x550 but the original is only 290x415; the upscale adds no detail and the original is below 384px.",
@@ -180,6 +241,7 @@
     "0090.jpg": "curated_exclusion: Jagannath folk-icon print from the Ravi Varma Press; flat iconographic style unlike Varma's academic oil technique",
     "0099.jpg": "curated_exclusion: photograph of a museum gallery interior",
     "0138.jpg": "curated_exclusion: multi-panel Vishnu-avatar grid; would teach panel layouts, not compositions",
+    "0252.jpg": "curated_exclusion: museum photograph of an ivory sculpture (Rama crossing the Sarayu), not a painting",
     "0018.jpg": "curated_duplicate: Same artwork as 0005.jpg (kept the higher-resolution copy).",
     "0010.jpg": "curated_duplicate: Same artwork as 0007.jpg (kept the higher-resolution copy).",
     "0011.jpg": "curated_duplicate: Same artwork as 0007.jpg (kept the higher-resolution copy).",
@@ -191,28 +253,67 @@
     "0162.jpg": "curated_duplicate: Same artwork as 0037.jpg (kept the higher-resolution copy).",
     "0080.jpg": "curated_duplicate: Same artwork as 0111.jpg (kept the higher-resolution copy).",
     "0112.jpg": "curated_duplicate: Same artwork as 0111.jpg (kept the higher-resolution copy).",
+    "0331.jpg": "curated_duplicate: Same artwork as 0111.jpg (kept the higher-resolution copy).",
     "0106.jpg": "curated_duplicate: Same artwork as 0097.jpg (kept the higher-resolution copy).",
-    "0107.jpg": "curated_duplicate: Same artwork as 0100.jpg (kept the higher-resolution copy).",
     "0121.jpg": "curated_duplicate: Same artwork as 0120.jpg (kept the higher-resolution copy).",
     "0135.jpg": "curated_duplicate: Same artwork as 0136.jpg (kept the higher-resolution copy).",
     "0143.jpg": "curated_duplicate: Same artwork as 0142.jpg (kept the higher-resolution copy).",
     "0170.jpg": "curated_duplicate: Same artwork as 0142.jpg (kept the higher-resolution copy).",
     "0193.jpg": "curated_duplicate: Same artwork as 0142.jpg (kept the higher-resolution copy).",
     "0194.jpg": "curated_duplicate: Same artwork as 0142.jpg (kept the higher-resolution copy).",
-    "0146.jpg": "curated_duplicate: Same artwork as 0147.jpg (kept the higher-resolution copy).",
-    "0172.jpg": "curated_duplicate: Same artwork as 0147.jpg (kept the higher-resolution copy).",
     "0200.jpg": "curated_duplicate: Same artwork as 0232.jpg (kept the higher-resolution copy).",
+    "0309.jpg": "curated_duplicate: Same artwork as 0004.jpg (kept the higher-resolution copy).",
+    "0109.jpg": "curated_duplicate: Same artwork as 0337.jpg (kept the higher-resolution copy).",
+    "0113.jpg": "curated_duplicate: Same artwork as 0314.jpg (kept the higher-resolution copy).",
+    "0280.jpg": "curated_duplicate: Same artwork as 0287.jpg (kept the higher-resolution copy).",
+    "0284.jpg": "curated_duplicate: Same artwork as 0287.jpg (kept the higher-resolution copy).",
+    "0285.jpg": "curated_duplicate: Same artwork as 0287.jpg (kept the higher-resolution copy).",
+    "0286.jpg": "curated_duplicate: Same artwork as 0287.jpg (kept the higher-resolution copy).",
+    "0288.jpg": "curated_duplicate: Same artwork as 0287.jpg (kept the higher-resolution copy).",
+    "0289.jpg": "curated_duplicate: Same artwork as 0287.jpg (kept the higher-resolution copy).",
+    "0250.jpg": "curated_duplicate: Same artwork as 0253.jpg (kept the higher-resolution copy).",
+    "0324.jpg": "curated_duplicate: Same artwork as 0253.jpg (kept the higher-resolution copy).",
+    "0251.jpg": "curated_duplicate: Same artwork as 0255.jpg (kept the higher-resolution copy).",
+    "0323.jpg": "curated_duplicate: Same artwork as 0255.jpg (kept the higher-resolution copy).",
+    "0320.jpg": "curated_duplicate: Same artwork as 0249.jpg (kept the higher-resolution copy).",
+    "0268.jpg": "curated_duplicate: Same artwork as 0259.jpg (kept the higher-resolution copy).",
+    "0245.jpg": "curated_duplicate: Same artwork as 0267.jpg (kept the higher-resolution copy).",
+    "0290.jpg": "curated_duplicate: Same artwork as 0291.jpg (kept the higher-resolution copy).",
+    "0327.jpg": "curated_duplicate: Same artwork as 0338.jpg (kept the higher-resolution copy).",
     "0013.jpg": "curated_duplicate: Same artwork as 0002.jpg (kept the higher-resolution copy).",
     "0015.jpg": "curated_duplicate: Same artwork as 0002.jpg (kept the higher-resolution copy).",
     "0016.jpg": "curated_duplicate: Same artwork as 0002.jpg (kept the higher-resolution copy).",
     "0201.jpg": "curated_duplicate: Same artwork as 0038.jpg (kept the higher-resolution copy).",
-    "0104.jpg": "curated_duplicate: Same artwork as 0079.jpg (kept the higher-resolution copy).",
+    "0079.jpg": "curated_duplicate: Same artwork as 0305.jpg (kept the higher-resolution copy).",
+    "0104.jpg": "curated_duplicate: Same artwork as 0305.jpg (kept the higher-resolution copy).",
+    "0330.jpg": "near_duplicate: Same artwork as 0091.jpg (kept the higher-resolution copy).",
     "0094.jpg": "curated_duplicate: Same artwork as 0095.jpg (kept the higher-resolution copy).",
     "0118.jpg": "curated_duplicate: Same artwork as 0098.jpg (kept the higher-resolution copy).",
     "0132.jpg": "curated_duplicate: Same artwork as 0098.jpg (kept the higher-resolution copy).",
+    "0100.jpg": "curated_duplicate: Same artwork as 0302.jpg (kept the higher-resolution copy).",
+    "0107.jpg": "curated_duplicate: Same artwork as 0302.jpg (kept the higher-resolution copy).",
+    "0129.jpg": "near_duplicate: Same artwork as 0316.jpg (kept the higher-resolution copy).",
+    "0312.jpg": "near_duplicate: Same artwork as 0151.jpg (kept the higher-resolution copy).",
     "0126.jpg": "curated_duplicate: Same artwork as 0152.jpg (kept the higher-resolution copy).",
     "0157.jpg": "curated_duplicate: Same artwork as 0152.jpg (kept the higher-resolution copy).",
-    "0198.jpg": "curated_duplicate: Same artwork as 0174.jpg (kept the higher-resolution copy)."
+    "0146.jpg": "curated_duplicate: Same artwork as 0311.jpg (kept the higher-resolution copy).",
+    "0147.jpg": "curated_duplicate: Same artwork as 0311.jpg (kept the higher-resolution copy).",
+    "0172.jpg": "curated_duplicate: Same artwork as 0311.jpg (kept the higher-resolution copy).",
+    "0198.jpg": "curated_duplicate: Same artwork as 0174.jpg (kept the higher-resolution copy).",
+    "0247.jpg": "curated_duplicate: Same artwork as 0110.jpg (kept the higher-resolution copy).",
+    "0322.jpg": "curated_duplicate: Same artwork as 0110.jpg (kept the higher-resolution copy).",
+    "0257.jpg": "curated_duplicate: Same artwork as 0261.jpg (kept the higher-resolution copy).",
+    "0258.jpg": "curated_duplicate: Same artwork as 0261.jpg (kept the higher-resolution copy).",
+    "0260.jpg": "curated_duplicate: Same artwork as 0261.jpg (kept the higher-resolution copy).",
+    "0262.jpg": "curated_duplicate: Same artwork as 0265.jpg (kept the higher-resolution copy).",
+    "0263.jpg": "curated_duplicate: Same artwork as 0265.jpg (kept the higher-resolution copy).",
+    "0264.jpg": "curated_duplicate: Same artwork as 0265.jpg (kept the higher-resolution copy).",
+    "0272.jpg": "curated_duplicate: Same artwork as 0265.jpg (kept the higher-resolution copy).",
+    "0273.jpg": "curated_duplicate: Same artwork as 0265.jpg (kept the higher-resolution copy).",
+    "0274.jpg": "curated_duplicate: Same artwork as 0265.jpg (kept the higher-resolution copy).",
+    "0276.jpg": "curated_duplicate: Same artwork as 0265.jpg (kept the higher-resolution copy).",
+    "0282.jpg": "curated_duplicate: Same artwork as 0265.jpg (kept the higher-resolution copy).",
+    "0335.jpg": "curated_duplicate: Same artwork as 0265.jpg (kept the higher-resolution copy)."
   },
   "duplicate_sets": [
     {
@@ -259,7 +360,8 @@
       "kept": "0111.jpg",
       "excluded": [
         "0080.jpg",
-        "0112.jpg"
+        "0112.jpg",
+        "0331.jpg"
       ]
     },
     {
@@ -267,13 +369,6 @@
       "kept": "0097.jpg",
       "excluded": [
         "0106.jpg"
-      ]
-    },
-    {
-      "kind": "curated_duplicate",
-      "kept": "0100.jpg",
-      "excluded": [
-        "0107.jpg"
       ]
     },
     {
@@ -302,17 +397,93 @@
     },
     {
       "kind": "curated_duplicate",
-      "kept": "0147.jpg",
+      "kept": "0232.jpg",
       "excluded": [
-        "0146.jpg",
-        "0172.jpg"
+        "0200.jpg"
       ]
     },
     {
       "kind": "curated_duplicate",
-      "kept": "0232.jpg",
+      "kept": "0004.jpg",
       "excluded": [
-        "0200.jpg"
+        "0309.jpg"
+      ]
+    },
+    {
+      "kind": "curated_duplicate",
+      "kept": "0337.jpg",
+      "excluded": [
+        "0109.jpg"
+      ]
+    },
+    {
+      "kind": "curated_duplicate",
+      "kept": "0314.jpg",
+      "excluded": [
+        "0113.jpg"
+      ]
+    },
+    {
+      "kind": "curated_duplicate",
+      "kept": "0287.jpg",
+      "excluded": [
+        "0280.jpg",
+        "0284.jpg",
+        "0285.jpg",
+        "0286.jpg",
+        "0288.jpg",
+        "0289.jpg"
+      ]
+    },
+    {
+      "kind": "curated_duplicate",
+      "kept": "0253.jpg",
+      "excluded": [
+        "0250.jpg",
+        "0324.jpg"
+      ]
+    },
+    {
+      "kind": "curated_duplicate",
+      "kept": "0255.jpg",
+      "excluded": [
+        "0251.jpg",
+        "0323.jpg"
+      ]
+    },
+    {
+      "kind": "curated_duplicate",
+      "kept": "0249.jpg",
+      "excluded": [
+        "0320.jpg"
+      ]
+    },
+    {
+      "kind": "curated_duplicate",
+      "kept": "0259.jpg",
+      "excluded": [
+        "0268.jpg"
+      ]
+    },
+    {
+      "kind": "curated_duplicate",
+      "kept": "0267.jpg",
+      "excluded": [
+        "0245.jpg"
+      ]
+    },
+    {
+      "kind": "curated_duplicate",
+      "kept": "0291.jpg",
+      "excluded": [
+        "0290.jpg"
+      ]
+    },
+    {
+      "kind": "curated_duplicate",
+      "kept": "0338.jpg",
+      "excluded": [
+        "0327.jpg"
       ]
     },
     {
@@ -333,9 +504,17 @@
     },
     {
       "kind": "curated_duplicate",
-      "kept": "0079.jpg",
+      "kept": "0305.jpg",
       "excluded": [
+        "0079.jpg",
         "0104.jpg"
+      ]
+    },
+    {
+      "kind": "near_duplicate",
+      "kept": "0091.jpg",
+      "excluded": [
+        "0330.jpg"
       ]
     },
     {
@@ -355,6 +534,28 @@
     },
     {
       "kind": "curated_duplicate",
+      "kept": "0302.jpg",
+      "excluded": [
+        "0100.jpg",
+        "0107.jpg"
+      ]
+    },
+    {
+      "kind": "near_duplicate",
+      "kept": "0316.jpg",
+      "excluded": [
+        "0129.jpg"
+      ]
+    },
+    {
+      "kind": "near_duplicate",
+      "kept": "0151.jpg",
+      "excluded": [
+        "0312.jpg"
+      ]
+    },
+    {
+      "kind": "curated_duplicate",
       "kept": "0152.jpg",
       "excluded": [
         "0126.jpg",
@@ -363,9 +564,50 @@
     },
     {
       "kind": "curated_duplicate",
+      "kept": "0311.jpg",
+      "excluded": [
+        "0146.jpg",
+        "0147.jpg",
+        "0172.jpg"
+      ]
+    },
+    {
+      "kind": "curated_duplicate",
       "kept": "0174.jpg",
       "excluded": [
         "0198.jpg"
+      ]
+    },
+    {
+      "kind": "curated_duplicate",
+      "kept": "0110.jpg",
+      "excluded": [
+        "0247.jpg",
+        "0322.jpg"
+      ]
+    },
+    {
+      "kind": "curated_duplicate",
+      "kept": "0261.jpg",
+      "excluded": [
+        "0257.jpg",
+        "0258.jpg",
+        "0260.jpg"
+      ]
+    },
+    {
+      "kind": "curated_duplicate",
+      "kept": "0265.jpg",
+      "excluded": [
+        "0262.jpg",
+        "0263.jpg",
+        "0264.jpg",
+        "0272.jpg",
+        "0273.jpg",
+        "0274.jpg",
+        "0276.jpg",
+        "0282.jpg",
+        "0335.jpg"
       ]
     }
   ],
@@ -552,6 +794,18 @@
     },
     {
       "severity": "warning",
+      "category": "upscaled_copy",
+      "path": "0327.jpg",
+      "message": "Local file (1449x2048) is an upscale of the 1293x1827 original."
+    },
+    {
+      "severity": "warning",
+      "category": "upscaled_copy",
+      "path": "0338.jpg",
+      "message": "Local file (1499x2048) is an upscale of the 1388x1896 original."
+    },
+    {
+      "severity": "warning",
       "category": "curated_exclusion",
       "path": "0008.jpg",
       "message": "photograph of a palace wall mural with surrounding architecture, not a painting reproduction"
@@ -591,6 +845,12 @@
       "category": "curated_exclusion",
       "path": "0138.jpg",
       "message": "multi-panel Vishnu-avatar grid; would teach panel layouts, not compositions"
+    },
+    {
+      "severity": "warning",
+      "category": "curated_exclusion",
+      "path": "0252.jpg",
+      "message": "museum photograph of an ivory sculpture (Rama crossing the Sarayu), not a painting"
     },
     {
       "severity": "warning",
@@ -661,14 +921,14 @@
     {
       "severity": "warning",
       "category": "curated_duplicate",
-      "path": "0106.jpg",
-      "message": "Same artwork as 0097.jpg (kept the higher-resolution copy)."
+      "path": "0331.jpg",
+      "message": "Same artwork as 0111.jpg (kept the higher-resolution copy)."
     },
     {
       "severity": "warning",
       "category": "curated_duplicate",
-      "path": "0107.jpg",
-      "message": "Same artwork as 0100.jpg (kept the higher-resolution copy)."
+      "path": "0106.jpg",
+      "message": "Same artwork as 0097.jpg (kept the higher-resolution copy)."
     },
     {
       "severity": "warning",
@@ -709,20 +969,116 @@
     {
       "severity": "warning",
       "category": "curated_duplicate",
-      "path": "0146.jpg",
-      "message": "Same artwork as 0147.jpg (kept the higher-resolution copy)."
-    },
-    {
-      "severity": "warning",
-      "category": "curated_duplicate",
-      "path": "0172.jpg",
-      "message": "Same artwork as 0147.jpg (kept the higher-resolution copy)."
-    },
-    {
-      "severity": "warning",
-      "category": "curated_duplicate",
       "path": "0200.jpg",
       "message": "Same artwork as 0232.jpg (kept the higher-resolution copy)."
+    },
+    {
+      "severity": "warning",
+      "category": "curated_duplicate",
+      "path": "0309.jpg",
+      "message": "Same artwork as 0004.jpg (kept the higher-resolution copy)."
+    },
+    {
+      "severity": "warning",
+      "category": "curated_duplicate",
+      "path": "0109.jpg",
+      "message": "Same artwork as 0337.jpg (kept the higher-resolution copy)."
+    },
+    {
+      "severity": "warning",
+      "category": "curated_duplicate",
+      "path": "0113.jpg",
+      "message": "Same artwork as 0314.jpg (kept the higher-resolution copy)."
+    },
+    {
+      "severity": "warning",
+      "category": "curated_duplicate",
+      "path": "0280.jpg",
+      "message": "Same artwork as 0287.jpg (kept the higher-resolution copy)."
+    },
+    {
+      "severity": "warning",
+      "category": "curated_duplicate",
+      "path": "0284.jpg",
+      "message": "Same artwork as 0287.jpg (kept the higher-resolution copy)."
+    },
+    {
+      "severity": "warning",
+      "category": "curated_duplicate",
+      "path": "0285.jpg",
+      "message": "Same artwork as 0287.jpg (kept the higher-resolution copy)."
+    },
+    {
+      "severity": "warning",
+      "category": "curated_duplicate",
+      "path": "0286.jpg",
+      "message": "Same artwork as 0287.jpg (kept the higher-resolution copy)."
+    },
+    {
+      "severity": "warning",
+      "category": "curated_duplicate",
+      "path": "0288.jpg",
+      "message": "Same artwork as 0287.jpg (kept the higher-resolution copy)."
+    },
+    {
+      "severity": "warning",
+      "category": "curated_duplicate",
+      "path": "0289.jpg",
+      "message": "Same artwork as 0287.jpg (kept the higher-resolution copy)."
+    },
+    {
+      "severity": "warning",
+      "category": "curated_duplicate",
+      "path": "0250.jpg",
+      "message": "Same artwork as 0253.jpg (kept the higher-resolution copy)."
+    },
+    {
+      "severity": "warning",
+      "category": "curated_duplicate",
+      "path": "0324.jpg",
+      "message": "Same artwork as 0253.jpg (kept the higher-resolution copy)."
+    },
+    {
+      "severity": "warning",
+      "category": "curated_duplicate",
+      "path": "0251.jpg",
+      "message": "Same artwork as 0255.jpg (kept the higher-resolution copy)."
+    },
+    {
+      "severity": "warning",
+      "category": "curated_duplicate",
+      "path": "0323.jpg",
+      "message": "Same artwork as 0255.jpg (kept the higher-resolution copy)."
+    },
+    {
+      "severity": "warning",
+      "category": "curated_duplicate",
+      "path": "0320.jpg",
+      "message": "Same artwork as 0249.jpg (kept the higher-resolution copy)."
+    },
+    {
+      "severity": "warning",
+      "category": "curated_duplicate",
+      "path": "0268.jpg",
+      "message": "Same artwork as 0259.jpg (kept the higher-resolution copy)."
+    },
+    {
+      "severity": "warning",
+      "category": "curated_duplicate",
+      "path": "0245.jpg",
+      "message": "Same artwork as 0267.jpg (kept the higher-resolution copy)."
+    },
+    {
+      "severity": "warning",
+      "category": "curated_duplicate",
+      "path": "0290.jpg",
+      "message": "Same artwork as 0291.jpg (kept the higher-resolution copy)."
+    },
+    {
+      "severity": "warning",
+      "category": "curated_duplicate",
+      "path": "0327.jpg",
+      "message": "Same artwork as 0338.jpg (kept the higher-resolution copy)."
     },
     {
       "severity": "warning",
@@ -751,8 +1107,20 @@
     {
       "severity": "warning",
       "category": "curated_duplicate",
+      "path": "0079.jpg",
+      "message": "Same artwork as 0305.jpg (kept the higher-resolution copy)."
+    },
+    {
+      "severity": "warning",
+      "category": "curated_duplicate",
       "path": "0104.jpg",
-      "message": "Same artwork as 0079.jpg (kept the higher-resolution copy)."
+      "message": "Same artwork as 0305.jpg (kept the higher-resolution copy)."
+    },
+    {
+      "severity": "warning",
+      "category": "near_duplicate",
+      "path": "0330.jpg",
+      "message": "Same artwork as 0091.jpg (kept the higher-resolution copy)."
     },
     {
       "severity": "warning",
@@ -775,6 +1143,30 @@
     {
       "severity": "warning",
       "category": "curated_duplicate",
+      "path": "0100.jpg",
+      "message": "Same artwork as 0302.jpg (kept the higher-resolution copy)."
+    },
+    {
+      "severity": "warning",
+      "category": "curated_duplicate",
+      "path": "0107.jpg",
+      "message": "Same artwork as 0302.jpg (kept the higher-resolution copy)."
+    },
+    {
+      "severity": "warning",
+      "category": "near_duplicate",
+      "path": "0129.jpg",
+      "message": "Same artwork as 0316.jpg (kept the higher-resolution copy)."
+    },
+    {
+      "severity": "warning",
+      "category": "near_duplicate",
+      "path": "0312.jpg",
+      "message": "Same artwork as 0151.jpg (kept the higher-resolution copy)."
+    },
+    {
+      "severity": "warning",
+      "category": "curated_duplicate",
       "path": "0126.jpg",
       "message": "Same artwork as 0152.jpg (kept the higher-resolution copy)."
     },
@@ -787,8 +1179,506 @@
     {
       "severity": "warning",
       "category": "curated_duplicate",
+      "path": "0146.jpg",
+      "message": "Same artwork as 0311.jpg (kept the higher-resolution copy)."
+    },
+    {
+      "severity": "warning",
+      "category": "curated_duplicate",
+      "path": "0147.jpg",
+      "message": "Same artwork as 0311.jpg (kept the higher-resolution copy)."
+    },
+    {
+      "severity": "warning",
+      "category": "curated_duplicate",
+      "path": "0172.jpg",
+      "message": "Same artwork as 0311.jpg (kept the higher-resolution copy)."
+    },
+    {
+      "severity": "warning",
+      "category": "curated_duplicate",
       "path": "0198.jpg",
       "message": "Same artwork as 0174.jpg (kept the higher-resolution copy)."
+    },
+    {
+      "severity": "warning",
+      "category": "curated_duplicate",
+      "path": "0247.jpg",
+      "message": "Same artwork as 0110.jpg (kept the higher-resolution copy)."
+    },
+    {
+      "severity": "warning",
+      "category": "curated_duplicate",
+      "path": "0322.jpg",
+      "message": "Same artwork as 0110.jpg (kept the higher-resolution copy)."
+    },
+    {
+      "severity": "warning",
+      "category": "curated_duplicate",
+      "path": "0257.jpg",
+      "message": "Same artwork as 0261.jpg (kept the higher-resolution copy)."
+    },
+    {
+      "severity": "warning",
+      "category": "curated_duplicate",
+      "path": "0258.jpg",
+      "message": "Same artwork as 0261.jpg (kept the higher-resolution copy)."
+    },
+    {
+      "severity": "warning",
+      "category": "curated_duplicate",
+      "path": "0260.jpg",
+      "message": "Same artwork as 0261.jpg (kept the higher-resolution copy)."
+    },
+    {
+      "severity": "warning",
+      "category": "curated_duplicate",
+      "path": "0262.jpg",
+      "message": "Same artwork as 0265.jpg (kept the higher-resolution copy)."
+    },
+    {
+      "severity": "warning",
+      "category": "curated_duplicate",
+      "path": "0263.jpg",
+      "message": "Same artwork as 0265.jpg (kept the higher-resolution copy)."
+    },
+    {
+      "severity": "warning",
+      "category": "curated_duplicate",
+      "path": "0264.jpg",
+      "message": "Same artwork as 0265.jpg (kept the higher-resolution copy)."
+    },
+    {
+      "severity": "warning",
+      "category": "curated_duplicate",
+      "path": "0272.jpg",
+      "message": "Same artwork as 0265.jpg (kept the higher-resolution copy)."
+    },
+    {
+      "severity": "warning",
+      "category": "curated_duplicate",
+      "path": "0273.jpg",
+      "message": "Same artwork as 0265.jpg (kept the higher-resolution copy)."
+    },
+    {
+      "severity": "warning",
+      "category": "curated_duplicate",
+      "path": "0274.jpg",
+      "message": "Same artwork as 0265.jpg (kept the higher-resolution copy)."
+    },
+    {
+      "severity": "warning",
+      "category": "curated_duplicate",
+      "path": "0276.jpg",
+      "message": "Same artwork as 0265.jpg (kept the higher-resolution copy)."
+    },
+    {
+      "severity": "warning",
+      "category": "curated_duplicate",
+      "path": "0282.jpg",
+      "message": "Same artwork as 0265.jpg (kept the higher-resolution copy)."
+    },
+    {
+      "severity": "warning",
+      "category": "curated_duplicate",
+      "path": "0335.jpg",
+      "message": "Same artwork as 0265.jpg (kept the higher-resolution copy)."
+    },
+    {
+      "severity": "warning",
+      "category": "missing_caption",
+      "path": "0239.jpg",
+      "message": "No caption yet; run scripts/generate_captions.py before preparing the dataset."
+    },
+    {
+      "severity": "warning",
+      "category": "missing_caption",
+      "path": "0240.jpg",
+      "message": "No caption yet; run scripts/generate_captions.py before preparing the dataset."
+    },
+    {
+      "severity": "warning",
+      "category": "missing_caption",
+      "path": "0241.jpg",
+      "message": "No caption yet; run scripts/generate_captions.py before preparing the dataset."
+    },
+    {
+      "severity": "warning",
+      "category": "missing_caption",
+      "path": "0242.jpg",
+      "message": "No caption yet; run scripts/generate_captions.py before preparing the dataset."
+    },
+    {
+      "severity": "warning",
+      "category": "missing_caption",
+      "path": "0243.jpg",
+      "message": "No caption yet; run scripts/generate_captions.py before preparing the dataset."
+    },
+    {
+      "severity": "warning",
+      "category": "missing_caption",
+      "path": "0244.jpg",
+      "message": "No caption yet; run scripts/generate_captions.py before preparing the dataset."
+    },
+    {
+      "severity": "warning",
+      "category": "missing_caption",
+      "path": "0246.jpg",
+      "message": "No caption yet; run scripts/generate_captions.py before preparing the dataset."
+    },
+    {
+      "severity": "warning",
+      "category": "missing_caption",
+      "path": "0248.jpg",
+      "message": "No caption yet; run scripts/generate_captions.py before preparing the dataset."
+    },
+    {
+      "severity": "warning",
+      "category": "missing_caption",
+      "path": "0249.jpg",
+      "message": "No caption yet; run scripts/generate_captions.py before preparing the dataset."
+    },
+    {
+      "severity": "warning",
+      "category": "missing_caption",
+      "path": "0253.jpg",
+      "message": "No caption yet; run scripts/generate_captions.py before preparing the dataset."
+    },
+    {
+      "severity": "warning",
+      "category": "missing_caption",
+      "path": "0254.jpg",
+      "message": "No caption yet; run scripts/generate_captions.py before preparing the dataset."
+    },
+    {
+      "severity": "warning",
+      "category": "missing_caption",
+      "path": "0255.jpg",
+      "message": "No caption yet; run scripts/generate_captions.py before preparing the dataset."
+    },
+    {
+      "severity": "warning",
+      "category": "missing_caption",
+      "path": "0256.jpg",
+      "message": "No caption yet; run scripts/generate_captions.py before preparing the dataset."
+    },
+    {
+      "severity": "warning",
+      "category": "missing_caption",
+      "path": "0259.jpg",
+      "message": "No caption yet; run scripts/generate_captions.py before preparing the dataset."
+    },
+    {
+      "severity": "warning",
+      "category": "missing_caption",
+      "path": "0261.jpg",
+      "message": "No caption yet; run scripts/generate_captions.py before preparing the dataset."
+    },
+    {
+      "severity": "warning",
+      "category": "missing_caption",
+      "path": "0265.jpg",
+      "message": "No caption yet; run scripts/generate_captions.py before preparing the dataset."
+    },
+    {
+      "severity": "warning",
+      "category": "missing_caption",
+      "path": "0266.jpg",
+      "message": "No caption yet; run scripts/generate_captions.py before preparing the dataset."
+    },
+    {
+      "severity": "warning",
+      "category": "missing_caption",
+      "path": "0267.jpg",
+      "message": "No caption yet; run scripts/generate_captions.py before preparing the dataset."
+    },
+    {
+      "severity": "warning",
+      "category": "missing_caption",
+      "path": "0269.jpg",
+      "message": "No caption yet; run scripts/generate_captions.py before preparing the dataset."
+    },
+    {
+      "severity": "warning",
+      "category": "missing_caption",
+      "path": "0270.jpg",
+      "message": "No caption yet; run scripts/generate_captions.py before preparing the dataset."
+    },
+    {
+      "severity": "warning",
+      "category": "missing_caption",
+      "path": "0271.jpeg",
+      "message": "No caption yet; run scripts/generate_captions.py before preparing the dataset."
+    },
+    {
+      "severity": "warning",
+      "category": "missing_caption",
+      "path": "0275.jpg",
+      "message": "No caption yet; run scripts/generate_captions.py before preparing the dataset."
+    },
+    {
+      "severity": "warning",
+      "category": "missing_caption",
+      "path": "0277.jpg",
+      "message": "No caption yet; run scripts/generate_captions.py before preparing the dataset."
+    },
+    {
+      "severity": "warning",
+      "category": "missing_caption",
+      "path": "0278.jpg",
+      "message": "No caption yet; run scripts/generate_captions.py before preparing the dataset."
+    },
+    {
+      "severity": "warning",
+      "category": "missing_caption",
+      "path": "0279.jpg",
+      "message": "No caption yet; run scripts/generate_captions.py before preparing the dataset."
+    },
+    {
+      "severity": "warning",
+      "category": "missing_caption",
+      "path": "0281.jpg",
+      "message": "No caption yet; run scripts/generate_captions.py before preparing the dataset."
+    },
+    {
+      "severity": "warning",
+      "category": "missing_caption",
+      "path": "0283.jpg",
+      "message": "No caption yet; run scripts/generate_captions.py before preparing the dataset."
+    },
+    {
+      "severity": "warning",
+      "category": "missing_caption",
+      "path": "0287.jpg",
+      "message": "No caption yet; run scripts/generate_captions.py before preparing the dataset."
+    },
+    {
+      "severity": "warning",
+      "category": "missing_caption",
+      "path": "0291.jpg",
+      "message": "No caption yet; run scripts/generate_captions.py before preparing the dataset."
+    },
+    {
+      "severity": "warning",
+      "category": "missing_caption",
+      "path": "0292.jpg",
+      "message": "No caption yet; run scripts/generate_captions.py before preparing the dataset."
+    },
+    {
+      "severity": "warning",
+      "category": "missing_caption",
+      "path": "0293.jpg",
+      "message": "No caption yet; run scripts/generate_captions.py before preparing the dataset."
+    },
+    {
+      "severity": "warning",
+      "category": "missing_caption",
+      "path": "0294.jpg",
+      "message": "No caption yet; run scripts/generate_captions.py before preparing the dataset."
+    },
+    {
+      "severity": "warning",
+      "category": "missing_caption",
+      "path": "0295.jpg",
+      "message": "No caption yet; run scripts/generate_captions.py before preparing the dataset."
+    },
+    {
+      "severity": "warning",
+      "category": "missing_caption",
+      "path": "0296.jpg",
+      "message": "No caption yet; run scripts/generate_captions.py before preparing the dataset."
+    },
+    {
+      "severity": "warning",
+      "category": "missing_caption",
+      "path": "0297.jpg",
+      "message": "No caption yet; run scripts/generate_captions.py before preparing the dataset."
+    },
+    {
+      "severity": "warning",
+      "category": "missing_caption",
+      "path": "0298.jpg",
+      "message": "No caption yet; run scripts/generate_captions.py before preparing the dataset."
+    },
+    {
+      "severity": "warning",
+      "category": "missing_caption",
+      "path": "0299.jpg",
+      "message": "No caption yet; run scripts/generate_captions.py before preparing the dataset."
+    },
+    {
+      "severity": "warning",
+      "category": "missing_caption",
+      "path": "0300.jpg",
+      "message": "No caption yet; run scripts/generate_captions.py before preparing the dataset."
+    },
+    {
+      "severity": "warning",
+      "category": "missing_caption",
+      "path": "0301.jpg",
+      "message": "No caption yet; run scripts/generate_captions.py before preparing the dataset."
+    },
+    {
+      "severity": "warning",
+      "category": "missing_caption",
+      "path": "0302.jpg",
+      "message": "No caption yet; run scripts/generate_captions.py before preparing the dataset."
+    },
+    {
+      "severity": "warning",
+      "category": "missing_caption",
+      "path": "0303.jpg",
+      "message": "No caption yet; run scripts/generate_captions.py before preparing the dataset."
+    },
+    {
+      "severity": "warning",
+      "category": "missing_caption",
+      "path": "0304.jpg",
+      "message": "No caption yet; run scripts/generate_captions.py before preparing the dataset."
+    },
+    {
+      "severity": "warning",
+      "category": "missing_caption",
+      "path": "0305.jpg",
+      "message": "No caption yet; run scripts/generate_captions.py before preparing the dataset."
+    },
+    {
+      "severity": "warning",
+      "category": "missing_caption",
+      "path": "0306.jpg",
+      "message": "No caption yet; run scripts/generate_captions.py before preparing the dataset."
+    },
+    {
+      "severity": "warning",
+      "category": "missing_caption",
+      "path": "0307.jpg",
+      "message": "No caption yet; run scripts/generate_captions.py before preparing the dataset."
+    },
+    {
+      "severity": "warning",
+      "category": "missing_caption",
+      "path": "0308.jpg",
+      "message": "No caption yet; run scripts/generate_captions.py before preparing the dataset."
+    },
+    {
+      "severity": "warning",
+      "category": "missing_caption",
+      "path": "0310.jpg",
+      "message": "No caption yet; run scripts/generate_captions.py before preparing the dataset."
+    },
+    {
+      "severity": "warning",
+      "category": "missing_caption",
+      "path": "0311.jpg",
+      "message": "No caption yet; run scripts/generate_captions.py before preparing the dataset."
+    },
+    {
+      "severity": "warning",
+      "category": "missing_caption",
+      "path": "0313.jpg",
+      "message": "No caption yet; run scripts/generate_captions.py before preparing the dataset."
+    },
+    {
+      "severity": "warning",
+      "category": "missing_caption",
+      "path": "0314.jpg",
+      "message": "No caption yet; run scripts/generate_captions.py before preparing the dataset."
+    },
+    {
+      "severity": "warning",
+      "category": "missing_caption",
+      "path": "0315.jpg",
+      "message": "No caption yet; run scripts/generate_captions.py before preparing the dataset."
+    },
+    {
+      "severity": "warning",
+      "category": "missing_caption",
+      "path": "0316.jpg",
+      "message": "No caption yet; run scripts/generate_captions.py before preparing the dataset."
+    },
+    {
+      "severity": "warning",
+      "category": "missing_caption",
+      "path": "0317.jpg",
+      "message": "No caption yet; run scripts/generate_captions.py before preparing the dataset."
+    },
+    {
+      "severity": "warning",
+      "category": "missing_caption",
+      "path": "0318.jpg",
+      "message": "No caption yet; run scripts/generate_captions.py before preparing the dataset."
+    },
+    {
+      "severity": "warning",
+      "category": "missing_caption",
+      "path": "0319.jpg",
+      "message": "No caption yet; run scripts/generate_captions.py before preparing the dataset."
+    },
+    {
+      "severity": "warning",
+      "category": "missing_caption",
+      "path": "0321.jpg",
+      "message": "No caption yet; run scripts/generate_captions.py before preparing the dataset."
+    },
+    {
+      "severity": "warning",
+      "category": "missing_caption",
+      "path": "0325.jpg",
+      "message": "No caption yet; run scripts/generate_captions.py before preparing the dataset."
+    },
+    {
+      "severity": "warning",
+      "category": "missing_caption",
+      "path": "0326.jpg",
+      "message": "No caption yet; run scripts/generate_captions.py before preparing the dataset."
+    },
+    {
+      "severity": "warning",
+      "category": "missing_caption",
+      "path": "0328.jpg",
+      "message": "No caption yet; run scripts/generate_captions.py before preparing the dataset."
+    },
+    {
+      "severity": "warning",
+      "category": "missing_caption",
+      "path": "0329.jpg",
+      "message": "No caption yet; run scripts/generate_captions.py before preparing the dataset."
+    },
+    {
+      "severity": "warning",
+      "category": "missing_caption",
+      "path": "0332.jpg",
+      "message": "No caption yet; run scripts/generate_captions.py before preparing the dataset."
+    },
+    {
+      "severity": "warning",
+      "category": "missing_caption",
+      "path": "0333.jpg",
+      "message": "No caption yet; run scripts/generate_captions.py before preparing the dataset."
+    },
+    {
+      "severity": "warning",
+      "category": "missing_caption",
+      "path": "0334.jpg",
+      "message": "No caption yet; run scripts/generate_captions.py before preparing the dataset."
+    },
+    {
+      "severity": "warning",
+      "category": "missing_caption",
+      "path": "0336.jpg",
+      "message": "No caption yet; run scripts/generate_captions.py before preparing the dataset."
+    },
+    {
+      "severity": "warning",
+      "category": "missing_caption",
+      "path": "0337.jpg",
+      "message": "No caption yet; run scripts/generate_captions.py before preparing the dataset."
+    },
+    {
+      "severity": "warning",
+      "category": "missing_caption",
+      "path": "0338.jpg",
+      "message": "No caption yet; run scripts/generate_captions.py before preparing the dataset."
     }
   ]
 }

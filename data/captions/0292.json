@@ -1,0 +1,36 @@
+{
+  "image": "0292.jpg",
+  "subject": "a woman sitting at a table with a glass of wine",
+  "composition": "single-figure composition, vertical format",
+  "pose": "sitting",
+  "clothing": "wearing white dress",
+  "jewelry": "necklace and earrings jewelry",
+  "expression": "serious expression",
+  "objects": "holding necklace",
+  "environment": "unknown",
+  "lighting": "mid-tone lighting",
+  "visual_characteristics": "warm red and ochre palette",
+  "raw_caption": "a woman sitting at a table with a glass of wine",
+  "title": "Malayalam: മാലകെട്ടുന്ന സ്ത്രീ Lady making a garland title QS:P1476,ml:മാലകെട്ടുന്ന സ്ത്രീ",
+  "source": "vlm",
+  "qa": {
+    "people_count": "one",
+    "clothing": "dress",
+    "clothing_color": "white",
+    "has_jewelry": "yes",
+    "jewelry": "necklace and earrings",
+    "pose": "sitting",
+    "action": "sitting",
+    "expression": "serious",
+    "has_object": "yes",
+    "objects": "necklace",
+    "environment": "in painting",
+    "time": "day"
+  },
+  "measured": {
+    "lighting": "mid-tone lighting",
+    "palette": "warm red and ochre palette",
+    "orientation": "vertical format"
+  },
+  "flat_caption": "Lady making a garland, a woman sitting at a table with a glass of wine, wearing white dress, necklace and earrings jewelry, sitting, serious expression, holding necklace, single-figure composition, vertical format, mid-tone lighting, warm red and ochre palette"
+}

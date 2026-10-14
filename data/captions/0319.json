@@ -1,0 +1,36 @@
+{
+  "image": "0319.jpg",
+  "subject": "three women standing next to a tree",
+  "composition": "group of three figures, vertical format",
+  "pose": "standing, talking",
+  "clothing": "wearing red dress",
+  "jewelry": "bracelet jewelry",
+  "expression": "smile expression",
+  "objects": "holding woman",
+  "environment": "near tree",
+  "lighting": "mid-tone lighting",
+  "visual_characteristics": "warm red and ochre palette",
+  "raw_caption": "three women standing next to a tree",
+  "title": "Ratudhvaja courting Madalasa with the help of a female chaperone",
+  "source": "vlm",
+  "qa": {
+    "people_count": "three",
+    "clothing": "dress",
+    "clothing_color": "red",
+    "has_jewelry": "yes",
+    "jewelry": "bracelet",
+    "pose": "standing",
+    "action": "talking",
+    "expression": "smile",
+    "has_object": "yes",
+    "objects": "woman",
+    "environment": "near tree",
+    "time": "day"
+  },
+  "measured": {
+    "lighting": "mid-tone lighting",
+    "palette": "warm red and ochre palette",
+    "orientation": "vertical format"
+  },
+  "flat_caption": "Ratudhvaja courting Madalasa with the help of a female chaperone, three women standing next to a tree, chromolithograph print with printed title text in the bottom margin, wearing red dress, bracelet jewelry, standing, talking, smile expression, holding woman, near tree, group of three figures, vertical format"
+}

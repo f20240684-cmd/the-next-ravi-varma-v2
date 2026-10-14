@@ -1,0 +1,36 @@
+{
+  "image": "0302.jpg",
+  "subject": "a man sitting on a rock with a stick",
+  "composition": "single-figure composition, vertical format",
+  "pose": "sitting",
+  "clothing": "wearing orange red and yellow dress",
+  "jewelry": "necklace jewelry",
+  "expression": "serious expression",
+  "objects": "holding stick",
+  "environment": "unknown",
+  "lighting": "mid-tone lighting",
+  "visual_characteristics": "warm red and ochre palette",
+  "raw_caption": "a man sitting on a rock with a stick",
+  "title": "Vishnu's sixth avatar Parashu Rama",
+  "source": "vlm",
+  "qa": {
+    "people_count": "1",
+    "clothing": "red and yellow dress",
+    "clothing_color": "orange",
+    "has_jewelry": "yes",
+    "jewelry": "necklace",
+    "pose": "sitting",
+    "action": "sitting",
+    "expression": "serious",
+    "has_object": "yes",
+    "objects": "stick",
+    "environment": "in painting",
+    "time": "day"
+  },
+  "measured": {
+    "lighting": "mid-tone lighting",
+    "palette": "warm red and ochre palette",
+    "orientation": "vertical format"
+  },
+  "flat_caption": "Vishnu's sixth avatar Parashu Rama, a man sitting on a rock with a stick, chromolithograph print with printed title text in the bottom margin, wearing orange red and yellow dress, necklace jewelry, sitting, serious expression, holding stick, single-figure composition, vertical format, mid-tone lighting, warm red and ochre palette"
+}

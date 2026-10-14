@@ -1,0 +1,36 @@
+{
+  "image": "0255.jpg",
+  "subject": "a man holding a sword in front of a building",
+  "composition": "group of many figures, vertical format",
+  "pose": "standing",
+  "clothing": "wearing pink dress",
+  "jewelry": "necklace jewelry",
+  "expression": "calm expression",
+  "objects": "holding sword",
+  "environment": "at religious event",
+  "lighting": "mid-tone lighting",
+  "visual_characteristics": "warm red and ochre palette",
+  "raw_caption": "a man holding a sword in front of a building",
+  "title": "Sri Rama breaking the bow",
+  "source": "vlm",
+  "qa": {
+    "people_count": "seven",
+    "clothing": "dress",
+    "clothing_color": "pink",
+    "has_jewelry": "yes",
+    "jewelry": "necklace",
+    "pose": "standing",
+    "action": "standing",
+    "expression": "calm",
+    "has_object": "yes",
+    "objects": "sword",
+    "environment": "at religious event",
+    "time": "day"
+  },
+  "measured": {
+    "lighting": "mid-tone lighting",
+    "palette": "warm red and ochre palette",
+    "orientation": "vertical format"
+  },
+  "flat_caption": "Sri Rama breaking the bow, a man holding a sword in front of a building, wearing pink dress, necklace jewelry, standing, calm expression, holding sword, at religious event, group of many figures, vertical format, mid-tone lighting, warm red and ochre palette"
+}

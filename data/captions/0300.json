@@ -1,0 +1,36 @@
+{
+  "image": "0300.jpg",
+  "subject": "a woman sitting on a throne",
+  "composition": "single-figure composition, vertical format",
+  "pose": "sitting",
+  "clothing": "wearing green crown",
+  "jewelry": "necklace jewelry",
+  "expression": "calm expression",
+  "objects": "holding sword",
+  "environment": "unknown",
+  "lighting": "mid-tone lighting",
+  "visual_characteristics": "warm red and ochre palette",
+  "raw_caption": "a woman sitting on a throne",
+  "title": "Devi, in benign aspect",
+  "source": "vlm",
+  "qa": {
+    "people_count": "1",
+    "clothing": "crown",
+    "clothing_color": "green",
+    "has_jewelry": "yes",
+    "jewelry": "necklace",
+    "pose": "sitting",
+    "action": "sitting",
+    "expression": "calm",
+    "has_object": "yes",
+    "objects": "sword",
+    "environment": "on religious painting",
+    "time": "day"
+  },
+  "measured": {
+    "lighting": "mid-tone lighting",
+    "palette": "warm red and ochre palette",
+    "orientation": "vertical format"
+  },
+  "flat_caption": "Devi, in benign aspect, a woman sitting on a throne, chromolithograph print with printed title text in the bottom margin, wearing green crown, necklace jewelry, sitting, calm expression, holding sword, single-figure composition, vertical format, mid-tone lighting, warm red and ochre palette"
+}

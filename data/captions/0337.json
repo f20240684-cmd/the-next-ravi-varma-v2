@@ -1,0 +1,36 @@
+{
+  "image": "0337.jpg",
+  "subject": "three women sitting on a shell in the water",
+  "composition": "group of four figures, vertical format",
+  "pose": "sitting",
+  "clothing": "wearing red dress",
+  "jewelry": "necklace jewelry",
+  "expression": "calm expression",
+  "objects": "holding fan",
+  "environment": "on boat",
+  "lighting": "mid-tone lighting",
+  "visual_characteristics": "warm red and ochre palette",
+  "raw_caption": "three women sitting on a shell in the water",
+  "title": "Vishnu flanked by two wives resting on Shesa, the serpent on the waters",
+  "source": "vlm",
+  "qa": {
+    "people_count": "4",
+    "clothing": "dress",
+    "clothing_color": "red",
+    "has_jewelry": "yes",
+    "jewelry": "necklace",
+    "pose": "sitting",
+    "action": "sitting",
+    "expression": "calm",
+    "has_object": "yes",
+    "objects": "fan",
+    "environment": "on boat",
+    "time": "day"
+  },
+  "measured": {
+    "lighting": "mid-tone lighting",
+    "palette": "warm red and ochre palette",
+    "orientation": "vertical format"
+  },
+  "flat_caption": "Vishnu flanked by two wives resting on Shesa, the serpent on the, three women sitting on a shell in the water, chromolithograph print with printed title text in the bottom margin, wearing red dress, necklace jewelry, sitting, calm expression, holding fan, on boat, group of four figures, vertical format, mid-tone lighting"
+}

@@ -78,7 +78,7 @@ def main() -> int:
                 continue
             record = metadata.setdefault(rel, {"image": rel, "artist": config.style.artist_name})
             structured = StructuredCaption.reassemble(data, title=record.get("title"))
-            flat = structured.as_flat_caption(token_counter=count_tokens)
+            flat = structured.as_flat_caption(token_counter=count_tokens, note=config.curation.caption_notes.get(rel))
             sidecar.write_text(
                 json.dumps({"image": rel, **structured.to_dict(), "flat_caption": flat}, indent=2, ensure_ascii=False),
                 encoding="utf-8",
@@ -123,7 +123,7 @@ def main() -> int:
             except ValueError as e:
                 logger.warning("Skipping %s: %s", rel, e)
                 continue
-            flat = structured.as_flat_caption(token_counter=count_tokens)
+            flat = structured.as_flat_caption(token_counter=count_tokens, note=config.curation.caption_notes.get(rel))
             sidecar = captions_dir / f"{Path(rel).stem}.json"
             sidecar.write_text(
                 json.dumps({"image": rel, **structured.to_dict(), "flat_caption": flat}, indent=2, ensure_ascii=False),

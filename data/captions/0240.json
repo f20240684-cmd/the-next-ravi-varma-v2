@@ -1,0 +1,36 @@
+{
+  "image": "0240.jpg",
+  "subject": "a painting of a woman holding a baby",
+  "composition": "group of two figures, landscape format",
+  "pose": "sitting, kissing",
+  "clothing": "unknown",
+  "jewelry": "necklace jewelry",
+  "expression": "neutral expression",
+  "objects": "holding woman",
+  "environment": "unknown",
+  "lighting": "dark low-key tones",
+  "visual_characteristics": "warm red and ochre palette",
+  "raw_caption": "a painting of a woman holding a baby",
+  "title": "The suckling child",
+  "source": "vlm",
+  "qa": {
+    "people_count": "2",
+    "clothing": "necklace",
+    "clothing_color": "red",
+    "has_jewelry": "yes",
+    "jewelry": "necklace",
+    "pose": "sitting",
+    "action": "kissing",
+    "expression": "neutral",
+    "has_object": "yes",
+    "objects": "woman",
+    "environment": "in painting",
+    "time": "day"
+  },
+  "measured": {
+    "lighting": "dark low-key tones",
+    "palette": "warm red and ochre palette",
+    "orientation": "landscape format"
+  },
+  "flat_caption": "The suckling child, a painting of a woman holding a baby, necklace jewelry, sitting, kissing, neutral expression, holding woman, group of two figures, landscape format, dark low-key tones, warm red and ochre palette"
+}

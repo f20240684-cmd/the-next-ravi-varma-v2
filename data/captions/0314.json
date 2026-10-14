@@ -1,0 +1,35 @@
+{
+  "image": "0314.jpg",
+  "subject": "a man standing on top of a cow",
+  "composition": "group of four figures, vertical format",
+  "pose": "standing",
+  "clothing": "wearing brown dress",
+  "jewelry": "unknown",
+  "expression": "calm expression",
+  "objects": "holding spear",
+  "environment": "unknown",
+  "lighting": "mid-tone lighting",
+  "visual_characteristics": "balanced earthy palette",
+  "raw_caption": "a man standing on top of a cow",
+  "title": "Gangā and the river Ganges falling from heaven, while Shiva waits below to stem the fall with Nandi bull, Parvati and the sage Jahnu",
+  "source": "vlm",
+  "qa": {
+    "people_count": "4",
+    "clothing": "dress",
+    "clothing_color": "brown",
+    "has_jewelry": "no",
+    "pose": "standing",
+    "action": "standing",
+    "expression": "calm",
+    "has_object": "yes",
+    "objects": "spear",
+    "environment": "in painting",
+    "time": "day"
+  },
+  "measured": {
+    "lighting": "mid-tone lighting",
+    "palette": "balanced earthy palette",
+    "orientation": "vertical format"
+  },
+  "flat_caption": "Gangā and the river Ganges falling from heaven, while Shiva waits below, a man standing on top of a cow, chromolithograph print with printed title text in the bottom margin, wearing brown dress, standing, calm expression, holding spear, group of four figures, vertical format, mid-tone lighting, balanced earthy palette"
+}

@@ -1,0 +1,36 @@
+{
+  "image": "0283.jpg",
+  "subject": "a woman shaking hands with a man",
+  "composition": "group of two figures, vertical format",
+  "pose": "standing, holding hands",
+  "clothing": "wearing white dress",
+  "jewelry": "necklace jewelry",
+  "expression": "serious expression",
+  "objects": "holding sword",
+  "environment": "in church",
+  "lighting": "mid-tone lighting",
+  "visual_characteristics": "warm red and ochre palette",
+  "raw_caption": "a woman shaking hands with a man",
+  "title": "Charity",
+  "source": "vlm",
+  "qa": {
+    "people_count": "2",
+    "clothing": "dress",
+    "clothing_color": "white",
+    "has_jewelry": "yes",
+    "jewelry": "necklace",
+    "pose": "standing",
+    "action": "holding hands",
+    "expression": "serious",
+    "has_object": "yes",
+    "objects": "sword",
+    "environment": "in church",
+    "time": "day"
+  },
+  "measured": {
+    "lighting": "mid-tone lighting",
+    "palette": "warm red and ochre palette",
+    "orientation": "vertical format"
+  },
+  "flat_caption": "Charity, a woman shaking hands with a man, wearing white dress, necklace jewelry, standing, holding hands, serious expression, holding sword, in church, group of two figures, vertical format, mid-tone lighting, warm red and ochre palette"
+}

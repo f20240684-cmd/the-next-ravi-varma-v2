@@ -1,0 +1,35 @@
+{
+  "image": "0303.jpg",
+  "subject": "three children sitting on a rug",
+  "composition": "group of four figures, vertical format",
+  "pose": "sitting, talking",
+  "clothing": "wearing red and gold dress",
+  "jewelry": "necklace jewelry",
+  "expression": "surprise expression",
+  "objects": "unknown",
+  "environment": "in india",
+  "lighting": "mid-tone lighting",
+  "visual_characteristics": "warm red and ochre palette",
+  "raw_caption": "three children sitting on a rug",
+  "title": "Yasoda glimpses the whole universe inside Krishna's mouth",
+  "source": "vlm",
+  "qa": {
+    "people_count": "4",
+    "clothing": "red and gold dress",
+    "clothing_color": "red",
+    "has_jewelry": "yes",
+    "jewelry": "necklace",
+    "pose": "sitting",
+    "action": "talking",
+    "expression": "surprise",
+    "has_object": "no",
+    "environment": "india",
+    "time": "day"
+  },
+  "measured": {
+    "lighting": "mid-tone lighting",
+    "palette": "warm red and ochre palette",
+    "orientation": "vertical format"
+  },
+  "flat_caption": "Yasoda glimpses the whole universe inside Krishna's mouth, three children sitting on a rug, chromolithograph print with printed title text in the bottom margin, wearing red and gold dress, necklace jewelry, sitting, talking, surprise expression, in india, group of four figures, vertical format, mid-tone lighting, warm red and ochre palette"
+}

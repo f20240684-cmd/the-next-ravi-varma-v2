@@ -1,0 +1,36 @@
+{
+  "image": "0304.jpg",
+  "subject": "two women sitting on a rock near a body of water",
+  "composition": "group of two figures, vertical format",
+  "pose": "sitting",
+  "clothing": "wearing green dress",
+  "jewelry": "necklace jewelry",
+  "expression": "calm expression",
+  "objects": "holding stick",
+  "environment": "in india",
+  "lighting": "mid-tone lighting",
+  "visual_characteristics": "balanced earthy palette",
+  "raw_caption": "two women sitting on a rock near a body of water",
+  "title": "Krishna embracing Radha",
+  "source": "vlm",
+  "qa": {
+    "people_count": "2",
+    "clothing": "dress",
+    "clothing_color": "green",
+    "has_jewelry": "yes",
+    "jewelry": "necklace",
+    "pose": "sitting",
+    "action": "sitting",
+    "expression": "calm",
+    "has_object": "yes",
+    "objects": "stick",
+    "environment": "india",
+    "time": "day"
+  },
+  "measured": {
+    "lighting": "mid-tone lighting",
+    "palette": "balanced earthy palette",
+    "orientation": "vertical format"
+  },
+  "flat_caption": "Krishna embracing Radha, two women sitting on a rock near a body of water, chromolithograph print with printed title text in the bottom margin, wearing green dress, necklace jewelry, sitting, calm expression, holding stick, in india, group of two figures, vertical format, mid-tone lighting, balanced earthy palette"
+}

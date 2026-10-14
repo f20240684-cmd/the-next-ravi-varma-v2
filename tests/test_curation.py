@@ -82,7 +82,9 @@ class TestCuration:
         assert sorted(r.source_image for r in manifest) == ["b.jpg", "d.jpg"]
         reference = [json.loads(line) for line in open(f"{corpus.reference_dir}/reference.jsonl")]
         assert [r["source_image"] for r in reference] == ["c.jpg"]
-        assert next(r for r in manifest if r.source_image == "b.jpg").text.endswith(", inside a gilt frame")
+        # caption_notes are applied inside the token budget when captions are built
+        # (test_captions.py); prepare must not append them a second time.
+        assert "gilt frame" not in next(r for r in manifest if r.source_image == "b.jpg").text
         for rec in manifest:
             assert rec.text.startswith("<rvvarma>, ")
             assert (rec.width, rec.height) == Image.open(rec.image).size

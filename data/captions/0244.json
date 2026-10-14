@@ -1,0 +1,36 @@
+{
+  "image": "0244.jpg",
+  "subject": "a woman in a sari holding a piece of fruit",
+  "composition": "single-figure composition, vertical format",
+  "pose": "standing, eating",
+  "clothing": "wearing green dress",
+  "jewelry": "necklace jewelry",
+  "expression": "surprised expression",
+  "objects": "holding apple",
+  "environment": "unknown",
+  "lighting": "dark low-key tones",
+  "visual_characteristics": "balanced earthy palette",
+  "raw_caption": "a woman in a sari holding a piece of fruit",
+  "title": "The Coquette",
+  "source": "vlm",
+  "qa": {
+    "people_count": "1",
+    "clothing": "dress",
+    "clothing_color": "green",
+    "has_jewelry": "yes",
+    "jewelry": "necklace",
+    "pose": "standing",
+    "action": "eating",
+    "expression": "surprised",
+    "has_object": "yes",
+    "objects": "apple",
+    "environment": "in painting",
+    "time": "day"
+  },
+  "measured": {
+    "lighting": "dark low-key tones",
+    "palette": "balanced earthy palette",
+    "orientation": "vertical format"
+  },
+  "flat_caption": "The Coquette, a woman in a sari holding a piece of fruit, wearing green dress, necklace jewelry, standing, eating, surprised expression, holding apple, single-figure composition, vertical format, dark low-key tones, balanced earthy palette"
+}

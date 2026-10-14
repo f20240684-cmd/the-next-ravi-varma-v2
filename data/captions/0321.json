@@ -1,0 +1,35 @@
+{
+  "image": "0321.jpg",
+  "subject": "a group of people standing in front of a hut",
+  "composition": "group of many figures, vertical format",
+  "pose": "standing, waving",
+  "clothing": "wearing white dress",
+  "jewelry": "unknown",
+  "expression": "smiling expression",
+  "objects": "holding flag",
+  "environment": "on farm",
+  "lighting": "mid-tone lighting",
+  "visual_characteristics": "green-dominant palette",
+  "raw_caption": "a group of people standing in front of a hut",
+  "title": "A royal sage tells the father of the fishergirl of their marriage",
+  "source": "vlm",
+  "qa": {
+    "people_count": "6",
+    "clothing": "white dress",
+    "clothing_color": "white",
+    "has_jewelry": "no",
+    "pose": "standing",
+    "action": "waving",
+    "expression": "smiling",
+    "has_object": "yes",
+    "objects": "flag",
+    "environment": "on farm",
+    "time": "day"
+  },
+  "measured": {
+    "lighting": "mid-tone lighting",
+    "palette": "green-dominant palette",
+    "orientation": "vertical format"
+  },
+  "flat_caption": "A royal sage tells the father of the fishergirl of their marriage, a group of people standing in front of a hut, chromolithograph print with printed title text in the bottom margin, wearing white dress, standing, waving, smiling expression, holding flag, on farm, group of many figures, vertical format, mid-tone lighting"
+}

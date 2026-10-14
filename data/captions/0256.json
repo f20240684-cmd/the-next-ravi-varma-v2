@@ -1,0 +1,36 @@
+{
+  "image": "0256.jpg",
+  "subject": "a man holding a bird in the air",
+  "composition": "single-figure composition, vertical format",
+  "pose": "standing, feeding birds",
+  "clothing": "wearing pink dress",
+  "jewelry": "necklace jewelry",
+  "expression": "calm expression",
+  "objects": "holding bird",
+  "environment": "unknown",
+  "lighting": "mid-tone lighting",
+  "visual_characteristics": "warm red and ochre palette",
+  "raw_caption": "a man holding a bird in the air",
+  "title": "Jatayu Vadham",
+  "source": "vlm",
+  "qa": {
+    "people_count": "one",
+    "clothing": "dress",
+    "clothing_color": "pink",
+    "has_jewelry": "yes",
+    "jewelry": "necklace",
+    "pose": "standing",
+    "action": "feeding birds",
+    "expression": "calm",
+    "has_object": "yes",
+    "objects": "bird",
+    "environment": "in painting",
+    "time": "day"
+  },
+  "measured": {
+    "lighting": "mid-tone lighting",
+    "palette": "warm red and ochre palette",
+    "orientation": "vertical format"
+  },
+  "flat_caption": "Jatayu Vadham, a man holding a bird in the air, wearing pink dress, necklace jewelry, standing, feeding birds, calm expression, holding bird, single-figure composition, vertical format, mid-tone lighting, warm red and ochre palette"
+}

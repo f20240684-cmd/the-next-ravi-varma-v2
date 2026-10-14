@@ -1,0 +1,34 @@
+{
+  "image": "0307.jpg",
+  "subject": "a man holding a baby in front of a group of men",
+  "composition": "group of many figures, vertical format",
+  "pose": "standing",
+  "clothing": "wearing red toga",
+  "jewelry": "unknown",
+  "expression": "serious expression",
+  "objects": "unknown",
+  "environment": "at religious event",
+  "lighting": "dark low-key tones",
+  "visual_characteristics": "warm red and ochre palette",
+  "raw_caption": "a man holding a baby in front of a group of men",
+  "title": "Krishna freeing his parents (Vasudeo and Devki) from prison",
+  "source": "vlm",
+  "qa": {
+    "people_count": "8",
+    "clothing": "toga",
+    "clothing_color": "red",
+    "has_jewelry": "no",
+    "pose": "standing",
+    "action": "sitting",
+    "expression": "serious",
+    "has_object": "no",
+    "environment": "at religious event",
+    "time": "day"
+  },
+  "measured": {
+    "lighting": "dark low-key tones",
+    "palette": "warm red and ochre palette",
+    "orientation": "vertical format"
+  },
+  "flat_caption": "Krishna freeing his parents (Vasudeo and Devki) from prison, a man holding a baby in front of a group of men, chromolithograph print with printed title text in the bottom margin, wearing red toga, standing, serious expression, at religious event, group of many figures, vertical format, dark low-key tones"
+}

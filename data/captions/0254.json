@@ -1,0 +1,35 @@
+{
+  "image": "0254.jpg",
+  "subject": "a group of people sitting on a bench",
+  "composition": "group of many figures, vertical format",
+  "pose": "sitting",
+  "clothing": "wearing red and gold dress",
+  "jewelry": "necklace jewelry",
+  "expression": "smiling expression",
+  "objects": "unknown",
+  "environment": "in india",
+  "lighting": "mid-tone lighting",
+  "visual_characteristics": "warm red and ochre palette",
+  "raw_caption": "a group of people sitting on a bench",
+  "title": "Ramapanchayan",
+  "source": "vlm",
+  "qa": {
+    "people_count": "6",
+    "clothing": "red and gold dress",
+    "clothing_color": "red",
+    "has_jewelry": "yes",
+    "jewelry": "necklace",
+    "pose": "sitting",
+    "action": "sitting",
+    "expression": "smiling",
+    "has_object": "umbrella",
+    "environment": "india",
+    "time": "day"
+  },
+  "measured": {
+    "lighting": "mid-tone lighting",
+    "palette": "warm red and ochre palette",
+    "orientation": "vertical format"
+  },
+  "flat_caption": "Ramapanchayan, a group of people sitting on a bench, wearing red and gold dress, necklace jewelry, sitting, smiling expression, in india, group of many figures, vertical format, mid-tone lighting, warm red and ochre palette"
+}

@@ -1,0 +1,35 @@
+{
+  "image": "0301.jpg",
+  "subject": "a group of naked people in a body of water",
+  "composition": "group of many figures, vertical format",
+  "pose": "sitting",
+  "clothing": "unknown",
+  "jewelry": "unknown",
+  "expression": "smile expression",
+  "objects": "holding stick",
+  "environment": "at lake",
+  "lighting": "mid-tone lighting",
+  "visual_characteristics": "warm red and ochre palette",
+  "raw_caption": "a group of naked people in a body of water",
+  "title": "Krishna sitting in a tree with all the gopis clothes while they naked in the water, beg for their garments",
+  "source": "vlm",
+  "qa": {
+    "people_count": "7",
+    "clothing": "nothing",
+    "clothing_color": "black",
+    "has_jewelry": "no",
+    "pose": "sitting",
+    "action": "sitting",
+    "expression": "smile",
+    "has_object": "yes",
+    "objects": "stick",
+    "environment": "at lake",
+    "time": "day"
+  },
+  "measured": {
+    "lighting": "mid-tone lighting",
+    "palette": "warm red and ochre palette",
+    "orientation": "vertical format"
+  },
+  "flat_caption": "Krishna sitting in a tree with all the gopis clothes while they, a group of naked people in a body of water, chromolithograph print with printed title text in the bottom margin, sitting, smile expression, holding stick, at lake, group of many figures, vertical format, mid-tone lighting, warm red and ochre palette"
+}

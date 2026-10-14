@@ -1,0 +1,36 @@
+{
+  "image": "0246.jpg",
+  "subject": "a woman with a pot on her head",
+  "composition": "single-figure composition, vertical format",
+  "pose": "standing, holding bowl",
+  "clothing": "wearing red dress",
+  "jewelry": "necklace jewelry",
+  "expression": "serious expression",
+  "objects": "holding bowl",
+  "environment": "unknown",
+  "lighting": "mid-tone lighting",
+  "visual_characteristics": "warm red and ochre palette",
+  "raw_caption": "a woman with a pot on her head",
+  "title": "Village Belle",
+  "source": "vlm",
+  "qa": {
+    "people_count": "1",
+    "clothing": "dress",
+    "clothing_color": "red",
+    "has_jewelry": "yes",
+    "jewelry": "necklace",
+    "pose": "standing",
+    "action": "holding bowl",
+    "expression": "serious",
+    "has_object": "yes",
+    "objects": "bowl",
+    "environment": "in painting",
+    "time": "day"
+  },
+  "measured": {
+    "lighting": "mid-tone lighting",
+    "palette": "warm red and ochre palette",
+    "orientation": "vertical format"
+  },
+  "flat_caption": "Village Belle, a woman with a pot on her head, wearing red dress, necklace jewelry, standing, holding bowl, serious expression, holding bowl, single-figure composition, vertical format, mid-tone lighting, warm red and ochre palette"
+}

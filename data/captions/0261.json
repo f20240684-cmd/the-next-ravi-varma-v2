@@ -1,0 +1,36 @@
+{
+  "image": "0261.jpg",
+  "subject": "a woman sitting on a ledge playing a stringed instrument",
+  "composition": "single-figure composition, vertical format",
+  "pose": "sitting, playing stringed instrument",
+  "clothing": "wearing red pink and blue dress",
+  "jewelry": "necklace jewelry",
+  "expression": "smile expression",
+  "objects": "holding stringed instrument",
+  "environment": "on porch",
+  "lighting": "mid-tone lighting",
+  "visual_characteristics": "warm red and ochre palette",
+  "raw_caption": "a woman sitting on a ledge playing a stringed instrument",
+  "title": "Kadambari playing sitar",
+  "source": "vlm",
+  "qa": {
+    "people_count": "one",
+    "clothing": "pink and blue dress",
+    "clothing_color": "red",
+    "has_jewelry": "yes",
+    "jewelry": "necklace",
+    "pose": "sitting",
+    "action": "playing guitar",
+    "expression": "smile",
+    "has_object": "yes",
+    "objects": "guitar",
+    "environment": "on porch",
+    "time": "day"
+  },
+  "measured": {
+    "lighting": "mid-tone lighting",
+    "palette": "warm red and ochre palette",
+    "orientation": "vertical format"
+  },
+  "flat_caption": "Kadambari playing sitar, a woman sitting on a ledge playing a stringed instrument, wearing red pink and blue dress, necklace jewelry, sitting, playing stringed instrument, smile expression, holding stringed instrument, on porch, single-figure composition, vertical format, mid-tone lighting, warm red and ochre palette"
+}

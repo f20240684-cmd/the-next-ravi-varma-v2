@@ -1,0 +1,36 @@
+{
+  "image": "0243.jpg",
+  "subject": "a woman standing in front of a table",
+  "composition": "group of five figures, vertical format",
+  "pose": "standing",
+  "clothing": "wearing white dress",
+  "jewelry": "necklace jewelry",
+  "expression": "serious expression",
+  "objects": "holding sword",
+  "environment": "in church",
+  "lighting": "mid-tone lighting",
+  "visual_characteristics": "warm red and ochre palette",
+  "raw_caption": "a woman standing in front of a table",
+  "title": "The Begum's Bath",
+  "source": "vlm",
+  "qa": {
+    "people_count": "5",
+    "clothing": "dress",
+    "clothing_color": "white",
+    "has_jewelry": "yes",
+    "jewelry": "necklace",
+    "pose": "standing",
+    "action": "standing",
+    "expression": "serious",
+    "has_object": "yes",
+    "objects": "sword",
+    "environment": "church",
+    "time": "day"
+  },
+  "measured": {
+    "lighting": "mid-tone lighting",
+    "palette": "warm red and ochre palette",
+    "orientation": "vertical format"
+  },
+  "flat_caption": "The Begum's Bath, a woman standing in front of a table, wearing white dress, necklace jewelry, standing, serious expression, holding sword, in church, group of five figures, vertical format, mid-tone lighting, warm red and ochre palette"
+}

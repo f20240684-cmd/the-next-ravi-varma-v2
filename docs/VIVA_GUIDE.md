@@ -20,7 +20,7 @@ Tip: answer in one sentence first, then add the detail only if they ask.
 | Hardware / time | Colab **Tesla T4**, **58 min** (~2.2 s/step) |
 | Inference | DPM-Solver++ **30 steps**, guidance **7.5**, LoRA scale 1.0 |
 | Latent size | image ÷ 8 per side, 4 channels (448×640 → 56×80×4) |
-| CLIP token limit | **77** (captions capped at 70 + trigger) |
+| CLIP token limit | **77** incl. start/end tokens (captions capped at 69 + 6-token trigger prefix) |
 | Evaluation | 5 prompts × 3 seeds = **15 pairs**; style sim. 0.669 → **0.681**; prompt adherence 0.328 → 0.317; frames 5/15 → **0/15** |
 | Milestone 3 | lexicon of **27** characters / **18** places; expansion fits **75** tokens; CLIP raw 0.326 / local 0.317 / LLM 0.320 (no measurable gain) |
 | Milestone 4 | OpenPose ControlNet: pose adherence (PCK) **0.17 → 0.86** on 6 held-out paintings; style 0.704 → 0.692 |

@@ -132,3 +132,16 @@ class TestManifestCreation:
     def test_load_missing_manifest_raises(self, tmp_path):
         with pytest.raises(FileNotFoundError):
             load_manifest(tmp_path / "does_not_exist.jsonl")
+
+
+def test_downloader_numbers_after_highest_existing_file(tmp_path):
+    """Names are not contiguous after curation; counting files would overwrite 0003.jpg here."""
+    import importlib.util
+    from pathlib import Path
+
+    spec = importlib.util.spec_from_file_location("download_dataset", Path(__file__).resolve().parent.parent / "scripts" / "download_dataset.py")
+    mod = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(mod)
+    for name in ("0000.jpg", "0003.jpg", "notes.txt"):
+        (tmp_path / name).write_bytes(b"x")
+    assert mod.next_free_index(tmp_path) == 4

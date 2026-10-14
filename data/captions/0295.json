@@ -1,0 +1,36 @@
+{
+  "image": "0295.jpg",
+  "subject": "portrait of a woman in a white shawl with a necklace and a flower in her hair",
+  "composition": "single-figure composition, vertical format",
+  "pose": "sitting, thinking",
+  "clothing": "unknown",
+  "jewelry": "necklace jewelry",
+  "expression": "serious expression",
+  "objects": "unknown",
+  "environment": "unknown",
+  "lighting": "mid-tone lighting",
+  "visual_characteristics": "warm red and ochre palette",
+  "raw_caption": "portrait of a woman in a white shawl with a necklace and a flower in her hair",
+  "title": "Malabar beauty",
+  "source": "vlm",
+  "qa": {
+    "people_count": "1",
+    "clothing": "necklace",
+    "clothing_color": "white",
+    "has_jewelry": "yes",
+    "jewelry": "necklace",
+    "pose": "sitting",
+    "action": "thinking",
+    "expression": "serious",
+    "has_object": "yes",
+    "objects": "nothing",
+    "environment": "in painting",
+    "time": "day"
+  },
+  "measured": {
+    "lighting": "mid-tone lighting",
+    "palette": "warm red and ochre palette",
+    "orientation": "vertical format"
+  },
+  "flat_caption": "Malabar beauty, portrait of a woman in a white shawl with a necklace and a flower in her hair, necklace jewelry, sitting, thinking, serious expression, single-figure composition, vertical format, mid-tone lighting, warm red and ochre palette"
+}

@@ -1,0 +1,36 @@
+{
+  "image": "0279.jpg",
+  "subject": "a woman in a blue sari posing for a picture",
+  "composition": "single-figure composition, vertical format",
+  "pose": "sitting",
+  "clothing": "wearing blue dress",
+  "jewelry": "necklace jewelry",
+  "expression": "serious expression",
+  "objects": "holding hat",
+  "environment": "unknown",
+  "lighting": "mid-tone lighting",
+  "visual_characteristics": "balanced earthy palette",
+  "raw_caption": "a woman in a blue sari posing for a picture",
+  "title": "Raja and Rani of Kurupam",
+  "source": "vlm",
+  "qa": {
+    "people_count": "1",
+    "clothing": "blue dress",
+    "clothing_color": "blue",
+    "has_jewelry": "yes",
+    "jewelry": "necklace",
+    "pose": "sitting",
+    "action": "sitting",
+    "expression": "serious",
+    "has_object": "yes",
+    "objects": "hat",
+    "environment": "in painting",
+    "time": "day"
+  },
+  "measured": {
+    "lighting": "mid-tone lighting",
+    "palette": "balanced earthy palette",
+    "orientation": "vertical format"
+  },
+  "flat_caption": "Raja and Rani of Kurupam, a woman in a blue sari posing for a picture, wearing blue dress, necklace jewelry, sitting, serious expression, holding hat, single-figure composition, vertical format, mid-tone lighting, balanced earthy palette"
+}

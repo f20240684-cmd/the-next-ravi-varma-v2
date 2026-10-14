@@ -1,0 +1,36 @@
+{
+  "image": "0338.jpg",
+  "subject": "a man handing a woman something",
+  "composition": "group of two figures, vertical format",
+  "pose": "standing, holding woman's head",
+  "clothing": "wearing red dress",
+  "jewelry": "necklace jewelry",
+  "expression": "calm expression",
+  "objects": "holding sword",
+  "environment": "in india",
+  "lighting": "dark low-key tones, night scene",
+  "visual_characteristics": "warm red and ochre palette",
+  "raw_caption": "a man handing a woman something",
+  "title": "Story of Purūravas and Urvashi: Urvashi flying off to heaven while Purūravas tries to stop her",
+  "source": "vlm",
+  "qa": {
+    "people_count": "2",
+    "clothing": "dress",
+    "clothing_color": "red",
+    "has_jewelry": "yes",
+    "jewelry": "necklace",
+    "pose": "standing",
+    "action": "holding woman's head",
+    "expression": "calm",
+    "has_object": "yes",
+    "objects": "sword",
+    "environment": "india",
+    "time": "night"
+  },
+  "measured": {
+    "lighting": "dark low-key tones",
+    "palette": "warm red and ochre palette",
+    "orientation": "vertical format"
+  },
+  "flat_caption": "Story of Purūravas and Urvashi: Urvashi flying off to heaven while Purūravas, a man handing a woman something, chromolithograph print with printed title text in the bottom margin, wearing red dress, necklace jewelry, standing, holding woman's head, calm expression, holding sword, in india"
+}

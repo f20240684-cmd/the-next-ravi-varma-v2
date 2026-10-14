@@ -1,0 +1,36 @@
+{
+  "image": "0316.jpg",
+  "subject": "a group of people sitting on a bench with a cow",
+  "composition": "group of five figures, vertical format",
+  "pose": "sitting",
+  "clothing": "wearing red indian attire",
+  "jewelry": "necklace jewelry",
+  "expression": "smile expression",
+  "objects": "holding baby",
+  "environment": "on bench",
+  "lighting": "mid-tone lighting",
+  "visual_characteristics": "warm red and ochre palette",
+  "raw_caption": "a group of people sitting on a bench with a cow",
+  "title": "Shiva, Parvati and Ganesha enthroned on Mount Kailas with Nandi the bull",
+  "source": "vlm",
+  "qa": {
+    "people_count": "5",
+    "clothing": "indian attire",
+    "clothing_color": "red",
+    "has_jewelry": "yes",
+    "jewelry": "necklace",
+    "pose": "sitting",
+    "action": "sitting",
+    "expression": "smile",
+    "has_object": "yes",
+    "objects": "baby",
+    "environment": "on bench",
+    "time": "day"
+  },
+  "measured": {
+    "lighting": "mid-tone lighting",
+    "palette": "warm red and ochre palette",
+    "orientation": "vertical format"
+  },
+  "flat_caption": "Shiva, Parvati and Ganesha enthroned on Mount Kailas with Nandi the bull, a group of people sitting on a bench with a cow, chromolithograph print with printed title text in the bottom margin, wearing red indian attire, necklace jewelry, sitting, smile expression, holding baby, on bench, group of five figures, vertical format"
+}

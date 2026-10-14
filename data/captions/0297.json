@@ -1,0 +1,36 @@
+{
+  "image": "0297.jpg",
+  "subject": "a woman laying on a bed with a mirror",
+  "composition": "group of two figures, landscape format",
+  "pose": "laying, reading",
+  "clothing": "wearing white dress",
+  "jewelry": "necklace jewelry",
+  "expression": "serious expression",
+  "objects": "holding book",
+  "environment": "unknown",
+  "lighting": "dark low-key tones",
+  "visual_characteristics": "warm red and ochre palette",
+  "raw_caption": "a woman laying on a bed with a mirror",
+  "title": "Reclining Nayar Lady [ 1 ]",
+  "source": "vlm",
+  "qa": {
+    "people_count": "2",
+    "clothing": "dress",
+    "clothing_color": "white",
+    "has_jewelry": "yes",
+    "jewelry": "necklace",
+    "pose": "laying",
+    "action": "reading",
+    "expression": "serious",
+    "has_object": "yes",
+    "objects": "book",
+    "environment": "in painting",
+    "time": "day"
+  },
+  "measured": {
+    "lighting": "dark low-key tones",
+    "palette": "warm red and ochre palette",
+    "orientation": "landscape format"
+  },
+  "flat_caption": "Reclining Nayar Lady [ 1 ], a woman laying on a bed with a mirror, wearing white dress, necklace jewelry, laying, reading, serious expression, holding book, group of two figures, landscape format, dark low-key tones, warm red and ochre palette"
+}

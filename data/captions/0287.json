@@ -1,0 +1,36 @@
+{
+  "image": "0287.jpg",
+  "subject": "a woman sitting on a rock with a stringed instrument and peacocks",
+  "composition": "single-figure composition, vertical format",
+  "pose": "sitting, playing stringed instrument",
+  "clothing": "wearing yellow dress",
+  "jewelry": "necklace jewelry",
+  "expression": "smile expression",
+  "objects": "holding stringed instrument",
+  "environment": "in park",
+  "lighting": "mid-tone lighting",
+  "visual_characteristics": "warm red and ochre palette",
+  "raw_caption": "a woman sitting on a rock with a stringed instrument and peacocks",
+  "title": "Saraswati is the Hindu goddess of knowledge, music, art and wisdom. She is the embodiment of learning and to pay obeisance to her is considered paramount before embarking on any venture, auspicious or otherwise. Saraswati appears both as a reference to a river and deity in the Vedas. Her four hands are symbolic: the pustaka (book) signifies knowledge, the mala (beads) represent the power of meditation, the veena (instrument) stands for the creative ability. In some images, she is also shown holding a pot of water representing purity. Her choice of vahan is either a peacock or a swan and she is always depicted near a flowing river",
+  "source": "vlm",
+  "qa": {
+    "people_count": "1",
+    "clothing": "dress",
+    "clothing_color": "yellow",
+    "has_jewelry": "yes",
+    "jewelry": "necklace",
+    "pose": "sitting",
+    "action": "playing guitar",
+    "expression": "smile",
+    "has_object": "yes",
+    "objects": "guitar",
+    "environment": "in park",
+    "time": "day"
+  },
+  "measured": {
+    "lighting": "mid-tone lighting",
+    "palette": "warm red and ochre palette",
+    "orientation": "vertical format"
+  },
+  "flat_caption": "Saraswati is the Hindu goddess of knowledge, music, art and wisdom, a woman sitting on a rock with a stringed instrument and peacocks, wearing yellow dress, necklace jewelry, sitting, playing stringed instrument, smile expression, holding stringed instrument, in park, single-figure composition, vertical format, mid-tone lighting"
+}

@@ -1,0 +1,36 @@
+{
+  "image": "0325.jpg",
+  "subject": "two people in a boat with a horse in the water",
+  "composition": "group of two figures, vertical format",
+  "pose": "sitting, rowing",
+  "clothing": "wearing red and blue",
+  "jewelry": "bracelet jewelry",
+  "expression": "smile expression",
+  "objects": "holding oar",
+  "environment": "on river",
+  "lighting": "mid-tone lighting",
+  "visual_characteristics": "warm red and ochre palette",
+  "raw_caption": "two people in a boat with a horse in the water",
+  "title": "King Shantanu proposes to the low caste fisher girl Satyavatī (Matsyagandha)",
+  "source": "vlm",
+  "qa": {
+    "people_count": "2",
+    "clothing": "red and blue",
+    "clothing_color": "red",
+    "has_jewelry": "yes",
+    "jewelry": "bracelet",
+    "pose": "sitting",
+    "action": "rowing",
+    "expression": "smile",
+    "has_object": "yes",
+    "objects": "oar",
+    "environment": "on river",
+    "time": "day"
+  },
+  "measured": {
+    "lighting": "mid-tone lighting",
+    "palette": "warm red and ochre palette",
+    "orientation": "vertical format"
+  },
+  "flat_caption": "King Shantanu proposes to the low caste fisher girl Satyavatī (Matsyagandha), two people in a boat with a horse in the water, chromolithograph print with printed title text in the bottom margin, wearing red and blue, bracelet jewelry, sitting, rowing, smile expression, holding oar, on river"
+}

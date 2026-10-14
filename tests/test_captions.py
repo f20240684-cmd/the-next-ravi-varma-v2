@@ -84,3 +84,17 @@ class TestFallbackPolicy:
         cap = HeuristicCaptioner().caption(path)
         assert cap.source == "heuristic"
         assert "no VLM" not in cap.as_flat_caption()
+
+
+def test_flat_caption_keeps_note_and_shortens_descriptive_title():
+    from ravi_varma.data.captions import StructuredCaption, _approx_token_count
+
+    long_title = "Saraswati is the Hindu goddess of knowledge, music, art and wisdom. She is the embodiment of learning and much more"
+    cap = StructuredCaption(subject="a woman playing a veena by a river", title=long_title,
+                            clothing="white sari with a gold border and many ornaments " * 3, lighting="soft warm light",
+                            composition="single-figure composition, vertical format")
+    note = "chromolithograph print with printed title text in the bottom margin"
+    flat = cap.as_flat_caption(max_tokens=40, note=note)
+    assert note in flat
+    assert "She is the embodiment" not in flat
+    assert _approx_token_count(flat) <= 40

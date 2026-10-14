@@ -154,9 +154,8 @@ def prepare_dataset(config: DatasetConfig, accepted: Optional[list[str]] = None)
         out_path = (reference_dir if rel in holdout else processed_dir) / f"{Path(rel).stem}.jpg"
         processed.save(out_path, format="JPEG", quality=95)
 
-        note = config.curation.caption_notes.get(rel)
-        if note:
-            caption = f"{caption}, {note}"
+        # caption_notes are already inside `caption` (applied within the token budget
+        # by generate_captions.py), so nothing is appended here.
         prefixed_caption = config.style.caption_prefix_template.format(
             trigger_token=config.style.trigger_token, caption=caption
         )

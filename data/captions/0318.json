@@ -1,0 +1,36 @@
+{
+  "image": "0318.jpg",
+  "subject": "a man and a woman standing in the mountains",
+  "composition": "group of two figures, vertical format",
+  "pose": "standing",
+  "clothing": "wearing red dress",
+  "jewelry": "necklace jewelry",
+  "expression": "smile expression",
+  "objects": "holding stick",
+  "environment": "in mountains",
+  "lighting": "mid-tone lighting",
+  "visual_characteristics": "warm red and ochre palette",
+  "raw_caption": "a man and a woman standing in the mountains",
+  "title": "Shiva as a Kirat (tribal Bhil huntsman) with a huntswoman",
+  "source": "vlm",
+  "qa": {
+    "people_count": "two",
+    "clothing": "dress",
+    "clothing_color": "red",
+    "has_jewelry": "yes",
+    "jewelry": "necklace",
+    "pose": "standing",
+    "action": "standing",
+    "expression": "smile",
+    "has_object": "yes",
+    "objects": "stick",
+    "environment": "in mountains",
+    "time": "day"
+  },
+  "measured": {
+    "lighting": "mid-tone lighting",
+    "palette": "warm red and ochre palette",
+    "orientation": "vertical format"
+  },
+  "flat_caption": "Shiva as a Kirat (tribal Bhil huntsman) with a huntswoman, a man and a woman standing in the mountains, chromolithograph print with printed title text in the bottom margin, wearing red dress, necklace jewelry, standing, smile expression, holding stick, in mountains, group of two figures, vertical format"
+}

@@ -1,0 +1,36 @@
+{
+  "image": "0336.jpg",
+  "subject": "a woman in a red dress and a man in a red sari",
+  "composition": "group of two figures, vertical format",
+  "pose": "sitting",
+  "clothing": "wearing red dress",
+  "jewelry": "necklace jewelry",
+  "expression": "calm expression",
+  "objects": "holding his hand",
+  "environment": "in temple",
+  "lighting": "dark low-key tones",
+  "visual_characteristics": "warm red and ochre palette",
+  "raw_caption": "a woman in a red dress and a man in a red sari",
+  "title": "A woman giving alms to a beggar outside a temple to Lord Shiva",
+  "source": "vlm",
+  "qa": {
+    "people_count": "two",
+    "clothing": "red dress",
+    "clothing_color": "red",
+    "has_jewelry": "yes",
+    "jewelry": "necklace",
+    "pose": "sitting",
+    "action": "sitting",
+    "expression": "calm",
+    "has_object": "yes",
+    "objects": "his hand",
+    "environment": "in temple",
+    "time": "day"
+  },
+  "measured": {
+    "lighting": "dark low-key tones",
+    "palette": "warm red and ochre palette",
+    "orientation": "vertical format"
+  },
+  "flat_caption": "A woman giving alms to a beggar outside a temple to Lord, a woman in a red dress and a man in a red sari, chromolithograph print with printed title text in the bottom margin, wearing red dress, necklace jewelry, sitting, calm expression, holding his hand, in temple, group of two figures, vertical format"
+}

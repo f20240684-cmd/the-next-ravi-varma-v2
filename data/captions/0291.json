@@ -1,0 +1,35 @@
+{
+  "image": "0291.jpg",
+  "subject": "a man and a woman playing with a frisbee",
+  "composition": "group of two figures, vertical format",
+  "pose": "standing, holding hands",
+  "clothing": "wearing orange toga",
+  "jewelry": "unknown",
+  "expression": "serious expression",
+  "objects": "holding book",
+  "environment": "in jungle",
+  "lighting": "dark low-key tones",
+  "visual_characteristics": "warm red and ochre palette",
+  "raw_caption": "a man and a woman playing with a frisbee",
+  "title": "Viswāmitra rejecting his daughter Sakuntalā's birt",
+  "source": "vlm",
+  "qa": {
+    "people_count": "two",
+    "clothing": "toga",
+    "clothing_color": "orange",
+    "has_jewelry": "no",
+    "pose": "standing",
+    "action": "holding hands",
+    "expression": "serious",
+    "has_object": "yes",
+    "objects": "book",
+    "environment": "in jungle",
+    "time": "day"
+  },
+  "measured": {
+    "lighting": "dark low-key tones",
+    "palette": "warm red and ochre palette",
+    "orientation": "vertical format"
+  },
+  "flat_caption": "Viswāmitra rejecting his daughter Sakuntalā's birt, a man and a woman playing with a frisbee, wearing orange toga, standing, holding hands, serious expression, holding book, in jungle, group of two figures, vertical format, dark low-key tones, warm red and ochre palette"
+}

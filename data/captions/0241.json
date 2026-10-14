@@ -1,0 +1,35 @@
+{
+  "image": "0241.jpg",
+  "subject": "a woman in a yellow sari with gold and pearl jewelry",
+  "composition": "single-figure composition, vertical format",
+  "pose": "standing, staring",
+  "clothing": "unknown",
+  "jewelry": "necklace jewelry",
+  "expression": "serious expression",
+  "objects": "unknown",
+  "environment": "unknown",
+  "lighting": "dark low-key tones, night scene",
+  "visual_characteristics": "warm red and ochre palette",
+  "raw_caption": "a woman in a yellow sari with gold and pearl jewelry",
+  "title": "Swarbat player jewellery",
+  "source": "vlm",
+  "qa": {
+    "people_count": "one",
+    "clothing": "necklace",
+    "clothing_color": "yellow",
+    "has_jewelry": "yes",
+    "jewelry": "necklace",
+    "pose": "standing",
+    "action": "staring",
+    "expression": "serious",
+    "has_object": "no",
+    "environment": "in museum",
+    "time": "night"
+  },
+  "measured": {
+    "lighting": "dark low-key tones",
+    "palette": "warm red and ochre palette",
+    "orientation": "vertical format"
+  },
+  "flat_caption": "Swarbat player jewellery, a woman in a yellow sari with gold and pearl jewelry, necklace jewelry, standing, staring, serious expression, single-figure composition, vertical format, dark low-key tones, night scene, warm red and ochre palette"
+}

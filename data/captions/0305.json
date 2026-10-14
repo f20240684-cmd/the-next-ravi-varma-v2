@@ -1,0 +1,36 @@
+{
+  "image": "0305.jpg",
+  "subject": "a bird with three women on it",
+  "composition": "group of four figures, vertical format",
+  "pose": "sitting",
+  "clothing": "wearing red outfit",
+  "jewelry": "necklace jewelry",
+  "expression": "calm expression",
+  "objects": "holding sword",
+  "environment": "unknown",
+  "lighting": "mid-tone lighting",
+  "visual_characteristics": "warm red and ochre palette",
+  "raw_caption": "a bird with three women on it",
+  "title": "Vishnu accompanied by his wives riding on Garuda who carries a cobra",
+  "source": "vlm",
+  "qa": {
+    "people_count": "4",
+    "clothing": "red outfit",
+    "clothing_color": "red",
+    "has_jewelry": "yes",
+    "jewelry": "necklace",
+    "pose": "sitting",
+    "action": "sitting",
+    "expression": "calm",
+    "has_object": "yes",
+    "objects": "sword",
+    "environment": "in painting",
+    "time": "day"
+  },
+  "measured": {
+    "lighting": "mid-tone lighting",
+    "palette": "warm red and ochre palette",
+    "orientation": "vertical format"
+  },
+  "flat_caption": "Vishnu accompanied by his wives riding on Garuda who carries a cobra, a bird with three women on it, chromolithograph print with printed title text in the bottom margin, wearing red outfit, necklace jewelry, sitting, calm expression, holding sword, group of four figures, vertical format, mid-tone lighting, warm red and ochre palette"
+}

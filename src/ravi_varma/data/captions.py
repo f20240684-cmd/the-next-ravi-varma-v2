@@ -174,20 +174,41 @@ class StructuredCaption:
         for name in FLAT_CAPTION_PRIORITY:
             value = getattr(self, name)
             if value and value.strip() and not value.startswith("unknown"):
-                parts.append(value.strip())
+                parts.append(_short_title(value) if name == "title" else value.strip())
         return list(dict.fromkeys(parts))  # de-duplicate, keep order
 
-    def as_flat_caption(self, token_counter: Optional[Callable[[str], int]] = None, max_tokens: int = 70) -> str:
+    def as_flat_caption(self, token_counter: Optional[Callable[[str], int]] = None, max_tokens: int = 69,
+                        note: Optional[str] = None) -> str:
         """Single-line training caption built from informative fields only,
         in priority order, trimmed so `token_counter(caption) <= max_tokens`.
-        70 leaves room for BOS/EOS plus the "<rvvarma>, " prefix inside
-        CLIP's 77-token window; anything past 77 would be silently cut by
+        69 leaves room for BOS/EOS plus the "<rvvarma>, " prefix (6 tokens)
+        inside CLIP's 77-token window; anything past 77 would be silently cut by
         the tokenizer during training."""
         count = token_counter or _approx_token_count
         parts = self._parts()
-        while len(parts) > 1 and count(", ".join(parts)) > max_tokens:
-            parts.pop()
+        if note:
+            # Curated notes (frames, printed text) must survive trimming: they go right
+            # after the title/subject, never in the tail that gets dropped.
+            parts.insert(min(2, len(parts)), note)
+        while count(", ".join(parts)) > max_tokens:
+            removable = [i for i, p in enumerate(parts) if i > 0 and p != note]
+            if not removable:
+                break
+            parts.pop(removable[-1])
         return ", ".join(parts)
+
+
+def _short_title(title: str, max_words: int = 12) -> str:
+    """Some Commons 'titles' are whole descriptions; keep the first sentence, at most 12 words.
+    Also drops Wikidata residue ("title QS:P1476,...") and non-Latin script, which costs
+    many CLIP tokens and that SD1.5's English text encoder cannot use."""
+    title = re.sub(r"\s*\b(title|label)\s+QS:.*$", "", title)
+    title = re.sub(r"\b[A-Z][a-z]+:\s*(?=[\u0900-\u0DFF])", "", title)  # "Malayalam: " before Indic text
+    title = re.sub(r"[\u0900-\u0DFF]+", "", title)
+    title = re.sub(r"\s{2,}", " ", title).strip(" ,:-")
+    first = re.split(r"(?<=[a-z\)])\.\s", title.strip(), maxsplit=1)[0].rstrip(".")
+    words = first.split()
+    return " ".join(words[:max_words]) if len(words) > max_words else first
 
 
 def _approx_token_count(text: str) -> int:

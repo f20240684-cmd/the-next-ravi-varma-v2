@@ -1,0 +1,35 @@
+{
+  "image": "0293.jpg",
+  "subject": "a woman in a white dress with a necklace and earrings",
+  "composition": "single-figure composition, vertical format",
+  "pose": "sitting, staring",
+  "clothing": "unknown",
+  "jewelry": "necklace jewelry",
+  "expression": "serious expression",
+  "objects": "unknown",
+  "environment": "unknown",
+  "lighting": "dark low-key tones",
+  "visual_characteristics": "warm red and ochre palette",
+  "raw_caption": "a woman in a white dress with a necklace and earrings",
+  "title": "Pooruruttathi Thirunal Mahaprabha Amma Thampuran",
+  "source": "vlm",
+  "qa": {
+    "people_count": "1",
+    "clothing": "necklace",
+    "clothing_color": "white",
+    "has_jewelry": "yes",
+    "jewelry": "necklace",
+    "pose": "sitting",
+    "action": "staring",
+    "expression": "serious",
+    "has_object": "no",
+    "environment": "in painting",
+    "time": "day"
+  },
+  "measured": {
+    "lighting": "dark low-key tones",
+    "palette": "warm red and ochre palette",
+    "orientation": "vertical format"
+  },
+  "flat_caption": "Pooruruttathi Thirunal Mahaprabha Amma Thampuran, a woman in a white dress with a necklace and earrings, necklace jewelry, sitting, staring, serious expression, single-figure composition, vertical format, dark low-key tones, warm red and ochre palette"
+}

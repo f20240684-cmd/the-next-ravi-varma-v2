@@ -1,0 +1,36 @@
+{
+  "image": "0275.jpg",
+  "subject": "a woman playing a stringed instrument in the water",
+  "composition": "group of three figures, vertical format",
+  "pose": "standing, playing",
+  "clothing": "wearing pink dress",
+  "jewelry": "necklace jewelry",
+  "expression": "calm expression",
+  "objects": "holding stringed instrument",
+  "environment": "in india",
+  "lighting": "mid-tone lighting",
+  "visual_characteristics": "warm red and ochre palette",
+  "raw_caption": "a woman playing a stringed instrument in the water",
+  "title": "Lakshmi Saraswati Sanyog",
+  "source": "vlm",
+  "qa": {
+    "people_count": "three",
+    "clothing": "pink dress",
+    "clothing_color": "pink",
+    "has_jewelry": "yes",
+    "jewelry": "necklace",
+    "pose": "standing",
+    "action": "playing",
+    "expression": "calm",
+    "has_object": "yes",
+    "objects": "guitar",
+    "environment": "india",
+    "time": "day"
+  },
+  "measured": {
+    "lighting": "mid-tone lighting",
+    "palette": "warm red and ochre palette",
+    "orientation": "vertical format"
+  },
+  "flat_caption": "Lakshmi Saraswati Sanyog, a woman playing a stringed instrument in the water, wearing pink dress, necklace jewelry, standing, playing, calm expression, holding stringed instrument, in india, group of three figures, vertical format, mid-tone lighting, warm red and ochre palette"
+}

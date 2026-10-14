@@ -1,0 +1,36 @@
+{
+  "image": "0270.jpg",
+  "subject": "a group of people standing on steps",
+  "composition": "group of many figures, vertical format",
+  "pose": "standing",
+  "clothing": "wearing pink dress",
+  "jewelry": "necklace jewelry",
+  "expression": "calm expression",
+  "objects": "holding sword",
+  "environment": "at temple",
+  "lighting": "mid-tone lighting",
+  "visual_characteristics": "warm red and ochre palette",
+  "raw_caption": "a group of people standing on steps",
+  "title": "Victory of Meghanada",
+  "source": "vlm",
+  "qa": {
+    "people_count": "8",
+    "clothing": "dress",
+    "clothing_color": "pink",
+    "has_jewelry": "yes",
+    "jewelry": "necklace",
+    "pose": "standing",
+    "action": "standing",
+    "expression": "calm",
+    "has_object": "yes",
+    "objects": "sword",
+    "environment": "at temple",
+    "time": "day"
+  },
+  "measured": {
+    "lighting": "mid-tone lighting",
+    "palette": "warm red and ochre palette",
+    "orientation": "vertical format"
+  },
+  "flat_caption": "Victory of Meghanada, a group of people standing on steps, wearing pink dress, necklace jewelry, standing, calm expression, holding sword, at temple, group of many figures, vertical format, mid-tone lighting, warm red and ochre palette"
+}

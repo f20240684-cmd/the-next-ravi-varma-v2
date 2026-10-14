@@ -1,0 +1,35 @@
+{
+  "image": "0278.jpg",
+  "subject": "a woman in a red sari with gold jewelry on her head",
+  "composition": "single-figure composition, vertical format",
+  "pose": "standing, staring",
+  "clothing": "unknown",
+  "jewelry": "necklace jewelry",
+  "expression": "serious expression",
+  "objects": "unknown",
+  "environment": "unknown",
+  "lighting": "mid-tone lighting",
+  "visual_characteristics": "warm red and ochre palette",
+  "raw_caption": "a woman in a red sari with gold jewelry on her head",
+  "title": "Thara Varini / A Tamil Lady",
+  "source": "vlm",
+  "qa": {
+    "people_count": "1",
+    "clothing": "necklace",
+    "clothing_color": "red",
+    "has_jewelry": "yes",
+    "jewelry": "necklace",
+    "pose": "standing",
+    "action": "staring",
+    "expression": "serious",
+    "has_object": "no",
+    "environment": "in painting",
+    "time": "day"
+  },
+  "measured": {
+    "lighting": "mid-tone lighting",
+    "palette": "warm red and ochre palette",
+    "orientation": "vertical format"
+  },
+  "flat_caption": "Thara Varini / A Tamil Lady, a woman in a red sari with gold jewelry on her head, necklace jewelry, standing, staring, serious expression, single-figure composition, vertical format, mid-tone lighting, warm red and ochre palette"
+}
