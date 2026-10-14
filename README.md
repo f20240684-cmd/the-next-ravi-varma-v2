@@ -223,7 +223,7 @@ python scripts/generate.py --prompt "<rvvarma>, a royal Indian woman in a silk s
 
 <p align="center"><img src="outputs/evaluations/m4_controlnet/grid.jpg" width="85%"></p>
 
-**Web panel** (`python app/app.py` → http://127.0.0.1:7860). The **Generate** tab takes:
+**Web panel** (`python app/app.py` → http://127.0.0.1:7860), styled after the Figma design ["The Next Ravi Varma – App UI"](https://www.figma.com/design/04HJ8zohxGYPrEvUOXEtoB): a dark "gallery at night" theme with gold accents, the result shown in a gilt frame, and a recent-paintings gallery. The **Generate** tab takes:
 - a scene description (expanded by Milestone 3)
 - style strength, seed, steps, guidance and size (defaults 448 × 640, seed 42)
 - an optional pose reference and ControlNet type/strength

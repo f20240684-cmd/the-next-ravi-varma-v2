@@ -1,19 +1,28 @@
 """Helper functions used by app/app.py -- kept separate so the Gradio wiring
-in app.py stays short and readable."""
+in app.py stays short and readable. HTML fragments use the classes defined in
+app/styles.css (design: Figma file "The Next Ravi Varma – App UI")."""
 from __future__ import annotations
 
 import csv
-import json
+import html
+import time
 from pathlib import Path
 from typing import Optional
 
 from PIL import Image
 
-from ravi_varma.config import GenerationConfig
 from ravi_varma.evaluation.clip_score import clip_available, text_image_similarity
 from ravi_varma.evaluation.style_similarity import compute_style_similarity
 from ravi_varma.generation.pipeline import RaviVarmaGenerator
-from ravi_varma.generation.prompt_engine import PromptExpansionEngine
+from ravi_varma.generation.prompt_engine import PromptExpansionEngine, _default_token_counter
+
+SIZES = {"Portrait 448×640": (448, 640), "Landscape 640×448": (640, 448), "Square 512×512": (512, 512)}
+CONTROL_MODES = {"Copy pose (OpenPose)": "openpose", "Trace edges (Canny)": "canny"}
+EXAMPLES = {  # chip label -> scene it fills in
+    "Damayanti and the swan": "Damayanti talking to a swan in a palace garden",
+    "Krishna and Arjuna": "Krishna guiding Arjuna in his chariot",
+    "Shakuntala's letter": "Shakuntala writing a letter in a forest",
+}
 
 ABOUT_MARKDOWN = """
 ## About "The Next Ravi Varma"
@@ -44,19 +53,28 @@ See the README's "Ethical & Copyright Considerations" section for dataset proven
 """
 
 
+def _loss_history(lora_root: "str | Path") -> dict[int, float]:
+    history = Path(lora_root) / "loss_history.csv"
+    if not history.exists():
+        return {}
+    with history.open() as f:
+        return {int(r["step"]): float(r["loss"]) for r in csv.DictReader(f)}
+
+
+def _mean_loss(losses: dict[int, float], step: int, window: int = 50) -> Optional[float]:
+    vals = [losses[s] for s in range(step - window + 1, step + 1) if s in losses]
+    return sum(vals) / len(vals) if vals else None
+
+
 def list_checkpoints(lora_root: "str | Path") -> list[tuple[str, str]]:
     """(label, path) for the final LoRA and every checkpoint-<step>, labelled with the
     mean training loss of the 50 steps before it (from loss_history.csv)."""
     root = Path(lora_root)
-    losses = {}
-    history = root / "loss_history.csv"
-    if history.exists():
-        with history.open() as f:
-            losses = {int(r["step"]): float(r["loss"]) for r in csv.DictReader(f)}
+    losses = _loss_history(root)
 
     def label(step: int) -> str:
-        window = [losses[s] for s in range(step - 49, step + 1) if s in losses]
-        return f"step {step}" + (f" · loss {sum(window) / len(window):.3f}" if window else "")
+        loss = _mean_loss(losses, step)
+        return f"step {step}" + (f" · loss {loss:.3f}" if loss is not None else "")
 
     found = []
     for ckpt in root.glob("checkpoint-*"):
@@ -70,23 +88,51 @@ def list_checkpoints(lora_root: "str | Path") -> list[tuple[str, str]]:
     return options
 
 
-def checkpoint_hub_markdown(lora_root: "str | Path") -> str:
+def checkpoint_table_html(lora_root: "str | Path") -> str:
     rows = list_checkpoints(lora_root)
     if not rows:
-        return f"No LoRA checkpoints found in `{lora_root}`. Train first (see README)."
-    lines = ["| Checkpoint | Mean loss (last 50 steps) | Size | Path |", "|---|---|---|---|"]
+        return f"<p class='rv-dim'>No LoRA checkpoints found in <code>{html.escape(str(lora_root))}</code>. Train first (see README).</p>"
+    out = ["<table class='rv-table'><tr><th>Checkpoint</th><th>Mean loss</th><th>Size</th><th></th></tr>"]
     for name, path in rows:
-        weights = Path(path) / "pytorch_lora_weights.safetensors"
+        final = name.startswith("final")
         loss = name.split("loss ")[-1].rstrip(")") if "loss" in name else "–"
-        lines.append(f"| {name.split(' (')[0].split(' ·')[0]} | {loss} | {weights.stat().st_size / 1e6:.1f} MB | `{path}` |")
-    lines.append("")
-    lines.append("Diffusion loss is noisy (it depends on the random timestep drawn), so a lower number "
-                 "does not mean a better-looking checkpoint -- compare them visually with the selector in *Generate*.")
-    return "\n".join(lines)
+        size = (Path(path) / "pytorch_lora_weights.safetensors").stat().st_size / 1e6
+        title = "Final" if final else name.split(" ·")[0].capitalize()
+        tag = "<span class='rv-badge'>Default</span>" if final else "<span class='rv-gold'>select in Generate</span>"
+        out.append(f"<tr class='{'rv-hi' if final else ''}'><td><b>{title}</b></td><td>{loss}</td><td>{size:.1f} MB</td><td class='rv-right'>{tag}</td></tr>")
+    out.append("</table>")
+    return "".join(out)
 
 
-def format_metadata(metadata: dict) -> str:
-    return "```json\n" + json.dumps(metadata, indent=2) + "\n```"
+def loss_chart_svg(lora_root: "str | Path", checkpoints=(250, 500, 750, 1000, 1250, 1500)) -> str:
+    """Inline SVG of the 50-step moving-average training loss, checkpoints marked."""
+    losses = _loss_history(lora_root)
+    if not losses:
+        return "<p class='rv-dim'>No loss_history.csv found.</p>"
+    last = max(losses)
+    pts = [(s, _mean_loss(losses, s)) for s in range(50, last + 1, 25)]
+    lo, hi = min(v for _, v in pts) - 0.01, max(v for _, v in pts) + 0.01
+    W, H, x0, y0, b = 580, 230, 42, 10, 28
+    X = lambda s: x0 + s / last * (W - x0 - 10)
+    Y = lambda v: y0 + (1 - (v - lo) / (hi - lo)) * (H - y0 - b)
+    parts = [f"<svg viewBox='0 0 {W} {H}' class='rv-chart' role='img' aria-label='Training loss curve'>"]
+    for g in (lo + 0.01, (lo + hi) / 2, hi - 0.01):
+        parts.append(f"<line x1='{x0}' x2='{W - 10}' y1='{Y(g):.1f}' y2='{Y(g):.1f}' class='grid'/><text x='0' y='{Y(g) + 4:.1f}'>{g:.2f}</text>")
+    parts.append("<polyline class='line' points='" + " ".join(f"{X(s):.1f},{Y(v):.1f}" for s, v in pts) + "'/>")
+    for s in checkpoints:
+        v = _mean_loss(losses, s)
+        if v is None:
+            continue
+        parts.append(f"<line x1='{X(s):.1f}' x2='{X(s):.1f}' y1='{Y(v):.1f}' y2='{H - b + 4}' class='tick'/>"
+                     f"<circle cx='{X(s):.1f}' cy='{Y(v):.1f}' r='4.5' class='dot'/>"
+                     f"<text x='{X(s):.1f}' y='{H - 8}' text-anchor='middle'>{s}</text>")
+    parts.append("</svg>")
+    return "".join(parts)
+
+
+def recent_images(directory: "str | Path", n: int = 6) -> list[str]:
+    files = [p for p in Path(directory).glob("*.png") if not p.stem.endswith("_control")]
+    return [str(p) for p in sorted(files, key=lambda p: p.stat().st_mtime, reverse=True)[:n]]
 
 
 def lora_status_message(generator: RaviVarmaGenerator) -> str:
@@ -95,67 +141,85 @@ def lora_status_message(generator: RaviVarmaGenerator) -> str:
     except RuntimeError as e:
         return f"⚠️ {e}"
     if generator.lora_loaded:
-        return "✅ Ravi Varma LoRA checkpoint loaded."
-    return (
-        "⚠️ No trained LoRA checkpoint found at the configured `model.lora_path`. "
-        "Generations will use the base Stable Diffusion model only, without Ravi Varma styling. "
-        "Run `python scripts/train_lora.py --config configs/lora_sd15.yaml` first."
-    )
+        return "LoRA loaded"
+    return "No LoRA found — base model only"
+
+
+def _card(title: str, body: str) -> str:
+    return f"<div class='rv-card'><div class='rv-card-title'>{title}</div>{body}</div>"
 
 
 def run_generation(
     generator: RaviVarmaGenerator,
     prompt_engine: PromptExpansionEngine,
     scene_description: str,
+    expand: bool,
     style_strength: float,
-    seed: Optional[int],
+    lora_checkpoint: Optional[str],
+    pose_image: Optional[Image.Image],
+    control_mode: str,
+    controlnet_strength: float,
+    seed: Optional[float],
     steps: int,
     guidance_scale: float,
-    width: int,
-    height: int,
+    size: str,
     negative_prompt: str,
-    pose_image: Optional[Image.Image],
-    controlnet_type: Optional[str],
-    controlnet_strength: float,
-    controlnet_enabled: bool,
-    lora_checkpoint: Optional[str] = None,
 ):
-    """Generate-tab logic -- returns (image, expanded_prompt_text, metadata_markdown,
-    warning_markdown, control_map_or_None)."""
+    """Generate-tab logic. Returns (image, caption_html, prompt_html, details_html,
+    warning_markdown, control_map_or_None, recent_gallery)."""
+    out_dir = generator.config.output.generated_dir
     if not scene_description or not scene_description.strip():
-        return None, "", "", "⚠️ Please enter a scene description.", None
+        return None, "", "", "", "⚠️ Please describe a scene first.", None, recent_images(out_dir)
 
     seed = int(seed) if seed else None  # Gradio sends 0/None for "random"
     if lora_checkpoint and lora_checkpoint != generator.config.model.lora_path:
         generator.set_lora(lora_checkpoint)
 
-    expanded = prompt_engine.expand(scene_description, enable_style=style_strength > 0)
-    final_prompt = expanded.final_prompt()
+    scene = scene_description.strip()
+    trigger = prompt_engine.trigger_token if style_strength > 0 else None
+    if expand:
+        expanded = prompt_engine.expand(scene, enable_style=style_strength > 0)
+        final_prompt = expanded.final_prompt()
+    else:
+        final_prompt = scene if (not trigger or trigger in scene) else f"{trigger}, {scene}"
+    width, height = SIZES.get(size, (448, 640))
 
-    control_image = pose_image if (controlnet_enabled and pose_image is not None) else None
-
+    started = time.perf_counter()
     try:
         result = generator.generate(
             prompt=final_prompt,
-            negative_prompt=negative_prompt or expanded.negative_prompt,
+            negative_prompt=negative_prompt or None,
             seed=seed,
-            steps=steps,
+            steps=int(steps),
             guidance_scale=guidance_scale,
             width=width,
             height=height,
             lora_scale=style_strength,
-            control_image=control_image,
-            control_type=controlnet_type,
+            control_image=pose_image,
+            control_type=CONTROL_MODES.get(control_mode, "openpose") if pose_image is not None else None,
             controlnet_strength=controlnet_strength,
+            extra_metadata={"scene": scene},
         )
     except RuntimeError as e:
-        return None, final_prompt, "", f"⚠️ {e}", None
+        return None, "", "", "", f"⚠️ {e}", None, recent_images(out_dir)
+    seconds = time.perf_counter() - started
+    m = result.metadata
 
-    warning = "" if result.metadata["lora_loaded"] else (
-        "⚠️ Generated with the BASE model -- no LoRA checkpoint was found, so this image does "
-        "not reflect Ravi Varma's style."
-    )
-    return result.image, final_prompt, format_metadata(result.metadata), warning, result.control_image
+    caption = (f"<div class='rv-caption'>{html.escape(scene)}</div>"
+               "<div class='rv-dim'>AI-generated · Ravi Varma–inspired, not an authentic painting</div>")
+    tokens = _default_token_counter()(final_prompt)
+    prompt_html = _card("Expanded prompt" if expand else "Prompt",
+                        f"<p class='rv-muted'>{html.escape(final_prompt)}</p><p class='rv-gold'>{tokens} / 75 CLIP tokens</p>")
+    lora = "off" if not m["lora_loaded"] else (
+        ("final" if Path(m["lora_weights"]).parent.name == "ravi_varma" else Path(m["lora_weights"]).parent.name.replace("checkpoint-", "step "))
+        + f" · scale {m['lora_scale']:.2f}")
+    rows = [("Seed", m["seed"]), ("Steps · guidance", f"{m['steps']} · {m['guidance_scale']}"), ("LoRA", lora),
+            ("Pose control", f"{m['controlnet_type']} · {m['controlnet_strength']}" if m["controlnet_enabled"] else "none"),
+            ("Decoder", (m.get("vae") or "SD1.5 default").split("/")[-1]), ("Time", f"{seconds:.0f} s · {m['device']}"),
+            ("Saved as", Path(str(result.image_path)).name if result.image_path else "–")]
+    details = _card("Details", "".join(f"<div class='rv-kv'><span>{k}</span><b>{html.escape(str(v))}</b></div>" for k, v in rows))
+    warning = "" if m["lora_loaded"] else "⚠️ Generated with the **base model** — no LoRA checkpoint was found."
+    return result.image, caption, prompt_html, details, warning, result.control_image, recent_images(out_dir)
 
 
 def run_evaluation(image: Optional[Image.Image], prompt: str, reference_dir: str):
