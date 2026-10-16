@@ -125,6 +125,9 @@ class TrainingLoopConfig(BaseModel):
     gradient_checkpointing: bool = True
     max_grad_norm: float = 1.0
     seed: int = 42
+    snr_gamma: Optional[float] = None   # Min-SNR loss weighting (Hang et al. 2023); 5.0 is the usual value
+    noise_offset: float = 0.0           # lets the model learn very dark/bright images (Varma's dark grounds)
+    caption_dropout: float = 0.0        # share of samples trained on the trigger token alone
     enable_xformers: bool = True
     dataloader_num_workers: int = 2
 
@@ -208,6 +211,8 @@ class GenerationParamsConfig(BaseModel):
     lora_scale: float = 1.0
     seed: Optional[int] = None
     num_images: int = 1
+    face_fix: bool = False      # re-draw each detected face at 512 px (ADetailer-style)
+    hires_scale: float = 1.0    # > 1: upscale and re-draw ("hires fix"); 1.5 needs > 8 GB
 
     @field_validator("width", "height")
     @classmethod

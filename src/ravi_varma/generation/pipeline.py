@@ -51,6 +51,19 @@ class GenerationResult:
 LORA_WEIGHTS_NAME = "pytorch_lora_weights.safetensors"
 
 
+def detect_faces(image: Image.Image) -> list[tuple[int, int, int, int]]:
+    """Face boxes (x, y, w, h), largest first, from OpenCV's frontal-face Haar cascade.
+    shortcut: Haar misses profiles and very stylised faces; swap in a DNN detector if that matters."""
+    import cv2
+    import numpy as np
+
+    gray = cv2.cvtColor(np.array(image.convert("RGB")), cv2.COLOR_RGB2GRAY)
+    cascade = cv2.CascadeClassifier(cv2.data.haarcascades + "haarcascade_frontalface_default.xml")
+    min_side = max(24, min(image.size) // 25)
+    found = cascade.detectMultiScale(gray, scaleFactor=1.1, minNeighbors=6, minSize=(min_side, min_side))
+    return sorted((tuple(int(v) for v in f) for f in found), key=lambda b: -b[2] * b[3])
+
+
 def resolve_lora_weights(lora_path: "str | Path | None") -> Optional[Path]:
     """Accept a final LoRA directory, a `checkpoint-<step>` directory, or a
     `.safetensors` file; return the weights file, or None if there is none.
@@ -118,6 +131,7 @@ class RaviVarmaGenerator:
         )
         self._pipeline = None
         self._controlnet_pipelines: dict = {}
+        self._img2img = None
         self.lora_loaded = False
         self.lora_weights: Optional[Path] = None
         self._loaded = False
@@ -241,6 +255,45 @@ class RaviVarmaGenerator:
             cn_pipe.enable_model_cpu_offload()
         return cn_pipe
 
+    def _redraw(self, image: Image.Image, strength: float, prompt: str, negative_prompt: str, steps: int,
+                guidance_scale: float, seed: int, cross_attention_kwargs) -> Image.Image:
+        """img2img pass with the already-loaded UNet/VAE/text encoder (LoRA included)."""
+        import torch
+        from diffusers import StableDiffusionImg2ImgPipeline
+
+        if self._img2img is None:
+            components = {k: v for k, v in self._pipeline.components.items() if k != "controlnet"}
+            self._img2img = StableDiffusionImg2ImgPipeline(**components)
+        out = self._img2img(
+            prompt=prompt, negative_prompt=negative_prompt, image=image, strength=strength,
+            num_inference_steps=steps, guidance_scale=guidance_scale,
+            generator=torch.Generator(device="cpu").manual_seed(seed), cross_attention_kwargs=cross_attention_kwargs,
+        ).images[0]
+        if self.device_info.device == "mps":
+            torch.mps.empty_cache()
+        return out
+
+    def _fix_faces(self, image: Image.Image, max_faces: int = 4, **refine) -> int:
+        """ADetailer-style: re-draw each face at 512 px, where SD1.5 has room for eyes and lips,
+        and blend it back with a feathered oval mask. Modifies `image` in place; returns the count."""
+        from PIL import ImageDraw, ImageFilter
+
+        boxes = detect_faces(image)[:max_faces]
+        for x, y, w, h in boxes:
+            pad = int(max(w, h) * 0.6)  # include hair and chin so the face blends in
+            side = max(w, h) + 2 * pad
+            cx, cy = x + w // 2, y + h // 2
+            box = (max(cx - side // 2, 0), max(cy - side // 2, 0), min(cx + side // 2, image.width), min(cy + side // 2, image.height))
+            crop = image.crop(box)
+            face_prompt = f"detailed face, clear eyes, {refine['prompt']}"
+            fixed = self._redraw(crop.resize((512, 512), Image.LANCZOS), strength=0.4, **{**refine, "prompt": face_prompt})
+            fixed = fixed.resize(crop.size, Image.LANCZOS)
+            mask = Image.new("L", crop.size, 0)
+            inset = int(min(crop.size) * 0.12)
+            ImageDraw.Draw(mask).ellipse((inset, inset, crop.width - inset, crop.height - inset), fill=255)
+            image.paste(fixed, box[:2], mask.filter(ImageFilter.GaussianBlur(inset / 2)))
+        return len(boxes)
+
     def set_lora(self, lora_path: "str | None") -> None:
         """Switch to another LoRA checkpoint (e.g. checkpoint-500) without reloading SD1.5."""
         self.load()
@@ -265,6 +318,8 @@ class RaviVarmaGenerator:
         width: Optional[int] = None,
         height: Optional[int] = None,
         lora_scale: Optional[float] = None,
+        face_fix: Optional[bool] = None,
+        hires_scale: Optional[float] = None,
         control_image: Optional[Image.Image] = None,
         control_type: Optional[str] = None,
         controlnet_strength: Optional[float] = None,
@@ -344,6 +399,14 @@ class RaviVarmaGenerator:
                 "Generation produced an all-black image (numerical overflow, usually fp16 on this "
                 "device). Set hardware.dtype: float32 in configs/generation.yaml."
             )
+        face_fix = gen_cfg.face_fix if face_fix is None else face_fix
+        hires_scale = gen_cfg.hires_scale if hires_scale is None else hires_scale
+        refine = dict(prompt=prompt, negative_prompt=negative_prompt, steps=steps, guidance_scale=guidance_scale,
+                      seed=used_seed, cross_attention_kwargs=cross_attention_kwargs)
+        if hires_scale and hires_scale > 1:
+            size = (int(image.width * hires_scale) // 8 * 8, int(image.height * hires_scale) // 8 * 8)
+            image = self._redraw(image.resize(size, Image.LANCZOS), strength=0.4, **refine)
+        faces_fixed = self._fix_faces(image, **refine) if face_fix else 0
         metadata = {
             **(extra_metadata or {}),
             "prompt": prompt,
@@ -354,6 +417,8 @@ class RaviVarmaGenerator:
             "width": width,
             "height": height,
             "lora_scale": lora_scale,
+            "hires_scale": hires_scale if hires_scale and hires_scale > 1 else None,
+            "faces_fixed": faces_fixed if face_fix else None,
             "lora_loaded": self.lora_loaded,
             "lora_weights": str(self.lora_weights) if self.lora_loaded else None,
             "base_model": cfg.model.base_model,

@@ -164,6 +164,7 @@ def run_generation(
     guidance_scale: float,
     size: str,
     negative_prompt: str,
+    face_fix: bool = True,
 ):
     """Generate-tab logic. Returns (image, caption_html, prompt_html, details_html,
     warning_markdown, control_map_or_None, recent_gallery)."""
@@ -195,6 +196,7 @@ def run_generation(
             width=width,
             height=height,
             lora_scale=style_strength,
+            face_fix=face_fix,
             control_image=pose_image,
             control_type=CONTROL_MODES.get(control_mode, "openpose") if pose_image is not None else None,
             controlnet_strength=controlnet_strength,
@@ -215,6 +217,7 @@ def run_generation(
         + f" · scale {m['lora_scale']:.2f}")
     rows = [("Seed", m["seed"]), ("Steps · guidance", f"{m['steps']} · {m['guidance_scale']}"), ("LoRA", lora),
             ("Pose control", f"{m['controlnet_type']} · {m['controlnet_strength']}" if m["controlnet_enabled"] else "none"),
+            ("Faces sharpened", m["faces_fixed"] if m.get("faces_fixed") is not None else "off"),
             ("Decoder", (m.get("vae") or "SD1.5 default").split("/")[-1]), ("Time", f"{seconds:.0f} s · {m['device']}"),
             ("Saved as", Path(str(result.image_path)).name if result.image_path else "–")]
     details = _card("Details", "".join(f"<div class='rv-kv'><span>{k}</span><b>{html.escape(str(v))}</b></div>" for k, v in rows))

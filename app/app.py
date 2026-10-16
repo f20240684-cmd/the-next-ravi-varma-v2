@@ -132,6 +132,7 @@ def build_app(config_path: str):
                             guidance = gr.Slider(1.0, 15.0, value=config.generation.guidance_scale, step=0.5, label="Guidance scale")
                             size = gr.Radio(list(SIZES), value="Portrait 448×640", label="Size")
                             negative_prompt = gr.Textbox(label="Negative prompt", value=config.negative_prompt, lines=3)
+                        face_fix = gr.Checkbox(value=True, label="Sharpen faces · re-draws each face at 512 px (+~20 s per face)")
 
                         generate_btn = gr.Button("✦  Generate painting", variant="primary", elem_classes="rv-cta")
                         gr.HTML("<div class='rv-dim rv-center'>About 75 s on a Mac · 2 min with a pose reference</div>")
@@ -157,7 +158,7 @@ def build_app(config_path: str):
                 generate_btn.click(
                     fn=lambda *a: run_generation(generator, prompt_engine, *a),
                     inputs=[scene, expand, style_strength, lora_checkpoint, pose_image, control_mode, controlnet_strength,
-                            seed, steps, guidance, size, negative_prompt],
+                            seed, steps, guidance, size, negative_prompt, face_fix],
                     outputs=[output_image, caption, prompt_html, details_html, warning, control_map, gallery],
                 )
 

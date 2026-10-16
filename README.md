@@ -238,6 +238,27 @@ The other tabs:
 
 The panel was tested in a browser: text → image, and pose + checkpoint switching through the same code path.
 
+**Face fix** (`generate.py --face-fix`, on by default in the web panel). At 448×640 a full-body face is only about
+40 px, which is why faces looked mushy. Each face is found with OpenCV's face detector, cropped with some margin,
+re-drawn at 512 px (img2img, strength 0.4, same prompt with "detailed face"), and blended back with a feathered oval
+mask. It reuses the loaded model, so it runs on the 8 GB Mac and adds about 20 s per face. In the before/after crops
+(`outputs/evaluations/face_fix_compare.jpg`) the eyes become clear and symmetric and the lips defined. Limits: the
+detector misses profiles and some faces in crowds, and occasionally fires on a fold of cloth; redrawing a false hit
+is harmless.
+
+<p align="center"><img src="outputs/evaluations/face_fix_compare.jpg" width="40%"></p>
+
+**Hires fix** (`--hires-scale 1.5`): upscale, then re-draw the whole image at 0.4 strength. It needs more than 8 GB,
+so it runs in the Colab script (step 7b), not on the Mac.
+
+**Training additions for the next run** (`configs/lora_sd15.yaml`, all off by default in code):
+- Min-SNR-γ loss weighting (γ = 5)
+- noise offset 0.05
+- 10 % caption dropout to the bare trigger
+
+These are standard for SD LoRAs but are untested on this project until the v3 run. Run it with
+`TAG=v3 bash scripts/colab_train.sh`; v3 results go to separate `*_v3` folders, so v2 is never overwritten.
+
 **Inference improvement:** `model.vae` in `configs/generation.yaml` now loads `stabilityai/sd-vae-ft-mse`. It is
 the same latent space as SD1.5's decoder, fine-tuned for cleaner faces and detail, so no retraining is needed.
 The change is subtle (checked visually, not measured). Set `vae: null` to reproduce images made before it.

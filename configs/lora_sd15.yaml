@@ -45,6 +45,10 @@ training:
   gradient_checkpointing: true
   max_grad_norm: 1.0
   seed: 42
+  # v3 training additions (all standard for SD LoRAs; off = v2 behaviour):
+  snr_gamma: 5.0                # Min-SNR weighting: cleaner detail, faster convergence
+  noise_offset: 0.05            # deeper darks / contrast, suits Varma's dark backgrounds
+  caption_dropout: 0.1          # 10% of steps see only "<rvvarma>" so the trigger carries the style
   enable_xformers: true         # auto-disabled if xformers is not installed
   dataloader_num_workers: 2
 

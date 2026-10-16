@@ -69,15 +69,22 @@ class CaptionCollator:
     """Batch collation as a top-level class (not a closure) so DataLoader
     worker processes can pickle it on spawn-based platforms."""
 
-    def __init__(self, tokenizer):
+    def __init__(self, tokenizer, caption_dropout: float = 0.0):
         self.tokenizer = tokenizer
+        self.caption_dropout = caption_dropout
+
+    def _text(self, text: str) -> str:
+        import random
+
+        # Keep only the trigger ("<rvvarma>, ...") so the token alone must carry the style.
+        return text.split(",")[0] if random.random() < self.caption_dropout else text
 
     def __call__(self, examples: list[dict]) -> dict:
         import torch
 
         pixel_values = torch.stack([e["pixel_values"] for e in examples]).to(memory_format=torch.contiguous_format).float()
         input_ids = self.tokenizer(
-            [e["text"] for e in examples],
+            [self._text(e["text"]) for e in examples],
             padding="max_length",
             truncation=True,
             max_length=self.tokenizer.model_max_length,
@@ -283,7 +290,7 @@ class LoraTrainer:
         dataloader = torch.utils.data.DataLoader(
             dataset,
             batch_sampler=BucketBatchSampler(dataset, cfg.training.train_batch_size, seed=cfg.training.seed),
-            collate_fn=CaptionCollator(self._tokenizer),
+            collate_fn=CaptionCollator(self._tokenizer, cfg.training.caption_dropout),
             num_workers=num_workers,
         )
 
@@ -354,6 +361,10 @@ class LoraTrainer:
 
                     noise = torch.randn_like(latents)
                     bsz = latents.shape[0]
+                    if cfg.training.noise_offset:
+                        noise = noise + cfg.training.noise_offset * torch.randn(
+                            (bsz, latents.shape[1], 1, 1), device=latents.device, dtype=latents.dtype
+                        )
                     timesteps = torch.randint(
                         0, self._noise_scheduler.config.num_train_timesteps, (bsz,), device=latents.device
                     ).long()
@@ -368,7 +379,11 @@ class LoraTrainer:
                     else:
                         raise ValueError(f"Unsupported prediction type {self._noise_scheduler.config.prediction_type}")
 
-                    loss = F.mse_loss(model_pred.float(), target.float(), reduction="mean")
+                    if cfg.training.snr_gamma:
+                        loss = F.mse_loss(model_pred.float(), target.float(), reduction="none").mean(dim=(1, 2, 3))
+                        loss = (loss * self._min_snr_weights(timesteps, cfg.training.snr_gamma)).mean()
+                    else:
+                        loss = F.mse_loss(model_pred.float(), target.float(), reduction="mean")
                     if not torch.isfinite(loss):
                         nonfinite += 1
                         if nonfinite > 10:
@@ -422,6 +437,17 @@ class LoraTrainer:
         final_path = self._save_final(accelerator, cfg, dataset, loss_logger, time.time() - progress_start)
         loss_logger.close()
         return final_path
+
+    def _min_snr_weights(self, timesteps, gamma: float):
+        """Min-SNR-gamma: down-weight easy low-noise timesteps so they stop dominating the loss."""
+        import torch
+
+        alphas = self._noise_scheduler.alphas_cumprod.to(timesteps.device)[timesteps].float()
+        snr = alphas / (1 - alphas)
+        clipped = torch.minimum(snr, torch.full_like(snr, gamma))
+        if self._noise_scheduler.config.prediction_type == "v_prediction":
+            return clipped / (snr + 1)
+        return clipped / snr
 
     def _run_validation(self, accelerator, validator: ValidationImageCallback, step: int, loss_logger: LossLogger) -> None:
         """Render the fixed validation prompts with the current adapter,

@@ -34,30 +34,39 @@ if [ "${SKIP_SMOKE:-0}" != "1" ]; then
   python scripts/train_lora.py --config configs/lora_sd15.yaml --smoke-test
 fi
 
-echo "=== 6. Full training ==="
-python scripts/train_lora.py --config configs/lora_sd15.yaml
+# TAG=v3 writes to separate folders, so unzipping the results locally never
+# overwrites an earlier LoRA (checkpoints/lora/ravi_varma) and its images.
+TAG="${TAG:-}"
+SUFFIX="${TAG:+_$TAG}"
+CK="checkpoints/lora/ravi_varma$SUFFIX"
+GEN="outputs/generated/lora$SUFFIX"
+
+echo "=== 6. Full training -> $CK ==="
+python scripts/train_lora.py --config configs/lora_sd15.yaml --output-dir "$CK"
 
 echo "=== 7. Sample images with the trained LoRA ==="
 python scripts/generate.py --prompt-file configs/prompts/sample_prompts.yaml --seeds 42 43 44 \
-  --skip-existing --output-dir outputs/generated/lora
+  --skip-existing --lora-path "$CK" --output-dir "$GEN"
 for step in 750 1000 1250; do
   python scripts/generate.py --prompt-file configs/prompts/sample_prompts.yaml --seeds 42 \
-    --skip-existing --lora-path "checkpoints/lora/ravi_varma/checkpoint-$step" --output-dir "outputs/generated/ckpt_$step"
+    --skip-existing --lora-path "$CK/checkpoint-$step" --output-dir "outputs/generated/ckpt${SUFFIX}_$step"
 done
+echo "=== 7b. Same prompts with hires fix (1.5x) + face fix (needs the T4's 16 GB) ==="
+python scripts/generate.py --prompt-file configs/prompts/sample_prompts.yaml --seeds 42 \
+  --skip-existing --lora-path "$CK" --hires-scale 1.5 --face-fix --output-dir "${GEN}_hires_face"
 
 echo "=== 8. Evaluation (paired against the base-model baseline) ==="
 BASELINE_ARGS=()
 if ls outputs/generated/baseline/*.png >/dev/null 2>&1; then BASELINE_ARGS=(--baseline outputs/generated/baseline); fi
-python scripts/evaluate.py --input outputs/generated/lora "${BASELINE_ARGS[@]}" \
-  --output-dir outputs/evaluations/lora_vs_base --device cuda
+python scripts/evaluate.py --input "$GEN" "${BASELINE_ARGS[@]}" \
+  --output-dir "outputs/evaluations/lora${SUFFIX}_vs_base" --device cuda
 
 echo "=== 9. Package results ==="
 rm -f ravi_varma_results.zip
 zip -q -r ravi_varma_results.zip \
-  checkpoints/lora/ravi_varma/*.safetensors checkpoints/lora/ravi_varma/*.yaml \
-  checkpoints/lora/ravi_varma/*.json checkpoints/lora/ravi_varma/*.csv \
-  checkpoints/lora/ravi_varma/checkpoint-*/pytorch_lora_weights.safetensors \
+  "$CK"/*.safetensors "$CK"/*.yaml "$CK"/*.json "$CK"/*.csv \
+  "$CK"/checkpoint-*/pytorch_lora_weights.safetensors \
   outputs/logs/validation_images outputs/logs/train_loss.csv \
-  outputs/generated/lora outputs/generated/ckpt_* outputs/evaluations/lora_vs_base
+  "$GEN" "${GEN}_hires_face" outputs/generated/ckpt"${SUFFIX}"_* "outputs/evaluations/lora${SUFFIX}_vs_base"
 ls -la ravi_varma_results.zip
 echo "DONE"

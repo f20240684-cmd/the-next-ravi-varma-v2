@@ -151,3 +151,20 @@ def test_only_lora_parameters_are_trainable(tmp_path, cpu_only):
     assert sum(p.numel() for p in params) < 0.2 * sum(p.numel() for p in trainer._unet.parameters())
     assert not any(p.requires_grad for p in trainer._vae.parameters())
     assert not any(p.requires_grad for p in trainer._text_encoder.parameters())
+
+
+def test_v3_training_options_run(tmp_path, cpu_only):
+    """Min-SNR weighting, noise offset and caption dropout train without NaNs and export."""
+    from ravi_varma.training.lora_trainer import LoraTrainer
+
+    cfg = _tiny_config(tmp_path, max_steps=2)
+    cfg.training.snr_gamma, cfg.training.noise_offset, cfg.training.caption_dropout = 5.0, 0.05, 0.5
+    out = LoraTrainer(cfg).train()
+    assert (out / "pytorch_lora_weights.safetensors").exists()
+
+
+def test_caption_dropout_keeps_only_trigger():
+    from ravi_varma.training.lora_trainer import CaptionCollator
+
+    assert CaptionCollator(None, caption_dropout=1.0)._text("<rvvarma>, a woman in a red sari") == "<rvvarma>"
+    assert CaptionCollator(None, caption_dropout=0.0)._text("<rvvarma>, a woman") == "<rvvarma>, a woman"

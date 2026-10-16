@@ -326,3 +326,24 @@ def test_checkpoint_hub_lists_steps_with_mean_loss(tmp_path):
     options = list_checkpoints(tmp_path)
     assert [label for label, _ in options] == ["step 250 · loss 0.200", "step 500 · loss 0.100", "final (step 500 · loss 0.100)"]
     assert options[-1][1] == str(tmp_path)
+
+
+def test_face_fix_redraws_and_blends_only_the_face(monkeypatch):
+    from PIL import Image
+
+    import ravi_varma.generation.pipeline as pl
+
+    gen = pl.RaviVarmaGenerator.__new__(pl.RaviVarmaGenerator)
+    monkeypatch.setattr(pl, "detect_faces", lambda img: [(40, 40, 20, 20)])
+    seen = {}
+
+    def fake_redraw(image, strength, **kw):
+        seen["size"], seen["prompt"] = image.size, kw["prompt"]
+        return Image.new("RGB", image.size, (255, 0, 0))
+
+    gen._redraw = fake_redraw
+    img = Image.new("RGB", (200, 200), (0, 0, 255))
+    n = gen._fix_faces(img, prompt="<rvvarma>, a queen", negative_prompt="", steps=1, guidance_scale=1.0, seed=0, cross_attention_kwargs=None)
+    assert n == 1 and seen["size"] == (512, 512) and seen["prompt"].startswith("detailed face")
+    assert img.getpixel((50, 50))[0] > 200          # face centre replaced
+    assert img.getpixel((5, 5)) == (0, 0, 255)      # far corner untouched
