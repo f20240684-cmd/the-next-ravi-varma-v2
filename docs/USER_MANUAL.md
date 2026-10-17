@@ -4,7 +4,43 @@ A complete guide for the team: **what** the project does, **how every piece work
 principles**, **how to run it**, and **how to read the results**. Read Part A if you are new to
 diffusion models; jump to Part B if you only need the project specifics.
 
-Companion document for presentations: [VIVA_GUIDE.md](VIVA_GUIDE.md) (likely examiner questions + answers).
+Companion documents: [VIVA_GUIDE.md](VIVA_GUIDE.md) (likely examiner questions + answers) ·
+[DECISIONS.md](DECISIONS.md) (why every design choice was made).
+
+## Quick start: use the project in 5 minutes
+
+All commands run from the project folder, with the project's environment active:
+
+```bash
+source .venv/bin/activate          # the prompt should start with (.venv); plain `python` from conda fails with "No module named cv2"
+python app/app.py                  # web app -> open http://127.0.0.1:7860
+```
+
+In the app's **Generate** tab:
+1. Type a scene, or click an example chip.
+2. Optionally upload a pose reference (a painting or photo).
+3. Press **Generate painting**. It takes about 75 s per image, plus about 20 s per face when "Sharpen faces" is on.
+
+From the terminal:
+
+```bash
+python scripts/generate.py --prompt "<rvvarma>, portrait of a royal Indian woman in a silk sari, classical oil painting" --seed 42 --width 448 --height 640 --face-fix
+python scripts/generate.py --prompt "Saraswati playing the veena by a lotus lake" --expand --seed 42
+python scripts/generate.py --prompt "<rvvarma>, a queen holding a lamp" --pose-image data/reference/0225.jpg --controlnet-type openpose
+```
+
+The second command uses Milestone 3 prompt expansion; the third uses Milestone 4 pose control.
+
+Tips:
+- Portraits and single figures give the best results.
+- For groups, use a pose reference.
+- Try a few seeds and keep the best.
+- 448×640 is the size the LoRA was trained at.
+
+**Current state (2026-10-17):**
+- **All four milestones are done.**
+- **Default model:** the **v3 LoRA** (`checkpoints/lora/ravi_varma_v3`), trained on **182 paintings**. Style similarity is 0.701 (v2 0.681, base 0.669).
+- **On by default:** the fine-tuned VAE and the face fix (in the app).
 
 ---
 
@@ -37,6 +73,7 @@ Companion document for presentations: [VIVA_GUIDE.md](VIVA_GUIDE.md) (likely exa
   9. [Stage 7 — Evaluation](#b9-stage-7--evaluation)
   10. [Milestone 3 — Prompt expansion](#b10-milestone-3--prompt-expansion)
   11. [Milestone 4 — ControlNet, evaluation and the web panel](#b11-milestone-4--controlnet-evaluation-and-the-web-panel)
+  12. [Image-quality add-ons](#b12-image-quality-add-ons)
 - **Part C — Running it** ([local](#c1-local-mac--cpu) · [Colab](#c2-gpu-training-on-google-colab) · [tests](#c3-tests))
 - **Part D — Results and how to read them**
 - **Part E — Troubleshooting**
@@ -382,7 +419,7 @@ Milestone 4 — it transfers a pose without copying the reference picture; Canny
 ```
 Wikimedia Commons ─► download ─► validate & curate ─► caption (BLIP + VQA) ─► prepare (buckets)
                                                                                   │
-                    ┌─────────────────────────────── manifest.jsonl (122) ◄───────┘
+                    ┌─────────────────────────────── manifest.jsonl (182) ◄───────┘
                     ▼                                  reference/ (12 held out)
          LoRA training on SD1.5 (Colab T4) ─► pytorch_lora_weights.safetensors
                     │
@@ -390,10 +427,11 @@ Wikimedia Commons ─► download ─► validate & curate ─► caption (BLIP 
      generate (prompt + <rvvarma>) ─► images ─► evaluate vs base model + held-out paintings
 ```
 
-- **Milestone 1** (done): everything up to the manifest.
-- **Milestone 2** (done): training, generation, evaluation.
-- **Milestone 3** (next): an LLM turns a story ("Yudhishthira weeping over Karna") into a detailed prompt.
-- **Milestone 4** (next): ControlNet pose control, fuller evaluation, Gradio web UI.
+- **Milestone 1** (done): everything up to the manifest. Dataset v3: 300 downloaded → 194 accepted → 182 training + 12 held out.
+- **Milestone 2** (done): training (v2: 122 images; **v3: 182 images + Min-SNR**), generation, evaluation.
+- **Milestone 3** (done): the lexicon and an optional LLM turn a story into a detailed prompt (B10).
+- **Milestone 4** (done): ControlNet pose control, the PCK pose metric, the Gradio web panel and Checkpoint Hub (B11).
+- **Quality add-ons:** face fix (Mac), hires fix (GPU), fine-tuned VAE (B12).
 
 ## B2. Repository map
 
@@ -433,7 +471,16 @@ the **original pixel size**. Wikimedia rate-limits downloads, so the script wait
 `--from-metadata` re-downloads **exactly** the files listed in the committed `metadata.jsonl`, so anyone
 can rebuild the identical raw dataset (the images themselves are not stored in git).
 
-Result: **200 files**, 193 public domain; the others CC BY / CC BY-SA / GODL-India (licence per image in metadata).
+Result of the first download: **200 files**, 193 public domain; the others are CC BY / CC BY-SA / GODL-India (licence per image in metadata).
+
+**Second download (dataset v3).**
+- The script now skips files already in the metadata.
+- `--min-side 800` skips small originals.
+- It downloads 2048-px renditions instead of huge TIFF originals.
+- `--source wellcome` adds Ravi Varma chromolithographs from the **Wellcome Collection** (open IIIF API, public domain). These are tagged `"medium": "chromolithograph"`.
+
+The second download added 61 Commons + 39 Wellcome images (median short side 2,400 px, against 605 px before).
+Details: [data/README.md](../data/README.md).
 
 ## B4. Stage 2 — Validation and curation
 
@@ -457,8 +504,12 @@ Checks, in order:
    In each group the **highest-resolution** copy is kept.
 5. **Captions present** (checked again before preparation).
 
-Result: **134 accepted**, 66 excluded (26 upscaled, 7 non-paintings*, 33 duplicates).
-\*10 are on the curated list; 3 of them were already excluded as upscaled.
+Result (v3): **194 accepted** of 300 (v2: 134 of 200). Excluded:
+- 26 upscaled
+- 8 non-paintings
+- 72 duplicates
+
+The v3 duplicate groups were found with CLIP image similarity and confirmed by eye; Commons had 7 copies of one Saraswati print.
 
 ## B5. Stage 3 — Captioning
 
@@ -532,7 +583,8 @@ Colab **Tesla T4**). What happens:
 | Optimizer | AdamW (β 0.9/0.999, weight decay 0.01) |
 | Learning rate | 1e-4, constant, 100 warm-up steps |
 | Batch / accumulation / effective batch | 1 / 4 / 4 |
-| Steps | 1500 (≈ 49 epochs of 122 images) |
+| Steps | 1500 (≈ 49 epochs of 122 images in v2; ≈ 33 epochs of 182 in v3) |
+| v3 additions | Min-SNR-γ weighting (γ = 5), noise offset 0.05, 10 % caption dropout to the bare trigger |
 | Precision | fp16 mixed precision, gradient checkpointing |
 | Seed | 42 |
 | Time | 58 min on a T4 (≈ 2.2 s per optimizer step) |
@@ -572,6 +624,13 @@ for the 5 prompts × 3 seeds = **15 pairs** (same prompt and seed with and witho
 | Style similarity (top-3) | similarity to the 3 closest held-out paintings | 0.734 | 0.746 |
 | Diversity | average CLIP distance between the 3 seeds of a prompt | 0.106 | 0.119 |
 | Nearest training image | memorisation check (> 0.95 would be a near-copy) | — | 0.884 max |
+
+**v3** (same 15 pairs, `outputs/evaluations/lora_v3_vs_base/`):
+- style mean **0.701**, higher than base in 12/15 pairs (v2: 7/15)
+- top-3 **0.770**
+- prompt adherence **0.330**, now above the base model
+- diversity 0.092 (lower)
+- nearest training image 0.898 max (no memorisation)
 
 It also writes contact sheets and `qualitative_review.csv` — a sheet for **human 1–5 ratings** of
 visual quality, anatomy, style and prompt adherence, because CLIP cannot judge hands, faces or
@@ -629,6 +688,16 @@ What happens inside `pipeline.py`:
 **Better VAE:** `model.vae: stabilityai/sd-vae-ft-mse` in `configs/generation.yaml` swaps in a fine-tuned decoder
 (same latent space, so the LoRA is unaffected) for slightly cleaner faces.
 
+## B12. Image-quality add-ons
+
+| Add-on | What it does | Where it runs | How to use |
+|---|---|---|---|
+| **Face fix** | finds each face (OpenCV), crops it, redraws it at 512 px (img2img, strength 0.4), blends it back with a soft oval mask | Mac (~+20 s per face) | `--face-fix`; "Sharpen faces" in the app (on by default) |
+| **Hires fix** | upscales 1.5×, then redraws the whole image at strength 0.4 | GPU only (out of memory on 8 GB) | `--hires-scale 1.5` (Colab step 7b) |
+| **Fine-tuned VAE** | `stabilityai/sd-vae-ft-mse` decoder, same latent space | everywhere | default in `configs/generation.yaml` |
+
+Why faces were mushy: at 448×640 a full-body face is about 40 px, too small for SD1.5 to draw eyes and lips. The face fix gives each face a full 512 px canvas.
+
 ---
 
 # Part C — Running it
@@ -646,20 +715,25 @@ python scripts/validate_dataset.py --manifest
 python scripts/package_dataset.py                    # -> dist/ravi_varma_dataset.zip for Colab
 ```
 
-With trained weights in `checkpoints/lora/ravi_varma/`, generation also works locally (~1 min/image on an
-8 GB MacBook).
+With trained weights in `checkpoints/lora/ravi_varma_v3/` (the default) or `checkpoints/lora/ravi_varma/` (v2),
+generation also works locally (~1 min/image on an 8 GB MacBook). The web app: `python app/app.py`.
 
 ## C2. GPU training on Google Colab
 
 1. Runtime → Change runtime type → **T4 GPU**, **Runtime version 2026.07** (the newest Colab image is
    Python 3.13, for which our pinned libraries have no packages).
-2. Open `notebooks/03_lora_training.ipynb` and run top to bottom, *or* upload the code + dataset and run
-   `bash scripts/colab_train.sh`.
-3. Download `ravi_varma_results.zip` and `unzip -o ravi_varma_results.zip` in the project root.
+2. Upload the code and the prepared dataset as one zip. Through a browser extension, upload it as 3 MB parts and rejoin them with `cat part_* > bundle.zip`; compare `sha1sum` before and after.
+3. Run `TAG=v3 bash scripts/colab_train.sh`.
+   - It runs: smoke test → training (~58 min) → samples → hires + face samples → evaluation → `ravi_varma_results.zip`.
+   - `TAG` sends everything to `*_v3` folders, so an earlier run is never overwritten.
+   - Keep the notebook busy (for example a `!sleep` cell), or Colab may disconnect an idle runtime.
+4. Download `ravi_varma_results.zip`: in the Files panel, right-click → Download. **Check where your browser
+   saves it.** Brave reuses the last folder you saved to, which may not be Downloads.
+5. In the project root: `unzip -o ravi_varma_results.zip`.
 
 ## C3. Tests
 
-`pytest -v` — 110 tests (108 run; 2 only run on machines without CLIP). They cover validation and
+`pytest -v` — 115 tests (113 run; 2 only run on machines without CLIP). They cover validation and
 curation, captions, buckets, title cleaning, generation settings, evaluation and a **real training run
 on a 1 MB test model** (checks freezing, checkpointing, resume and that the exported LoRA loads).
 
@@ -677,6 +751,13 @@ on a 1 MB test model** (checks freezing, checkpointing, resume and that the expo
   corners (many training prints carry signatures); crowded mythological scenes still look like posters.
 - **Metrics**: only small CLIP changes despite clear visual differences — CLIP ViT-B/32 is a weak judge of
   painting style. No memorisation.
+- **v3 vs v2** (`outputs/evaluations/v2_v3_hires_compare.jpg`):
+  - a softer, brushed oil texture and a warmer, muted palette
+  - the lip shadow is gone
+  - more naturalistic landscapes
+  - stronger style scores, with no loss in prompt adherence (B9)
+- **Still weak:** group scenes. Figures merge and hands are malformed. Use a pose reference (Milestone 4) and pick the best of several seeds.
+  Portraits with the face fix (and hires on a GPU) are presentation-ready.
 
 ---
 
@@ -694,6 +775,8 @@ on a 1 MB test model** (checks freezing, checkpointing, resume and that the expo
 | `git push` 403 | saved token only covers the old repo | `gh auth login` then `gh auth setup-git` |
 | Web panel: `TypeError: unhashable type: 'dict'` | starlette 1.x is too new for Gradio 4.44 | `pip install fastapi==0.115.0` (pinned in requirements) |
 | First ControlNet run is slow | one-time download (~1.4 GB per ControlNet + 200 MB pose detector) | wait once; later runs take ~1.5–2 min |
+| Colab download "never arrives" | browser saved it to another folder, or is waiting on a save prompt | check the browser's download list; Spotlight: `mdfind -name ravi_varma_results` |
+| Hires fix hangs or crashes on the Mac | 8 GB is not enough for 1.5× | use `--face-fix` only on the Mac; hires on Colab |
 | Captions contain "unknown (no VLM…)" | BLIP failed to load | the captioner now stops instead; check internet / disk space |
 
 ---
