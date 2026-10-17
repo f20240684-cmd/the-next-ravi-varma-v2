@@ -7,7 +7,7 @@ model:
   base_model: "stable-diffusion-v1-5/stable-diffusion-v1-5"
   model_family: "sd15"
   # A final LoRA directory, a checkpoint-<step> directory, or a .safetensors file.
-  lora_path: "checkpoints/lora/ravi_varma"
+  lora_path: "checkpoints/lora/ravi_varma_v3"   # v3 (182 images, Min-SNR); v2 is checkpoints/lora/ravi_varma
   scheduler: "dpmsolver_multistep"   # dpmsolver_multistep | euler_a | ddim | pndm
   # Fine-tuned SD1.5 decoder (same latent space, no retraining): slightly cleaner faces and fine detail.
   # Set to null to reproduce images made before 2026-10-14 (they used SD1.5's own VAE).

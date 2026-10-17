@@ -1,0 +1,96 @@
+{
+  "input_dir": "outputs/generated/lora_v3",
+  "num_images": 15,
+  "num_references": 12,
+  "num_training_images": 182,
+  "per_prompt": {
+    "krishna_arjuna": {
+      "num_images": 3,
+      "prompt_adherence": 0.3069,
+      "style_ref_mean": 0.7008,
+      "style_ref_top3": 0.7789,
+      "nearest_train_sim_max": 0.8899,
+      "diversity": 0.0649
+    },
+    "mythological_landscape": {
+      "num_images": 3,
+      "prompt_adherence": 0.362,
+      "style_ref_mean": 0.6609,
+      "style_ref_top3": 0.7285,
+      "nearest_train_sim_max": 0.8293,
+      "diversity": 0.1341
+    },
+    "royal_portrait": {
+      "num_images": 3,
+      "prompt_adherence": 0.3052,
+      "style_ref_mean": 0.7095,
+      "style_ref_top3": 0.7627,
+      "nearest_train_sim_max": 0.8682,
+      "diversity": 0.0709
+    },
+    "royal_woman_palace": {
+      "num_images": 3,
+      "prompt_adherence": 0.3331,
+      "style_ref_mean": 0.7115,
+      "style_ref_top3": 0.7779,
+      "nearest_train_sim_max": 0.8453,
+      "diversity": 0.1202
+    },
+    "woman_by_window": {
+      "num_images": 3,
+      "prompt_adherence": 0.345,
+      "style_ref_mean": 0.722,
+      "style_ref_top3": 0.8011,
+      "nearest_train_sim_max": 0.8978,
+      "diversity": 0.0703
+    }
+  },
+  "summary": {
+    "prompt_adherence": 0.3304,
+    "style_ref_mean": 0.701,
+    "style_ref_top3": 0.7698,
+    "nearest_train_sim_max": 0.8978,
+    "possible_memorisation": [],
+    "diversity": 0.0921
+  },
+  "baseline_comparison": {
+    "num_pairs": 15,
+    "prompt_adherence": {
+      "lora_mean": 0.3304,
+      "base_mean": 0.3276,
+      "mean_delta": 0.0028,
+      "lora_higher_in": "8/15 pairs"
+    },
+    "style_ref_mean": {
+      "lora_mean": 0.701,
+      "base_mean": 0.6689,
+      "mean_delta": 0.0321,
+      "lora_higher_in": "12/15 pairs"
+    },
+    "style_ref_top3": {
+      "lora_mean": 0.7698,
+      "base_mean": 0.7343,
+      "mean_delta": 0.0356,
+      "lora_higher_in": "13/15 pairs"
+    },
+    "nearest_train_sim": {
+      "lora_mean": 0.848,
+      "base_mean": 0.8297,
+      "mean_delta": 0.0183,
+      "lora_higher_in": "11/15 pairs"
+    },
+    "baseline_dir": "outputs/generated/baseline",
+    "diversity": {
+      "lora_mean": 0.0921,
+      "base_mean": 0.1058
+    }
+  },
+  "notes": {
+    "prompt_adherence": "CLIP ViT-B/32 image-text cosine similarity with the trigger token removed. Measures coarse semantic agreement (subjects, setting); blind to counts, hands, exact poses. Typical range 0.20-0.35.",
+    "style_ref_mean": "Mean CLIP image-image similarity to held-out Ravi Varma paintings. Mixes content and style (a palace scene scores higher against palace references), so compare LoRA vs base on the same prompts/seeds rather than reading absolute values.",
+    "style_ref_top3": "Mean similarity to the 3 closest held-out references; less diluted by unrelated subjects.",
+    "nearest_train_sim": "Similarity to the closest training image. Values above ~0.95 suggest the model is reproducing a training painting rather than composing a new one.",
+    "diversity": "Mean pairwise (1 - cosine) CLIP distance between images of the same prompt across seeds. Very low values mean the seed barely changes the output.",
+    "human_rubric": "visual_quality, anatomy, style_consistency and prompt_adherence are rated 1-5 by a person in qualitative_review.csv; anatomy covers faces, eyes, hands/fingers and limb count."
+  }
+}

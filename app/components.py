@@ -213,7 +213,7 @@ def run_generation(
     prompt_html = _card("Expanded prompt" if expand else "Prompt",
                         f"<p class='rv-muted'>{html.escape(final_prompt)}</p><p class='rv-gold'>{tokens} / 75 CLIP tokens</p>")
     lora = "off" if not m["lora_loaded"] else (
-        ("final" if Path(m["lora_weights"]).parent.name == "ravi_varma" else Path(m["lora_weights"]).parent.name.replace("checkpoint-", "step "))
+        (Path(m["lora_weights"]).parent.name.replace("checkpoint-", "step ") if Path(m["lora_weights"]).parent.name.startswith("checkpoint-") else "final")
         + f" · scale {m['lora_scale']:.2f}")
     rows = [("Seed", m["seed"]), ("Steps · guidance", f"{m['steps']} · {m['guidance_scale']}"), ("LoRA", lora),
             ("Pose control", f"{m['controlnet_type']} · {m['controlnet_strength']}" if m["controlnet_enabled"] else "none"),

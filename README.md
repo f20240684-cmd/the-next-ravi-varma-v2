@@ -18,7 +18,7 @@ in the spirit of *The Next Rembrandt*, but with a modern diffusion + parameter-e
 | Milestone | Scope | Status |
 |---|---|---|
 | **1 — Corpus curation & multimodal captioning** | Wikimedia download with provenance, validation, curation, de-duplication, VLM template captions, preprocessing, manifest | ✅ **Complete** |
-| **2 — Style-injected diffusion fine-tuning** | SD1.5 + LoRA trainer, checkpointing/resume, validation images, generation CLI, basic evaluation, Colab workflow | ✅ **Complete** — v2 LoRA trained (1500 steps, Colab T4), generated and evaluated; see *Current results* |
+| **2 — Style-injected diffusion fine-tuning** | SD1.5 + LoRA trainer, checkpointing/resume, validation images, generation CLI, basic evaluation, Colab workflow | ✅ **Complete** — **v3 LoRA** (182 images, Min-SNR) is the current model; style 0.669 → **0.701**, with prompt adherence now above the base model; see *v3 results* |
 | **3 — Text parsing & semantic scene generation** | scene parser + prompt expansion | ✅ **Complete** — local lexicon mode + lexicon-grounded LLM mode, evaluated on 4 scenes; see *Milestone 3* below |
 | **4 — ControlNet guardrailing, evaluation & web panel** | OpenPose/Canny ControlNet, full evaluation framework, Gradio dashboard, checkpoint hub | ✅ **Complete** — pose adherence 0.17 → 0.86 with OpenPose on 6 held-out paintings; web panel tested; see *Milestone 4* below |
 
@@ -46,6 +46,41 @@ pose control fully solve.
 
 The weights are in `checkpoints/lora/ravi_varma/` (git-ignored; keep a copy in Drive). Loading them:
 `python scripts/generate.py --prompt "<rvvarma>, ..." --seed 42` picks them up automatically.
+
+### v3 LoRA: larger dataset plus training fixes (current default)
+
+Changes from v2:
+- **Data:** 182 training images instead of 122, with a median short side of 2,400 px instead of 605 px (see *Dataset v3* in `data/README.md`).
+- **Training:** Min-SNR-γ weighting (γ = 5), noise offset 0.05, and 10 % caption dropout.
+- **Unchanged:** rank 16, LR 1e-4, 1500 steps, batch 1 × 4.
+- **Run:** Colab T4, 58 min, with `TAG=v3 bash scripts/colab_train.sh`.
+
+Evaluated on the same 5 prompts × 3 seeds against the same base-model images (`outputs/evaluations/lora_v3_vs_base/`):
+
+| Metric | Base SD1.5 | v2 LoRA | **v3 LoRA** |
+|---|---|---|---|
+| Style similarity to the 12 held-out paintings | 0.669 | 0.681 (higher than base in 7/15 pairs) | **0.701 (12/15)** |
+| Style, 3 nearest references | 0.734 | 0.746 | **0.770 (13/15)** |
+| Prompt adherence (CLIP) | 0.328 | 0.317 | **0.330** |
+| Diversity across seeds | 0.106 | 0.119 | 0.092 |
+| Max similarity to a training image (> 0.95 = copy) | – | 0.884 | 0.898 |
+
+**What the numbers show:**
+- v3 moves almost three times further toward the held-out paintings than v2.
+- It no longer costs prompt adherence; v2 was below the base model.
+- The one regression is variety: the three seeds of a prompt look more alike, likely because the style is now stronger.
+- There is no memorisation.
+
+**What the images show** (`outputs/evaluations/v2_v3_hires_compare.jpg`):
+- a softer, brushed oil texture and a warmer, muted palette, instead of v2's saturated poster colours
+- the moustache-like lip shadow is gone
+- more naturalistic landscapes
+
+The training changes and the new data were introduced together, so this run cannot separate their effects.
+
+**Hires fix + face fix** (third column, 672×960; face crops in `outputs/evaluations/v3_hires_face_crops.jpg`): visibly sharper, with cleaner skin, defined eyes, and fine detail on crowns and jewellery. The hires fix needs a GPU with more than 8 GB; the face fix alone runs on the Mac.
+
+<p align="center"><img src="outputs/evaluations/v2_v3_hires_compare.jpg" width="85%"></p>
 
 ### v2 LoRA vs base model (same prompts, same seeds)
 
