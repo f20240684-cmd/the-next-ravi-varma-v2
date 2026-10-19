@@ -244,6 +244,19 @@ How to read it:
 
 ---
 
+### 7.3 Photo → Ravi Varma via img2img (not a separate style-transfer model)
+- **Alternatives:** classic neural style transfer (Gatys et al.); training an image-to-image model; ControlNet Canny on the photo.
+- **Why img2img:**
+  - It reuses the v3 LoRA and the already-loaded pipeline (the same `_redraw` the face and hires fixes use), so there is no new model or dependency and it runs on the Mac.
+  - Classic style transfer copies colours and texture but not Varma's way of painting skin, cloth and light.
+- **Settings:**
+  - The photo is resized to about the 448×640 training area, keeping its aspect ratio, so the LoRA works at the size it learned.
+  - Default strength is 0.45; in our test it kept the pose, likeness and real moustache, while 0.6 invented a feathered crown.
+- **Two bugs found by the first test:**
+  1. The default negative prompt bans facial hair (to stop a lip shadow on painted women), which erased the subject's real moustache. Photo mode now removes those terms.
+  2. The face detector mistook a medal for a face, and the face fix painted a face onto it. The face fix now keeps only detections in which an eye is found.
+- **Known limit:** the main repaint can still turn a small round object into a tiny face at higher strengths.
+
 ## 8. Evaluation philosophy
 
 - **Always paired against the base model:** same prompts, same seeds. Absolute CLIP scores mix content with style, so only the difference is meaningful.

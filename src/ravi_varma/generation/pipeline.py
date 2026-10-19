@@ -16,6 +16,7 @@ Design choices mandated by the project spec:
 from __future__ import annotations
 
 import json
+import re
 import time
 import uuid
 from dataclasses import dataclass
@@ -52,7 +53,9 @@ LORA_WEIGHTS_NAME = "pytorch_lora_weights.safetensors"
 
 
 def detect_faces(image: Image.Image) -> list[tuple[int, int, int, int]]:
-    """Face boxes (x, y, w, h), largest first, from OpenCV's frontal-face Haar cascade.
+    """Face boxes (x, y, w, h), largest first, from OpenCV's frontal-face Haar cascade, kept
+    only if an eye is found in the box's upper two thirds: the face fix prompts "detailed face",
+    so a false hit (a medal, a sari fold) would otherwise get a face painted onto it.
     shortcut: Haar misses profiles and very stylised faces; swap in a DNN detector if that matters."""
     import cv2
     import numpy as np
@@ -61,7 +64,15 @@ def detect_faces(image: Image.Image) -> list[tuple[int, int, int, int]]:
     cascade = cv2.CascadeClassifier(cv2.data.haarcascades + "haarcascade_frontalface_default.xml")
     min_side = max(24, min(image.size) // 25)
     found = cascade.detectMultiScale(gray, scaleFactor=1.1, minNeighbors=6, minSize=(min_side, min_side))
-    return sorted((tuple(int(v) for v in f) for f in found), key=lambda b: -b[2] * b[3])
+    eye = cv2.CascadeClassifier(cv2.data.haarcascades + "haarcascade_eye.xml")
+
+    def has_eye(x, y, w, h):
+        top = gray[y:y + h * 2 // 3, x:x + w]
+        top = cv2.resize(top, (160, max(1, int(160 * top.shape[0] / max(top.shape[1], 1)))))
+        return len(eye.detectMultiScale(top, scaleFactor=1.1, minNeighbors=3, minSize=(14, 14))) > 0
+
+    faces = [tuple(int(v) for v in f) for f in found]
+    return sorted((b for b in faces if has_eye(*b)), key=lambda b: -b[2] * b[3])
 
 
 def resolve_lora_weights(lora_path: "str | Path | None") -> Optional[Path]:
@@ -320,6 +331,8 @@ class RaviVarmaGenerator:
         lora_scale: Optional[float] = None,
         face_fix: Optional[bool] = None,
         hires_scale: Optional[float] = None,
+        init_image: Optional[Image.Image] = None,
+        strength: float = 0.45,
         control_image: Optional[Image.Image] = None,
         control_type: Optional[str] = None,
         controlnet_strength: Optional[float] = None,
@@ -347,9 +360,23 @@ class RaviVarmaGenerator:
 
         cross_attention_kwargs = {"scale": lora_scale} if self.lora_loaded else None
 
-        use_controlnet = control_image is not None and (control_type or cfg.controlnet.type)
+        use_controlnet = control_image is not None and (control_type or cfg.controlnet.type) and init_image is None
         conditioning = None
-        if use_controlnet:
+        if init_image is not None:
+            # The default negative prompt bans facial hair (it fixed a lip shadow on painted women);
+            # for a photo the face is given, so a real moustache or beard must survive.
+            negative_prompt = re.sub(r"\b(moustache|mustache|beard|facial hair),\s*", "", negative_prompt)
+            # Photo -> painting: img2img from the photo. Resize to about the training-bucket
+            # area (448x640) with the photo's own aspect, so the LoRA works at the size it learned.
+            from PIL import ImageOps
+
+            photo = ImageOps.exif_transpose(init_image).convert("RGB")
+            scale = (448 * 640 / (photo.width * photo.height)) ** 0.5
+            width, height = max(64, int(photo.width * scale) // 8 * 8), max(64, int(photo.height * scale) // 8 * 8)
+            image = self._redraw(photo.resize((width, height), Image.LANCZOS), strength=strength, prompt=prompt,
+                                 negative_prompt=negative_prompt, steps=steps, guidance_scale=guidance_scale,
+                                 seed=used_seed, cross_attention_kwargs=cross_attention_kwargs)
+        elif use_controlnet:
             from PIL import ImageOps
 
             resolved_type = control_type or cfg.controlnet.type
@@ -387,8 +414,8 @@ class RaviVarmaGenerator:
                 generator=generator,
                 cross_attention_kwargs=cross_attention_kwargs,
             )
-
-        image = result.images[0]
+        if init_image is None:
+            image = result.images[0]
         if self.device_info.device == "mps":
             # Release MPS cached blocks between images; on 8 GB unified memory
             # the cache otherwise grows until the process is swapped out.
@@ -418,6 +445,7 @@ class RaviVarmaGenerator:
             "height": height,
             "lora_scale": lora_scale,
             "hires_scale": hires_scale if hires_scale and hires_scale > 1 else None,
+            "photo_strength": strength if init_image is not None else None,
             "faces_fixed": faces_fixed if face_fix else None,
             "lora_loaded": self.lora_loaded,
             "lora_weights": str(self.lora_weights) if self.lora_loaded else None,

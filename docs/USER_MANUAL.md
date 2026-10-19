@@ -31,6 +31,14 @@ python scripts/generate.py --prompt "<rvvarma>, a queen holding a lamp" --pose-i
 
 The second command uses Milestone 3 prompt expansion; the third uses Milestone 4 pose control.
 
+**Photo → Ravi Varma:** open the app's "Photo → Varma" tab, or run:
+
+```bash
+python scripts/generate.py --prompt "<rvvarma>, portrait of a woman in a sari, classical Indian oil painting" --init-image my_photo.jpg --strength 0.45 --face-fix
+```
+
+At strength 0.45 the pose and likeness are kept; 0.6 and above repaints more freely.
+
 Tips:
 - Portraits and single figures give the best results.
 - For groups, use a pose reference.

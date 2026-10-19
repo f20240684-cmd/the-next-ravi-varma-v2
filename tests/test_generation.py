@@ -347,3 +347,41 @@ def test_face_fix_redraws_and_blends_only_the_face(monkeypatch):
     assert n == 1 and seen["size"] == (512, 512) and seen["prompt"].startswith("detailed face")
     assert img.getpixel((50, 50))[0] > 200          # face centre replaced
     assert img.getpixel((5, 5)) == (0, 0, 255)      # far corner untouched
+
+
+def test_photo_to_painting_uses_img2img_at_training_size(monkeypatch):
+    from PIL import Image
+
+    from ravi_varma.config import GenerationConfig
+    from ravi_varma.generation.pipeline import RaviVarmaGenerator
+
+    gen = RaviVarmaGenerator(GenerationConfig.load("configs/generation.yaml"))
+    monkeypatch.setattr(gen, "load", lambda: None)
+    calls = {}
+
+    def fake_redraw(image, strength, **kw):
+        calls["size"], calls["strength"] = image.size, strength
+        return Image.new("RGB", image.size, (120, 80, 40))
+
+    gen._redraw = fake_redraw
+    photo = Image.new("RGB", (3000, 4000), (200, 200, 200))  # 3:4 phone photo
+    res = gen.generate(prompt="<rvvarma>, portrait", init_image=photo, strength=0.6, seed=1, face_fix=False, save=False)
+    w, h = calls["size"]
+    assert calls["strength"] == 0.6 and w % 8 == 0 and h % 8 == 0
+    assert abs(w / h - 0.75) < 0.02 and 250_000 < w * h < 300_000  # same aspect, ~448x640 area
+    assert res.metadata["photo_strength"] == 0.6 and res.image.size == (w, h)
+
+
+def test_photo_mode_keeps_facial_hair_out_of_the_negative_prompt(monkeypatch):
+    from PIL import Image
+
+    from ravi_varma.config import GenerationConfig
+    from ravi_varma.generation.pipeline import RaviVarmaGenerator
+
+    gen = RaviVarmaGenerator(GenerationConfig.load("configs/generation.yaml"))
+    monkeypatch.setattr(gen, "load", lambda: None)
+    seen = {}
+    gen._redraw = lambda image, strength, **kw: (seen.update(kw), Image.new("RGB", image.size, (9, 9, 9)))[1]
+    gen.generate(prompt="<rvvarma>, a man", init_image=Image.new("RGB", (400, 600)), seed=1, face_fix=False, save=False)
+    assert "moustache" not in seen["negative_prompt"] and "beard" not in seen["negative_prompt"]
+    assert "watermark" in seen["negative_prompt"]  # the rest of the negative prompt is kept

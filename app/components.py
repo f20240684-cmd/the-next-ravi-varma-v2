@@ -225,6 +225,25 @@ def run_generation(
     return result.image, caption, prompt_html, details, warning, result.control_image, recent_images(out_dir)
 
 
+def run_photo_to_painting(generator: RaviVarmaGenerator, photo: Optional[Image.Image], description: str,
+                          strength: float, face_fix: bool, seed: Optional[float]):
+    """Photo tab: img2img from the uploaded photo with the style LoRA. Returns (image, details_html, warning)."""
+    if photo is None:
+        return None, "", "⚠️ Upload a photo first."
+    subject = description.strip() if description and description.strip() else "portrait of a person"
+    prompt = f"{generator.config.style.trigger_token}, {subject}, traditional Indian attire, classical Indian oil painting"
+    try:
+        result = generator.generate(prompt=prompt, init_image=photo, strength=strength, face_fix=face_fix,
+                                    seed=int(seed) if seed else None, extra_metadata={"source": "photo"})
+    except RuntimeError as e:
+        return None, "", f"⚠️ {e}"
+    m = result.metadata
+    rows = [("Prompt", prompt), ("Strength", m["photo_strength"]), ("Seed", m["seed"]), ("Size", f"{m['width']}×{m['height']}"),
+            ("Faces sharpened", m["faces_fixed"] if m.get("faces_fixed") is not None else "off")]
+    details = _card("Details", "".join(f"<div class='rv-kv'><span>{k}</span><b>{html.escape(str(v))}</b></div>" for k, v in rows))
+    return result.image, details, ""
+
+
 def run_evaluation(image: Optional[Image.Image], prompt: str, reference_dir: str):
     if image is None:
         return "⚠️ Upload or select a generated image first."

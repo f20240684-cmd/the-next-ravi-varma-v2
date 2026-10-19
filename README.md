@@ -294,6 +294,16 @@ so it runs in the Colab script (step 7b), not on the Mac.
 These are standard for SD LoRAs but are untested on this project until the v3 run. Run it with
 `TAG=v3 bash scripts/colab_train.sh`; v3 results go to separate `*_v3` folders, so v2 is never overwritten.
 
+**Photo → Ravi Varma** (the "Photo → Varma" tab in the app; `generate.py --init-image photo.jpg --strength 0.45`).
+- **How:** img2img with the v3 LoRA. The photo is resized to about the 448×640 training area (keeping its aspect ratio) and repainted at the chosen strength. The face fix then sharpens faces.
+- **Strength:** about 0.45 keeps the pose, the likeness and real facial hair; 0.6 and above repaints freely and may change the face or invent costume (a feathered crown in our test).
+- **Facial hair:** in photo mode the facial-hair terms are removed from the negative prompt (they exist to stop a lip shadow on painted women), so a real moustache survives.
+- **Face fix:** it now only redraws boxes in which an eye is found, so medals and cloth folds are skipped.
+- **Known limit:** small round objects can still become tiny faces in the main repaint (the medal in our test, `outputs/evaluations/photo_to_varma.jpg`); lower strength reduces this.
+- **Speed:** about 1–2 min per photo on the Mac when it isn't under memory pressure.
+
+<p align="center"><img src="outputs/evaluations/photo_to_varma.jpg" width="70%"></p>
+
 **Inference improvement:** `model.vae` in `configs/generation.yaml` now loads `stabilityai/sd-vae-ft-mse`. It is
 the same latent space as SD1.5's decoder, fine-tuned for cleaner faces and detail, so no retraining is needed.
 The change is subtle (checked visually, not measured). Set `vae: null` to reproduce images made before it.

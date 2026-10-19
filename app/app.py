@@ -35,6 +35,7 @@ from components import (
     recent_images,
     run_evaluation,
     run_generation,
+    run_photo_to_painting,
 )
 
 ROOT = Path(__file__).resolve().parent.parent
@@ -160,6 +161,30 @@ def build_app(config_path: str):
                     inputs=[scene, expand, style_strength, lora_checkpoint, pose_image, control_mode, controlnet_strength,
                             seed, steps, guidance, size, negative_prompt, face_fix],
                     outputs=[output_image, caption, prompt_html, details_html, warning, control_map, gallery],
+                )
+
+            # ---------------------------------------------------------- #
+            with gr.Tab("Photo → Varma"):
+                gr.HTML("<div class='rv-h1'>Photo → Ravi Varma</div><p class='rv-muted rv-lead'>Upload a photo and it is "
+                        "repainted in Ravi Varma's style. Low strength keeps the photo's composition and likeness; "
+                        "high strength repaints more freely (and may change the face or clothes).</p>")
+                with gr.Row(equal_height=False):
+                    with gr.Column(scale=4, min_width=320, elem_classes="rv-panel"):
+                        photo = gr.Image(label="Your photo", type="pil", height=320)
+                        photo_desc = gr.Textbox(label="Describe it (optional)", placeholder="a young woman in a sari smiling")
+                        photo_strength = gr.Slider(0.3, 0.8, value=0.45, step=0.05, label="Strength · 0.4 close to photo · 0.7 very painterly")
+                        photo_faces = gr.Checkbox(value=True, label="Sharpen faces (+~20 s per face)")
+                        photo_seed = gr.Number(label="Seed (0 = random)", value=42, precision=0)
+                        photo_btn = gr.Button("✦  Paint it like Ravi Varma", variant="primary", elem_classes="rv-cta")
+                        gr.HTML("<div class='rv-dim rv-center'>About 60–90 s on a Mac</div>")
+                    with gr.Column(scale=6, min_width=320):
+                        photo_out = gr.Image(show_label=False, elem_classes="rv-frame", height=640, interactive=False)
+                        photo_warning = gr.Markdown()
+                        photo_details = gr.HTML()
+                photo_btn.click(
+                    fn=lambda *a: run_photo_to_painting(generator, *a),
+                    inputs=[photo, photo_desc, photo_strength, photo_faces, photo_seed],
+                    outputs=[photo_out, photo_details, photo_warning],
                 )
 
             # ---------------------------------------------------------- #
