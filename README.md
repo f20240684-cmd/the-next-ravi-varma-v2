@@ -294,15 +294,17 @@ so it runs in the Colab script (step 7b), not on the Mac.
 These are standard for SD LoRAs but are untested on this project until the v3 run. Run it with
 `TAG=v3 bash scripts/colab_train.sh`; v3 results go to separate `*_v3` folders, so v2 is never overwritten.
 
-**Photo → Ravi Varma** (the "Photo → Varma" tab in the app; `generate.py --init-image photo.jpg --strength 0.45`).
-- **How:** img2img with the v3 LoRA. The photo is resized to about the 448×640 training area (keeping its aspect ratio) and repainted at the chosen strength. The face fix then sharpens faces.
-- **Strength:** about 0.45 keeps the pose, the likeness and real facial hair; 0.6 and above repaints freely and may change the face or invent costume (a feathered crown in our test).
-- **Facial hair:** in photo mode the facial-hair terms are removed from the negative prompt (they exist to stop a lip shadow on painted women), so a real moustache survives.
-- **Face fix:** it now only redraws boxes in which an eye is found, so medals and cloth folds are skipped.
-- **Known limit:** small round objects can still become tiny faces in the main repaint (the medal in our test, `outputs/evaluations/photo_to_varma.jpg`); lower strength reduces this.
-- **Speed:** about 1–2 min per photo on the Mac when it isn't under memory pressure.
+**Photo → Ravi Varma** (the "Photo → Varma" tab in the app; `generate.py --init-image photo.jpg --strength 0.55`).
+- **How:** the photo is resized to about the 448×640 training area (keeping its aspect ratio). It is repainted with the v3 LoRA using img2img while a **Canny ControlNet locks its outlines**. The edges keep pose, composition and likeness; the LoRA repaints colour, texture and light. The face fix then sharpens faces.
+- **Why the lock:** the first version was plain img2img. With a Spider-Man photo at strength 0.7 it returned a completely different picture (a turbaned man), because nothing held the structure and the default prompt asked for "Indian attire".
+- **Prompt:** now neutral (`<rvvarma>, classical oil painting, …` plus the user's optional description).
+- **Facial hair:** in photo mode the facial-hair terms are dropped from the negative prompt, so a real moustache survives.
+- **Face fix:** it only redraws boxes in which an eye is found.
+- **Result** (`outputs/evaluations/photo_to_varma.jpg`, rendered on a T4): the Ravi Varma photograph keeps his face, moustache, turban, cane, chair and medal as a warm oil portrait. Spider-Man keeps the exact crouch, pillar, buildings and light.
+- **Limit:** the LoRA has only seen Varma paintings, so masks and modern costumes are reinterpreted (Spider-Man becomes a man in a red-and-gold costume).
+- **Speed:** about 15 s per image on a T4. On the 8 GB Mac it needs other apps closed (SD + ControlNet ≈ 3.5 GB); otherwise it swaps heavily.
 
-<p align="center"><img src="outputs/evaluations/photo_to_varma.jpg" width="70%"></p>
+<p align="center"><img src="outputs/evaluations/photo_to_varma.jpg" width="95%"></p>
 
 **Inference improvement:** `model.vae` in `configs/generation.yaml` now loads `stabilityai/sd-vae-ft-mse`. It is
 the same latent space as SD1.5's decoder, fine-tuned for cleaner faces and detail, so no retraining is needed.

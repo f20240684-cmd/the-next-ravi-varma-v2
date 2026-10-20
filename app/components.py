@@ -230,8 +230,9 @@ def run_photo_to_painting(generator: RaviVarmaGenerator, photo: Optional[Image.I
     """Photo tab: img2img from the uploaded photo with the style LoRA. Returns (image, details_html, warning)."""
     if photo is None:
         return None, "", "⚠️ Upload a photo first."
-    subject = description.strip() if description and description.strip() else "portrait of a person"
-    prompt = f"{generator.config.style.trigger_token}, {subject}, traditional Indian attire, classical Indian oil painting"
+    # Describe only what the user gave: a forced subject ("portrait, Indian attire") fights the photo.
+    subject = f"{description.strip()}, " if description and description.strip() else ""
+    prompt = f"{generator.config.style.trigger_token}, {subject}classical oil painting, rich warm colours, soft painterly light"
     try:
         result = generator.generate(prompt=prompt, init_image=photo, strength=strength, face_fix=face_fix,
                                     seed=int(seed) if seed else None, extra_metadata={"source": "photo"})

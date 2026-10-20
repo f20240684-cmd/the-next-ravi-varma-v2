@@ -172,7 +172,7 @@ def build_app(config_path: str):
                     with gr.Column(scale=4, min_width=320, elem_classes="rv-panel"):
                         photo = gr.Image(label="Your photo", type="pil", height=320)
                         photo_desc = gr.Textbox(label="Describe it (optional)", placeholder="a young woman in a sari smiling")
-                        photo_strength = gr.Slider(0.3, 0.8, value=0.45, step=0.05, label="Strength · 0.4 close to photo · 0.7 very painterly")
+                        photo_strength = gr.Slider(0.3, 0.8, value=0.55, step=0.05, label="Strength · 0.5 subtle · 0.7 very painterly (outlines stay locked)")
                         photo_faces = gr.Checkbox(value=True, label="Sharpen faces (+~20 s per face)")
                         photo_seed = gr.Number(label="Seed (0 = random)", value=42, precision=0)
                         photo_btn = gr.Button("✦  Paint it like Ravi Varma", variant="primary", elem_classes="rv-cta")

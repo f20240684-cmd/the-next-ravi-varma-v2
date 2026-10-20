@@ -244,18 +244,22 @@ How to read it:
 
 ---
 
-### 7.3 Photo → Ravi Varma via img2img (not a separate style-transfer model)
-- **Alternatives:** classic neural style transfer (Gatys et al.); training an image-to-image model; ControlNet Canny on the photo.
-- **Why img2img:**
-  - It reuses the v3 LoRA and the already-loaded pipeline (the same `_redraw` the face and hires fixes use), so there is no new model or dependency and it runs on the Mac.
-  - Classic style transfer copies colours and texture but not Varma's way of painting skin, cloth and light.
-- **Settings:**
-  - The photo is resized to about the 448×640 training area, keeping its aspect ratio, so the LoRA works at the size it learned.
-  - Default strength is 0.45; in our test it kept the pose, likeness and real moustache, while 0.6 invented a feathered crown.
-- **Two bugs found by the first test:**
-  1. The default negative prompt bans facial hair (to stop a lip shadow on painted women), which erased the subject's real moustache. Photo mode now removes those terms.
-  2. The face detector mistook a medal for a face, and the face fix painted a face onto it. The face fix now keeps only detections in which an eye is found.
-- **Known limit:** the main repaint can still turn a small round object into a tiny face at higher strengths.
+### 7.3 Photo → Ravi Varma: img2img with a Canny ControlNet lock
+- **Alternatives:** classic neural style transfer (copies colours and texture, not Varma's way of painting skin and cloth); plain img2img; training an image-to-image model.
+- **First version, plain img2img: failed.** A Spider-Man photo at strength 0.7 came back as a different picture, a turbaned man in a new pose. Two causes:
+  1. Nothing locked the structure.
+  2. The default prompt ("portrait of a person, traditional Indian attire") fought the photo.
+- **Fix:**
+  - img2img plus a **Canny ControlNet on the photo's own edges** (diffusers' `StableDiffusionControlNetImg2ImgPipeline`, built from the already-loaded model so it fits the Mac).
+  - A **neutral prompt**, with only the user's optional description added.
+- **Evidence (T4):** both test photos keep pose, composition and likeness: the Ravi Varma photograph (face, moustache, turban, medal, cane) and Spider-Man (crouch, pillar, buildings).
+- **Default strength 0.55:** with the outlines locked, 0.5–0.7 is safe.
+- **Two bugs found along the way:**
+  1. The facial-hair negative terms erased a real moustache, so photo mode drops them.
+  2. The face fix painted a face onto a medal, so detections now need an eye.
+- **Known limits:**
+  - Masks and modern costumes are reinterpreted, because the LoRA has only seen Varma paintings.
+  - On the 8 GB Mac, SD + ControlNet needs other apps closed or it swaps (20 min per image instead of about 1–2).
 
 ## 8. Evaluation philosophy
 

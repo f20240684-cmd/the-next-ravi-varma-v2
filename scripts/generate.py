@@ -72,7 +72,7 @@ def main() -> int:
     parser.add_argument("--height", type=int, default=None)
     parser.add_argument("--lora-scale", type=float, default=None, help="Strength of the style LoRA (0 = off, 1 = as trained).")
     parser.add_argument("--init-image", default=None, help="Photo -> painting: repaint this image in the Ravi Varma style (img2img).")
-    parser.add_argument("--strength", type=float, default=0.45, help="With --init-image: 0.4 stays close to the photo, 0.7 repaints freely.")
+    parser.add_argument("--strength", type=float, default=0.55, help="With --init-image: how much is repainted (outlines stay locked); 0.5-0.7 works well.")
     parser.add_argument("--face-fix", action="store_true", help="Re-draw each detected face at 512 px (sharper eyes/lips; ~+20 s per face).")
     parser.add_argument("--hires-scale", type=float, default=None, help="Upscale and re-draw, e.g. 1.5 (needs >8 GB: use Colab).")
     parser.add_argument("--lora-path", default=None, help="LoRA dir, checkpoint-<step> dir, or .safetensors file.")

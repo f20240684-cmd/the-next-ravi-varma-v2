@@ -359,17 +359,18 @@ def test_photo_to_painting_uses_img2img_at_training_size(monkeypatch):
     monkeypatch.setattr(gen, "load", lambda: None)
     calls = {}
 
-    def fake_redraw(image, strength, **kw):
-        calls["size"], calls["strength"] = image.size, strength
-        return Image.new("RGB", image.size, (120, 80, 40))
+    def fake_photo_redraw(photo, edges, strength, controlnet_strength, **kw):
+        calls["size"], calls["strength"], calls["edges"] = photo.size, strength, edges.size
+        return Image.new("RGB", photo.size, (120, 80, 40))
 
-    gen._redraw = fake_redraw
+    gen._photo_redraw = fake_photo_redraw
     photo = Image.new("RGB", (3000, 4000), (200, 200, 200))  # 3:4 phone photo
     res = gen.generate(prompt="<rvvarma>, portrait", init_image=photo, strength=0.6, seed=1, face_fix=False, save=False)
     w, h = calls["size"]
     assert calls["strength"] == 0.6 and w % 8 == 0 and h % 8 == 0
     assert abs(w / h - 0.75) < 0.02 and 250_000 < w * h < 300_000  # same aspect, ~448x640 area
     assert res.metadata["photo_strength"] == 0.6 and res.image.size == (w, h)
+    assert calls["edges"] == (w, h) and res.control_image is not None  # outlines locked by Canny ControlNet
 
 
 def test_photo_mode_keeps_facial_hair_out_of_the_negative_prompt(monkeypatch):
@@ -381,7 +382,7 @@ def test_photo_mode_keeps_facial_hair_out_of_the_negative_prompt(monkeypatch):
     gen = RaviVarmaGenerator(GenerationConfig.load("configs/generation.yaml"))
     monkeypatch.setattr(gen, "load", lambda: None)
     seen = {}
-    gen._redraw = lambda image, strength, **kw: (seen.update(kw), Image.new("RGB", image.size, (9, 9, 9)))[1]
+    gen._photo_redraw = lambda photo, edges, strength, controlnet_strength, **kw: (seen.update(kw), Image.new("RGB", photo.size, (9, 9, 9)))[1]
     gen.generate(prompt="<rvvarma>, a man", init_image=Image.new("RGB", (400, 600)), seed=1, face_fix=False, save=False)
     assert "moustache" not in seen["negative_prompt"] and "beard" not in seen["negative_prompt"]
     assert "watermark" in seen["negative_prompt"]  # the rest of the negative prompt is kept

@@ -250,8 +250,8 @@ class RaviVarmaGenerator:
         self._pipeline = pipe
         self._loaded = True
 
-    def _load_controlnet_pipeline(self, control_type: str):
-        from diffusers import ControlNetModel, StableDiffusionControlNetPipeline
+    def _load_controlnet_pipeline(self, control_type: str, img2img: bool = False):
+        from diffusers import ControlNetModel, StableDiffusionControlNetImg2ImgPipeline, StableDiffusionControlNetPipeline
 
         model_id = CONTROLNET_MODEL_IDS[control_type]
         dtype = self._dtype()
@@ -261,10 +261,30 @@ class RaviVarmaGenerator:
         # Reuse the loaded UNet/VAE/text encoder (LoRA already injected) instead of loading a
         # second copy of SD1.5: halves memory, which is what lets this run on an 8 GB Mac.
         components = {k: v for k, v in self._pipeline.components.items() if k != "controlnet"}
-        cn_pipe = StableDiffusionControlNetPipeline(**components, controlnet=controlnet)
+        pipe_cls = StableDiffusionControlNetImg2ImgPipeline if img2img else StableDiffusionControlNetPipeline
+        cn_pipe = pipe_cls(**components, controlnet=controlnet)
         if self.plan.model_cpu_offload:
             cn_pipe.enable_model_cpu_offload()
         return cn_pipe
+
+    def _photo_redraw(self, photo: Image.Image, edges: Image.Image, strength: float, controlnet_strength: float,
+                      prompt: str, negative_prompt: str, steps: int, guidance_scale: float, seed: int,
+                      cross_attention_kwargs) -> Image.Image:
+        """img2img from the photo with its Canny edges locked by ControlNet: the LoRA repaints colour,
+        texture and light, the edges keep the pose and composition. Plain img2img at high strength
+        invented a different scene (a Spider-Man photo came back as a turbaned man)."""
+        import torch
+
+        if "canny_img2img" not in self._controlnet_pipelines:
+            self._controlnet_pipelines["canny_img2img"] = self._load_controlnet_pipeline("canny", img2img=True)
+        out = self._controlnet_pipelines["canny_img2img"](
+            prompt=prompt, negative_prompt=negative_prompt, image=photo, control_image=edges, strength=strength,
+            controlnet_conditioning_scale=controlnet_strength, num_inference_steps=steps, guidance_scale=guidance_scale,
+            generator=torch.Generator(device="cpu").manual_seed(seed), cross_attention_kwargs=cross_attention_kwargs,
+        ).images[0]
+        if self.device_info.device == "mps":
+            torch.mps.empty_cache()
+        return out
 
     def _redraw(self, image: Image.Image, strength: float, prompt: str, negative_prompt: str, steps: int,
                 guidance_scale: float, seed: int, cross_attention_kwargs) -> Image.Image:
@@ -332,7 +352,7 @@ class RaviVarmaGenerator:
         face_fix: Optional[bool] = None,
         hires_scale: Optional[float] = None,
         init_image: Optional[Image.Image] = None,
-        strength: float = 0.45,
+        strength: float = 0.55,
         control_image: Optional[Image.Image] = None,
         control_type: Optional[str] = None,
         controlnet_strength: Optional[float] = None,
@@ -373,9 +393,15 @@ class RaviVarmaGenerator:
             photo = ImageOps.exif_transpose(init_image).convert("RGB")
             scale = (448 * 640 / (photo.width * photo.height)) ** 0.5
             width, height = max(64, int(photo.width * scale) // 8 * 8), max(64, int(photo.height * scale) // 8 * 8)
-            image = self._redraw(photo.resize((width, height), Image.LANCZOS), strength=strength, prompt=prompt,
-                                 negative_prompt=negative_prompt, steps=steps, guidance_scale=guidance_scale,
-                                 seed=used_seed, cross_attention_kwargs=cross_attention_kwargs)
+            photo = photo.resize((width, height), Image.LANCZOS)
+            conditioning = make_conditioning_image(photo, control_type="canny",
+                                                   canny_low_threshold=cfg.controlnet.canny_low_threshold,
+                                                   canny_high_threshold=cfg.controlnet.canny_high_threshold)
+            image = self._photo_redraw(photo, conditioning, strength=strength,
+                                       controlnet_strength=controlnet_strength if controlnet_strength is not None else cfg.controlnet.strength,
+                                       prompt=prompt, negative_prompt=negative_prompt, steps=steps,
+                                       guidance_scale=guidance_scale, seed=used_seed,
+                                       cross_attention_kwargs=cross_attention_kwargs)
         elif use_controlnet:
             from PIL import ImageOps
 

@@ -34,10 +34,11 @@ The second command uses Milestone 3 prompt expansion; the third uses Milestone 4
 **Photo → Ravi Varma:** open the app's "Photo → Varma" tab, or run:
 
 ```bash
-python scripts/generate.py --prompt "<rvvarma>, portrait of a woman in a sari, classical Indian oil painting" --init-image my_photo.jpg --strength 0.45 --face-fix
+python scripts/generate.py --prompt "<rvvarma>, portrait of a woman in a sari, classical Indian oil painting" --init-image my_photo.jpg --strength 0.55 --face-fix
 ```
 
-At strength 0.45 the pose and likeness are kept; 0.6 and above repaints more freely.
+The photo's outlines are locked by a Canny ControlNet, so pose and likeness are kept; strength 0.5–0.7 only
+changes how painterly it gets. On an 8 GB Mac, close other apps first: SD + ControlNet needs about 3.5 GB.
 
 Tips:
 - Portraits and single figures give the best results.
