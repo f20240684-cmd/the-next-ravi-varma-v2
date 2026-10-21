@@ -28,6 +28,7 @@ such placeholders).
 """
 from __future__ import annotations
 
+import importlib
 import re
 from dataclasses import dataclass, field
 from pathlib import Path
@@ -348,7 +349,7 @@ class VLMCaptioner:
 
     def _try_load(self) -> bool:
         try:
-            import torch  # noqa: F401
+            importlib.import_module("torch")  # availability probe
             from transformers import BlipForConditionalGeneration, BlipForQuestionAnswering, BlipProcessor
         except Exception as e:  # broad: covers ImportError and broken/partial installs
             logger.warning("torch/transformers not usable (%s); VLM captioning unavailable.", e)

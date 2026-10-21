@@ -60,4 +60,4 @@ test:
 	pytest -v
 
 lint:
-	$(PY) -m pyflakes src scripts app tests || true
+	$(PY) -m pyflakes src scripts app tests

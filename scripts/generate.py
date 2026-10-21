@@ -89,6 +89,11 @@ def main() -> int:
     parser.add_argument("--controlnet-type", choices=["openpose", "canny"], default=None, help="openpose = copy the pose only (default from config); canny = copy the outlines.")
     parser.add_argument("--controlnet-strength", type=float, default=None, help="How strictly to follow the reference (config default 0.8).")
     args = parser.parse_args()
+    if args.prompt is not None and not args.prompt.strip():
+        parser.error("--prompt is empty")
+    for flag, path in (("--prompt-file", args.prompt_file), ("--init-image", args.init_image), ("--pose-image", args.pose_image)):
+        if path and not Path(path).is_file():
+            parser.error(f"{flag}: file not found: {path}")
 
     logger = setup_logging("generate")
     load_dotenv()  # API keys for --expand LLM mode live in .env (git-ignored)

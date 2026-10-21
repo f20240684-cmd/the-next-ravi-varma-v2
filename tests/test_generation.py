@@ -207,19 +207,12 @@ class TestMetadataGeneration:
 
 class TestMlStackUnavailable:
     def test_clear_error_when_torch_and_diffusers_missing(self, generation_config, monkeypatch):
-        # Ensure a clean slate: simulate the real sandbox where torch/diffusers
-        # genuinely are not importable.
-        import builtins
-
-        real_import = builtins.__import__
-
-        def fake_import(name, *args, **kwargs):
-            if name in ("torch", "diffusers"):
-                raise ImportError(f"No module named '{name}'")
-            return real_import(name, *args, **kwargs)
-
-        monkeypatch.setattr(builtins, "__import__", fake_import)
+        # Simulate a machine where torch/diffusers are not installed: a None entry in
+        # sys.modules makes both `import x` and importlib.import_module("x") raise ImportError.
         from ravi_varma.generation.pipeline import RaviVarmaGenerator
+
+        monkeypatch.setitem(sys.modules, "torch", None)
+        monkeypatch.setitem(sys.modules, "diffusers", None)
 
         gen = RaviVarmaGenerator(generation_config)
         with pytest.raises(RuntimeError, match="not usable"):
@@ -386,3 +379,18 @@ def test_photo_mode_keeps_facial_hair_out_of_the_negative_prompt(monkeypatch):
     gen.generate(prompt="<rvvarma>, a man", init_image=Image.new("RGB", (400, 600)), seed=1, face_fix=False, save=False)
     assert "moustache" not in seen["negative_prompt"] and "beard" not in seen["negative_prompt"]
     assert "watermark" in seen["negative_prompt"]  # the rest of the negative prompt is kept
+
+
+@pytest.mark.parametrize("size", [(1, 5000), (5000, 10), (20, 20), (12000, 9000)])
+def test_photo_of_any_shape_gets_a_bounded_size(monkeypatch, size):
+    from PIL import Image
+
+    from ravi_varma.config import GenerationConfig
+    from ravi_varma.generation.pipeline import RaviVarmaGenerator
+
+    gen = RaviVarmaGenerator(GenerationConfig.load("configs/generation.yaml"))
+    monkeypatch.setattr(gen, "load", lambda: None)
+    gen._photo_redraw = lambda photo, edges, strength, controlnet_strength, **kw: Image.new("RGB", photo.size, (90, 60, 30))
+    res = gen.generate(prompt="<rvvarma>, x", init_image=Image.new("RGB", size), seed=1, face_fix=False, save=False)
+    w, h = res.image.size
+    assert w % 8 == 0 and h % 8 == 0 and 64 <= min(w, h) and max(w, h) <= 1024 and w * h <= 300_000

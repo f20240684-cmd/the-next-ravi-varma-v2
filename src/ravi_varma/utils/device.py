@@ -8,6 +8,7 @@ environment with no ML stack at all.
 """
 from __future__ import annotations
 
+import importlib
 from dataclasses import dataclass
 from typing import Optional
 
@@ -166,7 +167,7 @@ def resolve_optimizations(
     use_xformers = False
     if requested_xformers and device_info.device == "cuda" and torch is not None:
         try:
-            import xformers  # noqa: F401
+            importlib.import_module("xformers")  # availability probe
 
             use_xformers = True
         except Exception:

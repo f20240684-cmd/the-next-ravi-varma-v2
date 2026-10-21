@@ -15,6 +15,7 @@ Design choices mandated by the project spec:
 """
 from __future__ import annotations
 
+import importlib
 import json
 import re
 import time
@@ -154,8 +155,8 @@ class RaviVarmaGenerator:
     # ------------------------------------------------------------------ #
     def _check_ml_stack(self) -> None:
         try:
-            import diffusers  # noqa: F401
-            import torch  # noqa: F401
+            importlib.import_module("diffusers")  # availability probes
+            importlib.import_module("torch")
         except Exception as e:
             raise RuntimeError(
                 "torch/diffusers are not usable in this environment "
@@ -391,6 +392,10 @@ class RaviVarmaGenerator:
             from PIL import ImageOps
 
             photo = ImageOps.exif_transpose(init_image).convert("RGB")
+            if not 0.5 <= photo.width / photo.height <= 2:
+                # Centre-crop panoramas / strips to 2:1, else one side collapses to 64 px and the
+                # other explodes (a 1x5000 image became 64x37856 and ran out of memory).
+                photo = ImageOps.fit(photo, (min(photo.width, 2 * photo.height), min(photo.height, 2 * photo.width)))
             scale = (448 * 640 / (photo.width * photo.height)) ** 0.5
             width, height = max(64, int(photo.width * scale) // 8 * 8), max(64, int(photo.height * scale) // 8 * 8)
             photo = photo.resize((width, height), Image.LANCZOS)

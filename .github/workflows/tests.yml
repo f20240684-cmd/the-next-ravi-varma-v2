@@ -1,0 +1,35 @@
+name: tests
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: pip
+          cache-dependency-path: requirements.txt
+
+      # CPU build of the pinned torch first, so requirements.txt does not pull ~2 GB of CUDA wheels.
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install torch==2.4.1 torchvision==0.19.1 --index-url https://download.pytorch.org/whl/cpu
+          pip install -r requirements.txt
+          pip install -e . --no-deps
+
+      - name: Lint (pyflakes)
+        run: python -m pyflakes src scripts app tests
+
+      # Includes a real LoRA training run on Hugging Face's 1 MB tiny SD model (CPU) and the
+      # CLIP-based evaluation tests; both download small public weights, no secrets needed.
+      - name: Tests
+        run: python -m pytest -q -p no:warnings
