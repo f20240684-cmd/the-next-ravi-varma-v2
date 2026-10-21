@@ -1,0 +1,34 @@
+{
+  "base_model": "stable-diffusion-v1-5/stable-diffusion-v1-5",
+  "trigger_token": "<rvvarma>",
+  "lora": {
+    "rank": 16,
+    "alpha": 16,
+    "dropout": 0.05,
+    "target_modules": [
+      "to_k",
+      "to_q",
+      "to_v",
+      "to_out.0"
+    ],
+    "train_text_encoder": false
+  },
+  "dataset_manifest": "data/processed/manifest.jsonl",
+  "num_training_samples": 182,
+  "optimizer_steps": 1500,
+  "train_seconds_this_session": 3492.8,
+  "device": "cuda",
+  "gpu": "Tesla T4",
+  "mixed_precision": "fp16",
+  "final_loss_mean_last_50": 0.11816621485981159,
+  "loss_history_csv": "outputs/logs/train_loss.csv",
+  "weights_file": "checkpoints/lora/ravi_varma_v3/pytorch_lora_weights.safetensors",
+  "checkpoints": [
+    "checkpoints/lora/ravi_varma_v3/checkpoint-250",
+    "checkpoints/lora/ravi_varma_v3/checkpoint-500",
+    "checkpoints/lora/ravi_varma_v3/checkpoint-750",
+    "checkpoints/lora/ravi_varma_v3/checkpoint-1000",
+    "checkpoints/lora/ravi_varma_v3/checkpoint-1250",
+    "checkpoints/lora/ravi_varma_v3/checkpoint-1500"
+  ]
+}

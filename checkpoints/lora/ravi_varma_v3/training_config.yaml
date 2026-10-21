@@ -1,0 +1,73 @@
+base_model: stable-diffusion-v1-5/stable-diffusion-v1-5
+model_family: sd15
+revision: null
+variant: null
+dataset:
+  manifest_file: data/processed/manifest.jsonl
+  resolution: 512
+  aspect_bucketing: true
+  center_crop: true
+  random_flip: true
+lora:
+  rank: 16
+  alpha: 16
+  dropout: 0.05
+  target_modules:
+  - to_k
+  - to_q
+  - to_v
+  - to_out.0
+  train_text_encoder: false
+optimizer:
+  learning_rate: 0.0001
+  lr_scheduler: constant_with_warmup
+  lr_warmup_steps: 100
+  adam_beta1: 0.9
+  adam_beta2: 0.999
+  adam_weight_decay: 0.01
+  adam_epsilon: 1.0e-08
+  use_8bit_adam: false
+training:
+  train_batch_size: 1
+  gradient_accumulation_steps: 4
+  max_train_steps: 1500
+  num_train_epochs: null
+  mixed_precision: fp16
+  gradient_checkpointing: true
+  max_grad_norm: 1.0
+  seed: 42
+  snr_gamma: 5.0
+  noise_offset: 0.05
+  caption_dropout: 0.1
+  enable_xformers: true
+  dataloader_num_workers: 2
+checkpointing:
+  output_dir: checkpoints/lora/ravi_varma_v3
+  checkpointing_steps: 250
+  checkpoints_total_limit: 6
+  resume_from_checkpoint: latest
+logging:
+  logging_dir: outputs/logs
+  report_to: tensorboard
+  log_every_n_steps: 10
+validation:
+  validation_prompts:
+  - <rvvarma>, portrait of a royal Indian woman in a silk sari with gold jewelry,
+    seated in a palace interior
+  - <rvvarma>, Krishna and Arjuna standing together on a battlefield, traditional
+    clothing
+  - <rvvarma>, a woman sitting by a lake at dusk, traditional sari
+  validation_prompt: null
+  negative_prompt: deformed hands, extra fingers, malformed face, blurry, lowres,
+    watermark, text
+  num_validation_images: 1
+  validation_steps: 250
+  run_at_start: true
+  num_inference_steps: 25
+  guidance_scale: 7.5
+  width: 512
+  height: 512
+style:
+  artist_name: Raja Ravi Varma
+  trigger_token: <rvvarma>
+  caption_prefix_template: '{trigger_token}, {caption}'

@@ -32,12 +32,20 @@ data/reference/*
 !data/reference/.gitkeep
 !data/reference/reference.jsonl
 
-# Model weights belong in Drive / the HF Hub, not git.
+# Model weights stay out of git, EXCEPT the final v3 LoRA (12.8 MB): without it a
+# fresh clone cannot reproduce a single styled image. Checkpoints and v1/v2 stay local.
 checkpoints/lora/*
 !checkpoints/lora/.gitkeep
-*.safetensors
+!checkpoints/lora/ravi_varma_v3/
+checkpoints/lora/ravi_varma_v3/*
+!checkpoints/lora/ravi_varma_v3/pytorch_lora_weights.safetensors
+!checkpoints/lora/ravi_varma_v3/training_config.yaml
+!checkpoints/lora/ravi_varma_v3/training_summary.json
+!checkpoints/lora/ravi_varma_v3/loss_history.csv
 *.ckpt
 *.bin
+*.safetensors
+!checkpoints/lora/ravi_varma_v3/pytorch_lora_weights.safetensors
 
 # Outputs: logs and smoke tests are scratch; curated result images and
 # evaluation summaries are kept.
