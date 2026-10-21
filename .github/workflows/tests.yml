@@ -29,7 +29,13 @@ jobs:
       - name: Lint (pyflakes)
         run: python -m pyflakes src scripts app tests
 
-      # Includes a real LoRA training run on Hugging Face's 1 MB tiny SD model (CPU) and the
-      # CLIP-based evaluation tests; both download small public weights, no secrets needed.
+      # The training and tokenizer tests skip themselves when their models are not cached (so the
+      # suite also runs offline); fetch the small public files so CI really runs them.
+      - name: Fetch small test models
+        run: |
+          python -c "from huggingface_hub import snapshot_download as d; d('hf-internal-testing/tiny-stable-diffusion-pipe'); d('stable-diffusion-v1-5/stable-diffusion-v1-5', allow_patterns=['tokenizer/*'])"
+
+      # Includes a real LoRA training run on the 1 MB tiny SD model (CPU) and the CLIP evaluation
+      # tests. --rs prints the reason for every skip, so a silently skipped test is visible.
       - name: Tests
-        run: python -m pytest -q -p no:warnings
+        run: python -m pytest -q -p no:warnings -rs
