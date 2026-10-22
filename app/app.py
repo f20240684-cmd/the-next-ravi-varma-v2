@@ -166,8 +166,8 @@ def build_app(config_path: str):
             # ---------------------------------------------------------- #
             with gr.Tab("Photo → Varma"):
                 gr.HTML("<div class='rv-h1'>Photo → Ravi Varma</div><p class='rv-muted rv-lead'>Upload a photo and it is "
-                        "repainted in Ravi Varma's style. Low strength keeps the photo's composition and likeness; "
-                        "high strength repaints more freely (and may change the face or clothes).</p>")
+                        "repainted in Ravi Varma's style. Its outlines are locked (ControlNet Canny), so pose and composition "
+                        "stay; strength sets how painterly it gets. Masks and modern costume are reinterpreted.</p>")
                 with gr.Row(equal_height=False):
                     with gr.Column(scale=4, min_width=320, elem_classes="rv-panel"):
                         photo = gr.Image(label="Your photo", type="pil", height=320)
@@ -176,7 +176,7 @@ def build_app(config_path: str):
                         photo_faces = gr.Checkbox(value=True, label="Sharpen faces (+~20 s per face)")
                         photo_seed = gr.Number(label="Seed (0 = random)", value=42, precision=0)
                         photo_btn = gr.Button("✦  Paint it like Ravi Varma", variant="primary", elem_classes="rv-cta")
-                        gr.HTML("<div class='rv-dim rv-center'>About 60–90 s on a Mac</div>")
+                        gr.HTML("<div class='rv-dim rv-center'>About 1–2 min on a Mac (close other apps on 8 GB)</div>")
                     with gr.Column(scale=6, min_width=320):
                         photo_out = gr.Image(show_label=False, elem_classes="rv-frame", height=640, interactive=False)
                         photo_warning = gr.Markdown()
@@ -190,7 +190,7 @@ def build_app(config_path: str):
             # ---------------------------------------------------------- #
             with gr.Tab("Checkpoint Hub"):
                 gr.HTML("<div class='rv-h1'>Checkpoint Hub</div><p class='rv-muted rv-lead'>Seven LoRA weight files saved "
-                        "while training on 122 Ravi Varma paintings. Each plugs into the same Stable Diffusion 1.5 base "
+                        "while training the v3 LoRA on 182 Ravi Varma paintings. Each plugs into the same Stable Diffusion 1.5 base "
                         "— pick one in <b>Generate</b> to compare.</p>"
                         "<div class='rv-stats'>"
                         + "".join(f"<div class='rv-stat'><div class='rv-stat-v'>{v}</div><div class='rv-dim'>{l}</div></div>"
@@ -207,7 +207,7 @@ def build_app(config_path: str):
                         gr.HTML(f"<div class='rv-card'><div class='rv-card-title'>Saved checkpoints</div>{checkpoint_table_html(lora_root)}</div>")
                 progression = ROOT / "outputs/evaluations/lora_vs_base/validation_progression.jpg"
                 if progression.exists():
-                    gr.Image(str(progression), label="Same three prompts at every checkpoint · steps 0 → 1500",
+                    gr.Image(str(progression), label="Same three prompts at every checkpoint · steps 0 → 1500 (v2 run)",
                              interactive=False, show_download_button=False)
 
             # ---------------------------------------------------------- #

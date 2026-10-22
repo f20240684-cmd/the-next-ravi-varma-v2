@@ -49,7 +49,7 @@ CLIP-based evaluation.
 - This tool cannot and does not claim to produce genuine Raja Ravi Varma paintings.
 
 **Responsible use.** All output here is AI-generated and should be labeled as such if shared.
-See the README's "Ethical & Copyright Considerations" section for dataset provenance requirements.
+See the README section "Ethics, licensing and attribution" for dataset provenance.
 """
 
 

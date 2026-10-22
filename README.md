@@ -42,6 +42,18 @@ the base model.
 
 All four proposal milestones are implemented. See [Known limitations](#known-limitations) for what does *not* work well.
 
+### Screenshots
+
+These are real screenshots of `python app/app.py` at 1440 px. The Generate result is a real v3 render (seed 42, 139 s on an Apple-silicon Mac).
+
+| Generate (text → painting, expanded prompt, run details) | Checkpoint Hub (v3 checkpoints, loss, progression) |
+|---|---|
+| <img src="docs/screenshots/01_generate.png" width="100%"> | <img src="docs/screenshots/03_checkpoint_hub.png" width="100%"> |
+| **Photo → Varma** (outline-locked repaint) | **Evaluation** (CLIP prompt and style scores for any image) |
+| <img src="docs/screenshots/02_photo_to_varma.png" width="100%"> | <img src="docs/screenshots/04_evaluation.png" width="100%"> |
+
+The About tab: [docs/screenshots/05_about.png](docs/screenshots/05_about.png).
+
 ---
 
 ## Quick start
