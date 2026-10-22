@@ -742,7 +742,7 @@ generation also works locally (~1 min/image on an 8 GB MacBook). The web app: `p
 
 ## C3. Tests
 
-`pytest -v` — 115 tests (113 run; 2 only run on machines without CLIP). They cover validation and
+`pytest -v` — 121 tests (119 run; 2 only run on machines without CLIP). They cover validation and
 curation, captions, buckets, title cleaning, generation settings, evaluation and a **real training run
 on a 1 MB test model** (checks freezing, checkpointing, resume and that the exported LoRA loads).
 

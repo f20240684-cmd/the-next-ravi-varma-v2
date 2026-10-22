@@ -10,20 +10,23 @@ Tip: answer in one sentence first, then add the detail only if they ask.
 
 | | |
 |---|---|
-| Images downloaded / accepted / trained / held out | **200 / 134 / 122 / 12** |
-| Excluded | **66** = 26 upscaled low-res + 33 duplicates + 7 non-paintings |
+| Images downloaded / accepted / trained / held out | **300 / 194 / 182 / 12** (v3; v2 was 200 / 134 / 122 / 12) |
+| Sources | Wikimedia Commons (261) + Wellcome Collection chromolithographs (39), all open-licence |
+| Excluded | **106** = 26 upscaled low-res + 72 duplicates + 8 non-paintings |
 | Base model | **Stable Diffusion 1.5** (U-Net ~860 M params, CLIP text encoder ~123 M, VAE ~84 M) |
 | LoRA | rank **16**, alpha **16**, dropout **0.05**, on `to_q, to_k, to_v, to_out.0` |
 | Trainable parameters | **3.19 M = 0.37 %** of the U-Net; LoRA file **12.8 MB** |
-| Training | **1500** optimizer steps, batch 1 × accumulation 4, LR **1e-4** (100 warm-up), AdamW, fp16, seed 42 |
-| Epochs | 1500 × 4 / 122 ≈ **49** |
+| Training | **1500** optimizer steps, batch 1 × accumulation 4, LR **1e-4** (100 warm-up), AdamW, fp16, seed 42; v3 adds Min-SNR γ = 5, noise offset 0.05, 10 % caption dropout |
+| Epochs | 1500 × 4 / 182 ≈ **33** (v3); 49 for v2's 122 images |
 | Hardware / time | Colab **Tesla T4**, **58 min** (~2.2 s/step) |
 | Inference | DPM-Solver++ **30 steps**, guidance **7.5**, LoRA scale 1.0 |
 | Latent size | image ÷ 8 per side, 4 channels (448×640 → 56×80×4) |
 | CLIP token limit | **77** incl. start/end tokens (captions capped at 69 + 6-token trigger prefix) |
-| Evaluation | 5 prompts × 3 seeds = **15 pairs**; style sim. 0.669 → **0.681**; prompt adherence 0.328 → 0.317; frames 5/15 → **0/15** |
+| Evaluation | 5 prompts × 3 seeds = **15 pairs**; style sim. base 0.669 → v2 0.681 → **v3 0.701** (higher than base in 12/15); prompt adherence 0.328 → v2 0.317 → **v3 0.330**; frames 5/15 → **0/15** |
 | Milestone 3 | lexicon of **27** characters / **18** places; expansion fits **75** tokens; CLIP raw 0.326 / local 0.317 / LLM 0.320 (no measurable gain) |
 | Milestone 4 | OpenPose ControlNet: pose adherence (PCK) **0.17 → 0.86** on 6 held-out paintings; style 0.704 → 0.692 |
+| Extras | face fix (redraw faces at 512 px), hires fix (GPU), photo → painting (img2img + Canny lock) |
+| Tests | **121** (119 run locally, 2 only without CLIP); CI on every push |
 
 ---
 
