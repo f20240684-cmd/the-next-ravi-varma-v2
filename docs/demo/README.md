@@ -46,3 +46,21 @@ W' = W + \frac{\alpha}{r}\,B A \qquad r = \alpha = 16
 | Trained | Where | Caption dropout | Steps | Time |
 |:---:|:---:|:---:|:---:|:---:|
 | 3.2 M parameters (**0.37 %**) | UNet attention layers | 10 % trigger only | 1500 | 58 min on a T4 |
+
+---
+
+## 4. How it improved: v1 → v2 → v3
+
+| | v1 | v2 | v3 (final) |
+|:---|:---:|:---:|:---:|
+| **Woman in a palace** | <img src="../../outputs/generated/v1_preliminary/1790780441_218c22ae.png" width="230"> | <img src="../../outputs/generated/lora/royal_woman_palace_seed42.png" width="230"> | <img src="../../outputs/generated/lora_v3/royal_woman_palace_seed42.png" width="230"> |
+| **Krishna and Arjuna** | <img src="../../outputs/generated/v1_preliminary/1790780382_b98d0dc3.png" width="230"> | <img src="../../outputs/generated/lora/krishna_arjuna_seed42.png" width="230"> | <img src="../../outputs/generated/lora_v3/krishna_arjuna_seed42.png" width="230"> |
+| **Training images** | 39 | 122 | **182** |
+| **Main change** | First attempt: one BLIP sentence per image, square crops | Curated data, detailed captions, aspect buckets | More and sharper data, Min-SNR, noise offset, caption dropout |
+| **Look** | Flat poster style, close to the base model | Richer light and fabric, but moustache-like shadows on faces | Softer, painterly light; cleaner faces |
+| **Style score** (base under the same settings) | not measured | 0.681 (0.669) | **0.701** (0.674) |
+| **Prompt score** (base) | not measured | 0.317 (0.328) | **0.330** (0.329) |
+| **Diversity** (base) | not measured | **0.119** (0.106) | 0.092 (0.103) |
+
+<sub>v2 and v3: same prompts, seed 42. v1: different prompts and seeds, so compare it only by eye. The cleaner v3 faces also come from a
+shorter negative prompt ("moustache" first) and a better VAE, not only from training. Style score: CLIP similarity to 12 held-out paintings; 15 pairs, v3 vs base p = 0.08.</sub>
