@@ -14,12 +14,18 @@
 
 **300** collected → **194** kept → **182** training + **12** held out
 
-| *Hamsa Damayanti* (training image) | Its caption |
-|:---:|:---|
-| <img src="training_hamsa_damayanti.jpg" height="480"> | **Trigger (learns the style):**<br>`<rvvarma>`<br><br>**Content words (explain the picture):**<br>Hamsa Damayanti, a woman in a `red sari` feeding a `white swan`, wearing red dress, `necklace` jewelry, `sitting`, calm expression, in park, single-figure composition, vertical format, mid-tone lighting, warm red and ochre palette |
+<img src="training_hamsa_damayanti.jpg" height="480" align="left">
+
+***Hamsa Damayanti* (training image) and its caption**
+
+**Trigger (learns the style):** `<rvvarma>`
+
+**Content words (explain the picture):** Hamsa Damayanti, a woman in a `red sari` feeding a `white swan`, wearing red dress, `necklace` jewelry, `sitting`, calm expression, in park, single-figure composition, vertical format, mid-tone lighting, warm red and ochre palette
 
 - Words explain the content, so the trigger is left with what all the paintings share: **the style**.
 - Duplicates removed: one print appeared **7 times**.
+
+<br clear="both">
 
 ---
 
