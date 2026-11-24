@@ -10,6 +10,7 @@ his public-domain paintings.
 **Docs:**
 - [User Manual](docs/USER_MANUAL.md): how everything works, from the basics.
 - [Design decisions](docs/DECISIONS.md): why each choice was made.
+- [Demo page](docs/DEMO.md): the problem, the data and the model in three short sections.
 - [Detailed results](docs/RESULTS.md): every experiment and the project history.
 - [Evaluation protocol](docs/EVALUATION.md).
 - [Dataset](data/README.md).
