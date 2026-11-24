@@ -27,11 +27,15 @@
 
 **Frozen weight + small low-rank update**
 
-$$W' = W + \frac{\alpha}{r}\,B A \qquad r = \alpha = 16$$
+```math
+W' = W + \frac{\alpha}{r}\,B A \qquad r = \alpha = 16
+```
 
 **Training loss: noise prediction with Min-SNR weighting**
 
-$$\mathcal{L} = \mathbb{E}\left[\frac{\min(\mathrm{SNR}_t,\ \gamma)}{\mathrm{SNR}_t}\ \lVert \epsilon - \epsilon_\theta(z_t, t, c) \rVert^2\right] \qquad \gamma = 5$$
+```math
+\mathcal{L} = \mathbb{E}\left[\frac{\min(\mathrm{SNR}_t,\ \gamma)}{\mathrm{SNR}_t}\ \lVert \epsilon - \epsilon_\theta(z_t, t, c) \rVert^2\right] \qquad \gamma = 5
+```
 
 | Trained | Where | Caption dropout | Steps | Time |
 |:---:|:---:|:---:|:---:|:---:|
