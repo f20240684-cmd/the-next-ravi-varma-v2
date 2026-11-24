@@ -32,7 +32,7 @@ the base model.
 
 | Feature | How to try it | Evidence |
 |---|---|---|
-| **Style LoRA (v3)**: text → Varma-style image | `scripts/generate.py`, app *Generate* tab | Style similarity to 12 held-out paintings 0.669 (base) → **0.701**, with no loss in prompt adherence ([table](#results)) |
+| **Style LoRA (v3)**: text → Varma-style image | `scripts/generate.py`, app *Generate* tab | Style similarity to 12 held-out paintings 0.674 (base) → **0.701** (10/15 pairs, p = 0.08), with no loss in prompt adherence ([table](#results)) |
 | **Prompt expansion** (Milestone 3): plain story → detailed prompt (27 characters, 18 places), optional LLM | `--expand` | Works; **no measurable CLIP gain** on 4 scenes, reported as such ([details](docs/RESULTS.md#milestone-3--prompt-expansion)) |
 | **Pose control** (Milestone 4): copy the pose of a reference image (ControlNet OpenPose / Canny) | `--pose-image`, app | Pose adherence (PCK) **0.17 → 0.86** on 6 held-out paintings |
 | **Photo → Ravi Varma**: repaint a photo, with outlines locked by ControlNet Canny | `--init-image`, app *Photo → Varma* tab | Pose, composition and likeness kept on two test photos ([image](#results)) |
@@ -115,19 +115,22 @@ Without `--lora-path` the v3 LoRA is used. `--no-lora` renders the plain base mo
 
 ## Results
 
-Paired evaluation: the same 5 prompts × 3 seeds rendered with and without the LoRA, scored with CLIP ViT-B/32
-against **12 held-out paintings that were never trained on** (`outputs/evaluations/lora_v3_vs_base/summary.json`).
+Paired evaluation: the same 5 prompts × 3 seeds, negative prompt, VAE and sampler, rendered with and without the LoRA and scored
+with CLIP ViT-B/32 against **12 held-out paintings that were never trained on**
+(`outputs/evaluations/lora_v3_vs_base_matched/summary.json`). An earlier comparison (`lora_v3_vs_base/`) used a base run with an
+older negative prompt and VAE, which overstated the gain. The v2 column is against that older base (0.669 / 0.734 / 0.328 / 0.106),
+which matches v2's own settings.
 
-| Metric | Base SD1.5 | v2 LoRA (122 images) | **v3 LoRA (182 images)** |
+| Metric | Base SD1.5 (matched to v3) | v2 LoRA (122 images) | **v3 LoRA (182 images)** |
 |---|---|---|---|
-| Style similarity to held-out paintings | 0.669 | 0.681 (higher than base in 7/15 pairs) | **0.701 (12/15)** |
-| Style, 3 nearest references | 0.734 | 0.746 | **0.770 (13/15)** |
-| Prompt adherence (image–text) | 0.328 | 0.317 | **0.330** |
-| Diversity across seeds | 0.106 | 0.119 | 0.092 |
+| Style similarity to held-out paintings | 0.674 | 0.681 (higher than base in 7/15 pairs) | **0.701 (10/15)** |
+| Style, 3 nearest references | 0.741 | 0.746 | **0.770 (11/15)** |
+| Prompt adherence (image–text) | 0.329 | 0.317 | **0.330** |
+| Diversity across seeds | 0.103 | 0.119 | 0.092 |
 | Max similarity to any training image (> 0.95 would be a copy) | – | 0.884 | 0.898 |
 
 **What this shows:**
-- v3 moves about three times further toward the held-out paintings than v2, without losing prompt adherence.
+- v3 moves further toward the held-out paintings than v2 (+0.027 vs +0.012 over the matching base), without losing prompt adherence. With 15 pairs this is a trend, not significant (Wilcoxon p = 0.08).
 - Variety across seeds dropped.
 - No training image is copied.
 - CLIP is a coarse judge of painting style, so the side-by-side images are the stronger evidence.
