@@ -57,10 +57,10 @@ W' = W + \frac{\alpha}{r}\,B A \qquad r = \alpha = 16
 | **Krishna and Arjuna** | <img src="../../outputs/generated/v1_preliminary/1790780382_b98d0dc3.png" width="230"> | <img src="../../outputs/generated/lora/krishna_arjuna_seed42.png" width="230"> | <img src="../../outputs/generated/lora_v3/krishna_arjuna_seed42.png" width="230"> |
 | **Training images** | 39 | 122 | **182** |
 | **Main change** | First attempt: one BLIP sentence per image, square crops | Curated data, detailed captions, aspect buckets | More and sharper data, Min-SNR, noise offset, caption dropout |
-| **Look** | Flat poster style, close to the base model | Richer light and fabric, but moustache-like shadows on faces | Softer, painterly light; cleaner faces |
+| **Look** | Flat poster style, close to the base model | Richer light and fabric, but moustache-like shadows on faces | Softer, painterly light; face shadows fainter but not fully gone |
 | **Style score** (base under the same settings) | not measured | 0.681 (0.669) | **0.701** (0.674) |
 | **Prompt score** (base) | not measured | 0.317 (0.328) | **0.330** (0.329) |
 | **Diversity** (base) | not measured | **0.119** (0.106) | 0.092 (0.103) |
 
-<sub>v2 and v3: same prompts, seed 42. v1: different prompts and seeds, so compare it only by eye. The cleaner v3 faces also come from a
+<sub>v2 and v3: same prompts, seed 42. v1: different prompts and seeds, so compare it only by eye. The fainter v3 face shadows also come from a
 shorter negative prompt ("moustache" first) and a better VAE, not only from training. Style score: CLIP similarity to 12 held-out paintings; 15 pairs, v3 vs base p = 0.08.</sub>
